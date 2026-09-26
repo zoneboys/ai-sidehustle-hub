@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T16:21:13.086Z",
+  "generatedAt": "2026-09-26T16:27:47.190Z",
   "date": "2026-09-26",
   "total": 51,
   "jobs": [
@@ -292,69 +292,6 @@
       "source": "Remote OK"
     },
     {
-      "title": "🧵 HN「Who is hiring?」2026-09 月度招聘楼已更新",
-      "company": "news.ycombinator.com",
-      "location": "共 256 条新职位",
-      "category": "月更",
-      "url": "https://news.ycombinator.com/item?id=49522897",
-      "date": "2026-09-26",
-      "source": "Hacker News"
-    },
-    {
-      "title": "Modash.io | Senior Product Engineer | Remote (Europe) | Full-time | €75k–110k | https://modash.io Modash helps",
-      "company": "Modash.io ",
-      "location": "Remote",
-      "category": "HN Who is hiring",
-      "url": "https://news.ycombinator.com/item?id=49522903",
-      "date": "2026-09-01",
-      "source": "Hacker News"
-    },
-    {
-      "title": "Quill | Fullstack SWE | Full-time | Remote, PT/ET hours preferred | $150 - 210K USD + equity | https://quill.c",
-      "company": "Quill ",
-      "location": "Remote",
-      "category": "HN Who is hiring",
-      "url": "https://news.ycombinator.com/item?id=49522912",
-      "date": "2026-09-01",
-      "source": "Hacker News"
-    },
-    {
-      "title": "Open Education Applications / Neon | Senior/Lead Platform & DevOps Engineer, Senior Frontend Engineer, Senior ",
-      "company": "Open Education Applications ",
-      "location": "See post",
-      "category": "HN Who is hiring",
-      "url": "https://news.ycombinator.com/item?id=49522929",
-      "date": "2026-09-01",
-      "source": "Hacker News"
-    },
-    {
-      "title": "We The Flywheel | AI-Native Engineers & Operators | REMOTE (worldwide) | Contract / Part-time (10–40 hrs/wk) W",
-      "company": "We The Flywheel ",
-      "location": "Remote",
-      "category": "HN Who is hiring",
-      "url": "https://news.ycombinator.com/item?id=49522930",
-      "date": "2026-09-01",
-      "source": "Hacker News"
-    },
-    {
-      "title": "ORIGAMICS | Founding Researcher | San Francisco | ONSITE/REMOTE Origamics is building AI models that reason ab",
-      "company": "ORIGAMICS ",
-      "location": "Remote",
-      "category": "HN Who is hiring",
-      "url": "https://news.ycombinator.com/item?id=49522949",
-      "date": "2026-09-01",
-      "source": "Hacker News"
-    },
-    {
-      "title": "Snout https://snout.com/ | Multiple Engineering + Product Roles | Remote US or Ontario, Canada | Full Time Joi",
-      "company": "Snout https",
-      "location": "Remote",
-      "category": "HN Who is hiring",
-      "url": "https://news.ycombinator.com/item?id=49522989",
-      "date": "2026-09-01",
-      "source": "Hacker News"
-    },
-    {
       "title": "Account Executive Mid-Market - Italy",
       "company": "Alma",
       "location": "Italy",
@@ -461,6 +398,69 @@
       "url": "https://jobicy.com/jobs/146036-technical-success-manager-autodesk-forma-construction-specialist",
       "date": "2026-09-26",
       "source": "Jobicy"
+    },
+    {
+      "title": "🧵 HN「Who is hiring?」2026-09 月度招聘楼已更新",
+      "company": "news.ycombinator.com",
+      "location": "共 256 条新职位",
+      "category": "月更",
+      "url": "https://news.ycombinator.com/item?id=49522897",
+      "date": "2026-09-26",
+      "source": "Hacker News"
+    },
+    {
+      "title": "Modash.io | Senior Product Engineer | Remote (Europe) | Full-time | €75k–110k | https://modash.io Modash helps",
+      "company": "Modash.io ",
+      "location": "Remote",
+      "category": "HN Who is hiring",
+      "url": "https://news.ycombinator.com/item?id=49522903",
+      "date": "2026-09-01",
+      "source": "Hacker News"
+    },
+    {
+      "title": "Quill | Fullstack SWE | Full-time | Remote, PT/ET hours preferred | $150 - 210K USD + equity | https://quill.c",
+      "company": "Quill ",
+      "location": "Remote",
+      "category": "HN Who is hiring",
+      "url": "https://news.ycombinator.com/item?id=49522912",
+      "date": "2026-09-01",
+      "source": "Hacker News"
+    },
+    {
+      "title": "Open Education Applications / Neon | Senior/Lead Platform & DevOps Engineer, Senior Frontend Engineer, Senior ",
+      "company": "Open Education Applications ",
+      "location": "See post",
+      "category": "HN Who is hiring",
+      "url": "https://news.ycombinator.com/item?id=49522929",
+      "date": "2026-09-01",
+      "source": "Hacker News"
+    },
+    {
+      "title": "We The Flywheel | AI-Native Engineers & Operators | REMOTE (worldwide) | Contract / Part-time (10–40 hrs/wk) W",
+      "company": "We The Flywheel ",
+      "location": "Remote",
+      "category": "HN Who is hiring",
+      "url": "https://news.ycombinator.com/item?id=49522930",
+      "date": "2026-09-01",
+      "source": "Hacker News"
+    },
+    {
+      "title": "ORIGAMICS | Founding Researcher | San Francisco | ONSITE/REMOTE Origamics is building AI models that reason ab",
+      "company": "ORIGAMICS ",
+      "location": "Remote",
+      "category": "HN Who is hiring",
+      "url": "https://news.ycombinator.com/item?id=49522949",
+      "date": "2026-09-01",
+      "source": "Hacker News"
+    },
+    {
+      "title": "Snout https://snout.com/ | Multiple Engineering + Product Roles | Remote US or Ontario, Canada | Full Time Joi",
+      "company": "Snout https",
+      "location": "Remote",
+      "category": "HN Who is hiring",
+      "url": "https://news.ycombinator.com/item?id=49522989",
+      "date": "2026-09-01",
+      "source": "Hacker News"
     }
   ],
   "errors": [
