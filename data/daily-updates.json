@@ -1,116 +1,8 @@
 {
-  "generatedAt": "2026-09-26T16:11:27.684Z",
+  "generatedAt": "2026-09-26T16:21:13.086Z",
   "date": "2026-09-26",
-  "total": 43,
+  "total": 51,
   "jobs": [
-    {
-      "title": "Account Executive Mid-Market - Italy",
-      "company": "Alma",
-      "location": "Italy",
-      "category": "Director",
-      "url": "https://jobicy.com/jobs/151870-account-executive-mid-market-italy",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Junior Web Builder (Fully Remote, PH-Based Only, Fresh Grads Welcome to Apply)",
-      "company": "Luxury Presence",
-      "location": "Philippines",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/152598-junior-web-builder-fully-remote-ph-based-only-fresh-grads-welcome-to-apply",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "ERP System Administrator (Acumatica)",
-      "company": "Alimentiv",
-      "location": "Canada",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/151608-erp-system-administrator-acumatica",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "RAGBRAI Ride Operations",
-      "company": "Gannett",
-      "location": "USA",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/144385-ragbrai-ride-operations",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Account Executive - EMEA Specialist",
-      "company": "Samsara",
-      "location": "UK",
-      "category": "Director",
-      "url": "https://jobicy.com/jobs/152475-account-executive-emea-specialist",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Software Architect",
-      "company": "Autodesk",
-      "location": "EMEA,  UK",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/150381-software-architect",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Technical Account Specialist - Storm, Sewer, Flood",
-      "company": "Autodesk",
-      "location": "UK",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/150370-technical-account-specialist-storm-sewer-flood",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Business Consultant",
-      "company": "Autodesk",
-      "location": "Denmark,  Netherlands,  Norway,  UK",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/149963-business-consultant",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Technical Adoption Specialist, Civil 3D, French speaking",
-      "company": "Autodesk",
-      "location": "Poland,  Spain",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/149313-technical-adoption-specialist-civil-3d-french-speaking",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Renewals Representative, Account Based, Denmark",
-      "company": "Autodesk",
-      "location": "Denmark",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/148712-renewals-representative-account-based-denmark",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Account Technical Lead (ATL), Enterprise Accounts",
-      "company": "Autodesk",
-      "location": "Australia",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/147706-account-technical-lead-atl-enterprise-accounts",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
-    {
-      "title": "Technical Success Manager - Autodesk Forma (Construction Specialist)",
-      "company": "Autodesk",
-      "location": "EMEA,  Germany",
-      "category": "Midweight",
-      "url": "https://jobicy.com/jobs/146036-technical-success-manager-autodesk-forma-construction-specialist",
-      "date": "2026-09-26",
-      "source": "Jobicy"
-    },
     {
       "title": "Content Reviewer - United States",
       "company": "TELUS Digital",
@@ -218,6 +110,78 @@
       "url": "https://remotive.com/remote-jobs/artificial-intelligence/ai-response-evaluator-2091126",
       "date": "2026-09-11",
       "source": "Remotive"
+    },
+    {
+      "title": "Software engineer",
+      "company": "Sticker Mule",
+      "location": "Anywhere in the World",
+      "category": "编程",
+      "url": "https://weworkremotely.com/remote-jobs/sticker-mule-software-engineer-3",
+      "date": "14 May 2026",
+      "source": "We Work Remotely"
+    },
+    {
+      "title": "Solutions Architect -Spanish Speaking",
+      "company": "Fin",
+      "location": "Anywhere in the World",
+      "category": "编程",
+      "url": "https://weworkremotely.com/remote-jobs/fin-solutions-architect-spanish-speaking",
+      "date": "11 Sep 2026",
+      "source": "We Work Remotely"
+    },
+    {
+      "title": "Power Platform Solutions Architect",
+      "company": "Toptal",
+      "location": "North America Only",
+      "category": "编程",
+      "url": "https://weworkremotely.com/remote-jobs/toptal-power-platform-solutions-architect",
+      "date": "10 Sep 2026",
+      "source": "We Work Remotely"
+    },
+    {
+      "title": "Senior Systems Engineer (Identity and Access)",
+      "company": "Flexport",
+      "location": "Anywhere in the World",
+      "category": "编程",
+      "url": "https://weworkremotely.com/remote-jobs/flexport-senior-systems-engineer-identity-and-access",
+      "date": "10 Sep 2026",
+      "source": "We Work Remotely"
+    },
+    {
+      "title": "Commercial Account Manager",
+      "company": "Salesloft",
+      "location": "Anywhere in the World",
+      "category": "编程",
+      "url": "https://weworkremotely.com/remote-jobs/salesloft-commercial-account-manager",
+      "date": "09 Sep 2026",
+      "source": "We Work Remotely"
+    },
+    {
+      "title": "Senior .NET Full-stack Developer",
+      "company": "Lemon.io",
+      "location": "Anywhere in the World",
+      "category": "编程",
+      "url": "https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-1",
+      "date": "08 Sep 2026",
+      "source": "We Work Remotely"
+    },
+    {
+      "title": "Full-Stack Product Engineer - Agentic First",
+      "company": "Wonderdog",
+      "location": "Anywhere in the World",
+      "category": "编程",
+      "url": "https://weworkremotely.com/remote-jobs/wonderdog-full-stack-product-engineer-agentic-first",
+      "date": "09 Jul 2026",
+      "source": "We Work Remotely"
+    },
+    {
+      "title": "Senior Java & React Developer",
+      "company": "Lemon.io",
+      "location": "Anywhere in the World",
+      "category": "编程",
+      "url": "https://weworkremotely.com/remote-jobs/lemon-io-senior-java-react-developer",
+      "date": "07 Sep 2026",
+      "source": "We Work Remotely"
     },
     {
       "title": "Danish Speaking Solutions Consultant Work Sofia Bulgaria",
@@ -389,11 +353,118 @@
       "url": "https://news.ycombinator.com/item?id=49522989",
       "date": "2026-09-01",
       "source": "Hacker News"
+    },
+    {
+      "title": "Account Executive Mid-Market - Italy",
+      "company": "Alma",
+      "location": "Italy",
+      "category": "Director",
+      "url": "https://jobicy.com/jobs/151870-account-executive-mid-market-italy",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Junior Web Builder (Fully Remote, PH-Based Only, Fresh Grads Welcome to Apply)",
+      "company": "Luxury Presence",
+      "location": "Philippines",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/152598-junior-web-builder-fully-remote-ph-based-only-fresh-grads-welcome-to-apply",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "ERP System Administrator (Acumatica)",
+      "company": "Alimentiv",
+      "location": "Canada",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/151608-erp-system-administrator-acumatica",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "RAGBRAI Ride Operations",
+      "company": "Gannett",
+      "location": "USA",
+      "category": "Any",
+      "url": "https://jobicy.com/jobs/144385-ragbrai-ride-operations",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Account Executive - EMEA Specialist",
+      "company": "Samsara",
+      "location": "UK",
+      "category": "Director",
+      "url": "https://jobicy.com/jobs/152475-account-executive-emea-specialist",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Software Architect",
+      "company": "Autodesk",
+      "location": "EMEA,  UK",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/150381-software-architect",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Technical Account Specialist - Storm, Sewer, Flood",
+      "company": "Autodesk",
+      "location": "UK",
+      "category": "Any",
+      "url": "https://jobicy.com/jobs/150370-technical-account-specialist-storm-sewer-flood",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Business Consultant",
+      "company": "Autodesk",
+      "location": "Denmark,  Netherlands,  Norway,  UK",
+      "category": "Any",
+      "url": "https://jobicy.com/jobs/149963-business-consultant",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Technical Adoption Specialist, Civil 3D, French speaking",
+      "company": "Autodesk",
+      "location": "Poland,  Spain",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/149313-technical-adoption-specialist-civil-3d-french-speaking",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Renewals Representative, Account Based, Denmark",
+      "company": "Autodesk",
+      "location": "Denmark",
+      "category": "Any",
+      "url": "https://jobicy.com/jobs/148712-renewals-representative-account-based-denmark",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Account Technical Lead (ATL), Enterprise Accounts",
+      "company": "Autodesk",
+      "location": "Australia",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/147706-account-technical-lead-atl-enterprise-accounts",
+      "date": "2026-09-26",
+      "source": "Jobicy"
+    },
+    {
+      "title": "Technical Success Manager - Autodesk Forma (Construction Specialist)",
+      "company": "Autodesk",
+      "location": "EMEA,  Germany",
+      "category": "Midweight",
+      "url": "https://jobicy.com/jobs/146036-technical-success-manager-autodesk-forma-construction-specialist",
+      "date": "2026-09-26",
+      "source": "Jobicy"
     }
   ],
   "errors": [
-    "WWR(编程): blocked (403)",
-    "WWR(AI/数据): blocked (403)"
+    "WWR(AI/数据): HTTP 301"
   ],
   "note": "由 scripts/fetch-jobs.mjs 每日自动抓取（GitHub Actions），来源：Remotive / Remote OK / We Work Remotely / HN Who is hiring"
 }
