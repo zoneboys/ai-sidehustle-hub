@@ -114,7 +114,7 @@ async function fetchRemoteOK() {
 /** ---------- 来源 3：We Work Remotely RSS（取招聘类目） ---------- */
 const WWR_FEEDS = [
   ["编程", "https://weworkremotely.com/categories/remote-programming-jobs.rss"],
-  ["AI/数据", "https://weworkremotely.com/categories/remote-all-other-jobs.rss"],
+  ["设计/UX", "https://weworkremotely.com/categories/remote-design-and-ux-jobs.rss"],
 ];
 async function fetchWWR() {
   const out = [];
