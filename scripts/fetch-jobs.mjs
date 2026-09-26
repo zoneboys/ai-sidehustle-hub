@@ -113,8 +113,8 @@ async function fetchRemoteOK() {
 
 /** ---------- 来源 3：We Work Remotely RSS（取招聘类目） ---------- */
 const WWR_FEEDS = [
+  // WWR 官方公开 RSS（其余分类的 .rss 路由已下线，返回 301）
   ["编程", "https://weworkremotely.com/categories/remote-programming-jobs.rss"],
-  ["设计/UX", "https://weworkremotely.com/categories/remote-design-and-ux-jobs.rss"],
 ];
 async function fetchWWR() {
   const out = [];
