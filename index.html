@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 副业指南针 · SideHustle Hub — AI 副业思路 × 远程工作每日更新</title>
+<meta name="description" content="整合 ai-money-maker-handbook 与 awesome-remote-job 的精选资源：AI 副业赚钱思路、远程工作求职网站、每日自动更新的最新职位与灵感。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<style>
+  :root{
+    --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --text:#1a2033; --muted:#6b7280;
+    --primary:#4f46e5; --primary2:#7c3aed; --accent:#0ea5e9; --ok:#10b981; --warn:#f59e0b;
+    --border:#e5e7eb; --shadow:0 1px 3px rgba(16,24,40,.06),0 8px 24px -12px rgba(16,24,40,.12);
+    --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b1020; --bg2:#11172b; --card:#151c33; --text:#e7eaf3; --muted:#94a3b8;
+    --primary:#818cf8; --primary2:#a78bfa; --accent:#38bdf8; --ok:#34d399; --warn:#fbbf24;
+    --border:#24304f; --shadow:0 1px 3px rgba(0,0,0,.4),0 10px 30px -12px rgba(0,0,0,.6);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+  /* ===== 顶部导航 ===== */
+  header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg2) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;gap:16px;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;white-space:nowrap}
+  .logo .icon{font-size:1.5rem}
+  .logo b{background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  nav.tabs{display:flex;gap:4px;flex:1;overflow-x:auto;scrollbar-width:none}
+  nav.tabs::-webkit-scrollbar{display:none}
+  .tab{padding:8px 14px;border-radius:10px;cursor:pointer;font-size:.92rem;color:var(--muted);border:none;background:transparent;white-space:nowrap;transition:.2s}
+  .tab:hover{color:var(--text);background:color-mix(in srgb,var(--primary) 10%,transparent)}
+  .tab.active{color:#fff;background:linear-gradient(120deg,var(--primary),var(--primary2));font-weight:600}
+  .nav-actions{display:flex;gap:8px;align-items:center}
+  .icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .icon-btn:hover{border-color:var(--primary);transform:translateY(-1px)}
+  .gh-btn{height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;transition:.2s}
+  .gh-btn:hover{border-color:var(--primary)}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;overflow:hidden;padding:72px 0 48px;text-align:center}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(600px 300px at 20% 0%,color-mix(in srgb,var(--primary) 14%,transparent),transparent),
+    radial-gradient(600px 300px at 80% 10%,color-mix(in srgb,var(--accent) 12%,transparent),transparent);pointer-events:none}
+  .hero>*{position:relative}
+  .hero h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:900;letter-spacing:-.02em;margin-bottom:14px}
+  .hero h1 .grad{background:linear-gradient(120deg,var(--primary),var(--accent) 60%,var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);max-width:640px;margin:0 auto 26px;font-size:1.02rem}
+  .search-wrap{max-width:640px;margin:0 auto 18px;position:relative}
+  .search-wrap input{width:100%;padding:15px 20px 15px 48px;border-radius:16px;border:1.5px solid var(--border);background:var(--card);color:var(--text);font-size:1rem;outline:none;box-shadow:var(--shadow);transition:.2s}
+  .search-wrap input:focus{border-color:var(--primary);box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 15%,transparent)}
+  .search-wrap .s-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .search-wrap kbd{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:.72rem;color:var(--muted);border:1px solid var(--border);padding:2px 8px;border-radius:6px;background:var(--bg2)}
+  .hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .hero-tags button{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:.82rem;cursor:pointer;transition:.2s}
+  .hero-tags button:hover{color:var(--primary);border-color:var(--primary);transform:translateY(-2px)}
+
+  /* ===== 统计条 ===== */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:34px 0 8px}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;box-shadow:var(--shadow)}
+  .stat b{display:block;font-size:1.6rem;font-weight:900;background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat span{font-size:.8rem;color:var(--muted)}
+
+  /* ===== 每日更新横幅 ===== */
+  .daily{margin:26px 0;background:linear-gradient(120deg,color-mix(in srgb,var(--primary) 10%,var(--card)),color-mix(in srgb,var(--accent) 10%,var(--card)));border:1px solid color-mix(in srgb,var(--primary) 25%,var(--border));border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+  .daily-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .live-dot{width:9px;height:9px;border-radius:50%;background:var(--ok);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  .daily-head h3{font-size:1.05rem}
+  .daily-date{font-size:.8rem;color:var(--muted)}
+  .daily-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+  .daily-job{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;transition:.2s;display:block}
+  .daily-job:hover{border-color:var(--primary);transform:translateY(-2px)}
+  .daily-job .t{font-weight:700;font-size:.9rem;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .daily-job .m{font-size:.76rem;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+  .daily-foot{margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;border:none;cursor:pointer;font-size:.9rem;font-weight:600;transition:.2s}
+  .btn.primary{background:linear-gradient(120deg,var(--primary),var(--primary2));color:#fff}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px -8px color-mix(in srgb,var(--primary) 60%,transparent)}
+  .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--primary);color:var(--primary)}
+  .btn.small{padding:6px 12px;font-size:.8rem}
+
+  /* ===== 章节与筛选 ===== */
+  section.view{display:none;padding:20px 0 60px}
+  section.view.active{display:block}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:18px 0 16px}
+  .sec-head h2{font-size:1.45rem;font-weight:800;display:flex;align-items:center;gap:10px}
+  .sec-head .sub{color:var(--muted);font-size:.86rem;margin-top:4px}
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+  .chip{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-size:.82rem;color:var(--muted);cursor:pointer;transition:.2s;user-select:none}
+  .chip:hover{border-color:var(--primary);color:var(--primary)}
+  .chip.on{background:linear-gradient(120deg,var(--primary),var(--primary2));color:#fff;border-color:transparent;font-weight:600}
+  select.sort{padding:7px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.82rem;cursor:pointer;outline:none}
+  .count-hint{font-size:.8rem;color:var(--muted);margin-left:auto}
+
+  /* ===== 卡片 ===== */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;position:relative;transition:.25s;display:flex;flex-direction:column;gap:10px}
+  .card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--primary) 45%,var(--border));box-shadow:0 14px 34px -14px color-mix(in srgb,var(--primary) 30%,transparent)}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .card .emoji{font-size:1.7rem;line-height:1}
+  .fav{background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--muted);padding:2px 4px;border-radius:6px;transition:.15s}
+  .fav:hover{transform:scale(1.2)}
+  .fav.on{color:var(--warn)}
+  .card h3{font-size:1rem;font-weight:700;line-height:1.4}
+  .card .desc{font-size:.84rem;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+  .card .meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .badge{font-size:.7rem;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%,transparent);color:var(--primary);font-weight:600}
+  .badge.ok{background:color-mix(in srgb,var(--ok) 12%,transparent);color:var(--ok)}
+  .badge.warn{background:color-mix(in srgb,var(--warn) 14%,transparent);color:var(--warn)}
+  .badge.plain{background:var(--bg2);color:var(--muted);border:1px solid var(--border);font-weight:400}
+  .empty{text-align:center;padding:60px 0;color:var(--muted)}
+  .empty .big{font-size:2.6rem;margin-bottom:10px}
+
+  /* ===== 弹窗 ===== */
+  .modal-mask{position:fixed;inset:0;background:rgba(8,10,25,.55);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-mask.open{display:flex}
+  .modal{background:var(--bg2);border:1px solid var(--border);border-radius:18px;max-width:620px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;position:relative;animation:up .25s ease}
+  @keyframes up{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
+  .modal .close{position:absolute;top:14px;right:14px}
+  .modal h3{font-size:1.25rem;margin-bottom:4px;display:flex;gap:10px;align-items:center}
+  .modal .m-badges{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+  .modal p{color:var(--muted);font-size:.92rem;margin-bottom:10px}
+  .modal .block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+  .modal .block b{display:block;font-size:.8rem;color:var(--primary);margin-bottom:6px}
+  .modal .block p{margin:0;color:var(--text);font-size:.88rem}
+  .modal .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+
+  /* ===== 学习区 ===== */
+  .learn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .learn-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:.2s;display:flex;gap:12px;align-items:flex-start}
+  .learn-card:hover{transform:translateY(-3px);border-color:var(--primary)}
+  .learn-card .ic{font-size:1.4rem}
+  .learn-card h4{font-size:.92rem;font-weight:700;margin-bottom:2px}
+  .learn-card p{font-size:.78rem;color:var(--muted)}
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:26px}
+  .principle{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:.2s}
+  .principle:hover{border-color:var(--primary);transform:translateY(-3px)}
+  .principle .num{font-size:1.6rem;font-weight:900;background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .principle b{display:block;margin:6px 0 4px}
+  .principle p{font-size:.82rem;color:var(--muted)}
+
+  /* ===== 收藏/页脚 ===== */
+  footer{border-top:1px solid var(--border);padding:34px 0 44px;color:var(--muted);font-size:.85rem;text-align:center}
+  footer a{color:var(--primary);font-weight:600}
+  .footer-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+
+  /* ===== Toast ===== */
+  #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);padding:11px 22px;border-radius:999px;font-size:.86rem;font-weight:600;z-index:300;opacity:0;transition:.3s;pointer-events:none;box-shadow:var(--shadow)}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:640px){
+    .hero{padding:48px 0 34px}
+    .nav{height:56px}
+    .gh-btn span{display:none}
+    .search-wrap kbd{display:none}
+    .modal{padding:22px 18px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home"><span class="icon">🧭</span><span><b>AI 副业指南针</b></span></a>
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-view="home">🏠 首页</button>
+      <button class="tab" data-view="hustles">💰 副业库</button>
+      <button class="tab" data-view="jobs">💼 工作板</button>
+      <button class="tab" data-view="learn">📚 学习成长</button>
+      <button class="tab" data-view="favs">⭐ 我的收藏</button>
+      <button class="tab" data-view="about">ℹ️ 关于</button>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" title="切换深浅主题">🌙</button>
+      <a class="gh-btn" href="https://github.com/XiaomingX/ai-money-maker-handbook" target="_blank" rel="noopener" title="ai-money-maker-handbook">⭐ <span>GitHub</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 首页 ================= -->
+<section class="view active" id="view-home">
+  <div class="container">
+    <div class="hero">
+      <h1>用 AI 开启你的 <span class="grad">第二收入曲线</span></h1>
+      <p>整合 <b>ai-money-maker-handbook</b> 与 <b>awesome-remote-job</b> 两大开源项目，为你精选 AI 副业思路、远程工作求职渠道与实战学习资源，每天自动更新最新职位与灵感。</p>
+      <div class="search-wrap">
+        <span class="s-icon">🔍</span>
+        <input id="search" type="text" placeholder="搜索副业思路、职位网站、学习资源…（如：视频 / 设计 / 远程）" autocomplete="off">
+        <kbd>/ 聚焦</kbd>
+      </div>
+      <div class="hero-tags" id="heroTags"></div>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="daily" id="dailyBox">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>📡 今日更新</h3>
+        <span class="daily-date" id="dailyDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn primary small" onclick="switchView('jobs')">查看全部职位渠道 →</button>
+      </div>
+      <div class="daily-body" id="dailyJobs"></div>
+      <div class="daily-foot">
+        <span id="dailySource"></span>
+        <span style="flex:1"></span>
+        <button class="btn ghost small" id="refreshBtn">↻ 立即刷新</button>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <div>
+        <h2>💡 今日灵感轮盘</h2>
+        <div class="sub">根据日期自动轮换，每天给你一个新的赚钱点子</div>
+      </div>
+      <button class="btn ghost small" id="spinBtn">🎲 换一批</button>
+    </div>
+    <div class="grid" id="inspireGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 副业库 ================= -->
+<section class="view" id="view-hustles">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2>💰 AI 副业思路库</h2>
+        <div class="sub">来自 ai-money-maker-handbook 的实战方案，点击卡片查看怎么做、用什么工具、如何变现</div>
+      </div>
+      <button class="btn primary small" id="luckyBtn">🎯 随机来一个</button>
+    </div>
+    <div class="filter-bar" id="hustleFilters"></div>
+    <div class="filter-bar" style="margin-top:-8px">
+      <select class="sort" id="hustleSort">
+        <option value="default">默认排序</option>
+        <option value="income">收入潜力 高→低</option>
+        <option value="easy">上手难度 低→高</option>
+      </select>
+      <span class="count-hint" id="hustleCount"></span>
+    </div>
+    <div class="grid" id="hustleGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 工作板 ================= -->
+<section class="view" id="view-jobs">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2>💼 远程工作 & 求职渠道</h2>
+        <div class="sub">精选自 awesome-remote-job：正规远程职位板、聚合器与自由职业平台</div>
+      </div>
+    </div>
+    <div class="filter-bar" id="jobFilters"></div>
+    <div class="filter-bar" style="margin-top:-8px">
+      <span class="count-hint" id="jobCount" style="margin-left:0"></span>
+    </div>
+    <div class="grid" id="jobGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 学习成长 ================= -->
+<section class="view" id="view-learn">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2>📚 学习成长资源</h2>
+        <div class="sub">远程工作文章、书籍、播客、Newsletter 与面试工具，帮你更快拿到 Offer、更稳地做副业</div>
+      </div>
+    </div>
+    <div class="filter-bar" id="learnFilters"></div>
+    <div class="learn-grid" id="learnGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 收藏 ================= -->
+<section class="view" id="view-favs">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2>⭐ 我的收藏</h2>
+        <div class="sub">收藏保存在浏览器本地（localStorage），随时回来看</div>
+      </div>
+      <button class="btn ghost small" id="clearFavs">🗑 清空收藏</button>
+    </div>
+    <div class="grid" id="favGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 关于 ================= -->
+<section class="view" id="view-about">
+  <div class="container">
+    <div class="sec-head"><h2>ℹ️ 关于本站</h2></div>
+    <div class="principles" id="principles"></div>
+    <div class="daily" style="margin-top:0">
+      <div class="daily-head"><h3>🔄 每日自动更新是怎么实现的？</h3></div>
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.9">
+        本站是纯静态网页（单文件 <code>index.html</code>），数据层由三部分组成：<br>
+        1️⃣ <b>静态精选库</b> —— 来自两大开源仓库的人工精选数据，内置于页面中；<br>
+        2️⃣ <b>每日抓取脚本</b> —— <code>scripts/fetch-jobs.mjs</code> 定时调用 Remotive、We Work Remotely、Hacker News「Who is hiring?」等公开 API / RSS，抓取最新远程职位，写入 <code>data/daily-updates.json</code>；<br>
+        3️⃣ <b>GitHub Actions 定时任务</b> —— 每天北京时间上午自动运行抓取脚本并提交数据，网站每日打开即可读到最新内容。<br>
+        部署到 GitHub Pages / Vercel / Cloudflare Pages 后，无需服务器即可享受每日更新。
+      </p>
+      <div class="daily-foot">
+        <a class="btn primary small" href="https://github.com/XiaomingX/ai-money-maker-handbook" target="_blank" rel="noopener">💰 AI 副业赚钱大集合</a>
+        <a class="btn primary small" href="https://github.com/lukasz-madon/awesome-remote-job" target="_blank" rel="noopener">🌍 Awesome Remote Job</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/XiaomingX/ai-money-maker-handbook" target="_blank" rel="noopener">GitHub: ai-money-maker-handbook</a>
+    <a href="https://github.com/lukasz-madon/awesome-remote-job" target="_blank" rel="noopener">GitHub: awesome-remote-job</a>
+  </div>
+  <div>🧭 AI 副业指南针 · 数据精选自开源社区 · 每日自动更新 · 用 AI 创造第二收入</div>
+  <div style="margin-top:6px;opacity:.7">免责声明：副业有风险，入场需谨慎；请遵守当地法律法规与平台规则。</div>
+</footer>
+
+<div class="modal-mask" id="modalMask">
+  <div class="modal" id="modalBox"></div>
+</div>
+<div id="toast"></div>
+
+<script>
+/* =====================================================
+   数据层：静态精选库（来自两个 GitHub 仓库）
+   ===================================================== */
+const CATEGORIES = {
+  content:{name:"视频/内容",emoji:"🎬"},
+  image:{name:"AI 图片",emoji:"🎨"},
+  writing:{name:"文案写作",emoji:"✍️"},
+  audio:{name:"音频/音乐",emoji:"🎧"},
+  live:{name:"直播",emoji:"📺"},
+  tech:{name:"技术变现",emoji:"👨‍💻"},
+  biz:{name:"出版/咨询",emoji:"📦"},
+};
+const HUSTLES = [
+  {id:"h1",cat:"content",emoji:"🎬",title:"AI 脚本短视频",income:2,diff:1,tags:["抖音","流量","内容"],desc:"用 AI 写脚本 + 生成画面，批量产出短视频账号内容，靠流量分成、带货与接单变现。",how:"选定垂类（历史、科普、情感），用 LLM 批量写脚本，AI 生成配图/配音后剪映合成，日更 1-3 条养号。",tools:"ChatGPT/DeepSeek · 剪映 · HeyGen/即梦",money:"平台流量分成、橱窗带货、广告植入"},
+  {id:"h2",cat:"content",emoji:"🧑‍🎤",title:"虚拟人口播视频",income:2,diff:2,tags:["数字人","口播","带货"],desc:"用 AI 数字人替代真人出镜做口播视频，一人可运营多个账号矩阵。",how:"用 HeyGen / D-ID / 阿里 EMO 生成数字人形象，配 LLM 生成的口播稿，批量生产带货视频或知识内容。",tools:"HeyGen · D-ID · ElevenLabs",money:"带货佣金、账号代运营服务费"},
+  {id:"h3",cat:"content",emoji:"📖",title:"小说漫画推文",income:3,diff:2,tags:["推文","漫画","分成"],desc:"把小说改编成漫画/动态漫，发布到 TikTok、快手等平台挂推文链接赚分成。",how:"选高热度小说，LLM 提炼分镜脚本，Midjourney/即梦生成分格画面，CapCut 加字幕配音，发布挂链接。",tools:"Midjourney · 即梦 · CapCut",money:"小说平台 CPS 分成，爆款单条可达数千元"},
+  {id:"h4",cat:"content",emoji:"🎞️",title:"电影剧情解说",income:2,diff:1,tags:["解说","影视","剪辑"],desc:"用 AI 快速产出电影解说文案与剪辑，做影视解说频道赚播放收益。",how:"LLM 按三幕结构生成解说稿，TTS 配音，配合电影片段剪辑发布（注意版权与二创规则）。",tools:"DeepSeek · 微软 TTS · 剪映",money:"中视频/播放分成、涨粉后接推广"},
+  {id:"h5",cat:"content",emoji:"🌀",title:"炫酷视频变幻特效",income:1,diff:2,tags:["特效","视觉","涨粉"],desc:"制作「瞬息全宇宙」式转场、无限穿越放缩等视觉奇观视频，靠涨粉变现。",how:"用 Runway/Pika/Kling 的首尾帧功能制作景别穿越特效，卡点发布到短视频平台。",tools:"Runway · Kling · Pika",money:"涨粉后接品牌特效单、账号交易"},
+  {id:"h6",cat:"content",emoji:"🌍",title:"视频翻译与搬运",income:2,diff:1,tags:["出海","翻译","搬运"],desc:"用 AI 翻译、配音海外优质视频并本地化发布（注意授权），做信息差生意。",how:"Whisper 转写 → LLM 翻译 → TTS 配音 → 唇形同步（HeyGen），发布到目标语言平台。",tools:"Whisper · HeyGen · ElevenLabs",money:"多平台播放分成、代翻译服务"},
+  {id:"h7",cat:"image",emoji:"🧑‍🎨",title:"AI 个性化头像定制",income:1,diff:1,tags:["头像","C2C","小店"],desc:"在闲鱼/小红书接单，为用户生成情侣头像、宠物头像、二次元头像。",how:"训练/微调 LoRA 或用可图、MJ 精准出图，打包套餐（头像 9 张）在闲鱼、小红书引流接单。",tools:"Midjourney · 可图 · ComfyUI",money:"客单价 9.9-59 元，批量接单"},
+  {id:"h8",cat:"image",emoji:"🖼️",title:"壁纸与数字作品售卖",income:2,diff:1,tags:["壁纸","被动收入","素材"],desc:"批量生成高质量壁纸上传到素材平台/应用商店，赚取长期被动分成。",how:"统一风格系列化出图，上架 Zcool、千图、Patreon 或做成壁纸 App，多渠道分发。",tools:"Midjourney · SDXL · Topaz 放大",money:"素材站分成、订阅会员"},
+  {id:"h9",cat:"image",emoji:"👗",title:"电商模特换装图",income:3,diff:2,tags:["电商","商家","B端"],desc:"为中小电商商家生成 AI 模特上身图，替代昂贵的真人拍摄。",how:"用商品平铺图 + AI 试衣模型（如 Vmake、Weshop）生成不同模特/场景上身效果，按张收费。",tools:"Weshop · Vmake · ComfyUI+IDM",money:"按张 5-20 元或包月服务，商家复购高"},
+  {id:"h10",cat:"image",emoji:"📢",title:"商品广告图/海报",income:2,diff:1,tags:["广告","设计","接单"],desc:"用 AI 快速产出电商主图、促销海报，服务没有设计师的小商家。",how:"Liblib/即梦生成底图，Canva/稿定排版文字，在闲鱼、淘宝开店接单。",tools:"即梦 · Canva · 稿定设计",money:"单张 10-50 元，可做订阅套餐"},
+  {id:"h11",cat:"image",emoji:"👶",title:"AI 儿童绘本",income:3,diff:2,tags:["绘本","KDP","出海"],desc:"制作 AI 儿童绘本，上架 Amazon KDP 或国内平台售卖。",how:"LLM 写故事 → 统一画风生成分页插画 → 排版 PDF → KDP 上架纸质书/Kindle 电子书。",tools:"ChatGPT · Midjourney · Canva",money:"KDP 版税（美金）、国内出版分成"},
+  {id:"h12",cat:"image",emoji:"😄",title:"表情包批量生成",income:1,diff:1,tags:["表情包","微信","被动"],desc:"制作原创表情包上传微信表情商店，或引流到私域售卖。",how:"围绕热门人设/宠物生成 16 张一套的 GIF，申请微信表情商店上架打赏，小红书引流。",tools:"Midjourney · PS · EZGIF",money:"平台打赏、引流带货"},
+  {id:"h13",cat:"image",emoji:"🛋️",title:"家装效果图生成",income:2,diff:2,tags:["装修","B端","接单"],desc:"为装修公司、房产中介生成户型效果图与软装方案。",how:"上传毛坯/户型图用 SD+ControlNet 或 RoomGPT 生成多种风格效果图，按套售卖。",tools:"ComfyUI+ControlNet · RoomGPT",money:"按套 50-200 元，装修公司月度合作"},
+  {id:"h14",cat:"image",emoji:"✒️",title:"LOGO 与品牌设计",income:2,diff:1,tags:["LOGO","设计","接单"],desc:"快速生成多方案 LOGO 交付小商家，主打便宜快速。",how:"MJ/Ideogram 出字标与图形标 → 矢量重绘（Recraft）→ 交付源文件，电商开店接单。",tools:"Ideogram · Recraft · Illustrator",money:"单价 50-300 元，走量"},
+  {id:"h15",cat:"image",emoji:"🕰️",title:"老照片修复上色",income:2,diff:1,tags:["修复","情感","接单"],desc:"用 AI 修复模糊、破损、黑白老照片，情感属性强、转化率高。",how:"GFPGAN/Remini 修复人脸，SD 上色，对比图在小红书/闲鱼发布引流接单。",tools:"Remini · GFPGAN · 支持上色 SD 模型",money:"10-50 元/张，节假日爆单"},
+  {id:"h16",cat:"writing",emoji:"📱",title:"新媒体推文代写",income:2,diff:1,tags:["公众号","代写","流量"],desc:"用 AI 为企业/博主批量撰写公众号、小红书、头条文案。",how:"建立爆款拆解提示词库，按客户调性批量产出，闲鱼/朋友圈接单，按篇或包月收费。",tools:"DeepSeek · Claude · 火龙果",money:"按篇 20-100 元，包月 1000+ 元"},
+  {id:"h17",cat:"writing",emoji:"🎓",title:"论文润色与学术辅助",income:3,diff:2,tags:["学术","出海","高客单"],desc:"为留学生提供论文润色、语法校对服务（注意：仅辅助写作不代写）。",how:"LLM+Grammarly 双重润色，降重改写，知乎/小红书学术社群获客，按字数收费。",tools:"Claude · Grammarly · Quillbot",money:"千字 30-100 元，海外客户付美金"},
+  {id:"h18",cat:"writing",emoji:"🎬",title:"AI 小说与短剧编剧",income:3,diff:2,tags:["小说","短剧","分成"],desc:"用 AI 辅助创作网文、短剧剧本，签约平台赚稿费与分账。",how:"LLM 做大纲与人设（保持人工把控创意），番茄/知乎盐选投稿，或短剧平台供稿。",tools:"Claude · 笔灵 · 讯飞星火",money:"全勤稿费、分成爆款可达万元级"},
+  {id:"h19",cat:"writing",emoji:"📄",title:"简历改写与求职辅导",income:2,diff:1,tags:["简历","求职","高转化"],desc:"用 AI 帮求职者改写简历、模拟面试，刚需且付费意愿强。",how:"按目标 JD 重写 STAR 亮点，Kimi/ChatGPT 模拟面试出评估报告，闲鱼+小红书接单。",tools:"ChatGPT · Kimi · Kickresume",money:"简历 50-200 元/份，面试辅导更高"},
+  {id:"h20",cat:"audio",emoji:"🎙️",title:"声音克隆与配音服务",income:2,diff:2,tags:["配音","TTS","商家"],desc:"为商家/创作者提供 AI 配音、声音克隆服务，替代高价真人配音。",how:"ElevenLabs/Cosyvoice 克隆音色，提供多语种配音，为口播号、有声书批量供货。",tools:"ElevenLabs · CosyVoice · 剪映",money:"按条/按分钟收费，长期供货订单稳定"},
+  {id:"h21",cat:"audio",emoji:"🎵",title:"AI 音乐创作售卖",income:2,diff:1,tags:["音乐","版权","被动"],desc:"用 Suno/Udio 生成免版权音乐，上架音乐库或做原创专辑。",how:"批量生成不同风格 BGM，上架 AudioJungle、Artlist 或做 YouTube 免版权频道。",tools:"Suno · Udio · LANDR 母带",money:"音乐库抽成、频道广告分成"},
+  {id:"h22",cat:"live",emoji:"🛒",title:"AI 无人直播带货",income:3,diff:2,tags:["直播","电商","矩阵"],desc:"用录制素材+AI 实时互动做无人直播，矩阵化运营带货。",how:"合规使用平台支持的数字人/录播工具，选佣金高的标品，矩阵开播注意平台规则。",tools:"直播伴侣 · 数字人插件 · 选品库",money:"带货佣金，单号日 GMV 数百起"},
+  {id:"h23",cat:"live",emoji:"🧝",title:"虚拟人直播",income:2,diff:3,tags:["虚拟人","直播","技术"],desc:"搭建 Live2D/3D 虚拟形象直播间，做娱乐或带货直播。",how:"VTube Studio/虚拟人引擎+动捕，打造虚拟主播人设，B 站/抖音开播。",tools:"VTube Studio · Live2D · 面捕",money:"打赏、带货、虚拟偶像商单"},
+  {id:"h24",cat:"tech",emoji:"🌐",title:"AI 套壳站与私有化部署",income:3,diff:2,tags:["网站","出海","订阅"],desc:"面向海外用户做垂直场景 AI 站点（写作/图片/客服），赚订阅费或出售部署。",how:"选细分需求（如简历生成、AI 情书），Next.js+官方 API 快速上线，SEO+Product Hunt 冷启动。",tools:"Next.js · OpenAI/Claude API · Vercel",money:"订阅制 MRR、私有化部署一次性收费"},
+  {id:"h25",cat:"tech",emoji:"🔌",title:"API 聚合与中转服务",income:3,diff:3,tags:["API","开发者","订阅"],desc:"聚合多家模型 API，提供统一计费、负载均衡的中转网关服务。",how:"基于 OneAPI/New API 搭建，解决开发者多模型切换痛点，按充值抽成。",tools:"One API · Docker · Cloudflare",money:"充值差价与套餐订阅"},
+  {id:"h26",cat:"tech",emoji:"🎁",title:"自动发卡站",income:2,diff:2,tags:["发卡","自动化","被动"],desc:"自动售卖 AI 会员账号、兑换码、虚拟商品的发卡站点，睡后收入。",how:"独角发卡/彩虹易支付搭建，对接自动发货机器人，做好风控与售后。",tools:"独角数卡 · Telegram Bot",money:"差价利润，全自动化"},
+  {id:"h27",cat:"tech",emoji:"🛠️",title:"垂直 AI 效率工具",income:3,diff:3,tags:["SaaS","垂直","高价值"],desc:"针对具体痛点做小工具（AI 写论文、AI 写周报、AI 代码审查），小而美。",how:"从自身/社群痛点出发，MVP 两周上线，即刻/V2EX/PH 冷启动，快速迭代。",tools:"任意技术栈 + LLM API",money:"订阅制、买断制，可被收购"},
+  {id:"h28",cat:"tech",emoji:"🤖",title:"企业 AI 自动化工作流",income:3,diff:2,tags:["B端","自动化","咨询"],desc:"为企业定制 Agent 自动化流程：自动周报、报表清洗、客服质检。",how:"用 Dify/n8n/Coze 搭工作流，先免费帮一家企业跑通再收费，客单价高。",tools:"Dify · n8n · Coze",money:"项目制 5000 元起，可转年费维护"},
+  {id:"h29",cat:"tech",emoji:"🧩",title:"插件与模板开发",income:2,diff:2,tags:["插件","商店","被动"],desc:"为 Shopify/WordPress/飞书等平台开发 AI 插件，上架官方商店赚分成。",how:"选平台痛点（AI 客服、AI 详情页），开发上架官方商店，优化评分获取自然流量。",tools:"Shopify CLI · WP 插件框架 · 飞书 SDK",money:"商店分成、Pro 版内购"},
+  {id:"h30",cat:"tech",emoji:"⚖️",title:"行业垂直 SaaS",income:3,diff:3,tags:["垂直SaaS","B端","长线"],desc:"用 AI 解决特定行业流程问题：律师文书、医疗记录、报关单据。",how:"深入一个行业访谈痛点，做工作流工具而非通用聊天，绑定行业渠道销售。",tools:"RAG · LangChain · 行业数据",money:"年费制 B 端合同，客单价数万"},
+  {id:"h31",cat:"tech",emoji:"🧠",title:"模型微调与训练服务",income:3,diff:3,tags:["训练","高门槛","接单"],desc:"帮客户微调垂直领域模型（客服、审校、分类），技术门槛高溢价高。",how:"用 LLaMA-Factory/Qwen 微调小模型，打包数据清洗+训练+部署全流程服务。",tools:"LLaMA-Factory · Qwen · AutoDL",money:"单项目 5000-50000 元"},
+  {id:"h32",cat:"biz",emoji:"📚",title:"AI 辅助出版赚美金",income:3,diff:2,tags:["KDP","美金","长尾"],desc:"在 Amazon KDP 出版 AI 辅助创作的小说、教程、绘本，赚长尾版税。",how:"选题看类目BSR，AI 辅助创作（遵守 KDP AI 披露政策），系列化出书积累书架。",tools:"ChatGPT · Vellum 排版 · KDP",money:"版税 35%-70%，多书矩阵"},
+  {id:"h33",cat:"biz",emoji:"📊",title:"利基数据包分发",income:2,diff:1,tags:["数据","信息差","售卖"],desc:"用 AI 整理高价值行业数据（红人清单、选品表、名录）打包售卖。",how:"爬取/整理公开数据，AI 清洗结构化，Gumroad/小报童售卖，垂直社群分发。",tools:"Python · AI 清洗 · Gumroad",money:"9-99 美元/份，可订阅更新"},
+  {id:"h34",cat:"biz",emoji:"🧑‍💼",title:"AI 咨询与顾问",income:3,diff:3,tags:["咨询","高客单","信任"],desc:"帮传统企业做 AI 降本增效方案咨询与落地陪跑。",how:"打造案例作品集，行业社群/知识星球获客，按咨询或项目收费。",tools:"行业知识 + AI 工具链",money:"时薪 500-2000 元，项目制更高"},
+  {id:"h35",cat:"content",emoji:"🚀",title:"出海内容矩阵",income:3,diff:2,tags:["TikTok","出海","美金"],desc:"用 AI 批量做 TikTok/YouTube Shorts 英文内容，吃海外高单价流量。",how:"AI 生成本地化脚本+配音，矩阵号日更，满 YPP 条件后吃创作基金与广告。",tools:"CapCut · ElevenLabs · Klaviyo",money:"YouTube 广告分成（美金）、联盟营销佣金"},
+  {id:"h36",cat:"tech",emoji:"📱",title:"AI 小程序/快应用",income:2,diff:2,tags:["小程序","流量主","被动"],desc:"做微信/抖音 AI 小工具（拍照识字、取名、起名），吃广告流量主收益。",how:"微信云开发+LLM API 做轻工具，突出即开即用，开通流量主挂广告。",tools:"微信云开发 · LLM API",money:"广告分成、会员解锁高级功能"},
+];
+
+const JOB_TYPES = {
+  board:{name:"职位板",emoji:"📋"},
+  agg:{name:"聚合器",emoji:"🧲"},
+  free:{name:"自由职业",emoji:"🤝"},
+  intl:{name:"出海/国际",emoji:"🌏"},
+};
+const BOARDS = [
+  {name:"Remotive",url:"https://remotive.com",type:"board",tags:["综合","英文"],desc:"老牌远程职位板，覆盖软件、市场、客服等，本站每日更新数据即来自它。"},
+  {name:"We Work Remotely",url:"https://weworkremotely.com",type:"board",tags:["综合","英文"],desc:"互联网最大的远程招聘社区之一，编程、客服、设计类目质量高。"},
+  {name:"Remote OK",url:"https://remoteok.com",type:"agg",tags:["技术","英文"],desc:"抓取各职位板聚合的远程职位，支持按标签与薪资筛选。"},
+  {name:"Wellfound",url:"https://wellfound.com",type:"board",tags:["创业","英文"],desc:"原 AngelList Talent，创业公司职位库，筛选 Remote OK 即可。"},
+  {name:"Working Nomads",url:"https://www.workingnomads.com",type:"agg",tags:["综合","英文"],desc:"聚合全球远程职位，可订阅每日/每周职位邮件。"},
+  {name:"Jobspresso",url:"https://jobspresso.co",type:"board",tags:["精选","英文"],desc:"人工精选的高质量远程职位，数量少但真实可靠。"},
+  {name:"JustRemote",url:"https://justremote.co",type:"board",tags:["综合","英文"],desc:"覆盖开发、设计、市场等多领域，支持按地区筛选。"},
+  {name:"Skip the Drive",url:"https://www.skipthedrive.com",type:"agg",tags:["综合","英文"],desc:"老牌远程职位聚合站，按类目清晰分类。"},
+  {name:"Virtual Vocations",url:"https://www.virtualvocations.com",type:"board",tags:["综合","英文"],desc:"专注远程职位的家族企业运营平台，职位经人工审核。"},
+  {name:"Remote.co",url:"https://remote.co",type:"board",tags:["综合","英文"],desc:"FlexJobs 旗下远程职位板，兼有远程工作指南内容。"},
+  {name:"4 Day Week",url:"https://4dayweek.io",type:"board",tags:["4天工作制","英文"],desc:"主打四天工作制与工作生活平衡的软件行业职位。"},
+  {name:"AI Dev Jobs",url:"https://aidevjobs.io",type:"board",tags:["AI","英文","每日更新"],desc:"8400+ AI/ML 工程职位，来自 489 家 AI 优先公司，每日更新并提供公开 REST API。"},
+  {name:"Remote AI Jobs",url:"https://remoteaijobs.dev",type:"board",tags:["AI","英文"],desc:"专注机器学习、数据科学、AI 研究类远程职位。"},
+  {name:"Hacker News: Who is hiring?",url:"https://news.ycombinator.com/submitted?id=whoishiring",type:"board",tags:["技术","英文","月更"],desc:"每月一帖的 HN 招聘楼，大量支持远程的技术岗位，直接联系创始人。"},
+  {name:"Built In",url:"https://builtin.com",type:"board",tags:["科技","英文"],desc:"美国主要科技城市+远程职位，公司质量高。"},
+  {name:"Authentic Jobs",url:"https://authenticjobs.com",type:"board",tags:["设计开发","英文"],desc:"面向设计师与开发者的职位板，含远程筛选。"},
+  {name:"Dribbble Jobs",url:"https://dribbble.com/jobs",type:"board",tags:["设计","英文"],desc:"设计师社区官方职位板，设计远程岗多。"},
+  {name:"We Love Golang / Golangprojects",url:"https://www.golangprojects.com",type:"board",tags:["Go","英文"],desc:"Go 语言职位板，可筛选 Remote only。"},
+  {name:"Larajobs",url:"https://larajobs.com",type:"board",tags:["PHP/Laravel","英文"],desc:"Laravel 生态 artisan 就业连接器，支持远程筛选。"},
+  {name:"Vue.js Jobs",url:"https://vuejobs.com",type:"board",tags:["Vue","英文"],desc:"Vue 官方生态职位板，有 Remote 标签页。"},
+  {name:"TypeScript Jobs",url:"https://typescriptjobs.vercel.app",type:"board",tags:["TS","英文"],desc:"TypeScript 职位聚合，支持远程过滤。"},
+  {name:"Crypto Jobs List",url:"https://cryptojobslist.com",type:"board",tags:["Web3","英文"],desc:"Web3/区块链第一大职位板，远程岗位占比高。"},
+  {name:"Cryptocurrency Jobs",url:"https://cryptocurrencyjobs.co",type:"board",tags:["Web3","英文"],desc:"区块链行业职位，筛选 Remote 查看全球远程岗。"},
+  {name:"Upwork",url:"https://www.upwork.com",type:"free",tags:["全球接单","英文"],desc:"全球最大自由职业平台，任何类目都能接到远程单。"},
+  {name:"Fiverr",url:"https://www.fiverr.com",type:"free",tags:["技能变现","英文"],desc:"把 AI 技能做成服务包（Gig）被动接单，适合副业起步。"},
+  {name:"freelancermap",url:"https://www.freelancermap.com",type:"free",tags:["IT外包","欧洲"],desc:"面向 IT 专家的自由职业与合同工机会（以德国项目为主）。"},
+  {name:"Guru",url:"https://www.guru.com",type:"free",tags:["综合","英文"],desc:"老牌自由职业市场，软件以外的类目也很全。"},
+  {name:"Workana",url:"https://www.workana.com",type:"free",tags:["拉美","西语葡语"],desc:"西语/葡语自由职业市场，拉美远程单多。"},
+  {name:"Findwork",url:"https://findwork.dev",type:"agg",tags:["技术","英文"],desc:"抓取多职位板并附 Glassdoor 评价与融资信息。"},
+  {name:"Remote 4 Me",url:"https://remote4me.com",type:"agg",tags:["技术+非技术","英文"],desc:"远程职位聚合器，技术与非技术岗位都覆盖。"},
+  {name:"Remote.io",url:"https://remote.io",type:"agg",tags:["技术","英文"],desc:"以科技类为主的远程职位板与聚合器。"},
+  {name:"JS Remotely",url:"https://jsremotely.com",type:"agg",tags:["JavaScript","英文"],desc:"所有远程 JavaScript 岗位一站聚合。"},
+  {name:"Remote Python",url:"https://www.remotepython.com",type:"agg",tags:["Python","英文"],desc:"专注远程 Python 岗位的职位板与聚合器。"},
+  {name:"usdevjobs",url:"https://usdevjobs.com",type:"agg",tags:["美国","实时"],desc:"软件、AI、数据岗位实时聚合（美国）。"},
+  {name:"Vollna",url:"https://vollna.com",type:"agg",tags:["自由职业","聚合"],desc:"聚合 Upwork/Freelancer 等顶级自由职业平台的优质单。"},
+  {name:"Career Vault",url:"https://careervault.io",type:"agg",tags:["每日上新","免注册"],desc:"每天从数千公司官网抓取数百条远程职位，免费无需注册。"},
+  {name:"whoishiring.io",url:"https://whoishiring.io",type:"agg",tags:["聚合","英文"],desc:"把 HN Who is hiring 楼层结构化呈现的聚合站。"},
+  {name:"UN Talent",url:"https://untalent.org",type:"board",tags:["国际组织","英文"],desc:"联合国系统各机构职位，含大量可远程岗位。"},
+  {name:"SwissDev Jobs",url:"https://swissdevjobs.ch",type:"board",tags:["瑞士","透明薪资"],desc:"瑞士开发职位，标注薪资，可筛 Remote/居家。"},
+  {name:"No Fluff Jobs",url:"https://nofluffjobs.com",type:"board",tags:["欧洲","透明薪资"],desc:"欧洲知名职位板（波兰起家），全部岗位明码标薪，可筛选远程。"},
+  {name:"Slasify",url:"https://slasify.com",type:"board",tags:["亚洲","含薪酬代发"],desc:"面向亚洲的远程技术/设计/营销机会，提供全球薪酬代发服务。"},
+  {name:"Hasjob",url:"https://hasjob.co",type:"board",tags:["印度","英文"],desc:"印度科技职位板，Location 筛 Anywhere/Remote。"},
+  {name:"hiring.lat",url:"https://hiring.lat",type:"board",tags:["拉美","透明"],desc:"面向拉美人才的透明职位板，远程或 relocation 机会。"},
+  {name:"Real Work From Anywhere",url:"https://realworkfromanywhere.com",type:"board",tags:["100%远程","英文"],desc:"全部职位都是 100% Work From Anywhere，无地点限制。"},
+  {name:"Real Jobs From Anywhere",url:"https://realjobsfromanywhere.com",type:"board",tags:["认证远程","英文"],desc:"经过验证的远程优先职位，技术与非技术都有。"},
+  {name:"JobsCollider",url:"https://jobscollider.com",type:"agg",tags:["综合","英文"],desc:"聚合 10000+ 公司的数万条远程职位。"},
+  {name:"Gridnaut Recruiting",url:"https://gridnaut.com",type:"board",tags:["AI训练","合同"],desc:"AI 训练、评估与领域专家远程合同岗（Mercor 推荐）。"},
+];
+
+const LEARN = [
+  {cat:"文章",emoji:"📖",name:"GitLab 远程工作宣言",url:"https://handbook.gitlab.com/handbook/company/culture-all-remote/",desc:"全球最大全远程公司的官方手册，远程协作最佳实践圣经。"},
+  {cat:"文章",emoji:"🧭",name:"Find \"Hidden\" Remote Jobs with Google",url:"https://www.linkedin.com/pulse/find-hidden-remote-jobs-google-search-hunter-/",desc:"用 Google 高级搜索语法挖出搜索引擎里隐藏的远程职位。"},
+  {cat:"文章",emoji:"🗣️",name:"30 Tips for Successful Communication as a Remote Worker",url:"https://www.linkedin.com/pulse/30-tips-successful-communication-remote-worker-lisette-sutherland/",desc:"远程沟通 30 条实操建议，异步协作必读。"},
+  {cat:"文章",emoji:"🤔",name:"Jason Fried: Why work doesn't happen at work",url:"https://www.ted.com/talks/jason_fried_why_work_doesn_t_happen_at_work",desc:"TED 经典演讲：为什么工作在工作中反而没法完成。"},
+  {cat:"文章",emoji:"🧪",name:"10 Lessons from 4 Years Working Remotely at Automattic",url:"https://automattic.com/2020/10/01/10-lessons-from-4-years-working-remotely/",desc:"Automattic（WordPress 母公司）员工的四年远程实战复盘。"},
+  {cat:"书籍",emoji:"📕",name:"《Remote: Office Not Required》",url:"https://www.37signals.com/remote",desc:"Basecamp 创始人 DHH 的远程工作奠基之作，中文版《重来3》。"},
+  {cat:"书籍",emoji:"📗",name:"《The Year Without Pants》",url:"https://scottberkun.com/the-year-without-pants/",desc:"Scott Berkun 潜伏 WordPress.com 记录的全远程公司内部运作。"},
+  {cat:"书籍",emoji:"📘",name:"《Distributed Teams》",url:"https://oduinn.com/book/",desc:"John O'Duinn 关于分布式团队的系统性著作。"},
+  {cat:"播客",emoji:"🎧",name:"Distributed",url:"https://distributed.blog/",desc:"Matt Mullenweg（WordPress 联合创始人）采访全球分布式公司。"},
+  {cat:"播客",emoji:"🎙️",name:"Building Remote Teams",url:"https://buildingremoteteams.com/",desc:"面向已经在远程工作的人，聚焦细微挑战的播客。"},
+  {cat:"Newsletter",emoji:"📬",name:"Remote Jobs Club",url:"https://remotejobsclub.com/",desc:"每周人工精选远程职位的免费邮件订阅。"},
+  {cat:"Newsletter",emoji:"📨",name:"European Remote",url:"https://europeanremote.com/",desc:"每周为欧洲技术人精选远程机会。"},
+  {cat:"面试",emoji:"💻",name:"interviewing.io",url:"https://interviewing.io/",desc:"匿名模拟技术面试，与真实面试官练习。"},
+  {cat:"面试",emoji:"🤖",name:"AI Interview Coach",url:"https://www.aiinterviewcoach.com/",desc:"语音 AI 行为面试陪练，130+ 岗位题库与 STAR 评分。"},
+  {cat:"面试",emoji:"🧩",name:"awesome-interviews",url:"https://github.com/dodgeblaster/awesome-interviews",desc:"面试题库大全清单，各语言各岗位全覆盖。"},
+  {cat:"面试",emoji:"🥷",name:"andreis/interview",url:"https://github.com/andreis/interview",desc:"技术面试通关知识地图（GitHub 万星仓库）。"},
+  {cat:"社区",emoji:"🌏",name:"Indie Hackers",url:"https://www.indiehackers.com/",desc:"独立开发者社区：看看别人怎么把副业做成生意。"},
+  {cat:"社区",emoji:"🛰️",name:"WIP.co",url:"https://wip.co/",desc:"Maker 日常打卡社区，适合独立开发副业者找同路人。"},
+  {cat:"社区",emoji:"💬",name:"Remote Work Subreddit r/remotework",url:"https://www.reddit.com/r/remotework/",desc:"远程工作者的经验分享与避坑讨论区。"},
+  {cat:"工具",emoji:"🧰",name:"Nomad List",url:"https://nomadlist.com/",desc:"全球数字游民城市数据库：成本、网速、社区评分。"},
+  {cat:"工具",emoji:"💵",name:"Tulsa Remote（迁移激励）",url:"https://tulsaremote.com/",desc:"搬到美国塔尔萨远程办公就给 $10,000，全球远程激励计划代表。"},
+];
+
+const PRINCIPLES = [
+  {num:"01",title:"做内容搞流量",desc:"通过内容找到需要产品的用户，用流量与合作促成交易——自媒体流量是当下用 AI 做副业最亲民的路径。"},
+  {num:"02",title:"卖铲子而非挖金子",desc:"挖金子风险大，卖工具更容易。做服务 AI 从业者的工具、模板、教程，比亲自下场更稳。"},
+  {num:"03",title:"不想花钱就花时间",desc:"没有启动资金，就用时间不断试错，找到跑通的最小闭环，再放大投入。"},
+  {num:"04",title:"做资产而不是卖时间",desc:"积累可以持续产生收益的资产：网站、账号、模板、内容库，而非一次性出卖时间。"},
+];
+
+/* =====================================================
+   每日更新数据（由 fetch-jobs.mjs 生成 data/daily-updates.json）
+   ===================================================== */
+/* 降级快照：当浏览器 fetch 不可用（如 file:// 直开）时展示；正常部署下会被 data/daily-updates.json 覆盖 */
+const FALLBACK_UPDATES = {
+  generatedAt: "2026-09-26T16:11:27.684Z",
+  date: "2026-09-26",
+  jobs: [
+    {title:"Account Executive Mid-Market - Italy",company:"Alma",location:"Italy",category:"Director",url:"https://jobicy.com/jobs/151870-account-executive-mid-market-italy",date:"2026-09-26",source:"Jobicy"},
+    {title:"Junior Web Builder (Fully Remote, PH-Based Only)",company:"Luxury Presence",location:"Philippines",category:"Senior",url:"https://jobicy.com/jobs/152598-junior-web-builder-fully-remote-ph-based-only-fresh-grads-welcome-to-apply",date:"2026-09-26",source:"Jobicy"},
+    {title:"ERP System Administrator (Acumatica)",company:"Alimentiv",location:"Canada",category:"Senior",url:"https://jobicy.com/jobs/151608-erp-system-administrator-acumatica",date:"2026-09-26",source:"Jobicy"},
+    {title:"Software Architect",company:"Autodesk",location:"EMEA, UK",category:"Senior",url:"https://jobicy.com/jobs/150381-software-architect",date:"2026-09-26",source:"Jobicy"},
+    {title:"Senior AI Engineer",company:"Lemon.io",location:"Northern America, LATAM, Europe, APAC",category:"Artificial Intelligence",url:"https://remotive.com/remote-jobs/artificial-intelligence/senior-ai-engineer-2091131",date:"2026-09-18",source:"Remotive"},
+    {title:"Senior Shopify Developer",company:"Sanctuary Computer Inc",location:"Worldwide",category:"Software Development",url:"https://remotive.com/remote-jobs/software-development/senior-shopify-developer-2091140",date:"2026-09-18",source:"Remotive"},
+    {title:"AI Response Evaluator",company:"iMerit Technology",location:"France, Japan, Turkey, Vietnam, Mexico, Norway",category:"Artificial Intelligence",url:"https://remotive.com/remote-jobs/artificial-intelligence/ai-response-evaluator-2091126",date:"2026-09-11",source:"Remotive"},
+    {title:"Video Data Annotator",company:"iMerit Technology",location:"Anywhere",category:"quality assurance · ai",url:"https://remoteok.com/remote-jobs/remote-video-data-annotator-imerit-technology-1137428",date:"2026-09-23",source:"Remote OK"},
+    {title:"🧵 HN「Who is hiring?」2026-09 月度招聘楼已更新",company:"news.ycombinator.com",location:"共 256 条新职位",category:"月更",url:"https://news.ycombinator.com/item?id=49522897",date:"2026-09-26",source:"Hacker News"}
+  ],
+  errors: [],
+  note: "内置降级快照：每日抓取任务运行后会被实时数据覆盖"
+};
+
+const DAY_WORDS = ["早起的鸟儿","复利玩家","内容匠人","卖铲人","出海探险家","数字工匠","长期主义者"];
+
+/* =====================================================
+   状态与工具函数
+   ===================================================== */
+const state = {
+  view:"home", query:"",
+  hustleCat:null, hustleSort:"default",
+  jobType:null,
+  learnCat:null,
+  favs:new Set(JSON.parse(localStorage.getItem("shh_favs")||"[]")),
+  updates:null, inspireSeed:0,
+};
+const $ = s=>document.querySelector(s);
+const $$ = s=>document.querySelectorAll(s);
+const esc = s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const incomeLabel = v=>["","低","中","高"][v]||"中";
+const diffLabel = v=>["","易上手","进阶","有门槛"][v]||"进阶";
+
+function toast(msg){
+  const t=$("#toast"); t.textContent=msg; t.classList.add("show");
+  clearTimeout(t._tm); t._tm=setTimeout(()=>t.classList.remove("show"),2200);
+}
+function toggleFav(id){
+  if(state.favs.has(id)){state.favs.delete(id);toast("已取消收藏");}
+  else{state.favs.add(id);toast("已加入收藏 ⭐");}
+  localStorage.setItem("shh_favs",JSON.stringify([...state.favs]));
+  renderAll();
+}
+function isFav(id){return state.favs.has(id)}
+
+/* =====================================================
+   渲染
+   ===================================================== */
+function matchQuery(q,obj,texts){
+  if(!q) return true;
+  return texts.some(t=>t.toLowerCase().includes(q));
+}
+
+function hustleCard(h){
+  const c=CATEGORIES[h.cat];
+  return `<article class="card" onclick="openHustle('${h.id}')">
+    <div class="top"><span class="emoji">${h.emoji}</span>
+      <button class="fav ${isFav(h.id)?"on":""}" onclick="event.stopPropagation();toggleFav('${h.id}')" title="收藏">${isFav(h.id)?"★":"☆"}</button>
+    </div>
+    <h3>${esc(h.title)}</h3>
+    <p class="desc">${esc(h.desc)}</p>
+    <div class="meta">
+      <span class="badge">${c.emoji} ${c.name}</span>
+      <span class="badge ok">收入 ${incomeLabel(h.income)}</span>
+      <span class="badge warn">${diffLabel(h.diff)}</span>
+    </div>
+  </article>`;
+}
+
+function boardCard(b){
+  return `<article class="card" onclick="openBoard('${esc(b.name)}')">
+    <div class="top"><span class="emoji">${JOB_TYPES[b.type].emoji}</span>
+      <button class="fav ${isFav(b.name)?"on":""}" onclick="event.stopPropagation();toggleFav('${esc(b.name)}')" title="收藏">${isFav(b.name)?"★":"☆"}</button>
+    </div>
+    <h3>${esc(b.name)}</h3>
+    <p class="desc">${esc(b.desc)}</p>
+    <div class="meta">
+      <span class="badge">${JOB_TYPES[b.type].name}</span>
+      ${b.tags.map(t=>`<span class="badge plain">${esc(t)}</span>`).join("")}
+    </div>
+  </article>`;
+}
+
+function learnCard(l){
+  return `<a class="learn-card" href="${l.url}" target="_blank" rel="noopener">
+    <span class="ic">${l.emoji}</span>
+    <div><h4>${esc(l.name)}</h4><p>${esc(l.desc)}</p>
+    <span class="badge" style="margin-top:6px;display:inline-block">${esc(l.cat)}</span></div>
+  </a>`;
+}
+
+function renderHustles(){
+  const q=state.query.trim().toLowerCase();
+  let list=HUSTLES.filter(h=>{
+    const catOk=!state.hustleCat||h.cat===state.hustleCat;
+    const qOk=matchQuery(q,h,[h.title,h.desc,h.tags.join(" "),h.how,h.money,CATEGORIES[h.cat].name]);
+    return catOk&&qOk;
+  });
+  if(state.hustleSort==="income") list=[...list].sort((a,b)=>b.income-a.income||a.diff-b.diff);
+  if(state.hustleSort==="easy") list=[...list].sort((a,b)=>a.diff-b.diff||b.income-a.income);
+  $("#hustleGrid").innerHTML=list.length?list.map(hustleCard).join(""):`<div class="empty"><div class="big">🔍</div>没有匹配的副业思路，换个关键词试试</div>`;
+  $("#hustleCount").textContent=`共 ${list.length} 个思路`;
+}
+
+function renderBoards(){
+  const q=state.query.trim().toLowerCase();
+  const list=BOARDS.filter(b=>{
+    const tOk=!state.jobType||b.type===state.jobType;
+    const qOk=matchQuery(q,b,[b.name,b.desc,b.tags.join(" "),JOB_TYPES[b.type].name]);
+    return tOk&&qOk;
+  });
+  $("#jobGrid").innerHTML=list.length?list.map(boardCard).join(""):`<div class="empty"><div class="big">🔍</div>没有匹配的求职网站</div>`;
+  $("#jobCount").textContent=`共 ${list.length} 个渠道`;
+}
+
+function renderLearn(){
+  const q=state.query.trim().toLowerCase();
+  const list=LEARN.filter(l=>{
+    const cOk=!state.learnCat||l.cat===state.learnCat;
+    const qOk=matchQuery(q,l,[l.name,l.desc,l.cat]);
+    return cOk&&qOk;
+  });
+  $("#learnGrid").innerHTML=list.length?list.map(learnCard).join(""):`<div class="empty"><div class="big">🔍</div>没有匹配的资源</div>`;
+}
+
+function renderFavs(){
+  const hs=HUSTLES.filter(h=>isFav(h.id));
+  const bs=BOARDS.filter(b=>isFav(b.name));
+  const html=[...hs.map(hustleCard),...bs.map(boardCard)];
+  $("#favGrid").innerHTML=html.length?html.join(""):`<div class="empty"><div class="big">⭐</div>还没有收藏。点卡片右上角的 ☆，把喜欢的副业思路和求职网站存起来</div>`;
+}
+
+function renderInspire(){
+  const day=Math.floor(Date.now()/864e5);
+  const start=(day+state.inspireSeed)%HUSTLES.length;
+  const picks=[];
+  for(let i=0;picks.length<6&&i<HUSTLES.length;i++){
+    const h=HUSTLES[(start+i*7)%HUSTLES.length];
+    if(!picks.includes(h))picks.push(h);
+  }
+  $("#inspireGrid").innerHTML=picks.map(hustleCard).join("");
+}
+
+function renderStats(){
+  const jobs=(state.updates&&state.updates.jobs||[]).length;
+  $("#stats").innerHTML=[
+    [HUSTLES.length+"+","AI 副业思路"],
+    [BOARDS.length+"+","求职网站渠道"],
+    [LEARN.length+"+","学习成长资源"],
+    [jobs?jobs+" 条":"每日","最新远程职位"],
+  ].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+}
+
+function renderFilters(){
+  // 副业分类
+  const hf=$("#hustleFilters");
+  hf.innerHTML=`<button class="chip ${!state.hustleCat?"on":""}" onclick="setHustleCat(null)">全部</button>`+
+    Object.entries(CATEGORIES).map(([k,c])=>`<button class="chip ${state.hustleCat===k?"on":""}" onclick="setHustleCat('${k}')">${c.emoji} ${c.name}</button>`).join("");
+  // 职位类型
+  const jf=$("#jobFilters");
+  jf.innerHTML=`<button class="chip ${!state.jobType?"on":""}" onclick="setJobType(null)">全部类型</button>`+
+    Object.entries(JOB_TYPES).map(([k,t])=>`<button class="chip ${state.jobType===k?"on":""}" onclick="setJobType('${k}')">${t.emoji} ${t.name}</button>`).join("");
+  // 学习分类
+  const cats=[...new Set(LEARN.map(l=>l.cat))];
+  $("#learnFilters").innerHTML=`<button class="chip ${!state.learnCat?"on":""}" onclick="setLearnCat(null)">全部</button>`+
+    cats.map(c=>`<button class="chip ${state.learnCat===c?"on":""}" onclick="setLearnCat('${esc(c)}')">${esc(c)}</button>`).join("");
+  // hero 快捷标签
+  $("#heroTags").innerHTML=["视频/内容","AI 图片","技术变现","出海","自由职业","AI 岗位"].map(t=>
+    `<button onclick="quickSearch('${t}')">${t}</button>`).join("");
+}
+
+function renderDaily(){
+  const u=state.updates||FALLBACK_UPDATES;
+  const d=new Date(u.generatedAt);
+  $("#dailyDate").textContent=`更新于 ${u.date} · ${isNaN(d)?"":d.toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"})}`;
+  const jobs=u.jobs||[];
+  $("#dailyJobs").innerHTML=jobs.length?jobs.slice(0,6).map(j=>`
+    <a class="daily-job" href="${esc(j.url)}" target="_blank" rel="noopener">
+      <div class="t">${esc(j.title)}</div>
+      <div class="m"><span>🏢 ${esc(j.company||"未知公司")}</span><span>📍 ${esc(j.location||"远程")}</span>${j.category?`<span>🏷 ${esc(j.category)}</span>`:""}</div>
+    </a>`).join(""):`<div style="font-size:.85rem;color:var(--muted)">暂无抓取数据：首次运行 GitHub Actions 定时任务后，这里将展示最新远程职位。（可先到「💼 工作板」浏览精选求职渠道）</div>`;
+  const errs=(u.errors||[]);
+  $("#dailySource").innerHTML=`来源：Remotive API · We Work Remotely RSS · HN Who is hiring ${errs.length?`<span style="color:var(--warn)">（部分来源失败：${errs.length}）</span>`:"✅"}`;
+}
+
+function renderPrinciples(){
+  $("#principles").innerHTML=PRINCIPLES.map(p=>`<div class="principle"><div class="num">${p.num}</div><b>${p.title}</b><p>${p.desc}</p></div>`).join("");
+}
+
+function renderAll(){
+  renderFilters();renderHustles();renderBoards();renderLearn();renderFavs();renderInspire();renderStats();renderDaily();
+}
+
+/* =====================================================
+   交互
+   ===================================================== */
+function switchView(v){
+  state.view=v;
+  $$(".tab").forEach(t=>t.classList.toggle("active",t.dataset.view===v));
+  $$("section.view").forEach(s=>s.classList.toggle("active",s.id==="view-"+v));
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(v==="favs")renderFavs();
+}
+window.switchView=switchView;
+function setHustleCat(c){state.hustleCat=c;renderFilters();renderHustles()}
+function setJobType(t){state.jobType=t;renderFilters();renderBoards()}
+function setLearnCat(c){state.learnCat=c;renderFilters();renderLearn()}
+function quickSearch(t){$("#search").value=t;state.query=t;switchView(t.includes("自由职业")||t.includes("岗位")?"jobs":"hustles");renderAll()}
+window.setHustleCat=setHustleCat;window.setJobType=setJobType;window.setLearnCat=setLearnCat;window.quickSearch=quickSearch;
+
+$("#tabs").addEventListener("click",e=>{const t=e.target.closest(".tab");if(t)switchView(t.dataset.view)});
+$("#search").addEventListener("input",e=>{state.query=e.target.value;renderAll()});
+document.addEventListener("keydown",e=>{
+  if(e.key==="/"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();$("#search").focus()}
+  if(e.key==="Escape")closeModal();
+});
+$("#hustleSort").addEventListener("change",e=>{state.hustleSort=e.target.value;renderHustles()});
+$("#spinBtn").addEventListener("click",()=>{state.inspireSeed++;renderInspire();toast("🎲 新一批灵感来了")});
+$("#luckyBtn").addEventListener("click",()=>{
+  const h=HUSTLES[Math.floor(Math.random()*HUSTLES.length)];
+  state.hustleCat=null;state.query="";$("#search").value="";
+  switchView("hustles");renderAll();openHustle(h.id);
+});
+$("#clearFavs").addEventListener("click",()=>{if(confirm("确定清空所有收藏？")){state.favs.clear();localStorage.removeItem("shh_favs");renderAll();toast("已清空")}});
+
+/* 主题 */
+const savedTheme=localStorage.getItem("shh_theme");
+if(savedTheme==="dark"||(!savedTheme&&matchMedia("(prefers-color-scheme: dark)").matches)){
+  document.documentElement.dataset.theme="dark";$("#themeBtn").textContent="☀️";
+}
+$("#themeBtn").addEventListener("click",()=>{
+  const dark=document.documentElement.dataset.theme==="dark";
+  document.documentElement.dataset.theme=dark?"":"dark";
+  $("#themeBtn").textContent=dark?"🌙":"☀️";
+  localStorage.setItem("shh_theme",dark?"light":"dark");
+});
+
+/* 弹窗 */
+function openModal(html){
+  $("#modalBox").innerHTML=`<button class="icon-btn close" onclick="closeModal()">✕</button>`+html;
+  $("#modalMask").classList.add("open");
+}
+function closeModal(){$("#modalMask").classList.remove("open")}
+window.closeModal=closeModal;
+$("#modalMask").addEventListener("click",e=>{if(e.target.id==="modalMask")closeModal()});
+
+function openHustle(id){
+  const h=HUSTLES.find(x=>x.id===id);if(!h)return;
+  const c=CATEGORIES[h.cat];
+  openModal(`
+    <h3>${h.emoji} ${esc(h.title)}</h3>
+    <div class="m-badges">
+      <span class="badge">${c.emoji} ${c.name}</span>
+      <span class="badge ok">收入潜力：${incomeLabel(h.income)}</span>
+      <span class="badge warn">上手难度：${diffLabel(h.diff)}</span>
+      ${h.tags.map(t=>`<span class="badge plain">#${esc(t)}</span>`).join("")}
+    </div>
+    <p>${esc(h.desc)}</p>
+    <div class="block"><b>🛠 怎么做</b><p>${esc(h.how)}</p></div>
+    <div class="block"><b>🧰 推荐工具</b><p>${esc(h.tools)}</p></div>
+    <div class="block"><b>💰 变现方式</b><p>${esc(h.money)}</p></div>
+    <div class="actions">
+      <button class="btn primary" onclick="toggleFav('${h.id}');closeModal()">${isFav(h.id)?"★ 已收藏":"☆ 收藏到我的清单"}</button>
+      <a class="btn ghost" href="https://github.com/search?q=${encodeURIComponent(h.title)}+AI&type=repositories" target="_blank" rel="noopener">🔍 搜相关开源项目</a>
+    </div>`);
+}
+window.openHustle=openHustle;
+
+function openBoard(name){
+  const b=BOARDS.find(x=>x.name===name);if(!b)return;
+  openModal(`
+    <h3>${JOB_TYPES[b.type].emoji} ${esc(b.name)}</h3>
+    <div class="m-badges"><span class="badge">${JOB_TYPES[b.type].name}</span>${b.tags.map(t=>`<span class="badge plain">${esc(t)}</span>`).join("")}</div>
+    <p>${esc(b.desc)}</p>
+    <div class="actions">
+      <a class="btn primary" href="${b.url}" target="_blank" rel="noopener">🚀 立即访问</a>
+      <button class="btn ghost" onclick="toggleFav('${esc(b.name)}');closeModal()">${isFav(b.name)?"★ 已收藏":"☆ 收藏"}</button>
+    </div>`);
+}
+window.openBoard=openBoard;
+
+/* =====================================================
+   每日更新数据加载
+   ===================================================== */
+async function loadUpdates(){
+  try{
+    const res=await fetch("data/daily-updates.json?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error(res.status);
+    const data=await res.json();
+    if(!data.jobs)throw new Error("bad data");
+    state.updates=data;
+    toast("📡 已更新到最新数据");
+  }catch(e){
+    state.updates=FALLBACK_UPDATES;
+  }
+  renderDaily();renderStats();
+}
+$("#refreshBtn").addEventListener("click",loadUpdates);
+
+/* 启动 */
+renderPrinciples();
+renderAll();
+loadUpdates();
+</script>
+</body>
+</html>

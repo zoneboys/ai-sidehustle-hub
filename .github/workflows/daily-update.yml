@@ -1,0 +1,41 @@
+name: Daily Job Update
+
+# 每天北京时间 09:30 自动抓取最新远程职位并更新数据
+on:
+  schedule:
+    - cron: "30 1 * * *"   # UTC 01:30 = 北京时间 09:30
+  workflow_dispatch: {}     # 支持在 GitHub 页面手动触发
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-job-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch latest remote jobs
+        run: node scripts/fetch-jobs.mjs
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/daily-updates.json
+          if git diff --cached --quiet; then
+            echo "数据无变化，跳过提交"
+          else
+            git commit -m "📡 daily update: refresh remote jobs ($(date -u +%F))"
+            git push
+          fi
