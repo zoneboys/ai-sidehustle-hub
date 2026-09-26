@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T16:31:17.323Z",
+  "generatedAt": "2026-09-26T16:33:40.201Z",
   "date": "2026-09-26",
   "total": 51,
   "jobs": [
@@ -464,7 +464,7 @@
     }
   ],
   "errors": [
-    "WWR(AI/数据): HTTP 301"
+    "WWR(设计/UX): HTTP 301"
   ],
   "note": "由 scripts/fetch-jobs.mjs 每日自动抓取（GitHub Actions），来源：Remotive / Remote OK / We Work Remotely / HN Who is hiring"
 }
