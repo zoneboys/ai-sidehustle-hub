@@ -6,6 +6,9 @@
 <title>AI 副业指南针 · SideHustle Hub — AI 副业思路 × 远程工作每日更新</title>
 <meta name="description" content="整合 ai-money-maker-handbook 与 awesome-remote-job 的精选资源：AI 副业赚钱思路、远程工作求职网站、每日自动更新的最新职位与灵感。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<script src="data/guides-a.js"></script>
+<script src="data/guides-b.js"></script>
+<script src="data/board-tips.js"></script>
 <style>
   :root{
     --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --text:#1a2033; --muted:#6b7280;
@@ -121,7 +124,7 @@
   /* ===== 弹窗 ===== */
   .modal-mask{position:fixed;inset:0;background:rgba(8,10,25,.55);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
   .modal-mask.open{display:flex}
-  .modal{background:var(--bg2);border:1px solid var(--border);border-radius:18px;max-width:620px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;position:relative;animation:up .25s ease}
+  .modal{background:var(--bg2);border:1px solid var(--border);border-radius:18px;max-width:780px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;position:relative;animation:up .25s ease}
   @keyframes up{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
   .modal .close{position:absolute;top:14px;right:14px}
   .modal h3{font-size:1.25rem;margin-bottom:4px;display:flex;gap:10px;align-items:center}
@@ -155,6 +158,34 @@
   #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);padding:11px 22px;border-radius:999px;font-size:.86rem;font-weight:600;z-index:300;opacity:0;transition:.3s;pointer-events:none;box-shadow:var(--shadow)}
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
+  /* ===== 实操攻略 ===== */
+  .gdesc{font-size:.9rem;color:var(--text)}
+  .gprog-wrap{margin:14px 0 6px}
+  .gprog-top{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:6px}
+  .gprog{height:8px;border-radius:99px;background:var(--bg);border:1px solid var(--border);overflow:hidden}
+  .gprog i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));width:0;transition:width .3s}
+  .steps{list-style:none;margin:0 0 8px;padding:0}
+  .step{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--card);margin-bottom:8px;cursor:pointer;transition:.15s}
+  .step:hover{border-color:var(--primary)}
+  .step input{margin-top:4px;accent-color:var(--primary);width:16px;height:16px;cursor:pointer;flex:none}
+  .step .t{font-weight:700;font-size:.88rem}
+  .step .d{font-size:.82rem;color:var(--muted);margin-top:2px}
+  .step.done{opacity:.55}
+  .step.done .t{text-decoration:line-through}
+  .gtable{width:100%;border-collapse:collapse;margin-bottom:4px}
+  .gtable td{padding:8px 6px;border-bottom:1px dashed var(--border);font-size:.85rem;vertical-align:top}
+  .gtable td:first-child{color:var(--muted);white-space:nowrap;width:110px}
+  .gtable tr:last-child td{border-bottom:none}
+  .week1{padding-left:18px;margin:4px 0 0}
+  .week1 li{margin-bottom:6px;font-size:.86rem}
+  .tipbox{border-left:3px solid var(--warn);background:color-mix(in srgb,var(--warn) 8%,var(--card));border-radius:0 12px 12px 0}
+  .match-opt{display:flex;flex-direction:column;gap:2px;align-items:flex-start;padding:10px 14px;border:1px solid var(--border);border-radius:12px;background:var(--card);cursor:pointer;transition:.15s;text-align:left}
+  .match-opt b{font-size:.88rem}
+  .match-opt span{font-size:.75rem;color:var(--muted)}
+  .match-opt:hover{border-color:var(--primary)}
+  .match-opt.on{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 8%,var(--card));box-shadow:0 0 0 1px var(--primary)}
+  .opt-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
   @media(max-width:640px){
     .hero{padding:48px 0 34px}
     .nav{height:56px}
@@ -171,6 +202,7 @@
     <a class="logo" href="#home"><span class="icon">🧭</span><span><b>AI 副业指南针</b></span></a>
     <nav class="tabs" id="tabs">
       <button class="tab active" data-view="home">🏠 首页</button>
+      <button class="tab" data-view="match">🚀 新手开始</button>
       <button class="tab" data-view="hustles">💰 副业库</button>
       <button class="tab" data-view="jobs">💼 工作板</button>
       <button class="tab" data-view="learn">📚 学习成长</button>
@@ -223,6 +255,20 @@
       <button class="btn ghost small" id="spinBtn">🎲 换一批</button>
     </div>
     <div class="grid" id="inspireGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 新手开始 ================= -->
+<section class="view" id="view-match">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2>🚀 三分钟，找到适合你的副业</h2>
+        <div class="sub">回答 3 个问题，马上得到匹配度排行与专属行动计划；每个推荐都带完整实操攻略</div>
+      </div>
+    </div>
+    <div class="principles match-form" id="matchForm"></div>
+    <div class="match-result" id="matchResult"></div>
   </div>
 </section>
 
@@ -522,6 +568,110 @@ function toggleFav(id){
 }
 function isFav(id){return state.favs.has(id)}
 
+/* ===== 实操打卡进度 ===== */
+function guideProgress(id){
+  const g=GUIDES_A[id]||GUIDES_B[id];if(!g)return 0;
+  const p=JSON.parse(localStorage.getItem("shh_steps")||"{}");
+  return (p[id]||[]).length;
+}
+function isStepDone(id,i){
+  const p=JSON.parse(localStorage.getItem("shh_steps")||"{}");
+  return (p[id]||[]).includes(i);
+}
+function toggleStep(id,i,e){
+  if(e)e.stopPropagation();
+  const p=JSON.parse(localStorage.getItem("shh_steps")||"{}");
+  const arr=p[id]||[];
+  const k=arr.indexOf(i);
+  if(k>=0)arr.splice(k,1);else arr.push(i);
+  p[id]=arr;localStorage.setItem("shh_steps",JSON.stringify(p));
+  const li=e?e.target.closest(".step"):null;
+  if(li){li.classList.toggle("done");li.querySelector("input").checked=arr.includes(i)}
+  updateProg(id);
+}
+function updateProg(id){
+  const g=GUIDES_A[id]||GUIDES_B[id];if(!g)return;
+  const done=guideProgress(id),total=g.steps.length;
+  const bar=document.getElementById("gprogBar"),txt=document.getElementById("gprogTxt");
+  if(bar)bar.style.width=(total?done/total*100:0)+"%";
+  if(txt)txt.textContent=done+"/"+total;
+}
+window.toggleStep=toggleStep;
+
+/* ===== 新手匹配 ===== */
+const MATCH_QS=[
+  {key:"skill",title:"1️⃣ 你更接近哪一种？",opts:[
+    {label:"会写点东西",desc:"文案、公众号、爱发朋友圈",kws:["writing","content"]},
+    {label:"有点审美",desc:"会修图、喜欢刷设计、审美在线",kws:["image","content"]},
+    {label:"会写代码",desc:"程序员、运维、正在学编程",kws:["tech"]},
+    {label:"都不太会",desc:"但愿意学、有空余时间",kws:["content","image","live","audio"]}
+  ]},
+  {key:"time",title:"2️⃣ 每天能投入多少时间？",opts:[
+    {label:"1 小时以内",desc:"下班后碎片时间",kws2:["image","writing"]},
+    {label:"1-3 小时",desc:"每晚固定几小时",kws2:["content","writing","image","audio"]},
+    {label:"3 小时以上",desc:"时间充裕或全职试探",kws2:["content","live","tech","biz"]}
+  ]},
+  {key:"goal",title:"3️⃣ 你更想要哪种结果？",opts:[
+    {label:"快速见钱",desc:"最好一周内接到第一单",kws2:["image","writing","audio"]},
+    {label:"稳定副业",desc:"细水长流，月月有进账",kws2:["content","tech","biz"]},
+    {label:"长期事业",desc:"想做成个人事业甚至全职",kws2:["tech","biz","live"]}
+  ]}
+];
+function renderMatch(){
+  const saved=JSON.parse(localStorage.getItem("shh_match")||"{}");
+  const el=$("#matchForm");if(!el)return;
+  el.innerHTML=MATCH_QS.map(q=>`
+    <div class="principle" style="grid-column:1/-1">
+      <b>${q.title}</b>
+      <div class="opt-row">
+        ${q.opts.map((o,oi)=>`<button class="match-opt ${(saved[q.key]||"")===""+oi?"on":""}" onclick="pickMatch('${q.key}',${oi})">
+          <b>${esc(o.label)}</b><span>${esc(o.desc)}</span>
+        </button>`).join("")}
+      </div>
+    </div>`).join("")+`
+    <div class="principle" style="grid-column:1/-1;text-align:center">
+      <button class="btn primary" onclick="showMatch()">🎯 生成我的匹配结果</button>
+      <button class="btn ghost" onclick="resetMatch()">重置</button>
+    </div>`;
+  if(saved.skill!=null&&saved.time!=null&&saved.goal!=null)showMatch();
+}
+function pickMatch(key,oi){
+  const saved=JSON.parse(localStorage.getItem("shh_match")||"{}");
+  saved[key]=""+oi;localStorage.setItem("shh_match",JSON.stringify(saved));
+  renderMatch();
+}
+function resetMatch(){localStorage.removeItem("shh_match");renderMatch();$("#matchResult").innerHTML=""}
+function showMatch(){
+  const saved=JSON.parse(localStorage.getItem("shh_match")||"{}");
+  if(saved.skill==null||saved.time==null||saved.goal==null){toast("请先回答完 3 个问题");return}
+  const picks=MATCH_QS.map(q=>q.opts[+saved[q.key]]);
+  const score={};
+  HUSTLES.forEach(h=>{
+    let s=0;
+    (picks[0].kws||[]).forEach(k=>{if(h.cat===k)s+=3});
+    if((picks[1].kws2||[]).includes(h.cat))s+=2;
+    if((picks[2].kws2||[]).includes(h.cat))s+=2;
+    if(picks[2].label.indexOf("快速")>=0&&h.diff===1)s+=2;
+    if(picks[1].label.indexOf("1 小时")>=0&&h.diff===3)s-=3;
+    score[h.id]=s;
+  });
+  const top=[...HUSTLES].sort((a,b)=>(score[b.id]-score[a.id])||(a.diff-b.diff)).slice(0,3);
+  const g0=GUIDES_A[top[0].id]||GUIDES_B[top[0].id];
+  const el=$("#matchResult");if(!el)return;
+  el.innerHTML=`
+    <div class="daily" style="margin-top:0">
+      <div class="daily-head"><span class="live-dot"></span><h3>🎯 你的匹配结果</h3></div>
+      <p style="font-size:.86rem;color:var(--muted);margin-bottom:14px">基于你的选择：${picks.map(p=>esc(p.label)).join(" · ")}。以下 3 个副业与你的技能/时间/目标最匹配，点击卡片查看完整实操攻略：</p>
+      <div class="grid">${top.map(hustleCard).join("")}</div>
+    </div>
+    <div class="block" style="margin-top:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px">
+      <b style="color:var(--primary)">📅 你的第一周计划（以「${esc(top[0].title)}」为例）</b>
+      <ol class="week1" style="margin-top:8px">${g0?g0.week1.map(w=>`<li>${esc(w)}</li>`).join(""):""}</ol>
+      <p style="font-size:.78rem;color:var(--muted);margin-top:10px">💡 建议：别贪多，先按清单把第一个副业跑通；踩坑了再回来看避坑指南。</p>
+    </div>`;
+}
+window.pickMatch=pickMatch;window.showMatch=showMatch;window.resetMatch=resetMatch;
+
 /* =====================================================
    渲染
    ===================================================== */
@@ -667,7 +817,7 @@ function renderPrinciples(){
 }
 
 function renderAll(){
-  renderFilters();renderHustles();renderBoards();renderLearn();renderFavs();renderInspire();renderStats();renderDaily();
+  renderFilters();renderHustles();renderBoards();renderLearn();renderFavs();renderInspire();renderStats();renderDaily();renderMatch();
 }
 
 /* =====================================================
@@ -679,6 +829,7 @@ function switchView(v){
   $$("section.view").forEach(s=>s.classList.toggle("active",s.id==="view-"+v));
   window.scrollTo({top:0,behavior:"smooth"});
   if(v==="favs")renderFavs();
+  if(v==="match")renderMatch();
 }
 window.switchView=switchView;
 function setHustleCat(c){state.hustleCat=c;renderFilters();renderHustles()}
@@ -726,6 +877,9 @@ $("#modalMask").addEventListener("click",e=>{if(e.target.id==="modalMask")closeM
 function openHustle(id){
   const h=HUSTLES.find(x=>x.id===id);if(!h)return;
   const c=CATEGORIES[h.cat];
+  const g=GUIDES_A[id]||GUIDES_B[id];
+  const done=guideProgress(id);
+  const total=g?g.steps.length:0;
   openModal(`
     <h3>${h.emoji} ${esc(h.title)}</h3>
     <div class="m-badges">
@@ -734,26 +888,64 @@ function openHustle(id){
       <span class="badge warn">上手难度：${diffLabel(h.diff)}</span>
       ${h.tags.map(t=>`<span class="badge plain">#${esc(t)}</span>`).join("")}
     </div>
-    <p>${esc(h.desc)}</p>
-    <div class="block"><b>🛠 怎么做</b><p>${esc(h.how)}</p></div>
+    <p class="gdesc">${esc(h.desc)}</p>
+    ${!g?`<div class="block"><b>🛠 怎么做</b><p>${esc(h.how)}</p></div>
     <div class="block"><b>🧰 推荐工具</b><p>${esc(h.tools)}</p></div>
-    <div class="block"><b>💰 变现方式</b><p>${esc(h.money)}</p></div>
+    <div class="block"><b>💰 变现方式</b><p>${esc(h.money)}</p></div>`:`
+    <div class="gtable-wrap block"><table class="gtable">
+      <tr><td>👥 适合人群</td><td>${esc(g.audience)}</td></tr>
+      <tr><td>💵 启动成本</td><td>${esc(g.cost)}</td></tr>
+      <tr><td>📈 收入区间</td><td>${esc(g.income)}</td></tr>
+      <tr><td>⏱️ 见效周期</td><td>${esc(g.cycle)}</td></tr>
+    </table></div>
+    <div class="gprog-wrap">
+      <div class="gprog-top"><span>实操进度（点击步骤可勾选打卡，自动保存）</span><b id="gprogTxt">${done}/${total}</b></div>
+      <div class="gprog"><i id="gprogBar"></i></div>
+    </div>
+    <ol class="steps" id="gsteps">
+      ${g.steps.map((s,i)=>`<li class="step ${isStepDone(id,i)?"done":""}" onclick="toggleStep('${id}',${i},event)">
+        <input type="checkbox" ${isStepDone(id,i)?"checked":""}>
+        <div><div class="t">第 ${i+1} 步 · ${esc(s.t)}</div><div class="d">${esc(s.d)}</div></div>
+      </li>`).join("")}
+    </ol>
+    <div class="block"><b>🧰 工具清单</b><table class="gtable">
+      ${g.tools.map(t=>`<tr><td><a href="${t.url}" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600">${esc(t.name)} ↗</a></td><td>${esc(t.use)}</td></tr>`).join("")}
+    </table></div>
+    <div class="block"><b>💰 定价与收入参考</b><table class="gtable">
+      ${g.pricing.map(p=>`<tr><td>${esc(p.name)}</td><td>${esc(p.val)}</td></tr>`).join("")}
+    </table></div>
+    <div class="block tipbox"><b style="color:var(--warn)">⚠️ 避坑指南</b><ul class="week1">${g.risks.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>
+    <div class="block"><b>📅 第一周行动清单</b><ol class="week1">${g.week1.map(w=>`<li>${esc(w)}</li>`).join("")}</ol></div>`}
     <div class="actions">
-      <button class="btn primary" onclick="toggleFav('${h.id}');closeModal()">${isFav(h.id)?"★ 已收藏":"☆ 收藏到我的清单"}</button>
+      <button class="btn primary" onclick="toggleFav('${h.id}');refreshModal()">${isFav(h.id)?"★ 已收藏":"☆ 收藏到我的清单"}</button>
       <a class="btn ghost" href="https://github.com/search?q=${encodeURIComponent(h.title)}+AI&type=repositories" target="_blank" rel="noopener">🔍 搜相关开源项目</a>
     </div>`);
+  updateProg(id);
+}
+function refreshModal(){
+  const mask=document.getElementById("modalMask");
+  if(!mask.classList.contains("open"))return;
+  const h3=document.querySelector("#modalBox h3");
+  if(!h3)return;
+  const m=h3.textContent.match(/^(.)\\s+(.+)$/);
+  if(!m)return;
+  const h=HUSTLES.find(x=>x.title===m[2]);
+  if(h)openHustle(h.id);
 }
 window.openHustle=openHustle;
 
 function openBoard(name){
   const b=BOARDS.find(x=>x.name===name);if(!b)return;
+  const tip=BOARD_TIPS[name];
   openModal(`
     <h3>${JOB_TYPES[b.type].emoji} ${esc(b.name)}</h3>
     <div class="m-badges"><span class="badge">${JOB_TYPES[b.type].name}</span>${b.tags.map(t=>`<span class="badge plain">${esc(t)}</span>`).join("")}</div>
-    <p>${esc(b.desc)}</p>
+    <p class="gdesc">${esc(b.desc)}</p>
+    ${tip?`<div class="block"><b>📋 上手教程</b><ol class="week1">${tip.how.map(s=>`<li>${esc(s)}</li>`).join("")}</ol></div>
+    <div class="block tipbox"><b style="color:var(--warn)">💡 老手经验</b><ul class="week1">${tip.tips.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>`:""}
     <div class="actions">
       <a class="btn primary" href="${b.url}" target="_blank" rel="noopener">🚀 立即访问</a>
-      <button class="btn ghost" onclick="toggleFav('${esc(b.name)}');closeModal()">${isFav(b.name)?"★ 已收藏":"☆ 收藏"}</button>
+      <button class="btn ghost" onclick="toggleFav('${esc(b.name)}');refreshModal()">${isFav(b.name)?"★ 已收藏":"☆ 收藏"}</button>
     </div>`);
 }
 window.openBoard=openBoard;
