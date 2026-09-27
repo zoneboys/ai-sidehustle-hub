@@ -277,6 +277,18 @@
       </div>
     </div>
 
+    <div class="daily" id="scoutBox" style="display:none">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>🔭 深度情报 · AI 副业本周侦察</h3>
+        <span class="daily-date" id="scoutDate"></span>
+        <span style="flex:1"></span>
+        <span class="badge plain">sieve · 带原文链接可核验</span>
+      </div>
+      <div id="scoutBody"></div>
+      <div class="daily-foot"><span id="scoutNote"></span></div>
+    </div>
+
     <div class="sec-head">
       <div>
         <h2>💡 今日灵感轮盘</h2>
@@ -1085,10 +1097,53 @@ async function loadUpdates(){
 }
 $("#refreshBtn").addEventListener("click",loadUpdates);
 
+/* ===== sieve 深度情报（可选数据源：data/daily-scout.json 不存在时整块隐藏，行为与未配置时一致） ===== */
+function renderScout(s){
+  const box=$("#scoutBox");if(!box)return;
+  const topics=(s&&s.topics)||[];
+  if(!topics.length){box.style.display="none";return}
+  const conf=s.conformance||"not_checkable";
+  const confBadge=conf==="pass"?`<span class="score-pill ok">schema ✓ 通过</span>`
+    :conf==="partial"?`<span class="score-pill warn">schema 部分（部分字段未获取）</span>`
+    :conf==="fail"?`<span class="score-pill warn">schema 未通过（仅展示摘要，不作干净数据）</span>`:"";
+  box.style.display="";
+  const d=new Date(s.generatedAt);
+  $("#scoutDate").textContent=`更新于 ${s.date||""}${isNaN(d)?"":" "+d.toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"})}`;
+  $("#scoutBody").innerHTML=topics.map(t=>{
+    const ops=(t.opportunities||[]).map(o=>`
+      <a class="daily-job" style="display:block;margin-top:6px" href="${esc(o.url)}" target="_blank" rel="noopener">
+        <div class="t">${esc(o.title)}</div>
+        <div class="m"><span>🔗 ${esc(o.source||"来源")}</span>${o.date?`<span>📅 ${esc(o.date)}</span>`:""}<span>↗ 直达原文核验</span></div>
+      </a>`).join("");
+    const acts=(t.actions||[]).map(a=>`<li>${esc(a)}</li>`).join("");
+    return `
+      <details class="scam" style="margin:10px 0">
+        <summary>📌 ${esc(t.topic)}</summary>
+        <div class="scam-body">
+          <div class="block" style="margin-bottom:8px"><b>🧭 当前判断</b><p>${esc(t.status||"")}</p></div>
+          <div class="block" style="margin-bottom:8px"><b>📈 近期变化</b><p>${esc(t.changes||"无")}</p></div>
+          ${ops?`<div style="font-size:.8rem;color:var(--muted);margin:6px 0 2px">🎯 本周公开机会（点击核验真伪）：</div>${ops}`:`<div style="font-size:.8rem;color:var(--muted)">🎯 本周未找到公开机会</div>`}
+          ${acts?`<div class="block" style="margin-top:8px"><b>✅ 本周行动</b><ol class="week1">${acts}</ol></div>`:""}
+        </div>
+      </details>`;
+  }).join("");
+  $("#scoutNote").innerHTML=`由 sieve scrape API 每日生成 · ${confBadge} · 所有机会带原文链接，投递/接单前请自行核验`;
+}
+async function loadScout(){
+  try{
+    const res=await fetch("data/daily-scout.json?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error(res.status);
+    const data=await res.json();
+    if(!data.topics)throw new Error("bad data");
+    renderScout(data);
+  }catch(e){/* 数据不存在（sieve 未配置）→ 整块保持隐藏 */}
+}
+
 /* 启动 */
 renderPrinciples();
 renderAll();
 loadUpdates();
+loadScout();
 </script>
 </body>
 </html>

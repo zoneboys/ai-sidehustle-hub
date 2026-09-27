@@ -1,0 +1,162 @@
+{
+  "generatedAt": "2026-09-27T15:06:14.127Z",
+  "date": "2026-09-27",
+  "sessionId": "20260927-144636-828ddd",
+  "turns": 0,
+  "conformance": "pass",
+  "topics": [
+    {
+      "topic": "AI 脚本短视频",
+      "status": "仍值得新人入局：六大视频平台2026年密集落地AI扶持新政，保底分账+专属渠道加码，赛道市场规模超220亿元，竞赛机会密集，新人有参赛和接单双线起步空间。",
+      "changes": "抖音、快手、B站、爱奇艺、腾讯视频、优酷于2026年集中更新AI创作扶持政策，新增保底分账、AI专属播出渠道、资金扶持等机制（来源：https://www.sohu.com/a/1032098325_121123989）；可灵2026版、Hailuo等国产AI视频工具迭代提速，出片成本进一步压缩；9月多家影视公司（虎鲸文娱等）启动千万级AI创作者招募赛事。",
+      "opportunities": [
+        {
+          "title": "鲸锐AI创作大赛——虎鲸文娱千万奖金AI视频竞赛（报名至2026年11月22日）",
+          "url": "https://jingrui-ai-competition.youku.com/",
+          "source": "虎鲸AI人才计划官网（优酷）",
+          "date": "2026-09-17"
+        },
+        {
+          "title": "2026金鸡AI影展全球作品征集（申报截止2026年10月5日）",
+          "url": "https://www.aitop100.cn/infomation/details/34651.html",
+          "source": "aitop100.cn",
+          "date": "2026-09-01"
+        },
+        {
+          "title": "HiShorts!×updream 2026 AI短片大赛征集（9月17日至11月18日）",
+          "url": "https://www.sohu.com/a/1080520723_121885030",
+          "source": "搜狐",
+          "date": "2026-09-17"
+        }
+      ],
+      "actions": [
+        "本周登录jingrui-ai-competition.youku.com注册鲸锐大赛，用LLM写脚本+可灵生成画面提交作品，参与1000万奖金池。",
+        "选定1个垂类主题，用剪映+DeepSeek完成一条60秒内AI短视频并发布到抖音/B站，以完播率数据验证选题方向。"
+      ]
+    },
+    {
+      "topic": "AI 头像/海报定制",
+      "status": "低价内卷严重（闲鱼已现3-5元/单），纯拼价格不推荐；但皮克斯/3D渲染等高质感风格定价39-500元/单仍有需求，新人须差异化定位才值得入局。",
+      "changes": "DeepSeek等大模型普及降低AI头像生成门槛，低端同质化竞争白热化，早期信息差红利消失（来源：https://post.smzdm.com/p/avgqqemp/）；闲鱼平台对AI商品审核趋严，部分'AI定制'关键词需规避；市场分层明显——低价3-5元/单（纯工具跑量）vs高端定制100-500元/单（差异化包装），后者仍有利润空间。",
+      "opportunities": [
+        {
+          "title": "Q版头像定制副业：闲鱼/淘宝接单全流程指南（2026，含平台入驻步骤）",
+          "url": "https://www.kakameme.com/zh/blog/qban-avatar-commission-guide",
+          "source": "咔咔表情",
+          "date": "2026-01-01"
+        },
+        {
+          "title": "AI副业接单实操：AI头像定制工作流搭建与阶梯报价策略",
+          "url": "https://www.mova.work/topic/2026/06/ai-fu-ye-jie-dan-zhi-nan-cong--874.html",
+          "source": "Mova魔法社区",
+          "date": "2026-06-01"
+        }
+      ],
+      "actions": [
+        "在闲鱼发布皮克斯/3D渲染风格AI头像样品3张，定价49-99元/单，标题突出『10分钟真人照片转专属头像』。",
+        "在小红书发布一组普通版vs高质感AI头像对比图，吸引私信询价，积累前10个真实买家评价建立信任。"
+      ]
+    },
+    {
+      "topic": "AI 儿童绘本",
+      "status": "KDP出海仍可操作，但2026年Amazon大幅收紧AI内容披露要求并削减上传频率限制，新人需先了解合规规则再行动，蓝海细分赛道仍有机会。",
+      "changes": "Amazon KDP 2026年强制要求在上架流程中分别披露AI生成文本与AI生成图片，未合规披露将面临书目下架乃至账号暂停；Amazon已削减KDP每周上传频率上限（来源：https://selfpublishingadvice.org/amazon-cuts-kdp-weekly-upload-limit/）；质量审核趋严，低质量流水线绘本被清退概率增加；合规披露后AI绘本仍可正常销售，选题差异化是关键。",
+      "opportunities": [
+        {
+          "title": "Amazon KDP AI图书出版2026完整合规指南（含AI披露规则与上传限制详解）",
+          "url": "https://kdpbuilder.com/blog/ai-book-publishing-2026",
+          "source": "KDP Builder",
+          "date": "2026-01-01"
+        },
+        {
+          "title": "用AI做儿童英文绘本亚马逊卖，第一个月纯利1900美金实操案例（2026年5月）",
+          "url": "https://www.aitoollab.top/articles/cases/ai-kdp-children-book-side-hustle-202605/",
+          "source": "aitoollab.top",
+          "date": "2026-05-01"
+        }
+      ],
+      "actions": [
+        "先完整阅读kdpbuilder.com的KDP 2026 AI披露规则指南，确认合规流程后再动手，避免因未披露被下架封号。",
+        "用Amazon书名关键词工具选定月搜索量600+的英文绘本细分主题，用Midjourney+ChatGPT制作首本并合规上架。"
+      ]
+    },
+    {
+      "topic": "新媒体 AI 代写",
+      "status": "需求旺盛，市场持续增长（小红书代运营品牌渗透率已达67%），AI工具将单篇出稿压缩至20分钟，差异化接单可实现月入5000-15000元，值得入局。",
+      "changes": "小红书2026年商业笔记曝光占比升至43%，品牌代运营需求爆发（来源：https://www.aitoollab.top/articles/seo/ai-wechat-official-account-side-hustle-20260701/）；AI写作工具升级导致纯AI原稿均质化，甲方要求人工润色+真实体验感，差异化空间转向垂类深度内容；公众号运营逻辑由爆款驱动转向垂直领域持续输出，长期代运营合同价值提升。",
+      "opportunities": [
+        {
+          "title": "用AI做公众号代运营接单：新手月入5000+完整操作方法（2026年7月）",
+          "url": "https://www.aitoollab.top/articles/seo/ai-wechat-official-account-side-hustle-20260701/",
+          "source": "AiToollab",
+          "date": "2026-07-01"
+        },
+        {
+          "title": "2026年9月全国小红书代运营靠谱需求清单（含服务商需求参考）",
+          "url": "https://www.liandongob.com/archives/1156245.html",
+          "source": "链动洞察",
+          "date": "2026-09-01"
+        }
+      ],
+      "actions": [
+        "在猪八戒网/闲鱼注册，上架小红书种草笔记代写服务，定价50-150元/篇，附3篇垂类样稿，当天即可开始接询盘。",
+        "在小红书发布AI写作效率对比帖（附样稿截图），植入私信接单入口，测试B端代运营询盘转化效果。"
+      ]
+    },
+    {
+      "topic": "AI 配音/声音克隆服务",
+      "status": "AI已将配音单价压至0.5-5元/分钟，基础解说类被大量分流；新人应专注情绪化、氛围感、版权合规要求高的优质单（约占市场70%），仍有真实机会但须差异化定位。",
+      "changes": "2026年AI配音价格从300-800元/分钟暴跌至0.5-5元/分钟，降幅逾90%（来源：https://post.smzdm.com/p/aqr04922/）；声音克隆法规趋于明朗——克隆他人声音须书面授权，多个平台新增AI配音内容标识要求；配音新手圈等聚合平台已成零基础入门首选渠道；高情绪感、品牌广告类优质单仍由真人主导，约占70%流水。",
+      "opportunities": [
+        {
+          "title": "2026配音接单平台全分类：头部/聚合/轻量化，新手选对赛道入门指南",
+          "url": "https://hea.china.com/articles/20260713/202607131915010.html",
+          "source": "中华网",
+          "date": "2026-07-13"
+        },
+        {
+          "title": "2026配音接单全渠道实测：公开平台+私域渠道全覆盖，新手零内卷接单攻略",
+          "url": "https://zhuanlan.zhihu.com/p/2050588050267305804",
+          "source": "知乎",
+          "date": "2026-07-01"
+        }
+      ],
+      "actions": [
+        "在配音新手圈平台注册并录制试音样本，专注广告类/情感类单子，主动回避0.5-5元/分钟的低价解说单。",
+        "用ElevenLabs或FishAudio克隆自己声音，在B站创作者群/闲鱼提供AI配音外包服务，起始定价20-50元/分钟测试市场反应。"
+      ]
+    },
+    {
+      "topic": "AI 套壳小工具站",
+      "status": "出海订阅制Micro-SaaS仍是2026年有效机会（海外付费意愿约为国内7倍），但同质化严重；新人须聚焦细分场景，冷启动周期约3个月，值得入局但需耐心。",
+      "changes": "AI编程工具（Cursor/v0.dev等）将MVP开发成本压至近零，独立开发者48小时可上线工具站（来源：https://cloud.tencent.com.cn/developer/article/2697559）；订阅收款方案对中国主体的支持持续优化；ProductHunt发现层逐渐被AI搜索（ChatGPT/Perplexity）替代，需同步做SEO和AI搜索引用布局；平台分账机制本月无明显变化。",
+      "opportunities": [
+        {
+          "title": "LaunchAIJam 2026年9月全部AI工具新品发布追踪（27款，每日更新）",
+          "url": "https://launchaijam.com/new-ai-tools/september-2026",
+          "source": "LaunchAIJam",
+          "date": "2026-09-01"
+        },
+        {
+          "title": "2026独立SaaS发布完整攻略：ProductHunt榜单+AI搜索可见性布局",
+          "url": "https://peerpush.com/blog/2026-indie-saas-launch-playbook",
+          "source": "PeerPush",
+          "date": "2026-01-01"
+        }
+      ],
+      "actions": [
+        "在LaunchAIJam浏览9月27款新品发布记录，找出功能缺口或可垂直深化的场景，确定自己的Micro-SaaS切入点。",
+        "用Cursor或v0.dev在本周内搭建细分场景MVP落地页并开放付费，先验证付费意愿再完整开发，避免无效投入。"
+      ]
+    }
+  ],
+  "errors": [],
+  "note": "由 scripts/sieve-daily-scout.mjs 通过 sieve scrape API 生成（可选增强数据源；未配置 SIEVE_API_KEY 时本文件不会更新）。所有机会均附原文链接，点击可核验。",
+  "files": [
+    {
+      "name": "result.json",
+      "size": 9933,
+      "ext": "json"
+    }
+  ]
+}

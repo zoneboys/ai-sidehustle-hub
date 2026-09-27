@@ -1,4 +1,15 @@
-.freebuff/
+# 本地密钥（sieve API key 等）——绝不提交
+.env
+.env.*
+!.env.example
+
+# sieve 任务运行状态（session 断点续轮用，属本地状态）
+data/sieve-sessions.json
+
+# sieve 交付文件本地下载副本（站点只读 result，无需入库）
+data/daily-scout-files/
+
 node_modules/
 .DS_Store
 Thumbs.db
+.freebuff/

@@ -28,11 +28,25 @@ jobs:
       - name: Fetch latest remote jobs
         run: node scripts/fetch-jobs.mjs
 
+      # 可选增强：sieve 深度情报（未配置 SIEVE_API_KEY 时自动跳过，不影响职位抓取）
+      - name: sieve daily scout (optional)
+        env:
+          SIEVE_API_KEY: ${{ secrets.SIEVE_API_KEY }}
+        run: node scripts/sieve-daily-scout.mjs
+
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/daily-updates.json
+          # data/daily-scout.json 是可选产物：未配置 key / 额度用尽 / 被拒绝时不会生成，
+          # 因此只 add 实际存在的文件，避免 `git add` 因 pathspec 不匹配直接失败。
+          for f in data/daily-updates.json data/daily-scout.json; do
+            if [ -f "$f" ]; then
+              git add "$f"
+            else
+              echo "跳过（本次未生成）：$f"
+            fi
+          done
           if git diff --cached --quiet; then
             echo "数据无变化，跳过提交"
           else

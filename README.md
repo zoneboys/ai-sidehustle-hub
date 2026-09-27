@@ -5,6 +5,7 @@
 - 💰 **AI 副业思路库** —— 精选自 [XiaomingX/ai-money-maker-handbook](https://github.com/XiaomingX/ai-money-maker-handbook)：36 个经过验证的 AI 副业方案，每个都带「怎么做 / 推荐工具 / 变现方式」，支持分类、搜索、排序与收藏。
 - 💼 **远程工作渠道板** —— 精选自 [lukasz-madon/awesome-remote-job](https://github.com/lukasz-madon/awesome-remote-job)：48+ 个正规远程求职网站、聚合器与自由职业平台。
 - 📡 **每日自动更新** —— GitHub Actions 每天北京时间 09:30 自动抓取 Remotive / Remote OK / We Work Remotely / HN「Who is hiring?」的最新远程职位，写入 `data/daily-updates.json`，网站打开即是最新数据，无需服务器。
+- 🔭 **深度情报（可选）** —— 配置 [sieve](https://scrape.usesieve.com) 后，每天用 scrape API 对热门 AI 副业做一次情报侦察（平台规则变化、本周公开机会、可执行行动），写入 `data/daily-scout.json`；所有机会带原文链接可核验真伪。未配置时该板块自动隐藏，站点与其他数据源完全不受影响。
 - 📚 **学习成长区** —— 远程工作必读文章、书籍、播客、Newsletter 与面试工具。
 - ⭐ **收藏 + 深色模式 + 全文搜索** —— 数据保存在浏览器本地。
 
@@ -25,6 +26,33 @@ node scripts/fetch-jobs.mjs
 ```
 
 脚本会把最新职位写入 `data/daily-updates.json`（Node 18+ 原生 fetch，无任何依赖）。
+
+## 可选：启用 sieve 深度情报
+
+1. 手动配置 API key（key 只进 `.env`，不进 git / 日志 / 前端）：
+
+   在 sieve 控制台 Settings → API keys 创建一个 key，复制 `.env.example` 为 `.env`，把 key 填进 `SIEVE_API_KEY=`：
+
+```bash
+# .env
+SIEVE_API_KEY=dc_sk_xxxxxxxxxxxxxxxx
+```
+
+2. 手动跑一次侦察（约几分钟，消耗少量 sieve 额度）：
+
+```bash
+node scripts/sieve-daily-scout.mjs --once
+```
+
+3. 中断可恢复：session 会先持久化到 `data/sieve-sessions.json`，崩溃后重跑同一命令会继续轮询而不是重复开跑（POST /api/scrapes 受理即计费，故绝不盲目重试）。
+
+4. GitHub Actions：在仓库 Settings → Secrets → Actions 添加 `SIEVE_API_KEY`，每日任务会自动带上深度情报；不配置则该步骤自动跳过。
+
+测试：
+
+```bash
+node --test "tests/*.test.mjs"
+```
 
 ## 自动更新原理
 
