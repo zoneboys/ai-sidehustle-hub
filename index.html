@@ -9,6 +9,8 @@
 <script src="data/guides-a.js"></script>
 <script src="data/guides-b.js"></script>
 <script src="data/board-tips.js"></script>
+<script src="data/ratings.js"></script>
+<script src="data/guide-extras.js"></script>
 <style>
   :root{
     --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --text:#1a2033; --muted:#6b7280;
@@ -186,6 +188,34 @@
   .match-opt.on{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 8%,var(--card));box-shadow:0 0 0 1px var(--primary)}
   .opt-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 
+  /* ===== 评分 / 完成标志 / FAQ / 职位卡 ===== */
+  .score-pill{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary)}
+  .score-pill.ok{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok)}
+  .score-pill.warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+  .score-pill.big{font-size:.85rem;padding:5px 12px}
+  .rating-bar{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .rating-bar .lbl{width:64px;font-size:.78rem;color:var(--muted);flex:none}
+  .rating-bar .track{flex:1;height:8px;border-radius:99px;background:var(--bg);border:1px solid var(--border);overflow:hidden}
+  .rating-bar .track i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:99px}
+  .rating-bar b{width:26px;text-align:right;font-size:.78rem}
+  .flag-note{margin-top:6px;font-size:.76rem;color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,var(--card));border-left:3px solid var(--ok);padding:5px 8px;border-radius:0 8px 8px 0}
+  .faq-item{padding:10px 0;border-bottom:1px dashed var(--border)}
+  .faq-item:last-child{border-bottom:none;padding-bottom:0}
+  .faq-item .q{color:var(--text);font-size:.86rem;display:block;margin-bottom:4px}
+  .faq-item p{margin:0;font-size:.82rem}
+  .latest-jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .job-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:block;transition:.2s}
+  .job-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+  .job-card .row1{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:6px}
+  .job-card .jt{font-weight:700;font-size:.88rem;line-height:1.45}
+  .job-card .row2{display:flex;gap:10px;flex-wrap:wrap;font-size:.74rem;color:var(--muted)}
+  .job-card .row2 .src{color:var(--primary);font-weight:600}
+  .job-card .why{margin-top:6px;font-size:.72rem;color:var(--muted);background:var(--bg2);border-radius:8px;padding:5px 8px}
+  details.scam{margin:14px 0;border:1px solid color-mix(in srgb,var(--warn) 40%,var(--border));border-left:3px solid var(--warn);border-radius:12px;background:color-mix(in srgb,var(--warn) 6%,var(--card));padding:12px 16px}
+  details.scam summary{cursor:pointer;font-weight:700;font-size:.9rem;color:var(--warn)}
+  details.scam .scam-body{margin-top:10px;font-size:.84rem;color:var(--text)}
+  details.scam li{margin-bottom:6px}
+
   @media(max-width:640px){
     .hero{padding:48px 0 34px}
     .nav{height:56px}
@@ -286,6 +316,7 @@
     <div class="filter-bar" style="margin-top:-8px">
       <select class="sort" id="hustleSort">
         <option value="default">默认排序</option>
+        <option value="score">综合评分 高→低</option>
         <option value="income">收入潜力 高→低</option>
         <option value="easy">上手难度 低→高</option>
       </select>
@@ -301,9 +332,35 @@
     <div class="sec-head">
       <div>
         <h2>💼 远程工作 & 求职渠道</h2>
-        <div class="sub">精选自 awesome-remote-job：正规远程职位板、聚合器与自由职业平台</div>
+        <div class="sub">精选自 awesome-remote-job + 每日抓取：职位带自动评分、来源、日期与原帖链接，先看评分再投递</div>
       </div>
     </div>
+    <div class="daily">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>📡 最新远程职位 · 每日自动更新</h3>
+        <span class="daily-date" id="jobsDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn ghost small" onclick="loadUpdates()">↻ 刷新</button>
+      </div>
+      <div class="latest-jobs" id="latestJobs"></div>
+      <div class="daily-foot"><span id="jobsSource"></span></div>
+    </div>
+    <details class="scam">
+      <summary>🛡️ 投递前必读：职位真伪鉴别指南（点开看 8 条铁律）</summary>
+      <div class="scam-body">
+        <ul class="week1">
+          <li><b>先交钱 = 骗局。</b>正规雇主永远不会向求职者收钱。凡是要「培训费/服装费/押金/保证金/激活费」的，直接拉黑。</li>
+          <li><b>官网核验公司与 HR。</b>搜公司官网 + LinkedIn / 企查查确认公司与岗位真实存在；HR 邮箱域名应与公司一致，用免费邮箱（@gmail/@163）自称 HR 的多为假。</li>
+          <li><b>超高薪 + 零要求 = 钩子。</b>「日结 500、在家点点鼠标、无经验月入过万」是刷单/杀猪盘的标准开场白。</li>
+          <li><b>索要身份证、银行卡、验证码的立即停止。</b>正规流程只在签合同后需要有限信息，任何提前索要敏感信息的都是诈骗。</li>
+          <li><b>拉群做任务、下载非官方 App = 诈骗。</b>让你先垫付「刷单返利」的，本金必被吞。</li>
+          <li><b>面试流程异常要警惕。</b>不发 JD、不视频面试、直接发 offer、催你立刻决定的，正规公司不会跳过流程。</li>
+          <li><b>跨境远程岗查三样。</b>公司官网、Glassdoor/脉脉评价、合同主体；拒绝签书面合同的远程岗不要做。</li>
+          <li><b>善用本站原帖链接。</b>下方职位均来自 Remotive / WWR / Remote OK / Jobicy / HN 等正规职位板，点卡片「直达原帖」核对职位描述、薪资与发布日期是否一致，被篡改的多半有问题。</li>
+        </ul>
+      </div>
+    </details>
     <div class="filter-bar" id="jobFilters"></div>
     <div class="filter-bar" style="margin-top:-8px">
       <span class="count-hint" id="jobCount" style="margin-left:0"></span>
@@ -523,15 +580,15 @@ const FALLBACK_UPDATES = {
   generatedAt: "2026-09-26T16:11:27.684Z",
   date: "2026-09-26",
   jobs: [
-    {title:"Account Executive Mid-Market - Italy",company:"Alma",location:"Italy",category:"Director",url:"https://jobicy.com/jobs/151870-account-executive-mid-market-italy",date:"2026-09-26",source:"Jobicy"},
-    {title:"Junior Web Builder (Fully Remote, PH-Based Only)",company:"Luxury Presence",location:"Philippines",category:"Senior",url:"https://jobicy.com/jobs/152598-junior-web-builder-fully-remote-ph-based-only-fresh-grads-welcome-to-apply",date:"2026-09-26",source:"Jobicy"},
-    {title:"ERP System Administrator (Acumatica)",company:"Alimentiv",location:"Canada",category:"Senior",url:"https://jobicy.com/jobs/151608-erp-system-administrator-acumatica",date:"2026-09-26",source:"Jobicy"},
-    {title:"Software Architect",company:"Autodesk",location:"EMEA, UK",category:"Senior",url:"https://jobicy.com/jobs/150381-software-architect",date:"2026-09-26",source:"Jobicy"},
-    {title:"Senior AI Engineer",company:"Lemon.io",location:"Northern America, LATAM, Europe, APAC",category:"Artificial Intelligence",url:"https://remotive.com/remote-jobs/artificial-intelligence/senior-ai-engineer-2091131",date:"2026-09-18",source:"Remotive"},
-    {title:"Senior Shopify Developer",company:"Sanctuary Computer Inc",location:"Worldwide",category:"Software Development",url:"https://remotive.com/remote-jobs/software-development/senior-shopify-developer-2091140",date:"2026-09-18",source:"Remotive"},
-    {title:"AI Response Evaluator",company:"iMerit Technology",location:"France, Japan, Turkey, Vietnam, Mexico, Norway",category:"Artificial Intelligence",url:"https://remotive.com/remote-jobs/artificial-intelligence/ai-response-evaluator-2091126",date:"2026-09-11",source:"Remotive"},
-    {title:"Video Data Annotator",company:"iMerit Technology",location:"Anywhere",category:"quality assurance · ai",url:"https://remoteok.com/remote-jobs/remote-video-data-annotator-imerit-technology-1137428",date:"2026-09-23",source:"Remote OK"},
-    {title:"🧵 HN「Who is hiring?」2026-09 月度招聘楼已更新",company:"news.ycombinator.com",location:"共 256 条新职位",category:"月更",url:"https://news.ycombinator.com/item?id=49522897",date:"2026-09-26",source:"Hacker News"}
+    {title:"Account Executive Mid-Market - Italy",company:"Alma",location:"Italy",category:"Director",url:"https://jobicy.com/jobs/151870-account-executive-mid-market-italy",date:"2026-09-26",source:"Jobicy",score:7.5},
+    {title:"Junior Web Builder (Fully Remote, PH-Based Only)",company:"Luxury Presence",location:"Philippines",category:"Senior",url:"https://jobicy.com/jobs/152598-junior-web-builder-fully-remote-ph-based-only-fresh-grads-welcome-to-apply",date:"2026-09-26",source:"Jobicy",score:7.5},
+    {title:"ERP System Administrator (Acumatica)",company:"Alimentiv",location:"Canada",category:"Senior",url:"https://jobicy.com/jobs/151608-erp-system-administrator-acumatica",date:"2026-09-26",source:"Jobicy",score:7.5},
+    {title:"Software Architect",company:"Autodesk",location:"EMEA, UK",category:"Senior",url:"https://jobicy.com/jobs/150381-software-architect",date:"2026-09-26",source:"Jobicy",score:7.5},
+    {title:"Senior AI Engineer",company:"Lemon.io",location:"Northern America, LATAM, Europe, APAC",category:"Artificial Intelligence",url:"https://remotive.com/remote-jobs/artificial-intelligence/senior-ai-engineer-2091131",date:"2026-09-18",source:"Remotive",score:8.5},
+    {title:"Senior Shopify Developer",company:"Sanctuary Computer Inc",location:"Worldwide",category:"Software Development",url:"https://remotive.com/remote-jobs/software-development/senior-shopify-developer-2091140",date:"2026-09-18",source:"Remotive",score:8},
+    {title:"AI Response Evaluator",company:"iMerit Technology",location:"France, Japan, Turkey, Vietnam, Mexico, Norway",category:"Artificial Intelligence",url:"https://remotive.com/remote-jobs/artificial-intelligence/ai-response-evaluator-2091126",date:"2026-09-11",source:"Remotive",score:8},
+    {title:"Video Data Annotator",company:"iMerit Technology",location:"Anywhere",category:"quality assurance · ai",url:"https://remoteok.com/remote-jobs/remote-video-data-annotator-imerit-technology-1137428",date:"2026-09-23",source:"Remote OK",score:7},
+    {title:"🧵 HN「Who is hiring?」2026-09 月度招聘楼已更新",company:"news.ycombinator.com",location:"共 256 条新职位",category:"月更",url:"https://news.ycombinator.com/item?id=49522897",date:"2026-09-26",source:"Hacker News",score:7.5}
   ],
   errors: [],
   note: "内置降级快照：每日抓取任务运行后会被实时数据覆盖"
@@ -555,6 +612,22 @@ const $$ = s=>document.querySelectorAll(s);
 const esc = s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const incomeLabel = v=>["","低","中","高"][v]||"中";
 const diffLabel = v=>["","易上手","进阶","有门槛"][v]||"进阶";
+
+/* ===== 评分工具 ===== */
+const RATING_DIMS=[["income","收入潜力"],["ease","上手容易"],["flex","时间灵活"],["passive","被动收入"],["safety","风险可控"]];
+function overallScore(id){
+  const r=window.HUSTLE_RATINGS&&HUSTLE_RATINGS[id];if(!r)return 0;
+  return Math.round((r.income+r.ease+r.flex+r.passive+r.safety)/5*2*10)/10;
+}
+function ratingBars(id){
+  const r=HUSTLE_RATINGS&&HUSTLE_RATINGS[id];if(!r)return"";
+  return RATING_DIMS.map(([k,label])=>`<div class="rating-bar"><span class="lbl">${label}</span><span class="track"><i style="width:${r[k]/5*100}%"></i></span><b>${r[k]}.0</b></div>`).join("");
+}
+function scoreBadge(score){
+  if(typeof score!=="number")return"";
+  const cls=score>=8?"ok":score>=6.5?"":"warn";
+  return `<span class="score-pill ${cls}">⭐ ${score}</span>`;
+}
 
 function toast(msg){
   const t=$("#toast"); t.textContent=msg; t.classList.add("show");
@@ -689,6 +762,7 @@ function hustleCard(h){
     <h3>${esc(h.title)}</h3>
     <p class="desc">${esc(h.desc)}</p>
     <div class="meta">
+      <span class="score-pill">⭐ ${overallScore(h.id)}</span>
       <span class="badge">${c.emoji} ${c.name}</span>
       <span class="badge ok">收入 ${incomeLabel(h.income)}</span>
       <span class="badge warn">${diffLabel(h.diff)}</span>
@@ -722,9 +796,20 @@ function renderHustles(){
   const q=state.query.trim().toLowerCase();
   let list=HUSTLES.filter(h=>{
     const catOk=!state.hustleCat||h.cat===state.hustleCat;
-    const qOk=matchQuery(q,h,[h.title,h.desc,h.tags.join(" "),h.how,h.money,CATEGORIES[h.cat].name]);
+    // 全文搜索：标题/描述/标签 + 攻略的工具、步骤、避坑、定价、FAQ
+    const g=GUIDES_A[h.id]||GUIDES_B[h.id];
+    const ex=GUIDE_EXTRAS&&GUIDE_EXTRAS[h.id];
+    const texts=[h.title,h.desc,h.tags.join(" "),h.how,h.money,CATEGORIES[h.cat].name];
+    if(g)texts.push(g.audience,
+      g.steps.map(s=>s.t+" "+s.d).join(" "),
+      g.tools.map(t=>t.name+" "+t.use).join(" "),
+      g.pricing.map(p=>p.name+" "+p.val).join(" "),
+      g.risks.join(" "));
+    if(ex)texts.push(ex.faq.map(f=>f.q+" "+f.a).join(" "));
+    const qOk=matchQuery(q,h,texts);
     return catOk&&qOk;
   });
+  if(state.hustleSort==="score") list=[...list].sort((a,b)=>overallScore(b.id)-overallScore(a.id)||b.income-a.income);
   if(state.hustleSort==="income") list=[...list].sort((a,b)=>b.income-a.income||a.diff-b.diff);
   if(state.hustleSort==="easy") list=[...list].sort((a,b)=>a.diff-b.diff||b.income-a.income);
   $("#hustleGrid").innerHTML=list.length?list.map(hustleCard).join(""):`<div class="empty"><div class="big">🔍</div>没有匹配的副业思路，换个关键词试试</div>`;
@@ -735,7 +820,9 @@ function renderBoards(){
   const q=state.query.trim().toLowerCase();
   const list=BOARDS.filter(b=>{
     const tOk=!state.jobType||b.type===state.jobType;
-    const qOk=matchQuery(q,b,[b.name,b.desc,b.tags.join(" "),JOB_TYPES[b.type].name]);
+    const tip=BOARD_TIPS&&BOARD_TIPS[b.name];
+    const qOk=matchQuery(q,b,[b.name,b.desc,b.tags.join(" "),JOB_TYPES[b.type].name,
+      tip?tip.how.concat(tip.tips).join(" "):""]);
     return tOk&&qOk;
   });
   $("#jobGrid").innerHTML=list.length?list.map(boardCard).join(""):`<div class="empty"><div class="big">🔍</div>没有匹配的求职网站</div>`;
@@ -798,6 +885,26 @@ function renderFilters(){
     `<button onclick="quickSearch('${t}')">${t}</button>`).join("");
 }
 
+function jobCard(j){
+  return `<a class="job-card" href="${esc(j.url)}" target="_blank" rel="noopener">
+    <div class="row1"><span class="jt">${esc(j.title)}</span>${scoreBadge(j.score)}</div>
+    <div class="row2">
+      <span>🏢 ${esc(j.company||"未知公司")}</span>
+      <span>📍 ${esc(j.location||"远程")}</span>
+      <span>📅 ${esc(j.date||"日期见原帖")}</span>
+      <span class="src">🔗 来源：${esc(j.source||"见原帖")}</span>
+      ${j.category?`<span>🏷 ${esc(j.category)}</span>`:""}
+    </div>
+    ${j.scoreReasons&&j.scoreReasons.length?`<div class="why">⭐ 评分理由：${j.scoreReasons.map(esc).join(" · ")}</div>`:""}
+  </a>`;
+}
+function renderLatest(u){
+  const box=$("#latestJobs");if(!box)return;
+  const jobs=(u.jobs||[]);
+  box.innerHTML=jobs.length?jobs.map(jobCard).join(""):`<div style="font-size:.85rem;color:var(--muted)">暂无抓取数据：GitHub Actions 每日定时抓取后自动展示，可先到下方浏览精选求职渠道。</div>`;
+  const jd=$("#jobsDate");if(jd)jd.textContent=`更新于 ${u.date}`;
+  const js=$("#jobsSource");if(js)js.innerHTML=`共 ${jobs.length} 条 · 已按自动评分排序 · 点击卡片直达原帖核验真伪`;
+}
 function renderDaily(){
   const u=state.updates||FALLBACK_UPDATES;
   const d=new Date(u.generatedAt);
@@ -806,10 +913,11 @@ function renderDaily(){
   $("#dailyJobs").innerHTML=jobs.length?jobs.slice(0,6).map(j=>`
     <a class="daily-job" href="${esc(j.url)}" target="_blank" rel="noopener">
       <div class="t">${esc(j.title)}</div>
-      <div class="m"><span>🏢 ${esc(j.company||"未知公司")}</span><span>📍 ${esc(j.location||"远程")}</span>${j.category?`<span>🏷 ${esc(j.category)}</span>`:""}</div>
+      <div class="m"><span>⭐ ${typeof j.score==="number"?j.score:"-"}</span><span>🏢 ${esc(j.company||"未知公司")}</span><span>📍 ${esc(j.location||"远程")}</span><span>📅 ${esc(j.date||"")}</span><span>🔗 ${esc(j.source||"")}</span></div>
     </a>`).join(""):`<div style="font-size:.85rem;color:var(--muted)">暂无抓取数据：首次运行 GitHub Actions 定时任务后，这里将展示最新远程职位。（可先到「💼 工作板」浏览精选求职渠道）</div>`;
   const errs=(u.errors||[]);
-  $("#dailySource").innerHTML=`来源：Remotive API · We Work Remotely RSS · HN Who is hiring ${errs.length?`<span style="color:var(--warn)">（部分来源失败：${errs.length}）</span>`:"✅"}`;
+  $("#dailySource").innerHTML=`来源：Remotive API · We Work Remotely RSS · HN Who is hiring ${errs.length?`<span style="color:var(--warn)">（部分来源失败：${errs.length}）</span>`:"✅"} · 职位已自动评分`;
+  renderLatest(u);
 }
 
 function renderPrinciples(){
@@ -883,6 +991,7 @@ function openHustle(id){
   openModal(`
     <h3>${h.emoji} ${esc(h.title)}</h3>
     <div class="m-badges">
+      <span class="score-pill big">⭐ 综合评分 ${overallScore(id)}/10</span>
       <span class="badge">${c.emoji} ${c.name}</span>
       <span class="badge ok">收入潜力：${incomeLabel(h.income)}</span>
       <span class="badge warn">上手难度：${diffLabel(h.diff)}</span>
@@ -898,15 +1007,22 @@ function openHustle(id){
       <tr><td>📈 收入区间</td><td>${esc(g.income)}</td></tr>
       <tr><td>⏱️ 见效周期</td><td>${esc(g.cycle)}</td></tr>
     </table></div>
+    <div class="block rating-block"><b>⭐ 五维评分（收入 / 上手 / 灵活 / 被动 / 风险）</b>
+      ${ratingBars(id)}
+      <p style="margin-top:8px;font-size:.76rem;color:var(--muted)">综合分 = 五维均值×2（满分 10）。分数只是参考：匹配你技能与时间的副业才是最好的。</p>
+    </div>
     <div class="gprog-wrap">
       <div class="gprog-top"><span>实操进度（点击步骤可勾选打卡，自动保存）</span><b id="gprogTxt">${done}/${total}</b></div>
       <div class="gprog"><i id="gprogBar"></i></div>
     </div>
     <ol class="steps" id="gsteps">
-      ${g.steps.map((s,i)=>`<li class="step ${isStepDone(id,i)?"done":""}" onclick="toggleStep('${id}',${i},event)">
+      ${g.steps.map((s,i)=>{
+        const flag=GUIDE_EXTRAS&&GUIDE_EXTRAS[id]&&GUIDE_EXTRAS[id].flags?GUIDE_EXTRAS[id].flags[i]:"";
+        return `<li class="step ${isStepDone(id,i)?"done":""}" onclick="toggleStep('${id}',${i},event)">
         <input type="checkbox" ${isStepDone(id,i)?"checked":""}>
-        <div><div class="t">第 ${i+1} 步 · ${esc(s.t)}</div><div class="d">${esc(s.d)}</div></div>
-      </li>`).join("")}
+        <div><div class="t">第 ${i+1} 步 · ${esc(s.t)}</div><div class="d">${esc(s.d)}</div>
+        ${flag?`<div class="flag-note">🏁 完成标志：${esc(flag)}</div>`:""}</div>
+      </li>`}).join("")}
     </ol>
     <div class="block"><b>🧰 工具清单</b><table class="gtable">
       ${g.tools.map(t=>`<tr><td><a href="${t.url}" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600">${esc(t.name)} ↗</a></td><td>${esc(t.use)}</td></tr>`).join("")}
@@ -915,6 +1031,7 @@ function openHustle(id){
       ${g.pricing.map(p=>`<tr><td>${esc(p.name)}</td><td>${esc(p.val)}</td></tr>`).join("")}
     </table></div>
     <div class="block tipbox"><b style="color:var(--warn)">⚠️ 避坑指南</b><ul class="week1">${g.risks.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>
+    ${GUIDE_EXTRAS&&GUIDE_EXTRAS[id]&&GUIDE_EXTRAS[id].faq?`<div class="block"><b>🆘 卡住了怎么办 · 高频 FAQ</b>${GUIDE_EXTRAS[id].faq.map(f=>`<div class="faq-item"><b class="q">Q：${esc(f.q)}</b><p>A：${esc(f.a)}</p></div>`).join("")}</div>`:""}
     <div class="block"><b>📅 第一周行动清单</b><ol class="week1">${g.week1.map(w=>`<li>${esc(w)}</li>`).join("")}</ol></div>`}
     <div class="actions">
       <button class="btn primary" onclick="toggleFav('${h.id}');refreshModal()">${isFav(h.id)?"★ 已收藏":"☆ 收藏到我的清单"}</button>

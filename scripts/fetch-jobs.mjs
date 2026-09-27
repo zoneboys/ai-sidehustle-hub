@@ -210,6 +210,65 @@ async function fetchJobicy() {
   }));
 }
 
+/** ---------- 职位自动评分（0-10 分，越高越值得优先投） ----------
+ * 组成：来源可信度(≤3.5) + 新鲜度(≤2) + 地区友好度(≤2) + AI 相关度(≤1.5) + 岗位完整度(≤1)
+ * 原因逐条记录在 scoreReasons，前端展示评分理由 */
+const SOURCE_SCORE = {
+  "Remotive": 3.5,
+  "We Work Remotely": 3.5,
+  "Jobicy": 3,
+  "Remote OK": 2.5,
+  "Hacker News": 3,
+};
+const DEFAULT_SOURCE_SCORE = 2;
+
+function freshnessScore(dateStr = "") {
+  const d = new Date(dateStr);
+  if (isNaN(d)) return { pts: 0.5, why: "日期未知" };
+  const days = (Date.now() - d.getTime()) / 86400000;
+  if (days <= 3) return { pts: 2, why: "3 天内新职位" };
+  if (days <= 7) return { pts: 1.5, why: "一周内新职位" };
+  if (days <= 14) return { pts: 1, why: "两周内职位" };
+  return { pts: 0.5, why: `发布已超半月` };
+}
+
+function locationScore(location = "") {
+  const l = location.toLowerCase();
+  if (/anywhere|worldwide|全球|remote/.test(l)) return { pts: 2, why: "全球可申请（Anywhere/Worldwide）" };
+  if (/asia|apac|china|singapore|japan|philippines|vietnam/.test(l)) return { pts: 1.5, why: "亚洲时区友好" };
+  if (/europe|emea|latam|americas|usa|canada|uk/.test(l)) return { pts: 1, why: "限定区域（欧美为主）" };
+  return { pts: 1, why: "地区要求见原帖" };
+}
+
+function aiScore(text = "") {
+  const t = text.toLowerCase();
+  if (/\b(ai|a\.i\.|llm|gpt|openai|claude|anthropic|machine learning|deep learning|generative|genai|artificial intelligence|ml engineer|nlp)\b/.test(t))
+    return { pts: 1.5, why: "AI/LLM 相关岗位" };
+  if (/(data|python|react|frontend|backend|full.?stack|devops|software|engineer|developer)/.test(t))
+    return { pts: 0.5, why: "泛技术岗位" };
+  return { pts: 0, why: "" };
+}
+
+function completenessScore(j = {}) {
+  const filled = [j.company, j.location, j.category, j.date].filter(Boolean).length;
+  return { pts: filled / 4, why: "" };
+}
+
+function scoreJob(j = {}) {
+  const reasons = [];
+  const src = SOURCE_SCORE[j.source] ?? DEFAULT_SOURCE_SCORE;
+  if (src >= 3) reasons.push(`${j.source}（高可信来源）`);
+  const fresh = freshnessScore(j.date);
+  if (fresh.why && fresh.pts >= 1) reasons.push(fresh.why);
+  const loc = locationScore(j.location);
+  if (loc.why) reasons.push(loc.why);
+  const ai = aiScore(`${j.title || ""} ${j.category || ""}`);
+  if (ai.why) reasons.push(ai.why);
+  const comp = completenessScore(j);
+  const score = Math.round((src + fresh.pts + loc.pts + ai.pts + comp.pts) * 10) / 10;
+  return { score: Math.min(10, score), scoreReasons: reasons };
+}
+
 /** ---------- 主流程 ---------- */
 async function main() {
   const started = Date.now();
@@ -241,6 +300,14 @@ async function main() {
   const seen = new Set();
   jobs = jobs.filter((j) => j.url && !seen.has(j.url) && seen.add(j.url));
 
+  // 自动评分（0-10）
+  for (const j of jobs) {
+    const s = scoreJob(j);
+    j.score = s.score;
+    j.scoreReasons = s.scoreReasons;
+  }
+  jobs.sort((a, b) => b.score - a.score);
+
   const now = new Date();
   const payload = {
     generatedAt: now.toISOString(),
@@ -248,7 +315,7 @@ async function main() {
     total: jobs.length,
     jobs,
     errors,
-    note: "由 scripts/fetch-jobs.mjs 每日自动抓取（GitHub Actions），来源：Remotive / Remote OK / We Work Remotely / HN Who is hiring",
+    note: "由 scripts/fetch-jobs.mjs 每日自动抓取（GitHub Actions），来源：Remotive / Remote OK / We Work Remotely / HN Who is hiring / Jobicy；score 为自动评分（0-10：来源可信度+新鲜度+地区友好度+AI 相关度+信息完整度）",
   };
 
   mkdirSync(dirname(OUT), { recursive: true });
