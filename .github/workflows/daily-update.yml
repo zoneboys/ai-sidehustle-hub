@@ -1,6 +1,6 @@
 name: Daily Job Update
 
-# 每天北京时间 09:30 自动抓取最新远程职位并更新数据
+# 每天北京时间 09:30 自动抓取最新远程职位、副业新机会、在线学习流并更新数据
 on:
   schedule:
     - cron: "30 1 * * *"   # UTC 01:30 = 北京时间 09:30
@@ -28,6 +28,16 @@ jobs:
       - name: Fetch latest remote jobs
         run: node scripts/fetch-jobs.mjs
 
+      # 可选：GITHUB_TOKEN 只用于提高 GitHub Search 速率限制（匿名 10 次/分 → 5000 次/分）。
+      # 未配置时脚本照常运行，只是该数据源可能少几条，页面会显示「部分来源失败」角标。
+      - name: Fetch daily side-hustle opportunities
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-hustles.mjs
+
+      - name: Fetch daily online learning feed
+        run: node scripts/fetch-learn.mjs
+
       # 可选增强：sieve 深度情报（未配置 SIEVE_API_KEY 时自动跳过，不影响职位抓取）
       - name: sieve daily scout (optional)
         env:
@@ -40,7 +50,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # data/daily-scout.json 是可选产物：未配置 key / 额度用尽 / 被拒绝时不会生成，
           # 因此只 add 实际存在的文件，避免 `git add` 因 pathspec 不匹配直接失败。
-          for f in data/daily-updates.json data/daily-scout.json; do
+          for f in data/daily-updates.json data/daily-scout.json data/daily-hustles.json data/daily-learn.json; do
             if [ -f "$f" ]; then
               git add "$f"
             else
@@ -50,6 +60,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "数据无变化，跳过提交"
           else
-            git commit -m "📡 daily update: refresh remote jobs ($(date -u +%F))"
+            git commit -m "📡 daily update: refresh jobs / hustles / learn feed ($(date -u +%F))"
             git push
           fi

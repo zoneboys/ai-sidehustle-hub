@@ -11,6 +11,7 @@
 <script src="data/board-tips.js"></script>
 <script src="data/ratings.js"></script>
 <script src="data/guide-extras.js"></script>
+<script src="data/benchmarks.js"></script>
 <style>
   :root{
     --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --text:#1a2033; --muted:#6b7280;
@@ -203,6 +204,23 @@
   .faq-item:last-child{border-bottom:none;padding-bottom:0}
   .faq-item .q{color:var(--text);font-size:.86rem;display:block;margin-bottom:4px}
   .faq-item p{margin:0;font-size:.82rem}
+  /* ===== 对标账号区块 ===== */
+  .bm-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border)}
+  .bm-item:last-child{border-bottom:none;padding-bottom:0}
+  .bm-p{font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:8px;background:color-mix(in srgb,var(--primary) 12%,var(--card));color:var(--primary);white-space:nowrap;flex:none;min-width:66px;text-align:center;cursor:pointer}
+  .bm-p:hover{background:var(--primary);color:#fff}
+  .bm-k{font-size:.85rem;font-weight:600;word-break:break-word}
+  .bm-why{font-size:.78rem;color:var(--muted);margin-top:2px}
+  .bm-note{margin-top:8px;font-size:.78rem;color:var(--warn);background:color-mix(in srgb,var(--warn) 8%,var(--card));border-left:3px solid var(--warn);padding:6px 9px;border-radius:0 8px 8px 0}
+  .copy-btn{margin-left:auto;font-size:.72rem;padding:3px 9px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;flex:none;align-self:center}
+  .copy-btn:hover{border-color:var(--primary);color:var(--primary)}
+  /* ===== 在线学习流 / 今日新机会 卡片 ===== */
+  .feed-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:block;transition:.2s}
+  .feed-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+  .feed-card .ft{font-weight:700;font-size:.87rem;line-height:1.45;margin-bottom:5px}
+  .feed-card .fd{font-size:.79rem;color:var(--muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .feed-card .fm{display:flex;gap:8px;flex-wrap:wrap;font-size:.72rem;color:var(--muted);margin-top:7px}
+  .feed-card .fm .src{color:var(--primary);font-weight:600}
   .latest-jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
   .job-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:block;transition:.2s}
   .job-card:hover{border-color:var(--primary);transform:translateY(-2px)}
@@ -335,6 +353,18 @@
       <span class="count-hint" id="hustleCount"></span>
     </div>
     <div class="grid" id="hustleGrid"></div>
+    <div class="daily" style="margin-top:22px">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>🔥 今日新机会 · 每日自动更新</h3>
+        <span class="daily-date" id="hustlesDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn ghost small" onclick="loadHustles()">↻ 刷新</button>
+      </div>
+      <div class="filter-bar" id="hustleNewsFilters" style="margin:0 0 10px"></div>
+      <div class="latest-jobs" id="hustleNews"></div>
+      <div class="daily-foot"><span id="hustlesSource"></span></div>
+    </div>
   </div>
 </section>
 
@@ -388,6 +418,24 @@
       <div>
         <h2>📚 学习成长资源</h2>
         <div class="sub">远程工作文章、书籍、播客、Newsletter 与面试工具，帮你更快拿到 Offer、更稳地做副业</div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>🎓 在线学习流 · 每日自动更新</h3>
+        <span class="daily-date" id="learnDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn ghost small" onclick="loadLearn()">↻ 刷新</button>
+      </div>
+      <div class="filter-bar" id="learnTrackFilters" style="margin:0 0 10px"></div>
+      <div class="learn-grid" id="learnFeed"></div>
+      <div class="daily-foot"><span id="learnSource"></span></div>
+    </div>
+    <div class="sec-head" style="margin-top:32px">
+      <div>
+        <h2>🧱 精选资源库</h2>
+        <div class="sub">人工精选的长期有效资源，配合上方每日更新流一起用</div>
       </div>
     </div>
     <div class="filter-bar" id="learnFilters"></div>
@@ -618,6 +666,8 @@ const state = {
   learnCat:null,
   favs:new Set(JSON.parse(localStorage.getItem("shh_favs")||"[]")),
   updates:null, inspireSeed:0,
+  hustleNews:null, hustleNewsCat:null,
+  learnFeed:null, learnTrack:null,
 };
 const $ = s=>document.querySelector(s);
 const $$ = s=>document.querySelectorAll(s);
@@ -818,6 +868,8 @@ function renderHustles(){
       g.pricing.map(p=>p.name+" "+p.val).join(" "),
       g.risks.join(" "));
     if(ex)texts.push(ex.faq.map(f=>f.q+" "+f.a).join(" "));
+    const bm=(window.BENCHMARKS||{})[h.id];
+    if(bm)texts.push(bm.refs.map(r=>r.p+" "+r.k+" "+r.why).join(" "));
     const qOk=matchQuery(q,h,texts);
     return catOk&&qOk;
   });
@@ -938,6 +990,7 @@ function renderPrinciples(){
 
 function renderAll(){
   renderFilters();renderHustles();renderBoards();renderLearn();renderFavs();renderInspire();renderStats();renderDaily();renderMatch();
+  renderHustleNews();renderLearnFeed();
 }
 
 /* =====================================================
@@ -998,6 +1051,7 @@ function openHustle(id){
   const h=HUSTLES.find(x=>x.id===id);if(!h)return;
   const c=CATEGORIES[h.cat];
   const g=GUIDES_A[id]||GUIDES_B[id];
+  const bm=(window.BENCHMARKS||{})[id];
   const done=guideProgress(id);
   const total=g?g.steps.length:0;
   openModal(`
@@ -1045,11 +1099,69 @@ function openHustle(id){
     <div class="block tipbox"><b style="color:var(--warn)">⚠️ 避坑指南</b><ul class="week1">${g.risks.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>
     ${GUIDE_EXTRAS&&GUIDE_EXTRAS[id]&&GUIDE_EXTRAS[id].faq?`<div class="block"><b>🆘 卡住了怎么办 · 高频 FAQ</b>${GUIDE_EXTRAS[id].faq.map(f=>`<div class="faq-item"><b class="q">Q：${esc(f.q)}</b><p>A：${esc(f.a)}</p></div>`).join("")}</div>`:""}
     <div class="block"><b>📅 第一周行动清单</b><ol class="week1">${g.week1.map(w=>`<li>${esc(w)}</li>`).join("")}</ol></div>`}
+    ${bm?`<div class="block"><b>🔍 对标账号 · 去哪里找、搜什么、盯什么</b>
+      <p style="font-size:.78rem;color:var(--muted);margin:4px 0 8px">点平台标签直接跳搜索页，搜不到就换词；重点看「why」那一列，<b>抄结构不抄内容</b>。</p>
+      ${bm.refs.map((r,i)=>`<div class="bm-item">
+        <a class="bm-p" href="${siteSearch(r.p,r.k)}" target="_blank" rel="noopener">${esc(r.p)} ↗</a>
+        <div style="flex:1;min-width:0">
+          <div class="bm-k">${esc(r.k)}</div>
+          <div class="bm-why">👀 ${esc(r.why)}</div>
+        </div>
+        <button class="copy-btn" onclick="copyText('${esc(r.k).replace(/'/g,"\\'")}',this)">复制词</button>
+      </div>`).join("")}
+      ${bm.note?`<div class="bm-note">⚠️ ${esc(bm.note)}</div>`:""}
+    </div>`:""}
     <div class="actions">
       <button class="btn primary" onclick="toggleFav('${h.id}');refreshModal()">${isFav(h.id)?"★ 已收藏":"☆ 收藏到我的清单"}</button>
       <a class="btn ghost" href="https://github.com/search?q=${encodeURIComponent(h.title)}+AI&type=repositories" target="_blank" rel="noopener">🔍 搜相关开源项目</a>
     </div>`);
   updateProg(id);
+}
+/* ===== 对标搜索：把关键词拼到各平台的搜索结果页，平台变了改这一处即可 ===== */
+const SITE_SEARCH={
+  "抖音":"https://www.douyin.com/search/",
+  "小红书":"https://www.xiaohongshu.com/search_result?keyword=",
+  "B站":"https://search.bilibili.com/all?keyword=",
+  "哔哩哔哩":"https://search.bilibili.com/all?keyword=",
+  "YouTube":"https://www.youtube.com/results?search_query=",
+  "闲鱼":"https://www.goofish.com/search?q=",
+  "淘宝":"https://s.taobao.com/search?q=",
+  "知乎":"https://www.zhihu.com/search?type=content&q=",
+  "微博":"https://s.weibo.com/weibo?q=",
+  "微信":"https://weixin.sogou.com/weixin?type=2&query=",
+  "GitHub":"https://github.com/search?q=",
+  "Product Hunt":"https://www.producthunt.com/search?q=",
+  "Gumroad":"https://gumroad.com/discover?query=",
+  "HuggingFace":"https://huggingface.co/models?search=",
+  "n8n":"https://n8n.io/workflows/?q=",
+  "Figma":"https://www.figma.com/community/search?resource_type=files&q=",
+  "Behance":"https://www.behance.net/search/projects?search=",
+  "站酷":"https://www.zcool.com.cn/search?word=",
+  "Zcool":"https://www.zcool.com.cn/search?word=",
+  "Indie Hackers":"https://www.indiehackers.com/?q=",
+  "LinkedIn":"https://www.linkedin.com/search/results/all/?keywords=",
+  "Boss":"https://www.zhipin.com/web/geek/job?query=",
+  "番茄小说":"https://fanqienovel.com/search?keyword=",
+  "微信读书":"https://weread.qq.com/web/search/books?keyword=",
+  "亚马逊KDP":"https://kdp.amazon.com/",
+  "Amazon KDP":"https://kdp.amazon.com/",
+  "开发者":"https://www.bing.com/search?q=",
+  "视频号":"https://channels.weixin.qq.com/",
+  "Chrome":"https://chromewebstore.google.com/search/",
+  "抖音小商店":"https://www.douyin.com/search/",
+};
+// 只编码关键词，否则整个 URL 会被 encode 成相对路径而失效
+const siteSearch=(p,k)=>(SITE_SEARCH[p]||"https://www.bing.com/search?q=")+encodeURIComponent(k||"");
+function copyText(t,btn){
+  const done=()=>{const o=btn.textContent;btn.textContent="已复制 ✓";setTimeout(()=>btn.textContent=o,1400)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done).catch(()=>fallbackCopy(t,done))}
+  else fallbackCopy(t,done);
+}
+function fallbackCopy(t,done){
+  const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand("copy");done()}catch(e){toast("复制失败，请手动选中关键词")}
+  document.body.removeChild(ta);
 }
 function refreshModal(){
   const mask=document.getElementById("modalMask");
@@ -1139,11 +1251,111 @@ async function loadScout(){
   }catch(e){/* 数据不存在（sieve 未配置）→ 整块保持隐藏 */}
 }
 
+/* ===== 每日副业新机会（data/daily-hustles.json · scripts/fetch-hustles.mjs 每日生成） ===== */
+function stamp(ts){
+  const d=new Date(ts);
+  return `更新于 ${isNaN(d)?"":d.toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"})}`;
+}
+function renderHustleNews(){
+  const box=$("#hustleNews");if(!box)return;
+  const d=state.hustleNews;
+  if(!d){
+    $("#hustleNewsFilters").innerHTML="";
+    $("#hustlesDate").textContent="暂无数据";
+    box.innerHTML=`<div style="font-size:.85rem;color:var(--muted)">今日新机会暂不可用（尚未生成 data/daily-hustles.json），下方 36 个副业卡片不受影响。</div>`;
+    $("#hustlesSource").innerHTML=`运行 <code>node scripts/fetch-hustles.mjs</code> 或等待 GitHub Actions 每日定时任务生成。`;
+    return;
+  }
+  const items=d.items||[];
+  const cats=[...new Set(items.map(i=>i.cat))].filter(c=>CATEGORIES[c]);
+  $("#hustleNewsFilters").innerHTML=`<button class="chip ${!state.hustleNewsCat?"on":""}" onclick="setHustleNewsCat(null)">全部</button>`+
+    cats.map(c=>`<button class="chip ${state.hustleNewsCat===c?"on":""}" onclick="setHustleNewsCat('${c}')">${CATEGORIES[c].emoji} ${CATEGORIES[c].name}</button>`).join("");
+  const list=state.hustleNewsCat?items.filter(i=>i.cat===state.hustleNewsCat):items;
+  const shown=list.slice(0,24);
+  box.innerHTML=shown.length?shown.map(i=>`
+    <a class="feed-card" href="${esc(i.url)}" target="_blank" rel="noopener">
+      <div class="ft">${esc(i.title)}</div>
+      <div class="fd">${esc(i.desc||"")}</div>
+      <div class="fm">
+        <span class="src">🔗 ${esc(i.source||"见原帖")}</span>
+        ${i.cat&&CATEGORIES[i.cat]?`<span>${CATEGORIES[i.cat].emoji} ${CATEGORIES[i.cat].name}</span>`:""}
+        ${i.author?`<span>👤 ${esc(i.author)}</span>`:""}
+        ${i.metrics?`<span>${esc(i.metrics)}</span>`:""}
+        ${i.date?`<span>📅 ${esc(i.date)}</span>`:""}
+      </div>
+    </a>`).join(""):`<div style="font-size:.85rem;color:var(--muted)">该分类今日暂无新机会，换个分类或明天再看。</div>`;
+  $("#hustlesDate").textContent=`${d.date||""} ${stamp(d.generatedAt)}`;
+  const errs=(d.errors||[]).length;
+  $("#hustlesSource").innerHTML=`来源：GitHub 新仓库 · HN Show HN · Product Hunt · 共 ${items.length} 条${errs?`<span style="color:var(--warn)">（部分来源失败：${errs}）</span>`:"✅"} · 当前显示 ${shown.length} 条${list.length>shown.length?"（其余请用上方分类筛选）":""} · 点击卡片直达原帖核验真伪`;
+}
+function setHustleNewsCat(c){state.hustleNewsCat=c;renderHustleNews();}
+async function loadHustles(){
+  try{
+    const res=await fetch("data/daily-hustles.json?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error(res.status);
+    const data=await res.json();
+    if(!data.items)throw new Error("bad data");
+    state.hustleNews=data;
+    toast("📡 今日新机会已刷新");
+  }catch(e){state.hustleNews=null}
+  renderHustleNews();
+}
+
+/* ===== 在线学习流（data/daily-learn.json · scripts/fetch-learn.mjs 每日生成） ===== */
+function renderLearnFeed(){
+  const box=$("#learnFeed");if(!box)return;
+  const d=state.learnFeed;
+  if(!d){
+    $("#learnTrackFilters").innerHTML="";
+    $("#learnDate").textContent="暂无数据";
+    box.innerHTML=`<div style="font-size:.85rem;color:var(--muted)">在线学习流暂不可用（尚未生成 data/daily-learn.json），下方「🧱 精选资源库」不受影响。</div>`;
+    $("#learnSource").innerHTML=`运行 <code>node scripts/fetch-learn.mjs</code> 或等待 GitHub Actions 每日定时任务生成。`;
+    return;
+  }
+  const items=d.items||[], tracks=d.tracks||{}, counts=d.counts||{};
+  const keys=Object.keys(tracks);
+  $("#learnTrackFilters").innerHTML=`<button class="chip ${!state.learnTrack?"on":""}" onclick="setLearnTrack(null)">全部 ${items.length}</button>`+
+    keys.map(k=>{const t=tracks[k]||{};const n=counts[k]||0;
+      return `<button class="chip ${state.learnTrack===k?"on":""}" onclick="setLearnTrack('${k}')">${t.emoji||""} ${esc(t.name||k)} <span style="opacity:.6">${n}</span></button>`}).join("");
+  const list=state.learnTrack?items.filter(i=>i.track===state.learnTrack):items;
+  const shown=list.slice(0,36);
+  box.innerHTML=shown.length?shown.map(i=>{
+    const t=tracks[i.track]||{};
+    return `<a class="feed-card" href="${esc(i.url)}" target="_blank" rel="noopener">
+      <div class="ft">${esc(i.title)}</div>
+      <div class="fd">${esc(i.desc||"")}</div>
+      <div class="fm">
+        <span class="src">🔗 ${esc(i.source||"见原站")}</span>
+        <span>${t.emoji||""} ${esc(t.name||i.track||"")}</span>
+        ${i.author?`<span>👤 ${esc(i.author)}</span>`:""}
+        ${i.meta?`<span>📚 ${esc(i.meta)}</span>`:""}
+        ${i.date?`<span>📅 ${esc(i.date)}</span>`:""}
+      </div>
+    </a>`}).join(""):`<div style="font-size:.85rem;color:var(--muted)">该赛道今日暂无内容。</div>`;
+  $("#learnDate").textContent=`${d.date||""} ${stamp(d.generatedAt)}`;
+  const errs=(d.errors||[]).length;
+  $("#learnSource").innerHTML=`来源：dev.to · freeCodeCamp · arXiv · 哔哩哔哩 · WordFeel 场景剧场 · TapTapGo · 少数派 · 36氪 · 共 ${items.length} 条${errs?`<span style="color:var(--warn)">（部分来源失败：${errs}）</span>`:"✅"} · 当前显示 ${shown.length} 条${list.length>shown.length?"（其余请用上方赛道筛选）":""} · 免费可直接学`;
+}
+function setLearnTrack(k){state.learnTrack=k;renderLearnFeed();}
+async function loadLearn(){
+  try{
+    const res=await fetch("data/daily-learn.json?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error(res.status);
+    const data=await res.json();
+    if(!data.items)throw new Error("bad data");
+    state.learnFeed=data;
+    toast("📚 学习流已刷新");
+  }catch(e){state.learnFeed=null}
+  renderLearnFeed();
+}
+
 /* 启动 */
 renderPrinciples();
 renderAll();
 loadUpdates();
 loadScout();
+loadHustles();
+loadLearn();
 </script>
 </body>
 </html>

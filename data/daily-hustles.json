@@ -1,0 +1,297 @@
+{
+  "generatedAt": "2026-09-27T23:46:52.866Z",
+  "date": "2026-09-27",
+  "total": 26,
+  "items": [
+    {
+      "title": "n8n-io/n8n",
+      "url": "https://github.com/n8n-io/n8n",
+      "desc": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integ…",
+      "source": "GitHub",
+      "author": "n8n-io",
+      "cat": "tech",
+      "metrics": "⭐ 206131 · fork 60908 · TypeScript",
+      "date": "2026-09-27",
+      "score": 8.6
+    },
+    {
+      "title": "activepieces/activepieces",
+      "url": "https://github.com/activepieces/activepieces",
+      "desc": "AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents…",
+      "source": "GitHub",
+      "author": "activepieces",
+      "cat": "tech",
+      "metrics": "⭐ 24754 · fork 4256 · TypeScript",
+      "date": "2026-09-27",
+      "score": 6.8
+    },
+    {
+      "title": "Show HN: InkVec Studio – In-browser, SOTA, WASM based (rust) vectorizer",
+      "url": "https://logolabs-inkvec.static.hf.space/studio/index.html",
+      "desc": "4 分 · 1 条讨论 · 作者 stefatorus",
+      "source": "Hacker News",
+      "author": "stefatorus",
+      "cat": "tech",
+      "metrics": "▲ 4 · 💬 1",
+      "date": "2026-09-27",
+      "score": 3.2
+    },
+    {
+      "title": "Show HN: Fusor – Like Vue, but the logic is Rust",
+      "url": "https://fusor.build",
+      "desc": "I&#x27;ve been building Fusor. It&#x27;s a reactive web framework for Rust where the templates are plain HTML files, so there&#x27;s no mark…",
+      "source": "Hacker News",
+      "author": "andreespirela",
+      "cat": "live",
+      "metrics": "▲ 3 · 💬 0",
+      "date": "2026-09-27",
+      "score": 3
+    },
+    {
+      "title": "Show HN: Vanish moves heavy computation off your laptop",
+      "url": "https://vanishcompute.com/",
+      "desc": "Hi HN I was tired of agents draining my battery and my laptop being unusable so I made vanish, a CLI tool to run your commands in the cloud.…",
+      "source": "Hacker News",
+      "author": "fcesco",
+      "cat": "tech",
+      "metrics": "▲ 3 · 💬 2",
+      "date": "2026-09-27",
+      "score": 3
+    },
+    {
+      "title": "timoncool/YuE2-Studio",
+      "url": "https://github.com/timoncool/YuE2-Studio",
+      "desc": "Local AI song generator with an editable score — YuE2 on your GPU: full songs with vocals, sheet music, covers, exact replay. Native Windows…",
+      "source": "GitHub",
+      "author": "timoncool",
+      "cat": "audio",
+      "metrics": "⭐ 238 · fork 23 · TypeScript",
+      "date": "2026-09-27",
+      "score": 2.8
+    },
+    {
+      "title": "Show HN: Has Anthropic been nerfing their models without disclosure",
+      "url": "https://github.com/ninjahawk/livenerf",
+      "desc": "2 分 · 0 条讨论 · 作者 ninjahawk1",
+      "source": "Hacker News",
+      "author": "ninjahawk1",
+      "cat": "tech",
+      "metrics": "▲ 2 · 💬 0",
+      "date": "2026-09-27",
+      "score": 2.6
+    },
+    {
+      "title": "Show HN: Sigilla – A Lexicon of Marks",
+      "url": "https://symbol.wiki/?q=&t=&v=",
+      "desc": "2 分 · 0 条讨论 · 作者 r_singh",
+      "source": "Hacker News",
+      "author": "r_singh",
+      "cat": "tech",
+      "metrics": "▲ 2 · 💬 0",
+      "date": "2026-09-27",
+      "score": 2.6
+    },
+    {
+      "title": "Show HN: ShotCandy – Turn any screenshot into a beautiful share-ready image",
+      "url": "https://github.com/btahir/shotcandy",
+      "desc": "2 分 · 0 条讨论 · 作者 bilater",
+      "source": "Hacker News",
+      "author": "bilater",
+      "cat": "image",
+      "metrics": "▲ 2 · 💬 0",
+      "date": "2026-09-27",
+      "score": 2.6
+    },
+    {
+      "title": "ningzimu/awesome-ai-ppt",
+      "url": "https://github.com/ningzimu/awesome-ai-ppt",
+      "desc": "A curated list of AI PPT, PowerPoint automation, PPTX editing, and slide workflow tools.",
+      "source": "GitHub",
+      "author": "ningzimu",
+      "cat": "tech",
+      "metrics": "⭐ 149 · fork 11 · Python",
+      "date": "2026-09-27",
+      "score": 2.3
+    },
+    {
+      "title": "oomol-lab/open-flow",
+      "url": "https://github.com/oomol-lab/open-flow",
+      "desc": "Build workflows you can see, code, run, and own. Open-source visual workflow automation with real TypeScript, isolated execution, and a self…",
+      "source": "GitHub",
+      "author": "oomol-lab",
+      "cat": "tech",
+      "metrics": "⭐ 132 · fork 17 · TypeScript",
+      "date": "2026-09-27",
+      "score": 2.2
+    },
+    {
+      "title": "NicholasCone/agnes-ai-video-suite",
+      "url": "https://github.com/NicholasCone/agnes-ai-video-suite",
+      "desc": "Best Open Source AI Video Generator 2026: Text to Multi-Scene Movies with Narration & Subtitles",
+      "source": "GitHub",
+      "author": "NicholasCone",
+      "cat": "content",
+      "metrics": "⭐ 127 · fork 5 · HTML",
+      "date": "2026-09-27",
+      "score": 2.2
+    },
+    {
+      "title": "gunawan1996/world-forge-ai",
+      "url": "https://github.com/gunawan1996/world-forge-ai",
+      "desc": "AI World Generator 2026: Create Self-Evolving Maps & Stories",
+      "source": "GitHub",
+      "author": "gunawan1996",
+      "cat": "tech",
+      "metrics": "⭐ 124 · fork 0 · HTML",
+      "date": "2026-09-27",
+      "score": 2.2
+    },
+    {
+      "title": "SamuelTallet/ZPix",
+      "url": "https://github.com/SamuelTallet/ZPix",
+      "desc": "A local AI image generator and editor powered by open image models.",
+      "source": "GitHub",
+      "author": "SamuelTallet",
+      "cat": "image",
+      "metrics": "⭐ 121 · fork 25 · Python",
+      "date": "2026-09-27",
+      "score": 2.2
+    },
+    {
+      "title": "69cell/Photoshop-Enhancement-Community",
+      "url": "https://github.com/69cell/Photoshop-Enhancement-Community",
+      "desc": "Next-Gen Photoshop Enhancement Suite 2026: Smart Workflows & Automation",
+      "source": "GitHub",
+      "author": "69cell",
+      "cat": "image",
+      "metrics": "⭐ 115 · fork 0 · HTML",
+      "date": "2026-09-27",
+      "score": 2.1
+    },
+    {
+      "title": "abnormal-codex/Ai-Pixel-Design-Archive",
+      "url": "https://github.com/abnormal-codex/Ai-Pixel-Design-Archive",
+      "desc": "Best AI Image Generator for Professional Designs 2026",
+      "source": "GitHub",
+      "author": "abnormal-codex",
+      "cat": "image",
+      "metrics": "⭐ 117 · fork 0 · HTML",
+      "date": "2026-09-27",
+      "score": 2.1
+    },
+    {
+      "title": "Show HN: DynamicNotch – An interactive, customizable notch utility for macOS",
+      "url": "https://github.com/Hitjack007/DynamicNotch",
+      "desc": "1 分 · 0 条讨论 · 作者 Hitjack007",
+      "source": "Hacker News",
+      "author": "Hitjack007",
+      "cat": "tech",
+      "metrics": "▲ 1 · 💬 0",
+      "date": "2026-09-27",
+      "score": 2
+    },
+    {
+      "title": "Show HN: Agenttab – Status Icons for Claude Code, Codex and OpenCode Tabs",
+      "url": "https://github.com/marciob/agenttab",
+      "desc": "1 分 · 0 条讨论 · 作者 marciob",
+      "source": "Hacker News",
+      "author": "marciob",
+      "cat": "tech",
+      "metrics": "▲ 1 · 💬 0",
+      "date": "2026-09-27",
+      "score": 2
+    },
+    {
+      "title": "Show HN: Jev-Like Model Learns to Cook",
+      "url": "https://rlafuente.com/posts/2026-9-26-training-a-small-decision-model-to-cook#",
+      "desc": "1 分 · 0 条讨论 · 作者 andes314",
+      "source": "Hacker News",
+      "author": "andes314",
+      "cat": "tech",
+      "metrics": "▲ 1 · 💬 0",
+      "date": "2026-09-27",
+      "score": 2
+    },
+    {
+      "title": "Show HN: Minecraft PvP against DiffusionGemma-as-Jev, 24 ms per decision",
+      "url": "https://mc.alexzms.com",
+      "desc": "1 分 · 0 条讨论 · 作者 alexzms",
+      "source": "Hacker News",
+      "author": "alexzms",
+      "cat": "image",
+      "metrics": "▲ 1 · 💬 0",
+      "date": "2026-09-27",
+      "score": 2
+    },
+    {
+      "title": "generalbots/generalbots",
+      "url": "https://github.com/generalbots/generalbots",
+      "desc": "Multi-agent AI platform for autonomous agents, agentic AI orchestration and LLM workflow automation. 80 self-hosted apps - Chat, CRM, Mail, …",
+      "source": "GitHub",
+      "author": "generalbots",
+      "cat": "tech",
+      "metrics": "⭐ 92 · fork 42 · Rust",
+      "date": "2026-09-27",
+      "score": 1.9
+    },
+    {
+      "title": "terrylica/cc-skills",
+      "url": "https://github.com/terrylica/cc-skills",
+      "desc": "Claude Code Skills Marketplace: plugins, skills for ADR-driven development, DevOps automation, ClickHouse management, semantic versioning, a…",
+      "source": "GitHub",
+      "author": "terrylica",
+      "cat": "tech",
+      "metrics": "⭐ 75 · fork 12 · Shell",
+      "date": "2026-09-27",
+      "score": 1.8
+    },
+    {
+      "title": "daintreehq/daintree",
+      "url": "https://github.com/daintreehq/daintree",
+      "desc": "A delegation environment for orchestrating AI coding agents. Manage Claude, Gemini, and Codex sessions across git worktrees with integrated …",
+      "source": "GitHub",
+      "author": "daintreehq",
+      "cat": "tech",
+      "metrics": "⭐ 75 · fork 10 · TypeScript",
+      "date": "2026-09-27",
+      "score": 1.8
+    },
+    {
+      "title": "Azoo92i/AutoApplyMax",
+      "url": "https://github.com/Azoo92i/AutoApplyMax",
+      "desc": "AutoApplyMax — AI-powered Chrome extension. Auto-apply to jobs on LinkedIn, Indeed & more. AI Resume Generator, Cover Letters, ATS Score Che…",
+      "source": "GitHub",
+      "author": "Azoo92i",
+      "cat": "tech",
+      "metrics": "⭐ 61 · fork 17 · JavaScript",
+      "date": "2026-09-27",
+      "score": 1.6
+    },
+    {
+      "title": "s88cj-stack/Lithicsoft-Trainer-Forge",
+      "url": "https://github.com/s88cj-stack/Lithicsoft-Trainer-Forge",
+      "desc": "Professional Trainer Studio Generator Suite 2026 – Open Source AI Coaching Toolkit",
+      "source": "GitHub",
+      "author": "s88cj-stack",
+      "cat": "tech",
+      "metrics": "⭐ 55 · fork 0 · HTML",
+      "date": "2026-09-27",
+      "score": 1.5
+    },
+    {
+      "title": "GAlbanese09/spritebrew",
+      "url": "https://github.com/GAlbanese09/spritebrew",
+      "desc": "AI-powered pixel art sprite sheet generator. Upload or generate characters → animate → export game-ready sheets for Unity, Godot, GameMaker,…",
+      "source": "GitHub",
+      "author": "GAlbanese09",
+      "cat": "image",
+      "metrics": "⭐ 56 · fork 6 · TypeScript",
+      "date": "2026-09-27",
+      "score": 1.5
+    }
+  ],
+  "errors": [
+    "github/ai: HTTP 504"
+  ],
+  "note": "由 scripts/fetch-hustles.mjs 每日自动抓取（GitHub Actions）。来源：GitHub 新仓库 / Hacker News Show HN / Product Hunt；cat 为关键词自动归类，score 为热度自动评分。点开原帖核验后再决定是否跟进。"
+}

@@ -2,9 +2,14 @@
 
 一个纯静态、零依赖、可直接部署到 **GitHub Pages / Vercel / Cloudflare Pages** 的交互式网站：
 
-- 💰 **AI 副业思路库** —— 精选自 [XiaomingX/ai-money-maker-handbook](https://github.com/XiaomingX/ai-money-maker-handbook)：36 个经过验证的 AI 副业方案，每个都带「怎么做 / 推荐工具 / 变现方式」，支持分类、搜索、排序与收藏。
+- 💰 **AI 副业思路库** —— 精选自 [XiaomingX/ai-money-maker-handbook](https://github.com/XiaomingX/ai-money-maker-handbook)：36 个经过验证的 AI 副业方案，每个都带**分步操作**（目标 / 做法 / 完成标志）、成本、周期、收入区间、工具链接、定价、风险与第一周计划，并附**对标账号**（去哪里找、搜什么关键词、盯什么细节），支持分类、搜索、排序与收藏。
 - 💼 **远程工作渠道板** —— 精选自 [lukasz-madon/awesome-remote-job](https://github.com/lukasz-madon/awesome-remote-job)：48+ 个正规远程求职网站、聚合器与自由职业平台。
-- 📡 **每日自动更新** —— GitHub Actions 每天北京时间 09:30 自动抓取 Remotive / Remote OK / We Work Remotely / HN「Who is hiring?」的最新远程职位，写入 `data/daily-updates.json`，网站打开即是最新数据，无需服务器。
+- 📡 **每日自动更新（三条链路）** —— GitHub Actions 每天北京时间 09:30 自动抓取：
+  - **工作板** `scripts/fetch-jobs.mjs` → `data/daily-updates.json`：Remotive / Remote OK / We Work Remotely / HN「Who is hiring?」远程职位；
+  - **副业新机会** `scripts/fetch-hustles.mjs` → `data/daily-hustles.json`：GitHub 新仓库 + HN Show HN + Product Hunt，自动归类到 7 个副业分类；
+  - **在线学习流** `scripts/fetch-learn.mjs` → `data/daily-learn.json`：5 个赛道（编程 / AI 学习 / K12 学习 / 语言考证 / 中文效率），接入 dev.to、freeCodeCamp、arXiv、哔哩哔哩、[wordfeel.cc](https://wordfeel.cc/) 场景剧场、[TapTapGo](https://taptapgo.yldm.ai/app/)、少数派、36氪。
+  
+  数据提交后网站即自动更新，无需服务器。
 - 🔭 **深度情报（可选）** —— 配置 [sieve](https://scrape.usesieve.com) 后，每天用 scrape API 对热门 AI 副业做一次情报侦察（平台规则变化、本周公开机会、可执行行动），写入 `data/daily-scout.json`；所有机会带原文链接可核验真伪。未配置时该板块自动隐藏，站点与其他数据源完全不受影响。
 - 📚 **学习成长区** —— 远程工作必读文章、书籍、播客、Newsletter 与面试工具。
 - ⭐ **收藏 + 深色模式 + 全文搜索** —— 数据保存在浏览器本地。
@@ -26,6 +31,26 @@ node scripts/fetch-jobs.mjs
 ```
 
 脚本会把最新职位写入 `data/daily-updates.json`（Node 18+ 原生 fetch，无任何依赖）。
+
+## 手动更新副业新机会与学习流
+
+```bash
+node scripts/fetch-hustles.mjs   # → data/daily-hustles.json（副业新机会）
+node scripts/fetch-learn.mjs      # → data/daily-learn.json（在线学习流）
+```
+
+两个脚本同样零依赖，单个数据源失败只会在产物 `errors` 字段里记录，不影响其他源；页面上的「部分来源失败：N」角标就是这个计数。
+
+## 可选：配置 GITHUB_TOKEN（强烈建议）
+
+`fetch-hustles.mjs` 会用 GitHub Search 找近期新仓库。**匿名调用只有 10 次/分钟**，容易触发 403/504，导致当天少几条新机会。配置 token 后限流提到 5000 次/分钟：
+
+1. GitHub 右上角头像 → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token；
+2. 只需勾 **Public repositories (read-only)**（纯只读搜索，用不到写权限）；
+3. 复制 token 到仓库 **Settings → Secrets and variables → Actions → New repository secret**，名字填 `GITHUB_TOKEN`；
+4. 下次定时任务自动生效。也可直接复制 `.env.example` 为 `.env` 在本地填 `GITHUB_TOKEN=`（`.env` 已被 gitignore）。
+
+不配置也能跑，脚本会自动退回匿名模式。
 
 ## 可选：启用 sieve 深度情报
 
@@ -56,9 +81,13 @@ node --test "tests/*.test.mjs"
 
 ## 自动更新原理
 
-1. **静态精选库**：副业思路、求职网站、学习资源内置于 `index.html`，人工精选、不依赖接口。
-2. **抓取脚本**：`scripts/fetch-jobs.mjs` 调用 4 个公开免费数据源（无需 API Key），单源失败不影响整体，全部失败也会生成保底空快照。
-3. **GitHub Actions**：`.github/workflows/daily-update.yml` 每天 09:30（北京时间）运行脚本并自动提交数据；也支持在 Actions 页面手动触发（workflow_dispatch）。部署在 GitHub Pages 时，数据提交后网站即自动更新。
+1. **静态精选库**：副业思路（含分步操作与对标账号）、求职网站、精选学习资源内置于 `index.html` / `data/*.js`，人工精选、不依赖接口、永远可用。
+2. **抓取脚本**（全部零依赖、单源失败不影响整体、全部失败也会生成保底快照）：
+   - `scripts/fetch-jobs.mjs` → `data/daily-updates.json`（工作板）
+   - `scripts/fetch-hustles.mjs` → `data/daily-hustles.json`（副业新机会）
+   - `scripts/fetch-learn.mjs` → `data/daily-learn.json`（在线学习流）
+3. **GitHub Actions**：`.github/workflows/daily-update.yml` 每天 09:30（北京时间）依次运行上述三个脚本，并把实际生成的 JSON 提交回仓库（产物缺失时自动跳过，不让 `git add` 失败）；也支持在 Actions 页面手动触发（workflow_dispatch）。部署在 GitHub Pages 时，数据提交后网站即自动更新。
+4. **前端降级**：三个每日区块在数据文件缺失时不会白屏，而是显示运行提示；`data/daily-scout.json`（sieve）缺失时整块隐藏，与未配置时的行为一致。
 
 ## 部署
 
@@ -69,6 +98,8 @@ node --test "tests/*.test.mjs"
 
 - [ai-money-maker-handbook](https://github.com/XiaomingX/ai-money-maker-handbook) —— AI 副业赚钱大集合
 - [awesome-remote-job](https://github.com/lukasz-madon/awesome-remote-job) —— 精选远程工作资源清单
+- [wordfeel.cc](https://wordfeel.cc/) —— 场景英语学习（本站「语言/考证」赛道数据源之一）
+- [TapTapGo](https://taptapgo.yldm.ai/app/) —— 儿童分级阅读课程（本站「K12 学习」赛道数据源之一）
 
 ## 免责声明
 
