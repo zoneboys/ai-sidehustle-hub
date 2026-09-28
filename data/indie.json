@@ -1,0 +1,1773 @@
+{
+  "generatedAt": "2026-09-28T11:40:40.494Z",
+  "date": "2026-09-28",
+  "repo": "https://github.com/1c7/chinese-independent-developer",
+  "days": 30,
+  "cats": {
+    "ai": {
+      "name": "AI 工具",
+      "emoji": "🤖"
+    },
+    "content": {
+      "name": "内容创作",
+      "emoji": "✍️"
+    },
+    "image": {
+      "name": "图像设计",
+      "emoji": "🎨"
+    },
+    "audio": {
+      "name": "音频音乐",
+      "emoji": "🎧"
+    },
+    "life": {
+      "name": "生活效率",
+      "emoji": "🏠"
+    },
+    "biz": {
+      "name": "商业工具",
+      "emoji": "💼"
+    },
+    "game": {
+      "name": "游戏娱乐",
+      "emoji": "🎮"
+    },
+    "devtool": {
+      "name": "开发者工具",
+      "emoji": "🧑‍💻"
+    }
+  },
+  "payLabels": {
+    "pay": "付费",
+    "free": "免费引流",
+    "ads": "广告",
+    "local": "本地隐私"
+  },
+  "items": [
+    {
+      "title": "春林冷知",
+      "url": "https://cold.sylveris.top",
+      "desc": "冷静地知道一点没用的东西。每日更新冷知识、冷笑话和废话文学，让你在繁忙的生活中静下心，刷一些带一丝幽默、又有些莫名其妙的知识",
+      "author": "Z-Banana",
+      "authorUrl": "https://github.com/Z-Banana",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-27",
+      "cat": "other",
+      "pay": []
+    },
+    {
+      "title": "Countdown Timer",
+      "url": "https://countdown.im/",
+      "desc": "极简全屏倒计时工具，支持按天、小时、分钟设置倒计时，也提供节日与活动倒计时，包括 [万圣节](https://countdown.im/halloween)、[双十一](https://countdown.im/singles-day) 和 [新年](https://countdown.im/new-year) 倒计时",
+      "author": "openmind",
+      "authorUrl": "https://github.com/openmindim",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-26",
+      "cat": "life",
+      "pay": []
+    },
+    {
+      "title": "Online Ruler",
+      "url": "https://ruler.im/",
+      "desc": "极简全屏在线尺子工具，除了屏幕尺和直尺外，还支持 [量角器](https://ruler.im/protractor)、[中心象限尺](https://ruler.im/quadrant) 和 [靶心尺](https://ruler.im/concentric-circle)",
+      "author": "openmind",
+      "authorUrl": "https://github.com/openmindim",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-26",
+      "cat": "life",
+      "pay": []
+    },
+    {
+      "title": "Professional-Headshot.ai",
+      "url": "https://professional-headshot.ai/",
+      "desc": "AI 职业头像生成器，上传一张自拍，由 AI 自动挑好服装、背景与打光，并筛掉眼镜变形、眼睛和牙齿失真等瑕疵，每个场景只给你 1 张推荐加 2 张备选；无需注册即可免费预览 1 张（带水印），去水印下载与反复修改为一次性付费",
+      "author": "klinkmannistref-blip",
+      "authorUrl": "https://github.com/klinkmannistref-blip",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-26",
+      "cat": "ai",
+      "pay": [
+        "pay",
+        "free"
+      ]
+    },
+    {
+      "title": "AI 共振",
+      "url": "https://wzznne.github.io/AI-Resonance/",
+      "desc": "每日 AI 雷达，把 GitHub、arXiv、Hacker News、社区讨论和 AI 厂商动态排成五个榜单，评分公式公开可查，多平台同时出现的内容自动归组，打开即读无需注册",
+      "author": "WZZNNE",
+      "authorUrl": "https://github.com/WZZNNE",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-26",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "WearToday",
+      "url": "https://weartoday.io/",
+      "desc": "AI 个人造型师，结合当地天气、当天场合和你衣橱里实际有的衣物给出穿搭建议，并记住你的颜色、版型与搭配偏好；网页版免安装，可免费开始使用",
+      "author": "hwlvipone",
+      "authorUrl": "https://github.com/hwlvipone",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-25",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Mimi",
+      "url": "https://mimi.yuxino.cn/",
+      "desc": "实时字幕翻译工具，把电脑播放的外语视频、直播声音转成悬浮字幕；免费开源，支持 Apple 芯片 macOS 13+ 和 Windows x64，需要自备云服务 API 凭证",
+      "author": "Yuxino",
+      "authorUrl": "https://github.com/yuxino",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-24",
+      "cat": "content",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "OpenShorts 开片",
+      "url": "https://os.aiolaola.com/",
+      "desc": "给一个话题就写脚本、找画面、配音、烧字幕、出成片和发布文案，默认零成本跑通第一条",
+      "author": "jnMetaCode",
+      "authorUrl": "https://github.com/jnMetaCode",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-24",
+      "cat": "content",
+      "pay": []
+    },
+    {
+      "title": "Instagram Transcript",
+      "url": "https://ins-transcript.com",
+      "desc": "Instagram 视频转文字工具，粘贴 Reel / 视频链接即可免注册提取带时间戳的逐字稿，支持 SRT/VTT 字幕导出、多语种翻译与 AI 爆款钩子提炼，内存即时转录不存源视频",
+      "author": "Maaaaph",
+      "authorUrl": "https://github.com/Maaaaph",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-23",
+      "cat": "content",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "ShortsMonkey",
+      "url": "https://www.shortsmonkey.com/",
+      "desc": "YouTube 爆款选题工具，每天发现低订阅频道中播放量远超订阅量的 Shorts 和长视频，按播放量/订阅数比值筛选，帮助创作者寻找内容灵感",
+      "author": "Linhao Cui",
+      "authorUrl": "https://github.com/cuilinhao",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-23",
+      "cat": "content",
+      "pay": [
+        "pay"
+      ]
+    },
+    {
+      "title": "本地工作控制台 lwc",
+      "url": "https://github.com/aks-666888/local-work-console",
+      "desc": "无需联网、无需注册，双击单文件即用的本地待办与计划管理台，数据全留在自己电脑",
+      "author": "夜猫子小强(XiaoQiangDev)",
+      "authorUrl": "https://github.com/aks-666888",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-23",
+      "cat": "life",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "What To Build",
+      "url": "https://whattobuild.today/",
+      "desc": "独立开发机会发现站，从新上线网站的订单增长、流量趋势和真实搜索需求中，筛选已被市场验证的 SaaS 与 AI 工具方向",
+      "author": "一箭(杭州) -",
+      "authorUrl": "https://github.com/whattobuildtoday",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-23",
+      "cat": "biz",
+      "pay": []
+    },
+    {
+      "title": "Video to URL",
+      "url": "https://videotourl.net/",
+      "desc": "视频转链接工具（免费），上传视频文件后生成可分享链接，无需注册、无水印，源文件不重新编码",
+      "author": "StrokMitream",
+      "authorUrl": "https://github.com/StrokMitream",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-23",
+      "cat": "content",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Jev.StockAI.Trade",
+      "url": "https://jev.stockai.trade/",
+      "desc": "基于 Jev 模型的 AI 选股工具，专注中国 A 股，免费无广告",
+      "author": "yvonuk -",
+      "authorUrl": "https://github.com/yvonuk",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-23",
+      "cat": "ai",
+      "pay": [
+        "free",
+        "ads"
+      ]
+    },
+    {
+      "title": "精选副业",
+      "url": "https://jingxuan-fuye.pages.dev/",
+      "desc": "中文副业案例库，把公开的真实项目经历整理成可筛选的案例解读，可按平台、项目和技能查找，并查看成绩口径、适配条件、风险与原文入口",
+      "author": "xiaoyaohou19910610-bit",
+      "authorUrl": "https://github.com/xiaoyaohou19910610-bit",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "other",
+      "pay": []
+    },
+    {
+      "title": "Jev Guide",
+      "url": "https://jev.guide/",
+      "desc": "发现 Jev 的真实应用。从官方发布到真实演示，在一个地方探索 TypeSafe Jev。按行业寻找用例，查看 X 原帖截图，并直接在站内播放原视频",
+      "author": "Jun(上海)",
+      "authorUrl": "https://github.com/2456868764",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "content",
+      "pay": []
+    },
+    {
+      "title": "NiubiGeo",
+      "url": "https://niubigeo.ai/",
+      "desc": "NiubiGEO 帮助 AI、SaaS、DevTools 和开源项目检测并提升在 ChatGPT、Perplexity、Google AI 等 AI 搜索与问答场景中的品牌可见度",
+      "author": "Albert(美国)",
+      "authorUrl": "https://github.com/Albert-Weasker/niubigeo",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "ReelMuse",
+      "url": "https://reelmuse.app/ai-dance-generator/",
+      "desc": "无需编写提示词，选好舞蹈模板、上传照片即可生成舞蹈视频",
+      "author": "jimmy0256",
+      "authorUrl": "https://github.com/jimmy0256",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "简历通 ResumeForge",
+      "url": "https://magicapple123.github.io/ResumeForge-official/",
+      "desc": "本地运行的 AI 求职工作台，简历生成、岗位采集、投递追踪、面试复盘全流程，数据只存本机不上传，Windows 一键启动，开源免费",
+      "author": "magicapple123",
+      "authorUrl": "https://github.com/magicapple123",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "ai",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "Tancky AI",
+      "url": "https://tancky.io/",
+      "desc": "AI 图片合成与照片融合工具（免费），把多张图片拼合、混合成一张，浏览器打开即用",
+      "author": "tancky777",
+      "authorUrl": "https://github.com/tancky777",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "image",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "What Can Jev Do",
+      "url": "https://whatcanjevdo.com/",
+      "desc": "Jev 模型的用法与项目收集站，汇总大家用 Jev 做出的实际案例、思路和代码示例",
+      "author": "Jammy(上海)",
+      "authorUrl": "https://github.com/chenminjie24",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "devtool",
+      "pay": []
+    },
+    {
+      "title": "听成文 AI",
+      "url": "https://tingchengwen.com",
+      "desc": "本地运行的音视频转写与摘要工具，粘贴 B 站 / 抖音链接或拖入本地文件，生成带时间轴的文稿、SRT / VTT 字幕和 AI 摘要，支持批量处理与说话人区分，文件和结果都不上传云端 — Windows 桌面软件",
+      "author": "jian950718",
+      "authorUrl": "https://github.com/jian950718",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "ai",
+      "pay": [
+        "local"
+      ]
+    },
+    {
+      "title": "GKMix",
+      "url": "https://gkmix.com",
+      "desc": "海外 VPS、AI 工具订阅与海外支付的实测指南站，每篇都跑真实数据并公开账单，不适合谁会直接写明",
+      "author": "GK",
+      "authorUrl": "https://github.com/Charlielyo",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-22",
+      "cat": "ai",
+      "pay": [
+        "pay"
+      ]
+    },
+    {
+      "title": "MLUE",
+      "url": "https://mlue.cn/",
+      "desc": "面向多平台创作者的个人主页与工作台，把链接、作品和联系方式整理成一个可分享页面",
+      "author": "NPH",
+      "authorUrl": "https://github.com/BNHP-creater",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-21",
+      "cat": "devtool",
+      "pay": []
+    },
+    {
+      "title": "SummarizeVideoToText",
+      "url": "https://summarizevideototext.com/zh",
+      "desc": "视频转文字工具，粘贴 YouTube、TikTok、Instagram、X 的链接就能拿到带时间戳的章节摘要和完整字幕稿，每句都能点回原视频对应的那一秒，免注册试用",
+      "author": "犀利豆",
+      "authorUrl": "https://github.com/diaozxin007",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-21",
+      "cat": "content",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "MelodyTrace",
+      "url": "https://melodytrace.com/",
+      "desc": "MP3 转 MIDI 工具（免费）：把声音，写成可编辑的音符",
+      "author": "FlickerMi -",
+      "authorUrl": "https://github.com/FlickerMi",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-21",
+      "cat": "audio",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "拼豆猫师傅-拼豆图纸工坊",
+      "url": "https://github.com/user-attachments/assets/bbd960f3-3431-4123-a715-12fb1f29957a",
+      "desc": "把照片变成拼豆图纸的微信小程序，自动降色并标出每个格子该用哪个色号，转图在手机本地完成、原图不出设备",
+      "author": "stormbuf",
+      "authorUrl": "https://github.com/stormbuf",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-21",
+      "cat": "image",
+      "pay": [
+        "local"
+      ]
+    },
+    {
+      "title": "阅古文",
+      "url": "https://yueguwen.com",
+      "desc": "古籍阅读网站，把注释和译文对照原文逐句排布，并补充必要的历史背景；选中原文或注释可免费调用 AI 翻译与讲解，浏览器打开即用，手机上也能阅读",
+      "author": "monsoonw",
+      "authorUrl": "https://github.com/monsoonw",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-20",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "NeatCompress",
+      "url": "https://yasuo.app",
+      "desc": "音视频、PDF 和图片的批量压缩工具，用 WebCodecs 硬件加速与 WASM 双引擎在本地处理，文件不上传服务器；支持指定目标大小（微信 25MB/100MB、Discord 10MB/50MB 等）、无损合并、裁剪与转 GIF",
+      "author": "DDTer",
+      "authorUrl": "https://github.com/DDTer",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-20",
+      "cat": "life",
+      "pay": [
+        "local"
+      ]
+    },
+    {
+      "title": "ImageToImageAI",
+      "url": "https://image-to-image-ai.app",
+      "desc": "AI 图生图工具，上传图片并用一句话描述修改需求，即可生成产品图、室内设计、人像、贴纸等新图片；支持 GPT Image 2、Nano Banana 2、Nano Banana Pro 模型，中英双语，可免费试用",
+      "author": "littlePig-zzf",
+      "authorUrl": "https://github.com/littlePig-zzf",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-19",
+      "cat": "image",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Musuw",
+      "url": "https://musuw.com/zh",
+      "desc": "AI 知识库，把文档、网页和笔记整理成带引用的问答、Wiki 与知识图谱，方便回到原文核对",
+      "author": "Jonie",
+      "authorUrl": "https://github.com/estromeglovettgen-coder",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-19",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "Unit Converter for Science",
+      "url": "https://www.unitconv.top",
+      "desc": "面向科研、工程与教育的免费多语言单位换算工具，提供公式、换算因子和逐步推导，覆盖 11 类单位",
+      "author": "Merrick",
+      "authorUrl": "https://github.com/shi891018",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-19",
+      "cat": "life",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Color Season AI",
+      "url": "https://colorseasonai.com",
+      "desc": "AI 个人色彩季型分析工具，上传一张自拍即得 12 季型判定与专属色板，附带发型、发色、妆容试戴和脸型识别，免费无需注册",
+      "author": "Aiyi",
+      "authorUrl": "https://github.com/XQ0820",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-19",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Random Animal Generator",
+      "url": "https://randomanimalgen.com/",
+      "desc": "随机动物混搭生成器，把真实动物的 11 个身体部位随机拼成虚构生物，可锁定喜欢的部位只换其余、按可爱/恐怖/神话等主题预设生成，自动起名并给出 AI 绘画提示词，每天免费 AI 出图，无需注册",
+      "author": "Aiyi",
+      "authorUrl": "https://github.com/XQ0820",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-19",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Jev AI",
+      "url": "https://jev-ai.pro",
+      "desc": "TypeSafe System One 模型的在线体验，对任意文本提是非题、选择题和评分题，直接返回校准过的概率与置信度，同一模型也可用 API key 调用",
+      "author": "Jev AI",
+      "authorUrl": "https://github.com/weidacn",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-19",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "SoulCut",
+      "url": "https://soulcut-art.vercel.app/",
+      "desc": "一款为每一帧画面注入灵魂的非线性视频编辑系统，免费使用，内置 15 种滤镜、78 种视觉特效、26 种转场，支持多机位渲染与音视频同轨编辑",
+      "author": "0xhappyboy",
+      "authorUrl": "https://github.com/0xhappyboy",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-18",
+      "cat": "content",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "人人都是OPC",
+      "url": "https://opcwiki.net/",
+      "desc": "一人公司（OPC）中文知识库，聚合创业案例、变现教程、工具推荐、政策解读与开源项目",
+      "author": "chyf(广州)",
+      "authorUrl": "https://github.com/chyf",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-17",
+      "cat": "other",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "PlayIQ",
+      "url": "https://theplayiq.com",
+      "desc": "用 AI 帮橄榄球教练自动分析比赛录像，识别阵型与跑位，战术板与录像同步播放，自动生成球探报告",
+      "author": "Wesley",
+      "authorUrl": "https://github.com/westlinkin",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-17",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "iloveepub",
+      "url": "https://iloveepub.com",
+      "desc": "浏览器 EPUB 工具（免费），支持压缩、合并、拆分与转换，文件全部在设备本地处理，绝不上传",
+      "author": "Selenium39(广州)",
+      "authorUrl": "https://github.com/Selenium39",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-17",
+      "cat": "life",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "云播切片",
+      "url": "https://live.zyue.wiki/",
+      "desc": "全自动直播录制、归档与切片平台，开播自动录。市面上唯一一款支持录制弹幕、录制礼物特效和直播间界面完整画面的云平台，云端实时监控与分段保存，方便直播复盘、高清 1080p 直播切片与素材剪辑",
+      "author": "lizhongyue248",
+      "authorUrl": "https://github.com/lizhongyue248",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-15",
+      "cat": "content",
+      "pay": []
+    },
+    {
+      "title": "PICWALL",
+      "url": "https://picwall.dpdns.org",
+      "desc": "AI 图片与视频提示词库，按作品、媒体类型与风格标签浏览灵感",
+      "author": "xulovemin",
+      "authorUrl": "https://github.com/xulovemin",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-15",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "hippoxOS",
+      "url": "https://hippoxos.vercel.app/",
+      "desc": "一款真正意义上的 LLM 操作系统，内置 6 个子系统，统一由自然语言控制：通用对话计算机控制系统、完整的视频编辑系统（自研 NLE 引擎）、金融数据分析系统、地理信息系统、代码编辑系统、3D 沙盒系统",
+      "author": "0xhappyboy",
+      "authorUrl": "https://github.com/0xhappyboy",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-15",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "小麦 Mika",
+      "url": "https://mktskill.com/",
+      "desc": "AI 营销工作台，提交目标和材料，生成竞品研究、内容文稿或执行方案，支持查看进度、修订和导出",
+      "author": "fffffrost",
+      "authorUrl": "https://github.com/fffffrost",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-14",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "Excel 表格工具",
+      "url": "http://43.156.229.191:3001/",
+      "desc": "浏览器端 Excel/PDF 数据处理工具，上传多个来源后配置字段匹配、预览组合结果并导出新的工作簿",
+      "author": "wuzhaohui",
+      "authorUrl": "https://github.com/WuZhaohui1993",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-14",
+      "cat": "other",
+      "pay": []
+    },
+    {
+      "title": "TideLink",
+      "url": "https://tidelink.xyz",
+      "desc": "已有 OpenAI SDK 代码无需改动，一个 API key 即可调用 GLM/Qwen/DeepSeek/Hunyuan/Doubao 多家国产大模型；网关自动故障转移，免信用卡免费起步",
+      "author": "tidelink88",
+      "authorUrl": "https://github.com/tidelink88",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-14",
+      "cat": "devtool",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Image to ASCII",
+      "url": "https://imagetoascii.art/",
+      "desc": "图片转 ASCII 字符画工具，免费无需注册，图片在浏览器本地处理；可调整字符样式、细节和颜色，复制文本或 Markdown，导出 TXT、PNG、SVG 等格式，用于 README、聊天字符画和复古封面",
+      "author": "Lucas-CX",
+      "authorUrl": "https://github.com/Lucas-CX",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-13",
+      "cat": "image",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "剪蛋 Jiandan",
+      "url": "https://www.jiandan.qd.je/",
+      "desc": "Windows 截图导入辅助工具，将剪贴板图片通过 Ctrl+V 送进剪映专业版，减少另存图片和查找文件；首次需邮箱验证码登录，图片本地处理不上传",
+      "author": "SKYCHENV",
+      "authorUrl": "https://github.com/SKYCHENV",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-13",
+      "cat": "image",
+      "pay": [
+        "local"
+      ]
+    },
+    {
+      "title": "pet memorial portrait",
+      "url": "https://aipetmemorialportrait.com/",
+      "desc": "宠物纪念海报生成器",
+      "author": "hwlvipone",
+      "authorUrl": "https://github.com/hwlvipone",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-13",
+      "cat": "life",
+      "pay": []
+    },
+    {
+      "title": "1980s AI Photo",
+      "url": "https://1980saiphoto.com",
+      "desc": "上传一张个人照片，保留面部特征，一键生成逼真的 1980 年代复古肖像；首张可免费生成",
+      "author": "littlePig-zzf",
+      "authorUrl": "https://github.com/littlePig-zzf",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-12",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "IELTS Writing Practice",
+      "url": "https://ieltswritingpractice.app/",
+      "desc": "雅思写作练习平台，提供 Task 1 / Task 2 题库、模拟写作、AI 评分与逐句批改反馈",
+      "author": "Ian",
+      "authorUrl": "https://github.com/iaminyu",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-12",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "NanoAvatar",
+      "url": "https://github.com/wpydcr/NanoAvatar/releases/latest",
+      "desc": "Android 数字人应用，用自己的录音在手机上驱动逼真、流畅的数字人，响应快，老款手机也可运行，录音体验可离线使用，无需 API key",
+      "author": "wpydcr",
+      "authorUrl": "https://github.com/wpydcr",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-12",
+      "cat": "ai",
+      "pay": [
+        "local"
+      ]
+    },
+    {
+      "title": "神算阁 / Shen Suan Ge",
+      "url": "https://breezesamuel.github.io/ssg-sites/zh/",
+      "desc": "AI 命理网页应用,塔罗/六爻/梅花/四柱/紫微 15+ 占卜方法,中英多语,纯 HTML 免构建开箱即用,支持 USDC 收款",
+      "author": "breezesamuel",
+      "authorUrl": "https://github.com/breezesamuel",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-12",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "UI Design Agent Kit 作品展厅",
+      "url": "https://agent.kcos.club/",
+      "desc": "AI 设计工作流产出的界面作品展厅，收录 11 个带验收记录的案例，「地铁疾行」3D 跑酷与「积木小工坊」3D 拼搭可以直接上手玩",
+      "author": "muzimu217",
+      "authorUrl": "https://github.com/muzimu217",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-12",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "TokenTracker / 纸账",
+      "url": "https://www.yoquai.com/",
+      "desc": "Mac 菜单栏 Agent 状态工具与本地用量账本，查看 Claude Code、Codex 等工具的活动，接收受支持 Hook 的完成或待处理提醒，按工具、模型、项目筛选 Token 记录并导出 CSV",
+      "author": "yoqu",
+      "authorUrl": "https://github.com/yoqu",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-12",
+      "cat": "ai",
+      "pay": [
+        "local"
+      ]
+    },
+    {
+      "title": "Trim 订阅扫雷器",
+      "url": "https://leilosss.github.io/",
+      "desc": "订阅账单分析工具，导入支付宝/微信账单自动识别自动续费、算出年度订阅支出与可省金额；账单不上传，识别全在浏览器本地完成，免费无需注册",
+      "author": "leilosss",
+      "authorUrl": "https://github.com/leilosss",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-12",
+      "cat": "other",
+      "pay": [
+        "pay",
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "工程数据驾驶舱",
+      "url": "http://43.156.229.191:8080/",
+      "desc": "工程项目数据驾驶舱，把 SQL、HTTP、JSON 和 WebSocket 数据拖拽编排为可发布、可回滚的大屏，支持实时刷新和只读分享",
+      "author": "wuzhaohui",
+      "authorUrl": "https://github.com/WuZhaohui1993",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-12",
+      "cat": "other",
+      "pay": []
+    },
+    {
+      "title": "VoiceCloner",
+      "url": "https://voicecloner.org/",
+      "desc": "使用自己的声音，将文字转成语音；每天免费额度，不注册也可使用",
+      "author": "LongAotian",
+      "authorUrl": "https://github.com/chenchuxin",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-11",
+      "cat": "audio",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "C2Anime",
+      "url": "https://c2anime.com/",
+      "desc": "AI 动画创作助手（AI Anime Agent），把故事和小说片段变成有对白、有声音的动画短片，无需动画制作经验",
+      "author": "C2Anime Team",
+      "authorUrl": "https://github.com/codaaiteam",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-11",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "Art Grid Maker",
+      "url": "https://artgridmaker.com/",
+      "desc": "面向绘画爱好者和艺术创作者的工具箱，提供网格绘画、透视辅助、参考图处理等实用工具",
+      "author": "ShawnHacks(北京)",
+      "authorUrl": "https://github.com/ShawnHacks",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "image",
+      "pay": []
+    },
+    {
+      "title": "TwiFlux",
+      "url": "https://twiflux.com/",
+      "desc": "Twitter 工具站（免费），下载视频，下载图片，下载推文和线程等等超过 40 个小工具",
+      "author": "ShawnHacks(北京)",
+      "authorUrl": "https://github.com/ShawnHacks",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "content",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "PicLocation",
+      "url": "https://piclocation.com/?utm_source=zh_github",
+      "desc": "AI 照片地理定位工具（免费），上传照片即返回 GPS 坐标、城市和国家，不依赖 EXIF 纯视觉识别，截图和被抹掉元数据的照片也能定位，无需注册",
+      "author": "RickyLee(深圳)",
+      "authorUrl": "https://github.com/LeedwA",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Find Key & BPM",
+      "url": "https://findkeybpm.com/",
+      "desc": "浏览器本地估算 MP3/WAV 的调性、Camelot 和 BPM，音频不上传、无需注册",
+      "author": "Muke",
+      "authorUrl": "https://github.com/muke1838-cloud",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "audio",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "AIradar · AI 订阅价格雷达",
+      "url": "https://airadar.vip/",
+      "desc": "AI 订阅比价工具，按产品、交付方式、期限和币种筛选公开报价，支持地区价格参考、目标价与到期提醒",
+      "author": "superwang",
+      "authorUrl": "https://github.com/lincwang123-bot",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "ai",
+      "pay": [
+        "pay"
+      ]
+    },
+    {
+      "title": "素刀",
+      "url": "https://clipknife.cn/",
+      "desc": "创作者的生产力工具，素材界的瑞士军刀；用一句话，找回你散落在硬盘里的每一帧灵感",
+      "author": "浅浅海鸥",
+      "authorUrl": "https://github.com/qianqianhaiou",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "content",
+      "pay": []
+    },
+    {
+      "title": "AI 智能快照",
+      "url": "https://apps.apple.com/cn/app/ai-smart-snapshot/id6796251282?mt=12",
+      "desc": "AI 智能快照：截屏、录屏、录音、OCR 识字和标注，一个 App 完成",
+      "author": "张赛东",
+      "authorUrl": "https://github.com/adong666666",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "OPC 情报站",
+      "url": "https://opc-radar.pages.dev/",
+      "desc": "一人公司（OPC）资讯聚合站，收录 82 条政策动向、创业案例与生态工具情报，支持 9 大分类筛选、全文搜索与热度排行，纯静态打开即用，无需注册",
+      "author": "WXzhongwang",
+      "authorUrl": "https://github.com/WXzhongwang",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "other",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "慧报价",
+      "url": "https://www.swqifu.com/",
+      "desc": "AI 外贸报价工具，产品库一次建好，选品自动按 EXW/FOB/CFR/CIF/DDP 计价（利润率按售价、保险 110% 加成的实务口径），30 秒生成中英双语报价单 PDF，附免费无需注册的报价计算器",
+      "author": "宋永昌(上海)",
+      "authorUrl": "https://github.com/yajufurniture-debug",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "biz",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "ScribeToAny",
+      "url": "https://scribetoany.com",
+      "desc": "AI 音视频转录与字幕生成工具，支持说话人识别（区分发言人）、多语言翻译与字级高精度时间戳，长音频高速转文字，一键导出 SRT/VTT/TXT 格式 — 免费试用",
+      "author": "hypercube67",
+      "authorUrl": "https://github.com/hypercube67-formal",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-10",
+      "cat": "content",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Gpt Image 2.5 图片生成器",
+      "url": "https://gptimage25.biz/",
+      "desc": "基于 Gpt Image 2.5 模型的图片工作台，生成与编辑同界面操作，支持一次生成多张图片快速比对挑选 — 免费试用",
+      "author": "MuYiBo",
+      "authorUrl": "https://github.com/MuYiBo",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "PicPermit",
+      "url": "https://picpermit.com/",
+      "desc": "证件照与护照/签证制作工具（免费），支持全球 500+ 官方规格、ICAO 生物线辅助与人脸对齐，抠图，换背景，照片完全本地处理，可导出 300 DPI 电子照与 4×6 寸排版冲印版",
+      "author": "DustarCode(浙江)",
+      "authorUrl": "https://github.com/DustarCode",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "image",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "Thumbrix",
+      "url": "https://thumbrix.com",
+      "desc": "面向 YouTube 创作者的 AI 缩略图生成工具，输入文字或上传照片即可生成封面，方便尝试不同设计、优化封面点击率，支持免费试用",
+      "author": "chaojieY26",
+      "authorUrl": "https://github.com/chaojieY26",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Interval Timers",
+      "url": "https://intervaltimers.org/",
+      "desc": "间歇计时器（免费），可设置工作时间、休息时间、准备倒计时和循环轮数，并提供声音提示，适合 HIIT、Tabata、健身训练以及其他需要工作/休息循环计时的场景",
+      "author": "pandaupup(广州)",
+      "authorUrl": "https://github.com/pandaupup",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "life",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Dead Pixel Test",
+      "url": "https://deadpixeltestpro.org/",
+      "desc": "屏幕坏点测试工具（免费），通过全屏纯色测试帮助检查显示器、笔记本电脑和其他屏幕的坏点、亮点、暗点及显示异常",
+      "author": "pandaupup(广州)",
+      "authorUrl": "https://github.com/pandaupup",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "life",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Ropond Proxy Cloud",
+      "url": "https://ropond.com/",
+      "desc": "全球高纯净动态住宅代理网络，专为出海企业、跨境电商独立站与 AI 深度搜索提供防封穿透基础设施，提供 1GB 免费开发者测试配额",
+      "author": "Anton Li",
+      "authorUrl": "https://github.com/AntonLi-PM",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "biz",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "Hevzo",
+      "url": "https://hevzo.com",
+      "desc": "一站式的 AI 视频和图片生成平台，集中了主流的视频和图片模型",
+      "author": "Ryan Yu(北京)",
+      "authorUrl": "https://github.com/Ryan10Yu",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "Pixel Art Base",
+      "url": "https://www.pixelartbase.com",
+      "desc": "图片转像素画工具，支持裁剪与尺寸调整、调色板和抖动设置、颜色查看及清晰 PNG 导出；图片在浏览器本地处理，并提供 Minecraft 像素画生成器，可生成方块网格、精确材料清单、编号建造指南和 Java 蓝图",
+      "author": "Felicia",
+      "authorUrl": "https://github.com/littlePig-zzf",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "image",
+      "pay": [
+        "local"
+      ]
+    },
+    {
+      "title": "ReadGZH",
+      "url": "https://readgzh.site/",
+      "desc": "微信公众号文章 AI 阅读工具，粘贴链接生成便于 AI 读取的页面，另提供 API 与 MCP 接入",
+      "author": "sweesama",
+      "authorUrl": "https://github.com/sweesama",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-09",
+      "cat": "content",
+      "pay": []
+    },
+    {
+      "title": "热摸爽",
+      "url": "https://remoshuang.com/",
+      "desc": "中文全网热点聚合网站，把微博、知乎、今日头条、GitHub Trending、科技和财经等公开榜单整理到一处，提供跨平台热点、正在升温、历史热搜和 RSS",
+      "author": "zjzno1",
+      "authorUrl": "https://github.com/zjzno1",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-08",
+      "cat": "other",
+      "pay": []
+    },
+    {
+      "title": "Erase Background Pro",
+      "url": "https://erasebgpro.com",
+      "desc": "AI 一键抠图工具，秒级输出边缘干净的透明 PNG，支持电商人像/发丝细节与 4K 高清，提供批量处理、免费试用与开发者 API，无需注册、免费即用",
+      "author": "肖戈(深圳)",
+      "authorUrl": "https://github.com/jvxiao",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-08",
+      "cat": "devtool",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "薯小二",
+      "url": "https://xhs.jvxiao.cn/",
+      "desc": "小红书合规运营工具箱，违禁词一键检测+替换建议、AI 爆款标题生成、笔记收录限流自查，纯网页端免安装，新人每天免费发车",
+      "author": "肖戈(深圳)",
+      "authorUrl": "https://github.com/jvxiao",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-08",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "LoveComic",
+      "url": "https://lovecomic.app/",
+      "desc": "AI 漫画生成网站，支持自动与人工控制双重模式，自定义对话气泡、字体等；还有 flow 画布模式，可自由编排节点生成漫画",
+      "author": "rain(深圳)",
+      "authorUrl": "https://github.com/wang1309",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-08",
+      "cat": "content",
+      "pay": []
+    },
+    {
+      "title": "NotePP",
+      "url": "https://luminousstars.org/",
+      "desc": "macOS 平台的 Notepad++ 替代方案，在 Mac 上也能流畅使用 Notepad++ 的编辑体验",
+      "author": "南宫文凯",
+      "authorUrl": "https://blog.csdn.net/qq_34730277",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-08",
+      "cat": "other",
+      "pay": []
+    },
+    {
+      "title": "Real Job Work From Home",
+      "url": "https://realjobworkfromhome.com/",
+      "desc": "远程岗位检索网站，无需注册即可免费浏览，支持关键词、岗位类别、雇佣类型及已披露薪资筛选，并提供雇主申请入口",
+      "author": "fengmao",
+      "authorUrl": "https://github.com/fengmao",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-08",
+      "cat": "other",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "ScribeFlash",
+      "url": "https://scribeflash.com/?utm_source=github",
+      "desc": "面向产品、市场与用户研究团队的 AI 研究工作台，帮助你把客户访谈快速转化为有证据支撑的洞察与专业研究报告。你可以上传访谈、查看和编辑转录内容、按研究问题整理答案、对比不同参与者、沉淀关键证据，并跨多场访谈发现主题、趋势和共识。每条 Finding 都可追溯到原始引用，让团队更快分析、更放心验证，也更容易输出可分享、可执行的研究结论",
+      "author": "aiScribeFlash（北京）",
+      "authorUrl": "https://github.com/overseax",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-07",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "SeichiGo 圣地巡礼",
+      "url": "https://seichigo.com",
+      "desc": "动漫圣地巡礼行程规划工具，选作品和天数，AI Agent 生成含交通衔接的逐日路线；全球巡礼地图 5 万+ 点位、1,500+ 作品，简中/繁中/日/英四语",
+      "author": "emptylower",
+      "authorUrl": "https://github.com/emptylower",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-07",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "CubistAI",
+      "url": "https://cubistai.org/",
+      "desc": "AI 图片生成工具，输入文字秒出高清图，集成 Nano Banana 2、Seedream、FLUX.2 等模型，每天有免费额度，另附 AI 头像、卡通化、涂色页、抠图、水印去除等专项工具",
+      "author": "小范(武汉)",
+      "authorUrl": "https://github.com/schwenkmurmel17-dotcom",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-07",
+      "cat": "image",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "法脉 LawPulse",
+      "url": "https://lttxzmj.github.io/lawpulse-site/",
+      "desc": "给中国执业律师的本地离线法律研究工具（macOS）：412 部现行法律逐条检索，笔记直接挂在法条下自动成链，AI 合同审查用自己的模型密钥且引用逐条回本地法库核实；数据全在本机不上云。公测期免费。配套开源了 [chinese-law-corpus](https://github.com/lttxzmj/chinese-law-corpus)（412 部法律逐条 JSON + 723 件案例，CC0）",
+      "author": "lttxzmj",
+      "authorUrl": "https://github.com/lttxzmj",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-07",
+      "cat": "ai",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "SiteHunter",
+      "url": "https://sitehunter.org",
+      "desc": "为独立开发者、创业者打造的市场调研平台。找 saas 创业点子不再靠直觉，SiteHunter 监控了一批真实的流量增长数据，用数据看清哪个赛道正在增长，从一个被验证的市场开始",
+      "author": "SiteHunter",
+      "authorUrl": "https://github.com/SiteHunter",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-07",
+      "cat": "biz",
+      "pay": []
+    },
+    {
+      "title": "Seadanse",
+      "url": "https://seadanse.com",
+      "desc": "多模型 AI 视频生成平台，支持通过 Composer 工作台生成带声多镜头视频，并提供一句话自动拆解广告分镜与故事板的 AI Video Agent 功能",
+      "author": "codeugar",
+      "authorUrl": "https://github.com/codeugar",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-06",
+      "cat": "ai",
+      "pay": [
+        "ads"
+      ]
+    },
+    {
+      "title": "SubnetDesk",
+      "url": "https://github.com/zibo-chen/SubnetDesk",
+      "desc": "跨平台远程桌面应用，在局域网或 VPN 内通过 mDNS 自动发现设备并用 IP 或主机名直连，无需公网设备 ID、信令或中继；支持 Windows、macOS、Linux 和 Android，AGPL-3.0 开源",
+      "author": "zibo-chen",
+      "authorUrl": "https://github.com/zibo-chen",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-05",
+      "cat": "other",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "DTCwise",
+      "url": "https://dtcwise.com/?utm_source=cnindie&utm_medium=github",
+      "desc": "DTC/跨境电商独立站卖家的运营工具目录与评测站，数据驱动收录 104 个工具（Sellvia、Mangools、Spocket 等），含对比评分与佣金返利链接，免费无需注册",
+      "author": "863683348",
+      "authorUrl": "https://github.com/863683348",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-05",
+      "cat": "biz",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "CrossTool",
+      "url": "https://crosstool.online/?utm_source=cnindie&utm_medium=github",
+      "desc": "跨境卖家本地隐私工具箱，52 个工具 100% 在浏览器内运行（视频压缩、图片转 PDF、成本计算等），零上传零服务器，面向 Amazon/TikTok Shop/Shopify 卖家，免费无需注册",
+      "author": "863683348",
+      "authorUrl": "https://github.com/863683348",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-05",
+      "cat": "content",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "Gemini Omni",
+      "url": "https://geminiomni.video/",
+      "desc": "免费生成和编辑视频，保持角色一致性，音频同步",
+      "author": "coderWenzi",
+      "authorUrl": "https://github.com/coderWenzi",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-05",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "HTMLShare",
+      "url": "https://www.htmlshare.page/",
+      "desc": "将静态 HTML 发布为可分享的预览链接，方便快速分享和评审原型页面，无需 Git、生产部署和注册账号",
+      "author": "zeroXu1",
+      "authorUrl": "https://github.com/zeroXu1",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-04",
+      "cat": "devtool",
+      "pay": []
+    },
+    {
+      "title": "RGB TO CMYK",
+      "url": "https://rgbtocmyk.net/",
+      "desc": "基于印刷行业专业色彩转换引擎设计的 RGB 转 CMYK 在线工具，支持内置及自定义 ICC 配置文件，实现无与伦比的色彩保真度",
+      "author": "Seagnson",
+      "authorUrl": "https://github.com/seagnson",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-03",
+      "cat": "life",
+      "pay": []
+    },
+    {
+      "title": "Video Text Remover",
+      "url": "https://videotextremover.org/",
+      "desc": "AI 视频文字擦除工具，去除视频中的文字、字幕和说明文字",
+      "author": "CoderLim(北京)",
+      "authorUrl": "https://github.com/CoderLim",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-03",
+      "cat": "content",
+      "pay": []
+    },
+    {
+      "title": "PicEditor",
+      "url": "https://piceditor.org/",
+      "desc": "AI 图片编辑和生成工具，用自然语言换背景、移除物体、修改图片文字或生成新图，首次使用无需注册",
+      "author": "dong13",
+      "authorUrl": "https://github.com/dong13yu",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-03",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    },
+    {
+      "title": "YourArt",
+      "url": "https://yourart.app",
+      "desc": "AI 设计 Agent 工作台，在同一空间调用主流图片和视频模型，生成、编辑素材并在无限画布编排工作流；按量付费，无需订阅",
+      "author": "CH0918",
+      "authorUrl": "https://github.com/CH0918",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-03",
+      "cat": "ai",
+      "pay": [
+        "pay"
+      ]
+    },
+    {
+      "title": "cc8.cc",
+      "url": "https://www.cc8.cc/zh",
+      "desc": "面向独立开发者、网站和 App 的公开 C 位竞价曝光榜：¥1 起，金额决定名次，每日北京时间 0 点在榜金额重置为 ¥1，条目不撤下，追平即可占位",
+      "author": "蝉息",
+      "authorUrl": "https://github.com/wh000wh000",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-03",
+      "cat": "devtool",
+      "pay": []
+    },
+    {
+      "title": "unblurry",
+      "url": "https://unblurry.tools",
+      "desc": "AI 照片去模糊工具，处理失焦、抖动与低分辨率造成的画质损失，另有锐化、降噪和老照片修复；免注册免费试 2 次，按次购买 credit，不订阅",
+      "author": "edenSu",
+      "authorUrl": "https://github.com/edenSu-git",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-02",
+      "cat": "ai",
+      "pay": [
+        "pay",
+        "free"
+      ]
+    },
+    {
+      "title": "Lunalisa",
+      "url": "https://luna-lisa.art",
+      "desc": "面向产品团队的 AI 视觉工作台，用提示词和获许可的参考图生成、迭代产品视觉素材",
+      "author": "JeremyGDM",
+      "authorUrl": "https://github.com/JeremyGDM",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-02",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "BulkCerts",
+      "url": "https://bulkcerts.com/",
+      "desc": "批量证书生成器，上传 Excel 或 CSV 列表、选择模板，即可为每位收件人生成个性化的 PDF 或 PNG 证书",
+      "author": "Linky-AIinlink",
+      "authorUrl": "https://github.com/Linky-AIinlink",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-02",
+      "cat": "other",
+      "pay": []
+    },
+    {
+      "title": "StitchCraft",
+      "url": "https://crossstitchpatternmaker.app/",
+      "desc": "十字绣图纸生成器（免费），照片拖进浏览器几秒变成可绣的 DMC 图纸，454 色自动匹配色号、算好每种线买几绞，导出 PDF 直接打印；无需注册、照片不上传服务器，可选 AI 重绘，支持中文界面",
+      "author": "ooklwq(成都)",
+      "authorUrl": "https://github.com/ooklwq",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-02",
+      "cat": "ai",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "Image3D AI",
+      "url": "https://www.aiimageto3d.com/",
+      "desc": "AI 图片转 3D 模型平台，集成 Tripo、Meshy、Hunyuan、Pixal3D 等多个 3D 生成模型，并提供 AI 贴图、Retopology、UV 展开和模型组件分离工具，从图片生成到 3D 后处理可在一个平台完成",
+      "author": "Cairne",
+      "authorUrl": "https://github.com/cairne",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-02",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "PdfCompare",
+      "url": "https://pdfcompare.app/",
+      "desc": "免费免登录的在线 PDF 对比与文本转换工具，基于浏览器 WebAssembly 纯本地运行，毫秒级词级红绿高亮差异与图纸图层叠图对比，文档数据 100% 零上传云端，零泄露风险",
+      "author": "haihiaen",
+      "authorUrl": "https://github.com/haihiaen",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-02",
+      "cat": "life",
+      "pay": [
+        "free",
+        "local"
+      ]
+    },
+    {
+      "title": "XiuStore",
+      "url": "https://store.xiu.ai/zh/",
+      "desc": "AI 订阅和数字服务商城，商品页公开价格、交付方式、有效期、质保和售后，付款后可在订单中找到对应交付入口",
+      "author": "Dashu",
+      "authorUrl": "",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-02",
+      "cat": "ai",
+      "pay": [
+        "pay"
+      ]
+    },
+    {
+      "title": "Vibe Coding 首切片",
+      "url": "https://dify-feishu-qa-first10.heyhui.chatgpt.site/domestic-dev-first-slice",
+      "desc": "把小程序、网站、APP 或 AI/API 的模糊需求先拆成一条可运行、可验收的核心流程；公开合成演示与隐私门控受理表可直接查看，需求范围图 ¥99 起",
+      "author": "heyu17625-glitch",
+      "authorUrl": "https://github.com/heyu17625-glitch",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-01",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "MoveToZero",
+      "url": "https://movetozero.site/",
+      "desc": "iPhone 久坐提醒 App，定时提醒起身走动，通过步数目标和完成记录帮助安排工作、学习间隙的休息；配套网站 [Stand Up Reminder](https://standupreminder.com/) 提供网页休息计时器和办公提醒指南",
+      "author": "LuKaka",
+      "authorUrl": "https://github.com/Masker99",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-01",
+      "cat": "life",
+      "pay": []
+    },
+    {
+      "title": "Chat2Mind",
+      "url": "https://chat2mind.site/",
+      "desc": "将 ChatGPT 对话或粘贴的文本转成可编辑思维导图，帮助梳理笔记、复习知识和组织内容，支持图片、PDF 和 Markdown 导出",
+      "author": "LuKaka",
+      "authorUrl": "https://github.com/Masker99",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-01",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "BookmarkHell",
+      "url": "https://bookmarkhell.com/",
+      "desc": "浏览器书签整理工具，导入 Chrome 或 Edge 导出的书签文件，去重、分类，检查和调整后导回浏览器",
+      "author": "LuKaka",
+      "authorUrl": "https://github.com/Masker99",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-01",
+      "cat": "life",
+      "pay": []
+    },
+    {
+      "title": "BigWalkTools",
+      "url": "https://bigwalktools.com/",
+      "desc": "Big Walk 非官方解谜辅助站，根据颜色、物体、声音等线索查找谜题，分层查看提示，并与队友共享探索进度",
+      "author": "LuKaka",
+      "authorUrl": "https://github.com/Masker99",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-01",
+      "cat": "audio",
+      "pay": []
+    },
+    {
+      "title": "WARDOGS Companion",
+      "url": "https://wardogs-game.com/",
+      "desc": "WARDOGS 非官方攻略与玩家工具站，汇总游戏资料、PC 配置要求和常见问题，帮助玩家准备游戏和查找攻略",
+      "author": "LuKaka",
+      "authorUrl": "https://github.com/Masker99",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-01",
+      "cat": "game",
+      "pay": []
+    },
+    {
+      "title": "EchoWord",
+      "url": "https://chromewebstore.google.com/detail/echoword/ifjpabfblikdkfgchnhdcplgbpjhoila?hl=zh-CN",
+      "desc": "查词划词翻译，通过 TTS 朗读单词和例句，在语境中理解发音，帮助程序员、独立开发者和出海从业者告别哑巴英语 — Chrome / Edge 插件",
+      "author": "pluone(北京)",
+      "authorUrl": "https://github.com/pluone/EchoWord",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-09-01",
+      "cat": "devtool",
+      "pay": []
+    },
+    {
+      "title": "HelloGen",
+      "url": "https://hellogen.ai/",
+      "desc": "AI 图片和视频生成工作台，图片免费不限量、无水印、可商用，视频按次计费；助手根据需求自动选模型（Seedream、Nano Banana、GPT Image 2、Veo、Kling、Seedance），生成前先报价，失败不扣费",
+      "author": "chenchiwei",
+      "authorUrl": "https://github.com/chenchiwei",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-08-31",
+      "cat": "ai",
+      "pay": [
+        "pay",
+        "free"
+      ]
+    },
+    {
+      "title": "AniMot",
+      "url": "https://animot.app/",
+      "desc": "一键让照片跳舞，让宠物跳舞",
+      "author": "hwlvipone",
+      "authorUrl": "https://github.com/hwlvipone",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-08-31",
+      "cat": "image",
+      "pay": []
+    },
+    {
+      "title": "CardShopDir",
+      "url": "https://cardshopdir.com/",
+      "desc": "美国实体卡牌店目录，收录 7700+ 家店铺、覆盖 51 个州，支持按州、城市和游戏筛选，帮玩家找到宝可梦、万智牌、游戏王等卡牌的线下店，每家店附地址、营业时间、支持游戏和评分",
+      "author": "leo(上海)",
+      "authorUrl": "https://github.com/TangSirOnGit",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-08-31",
+      "cat": "game",
+      "pay": []
+    },
+    {
+      "title": "Ikat",
+      "url": "https://ikat.app",
+      "desc": "多模型 AI 视频生成工作台，在同一界面使用 Wan 3.0、Kling 3.0、Seedance 2.5、MiniMax H3，支持文生视频和图生视频",
+      "author": "Hongshiqiang",
+      "authorUrl": "https://github.com/Hongshiqiang",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-08-30",
+      "cat": "ai",
+      "pay": []
+    },
+    {
+      "title": "EasyMap Desktop",
+      "url": "http://www.easymap.online/",
+      "desc": "面向测绘、规划、应急与数据治理的桌面 GIS 平台工具集，地图制图、数据目录、58 个地理处理工具、模型构建器与在线地图下载器一站齐备，解压即用、数据不出内网",
+      "author": "easymap-gis(合肥)",
+      "authorUrl": "https://github.com/easymap-gis",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-08-30",
+      "cat": "life",
+      "pay": [
+        "local"
+      ]
+    },
+    {
+      "title": "FishCare AI",
+      "url": "https://www.fishcareai.com/",
+      "desc": "观赏鱼饲养指南与免费工具站，买鱼前先查混养兼容性（4000+ 鱼种组合对照页）、鱼缸最小尺寸、水质参数和投喂量，覆盖斗鱼、孔雀鱼、七彩神仙等常见品种，免费无需注册",
+      "author": "Viki Wu",
+      "authorUrl": "https://github.com/wxixuan118-ship-it",
+      "status": "live",
+      "statusLabel": "已上线",
+      "statusEmoji": "✅",
+      "date": "2026-08-30",
+      "cat": "ai",
+      "pay": [
+        "free"
+      ]
+    }
+  ],
+  "stats": {
+    "total": 119,
+    "devs": 104,
+    "byCat": {
+      "other": 12,
+      "life": 14,
+      "ai": 49,
+      "content": 16,
+      "biz": 5,
+      "image": 10,
+      "devtool": 7,
+      "audio": 4,
+      "game": 2
+    },
+    "byStatus": {
+      "live": 119
+    },
+    "topCats": [
+      "ai",
+      "content",
+      "life"
+    ],
+    "gapCats": [
+      "game"
+    ]
+  },
+  "errors": [],
+  "note": "由 scripts/fetch-indie.mjs 每日自动抓取。来源：1c7/chinese-independent-developer（中文独立开发者项目列表，公开仓库）。cat 由简介关键词自动归类，pay 为简介里出现的变现信号词。「拥挤榜」= 近 30 天提交最多的品类，「冷门方向」= 只出现 1~2 次的品类。"
+}

@@ -231,6 +231,22 @@
   .badge-hot{display:inline-block;vertical-align:2px;margin-right:5px;padding:1px 7px;border-radius:20px;font-size:.7rem;font-weight:700;background:color-mix(in srgb,var(--hot) 15%,transparent);color:var(--hot);white-space:nowrap}
   .badge-new{display:inline-block;vertical-align:2px;margin-right:5px;padding:1px 7px;border-radius:20px;font-size:.7rem;font-weight:600;background:color-mix(in srgb,var(--muted) 14%,transparent);color:var(--muted);white-space:nowrap}
   .badge-stage{display:inline-block;vertical-align:2px;margin-right:5px;padding:1px 7px;border-radius:20px;font-size:.7rem;font-weight:600;background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent);white-space:nowrap}
+  /* ---- 独立开发栏目 ---- */
+  .indie-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:12px;margin-bottom:14px}
+  .indie-kpi .ik{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+  .indie-kpi .ik .n{font-size:1.5rem;font-weight:800;line-height:1.2;letter-spacing:-.5px}
+  .indie-kpi .ik .l{font-size:.74rem;color:var(--muted);margin-top:3px}
+  .indie-split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .indie-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;min-width:0}
+  .ib-title{font-size:.82rem;font-weight:700;margin-bottom:9px}
+  .ib-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:.78rem;min-width:0}
+  .ib-row .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ib-row .n{font-weight:700;font-variant-numeric:tabular-nums;color:var(--muted);flex:0 0 auto}
+  .ib-bar{height:6px;border-radius:6px;background:color-mix(in srgb,var(--primary) 70%,transparent);min-width:4px}
+  .indie-list .feed-card .fm .pay{color:var(--ok);font-weight:600}
+  .indie-list .feed-card .ft a{color:inherit;text-decoration:none;display:block}
+  .indie-list .feed-card .ft a:hover{color:var(--primary)}
+  @media(max-width:640px){.indie-split{grid-template-columns:1fr}}
   .sub-filter-label{font-size:.76rem;color:var(--muted);align-self:center;margin-right:2px}
   .chip.sm{padding:4px 9px;font-size:.72rem}
   .chip[disabled]{opacity:.38;cursor:not-allowed}
@@ -376,6 +392,7 @@
       <button class="tab" data-view="match">🚀 新手开始</button>
       <button class="tab" data-view="play">🛠️ 落地手册</button>
       <button class="tab" data-view="hustles">💰 副业库</button>
+      <button class="tab" data-view="indie">🇨🇳 独立开发</button>
       <button class="tab" data-view="earn">📈 变现看板</button>
       <button class="tab" data-view="jobs">💼 工作板</button>
       <button class="tab" data-view="learn">📚 学习成长</button>
@@ -566,6 +583,42 @@
     </div>
     <div class="filter-bar" id="learnFilters"></div>
     <div class="learn-grid" id="learnGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 独立开发在做什么 ================= -->
+<section class="view" id="view-indie">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2>🇨🇳 中国独立开发者在做什么</h2>
+        <div class="sub">抓取 <a href="https://github.com/1c7/chinese-independent-developer" target="_blank" rel="noopener">1c7/chinese-independent-developer</a>（6.1 万 star 的公开清单）近 30 天的提交。<b>拥挤榜告诉你别冲什么，冷门方向告诉你还能做什么</b>——比你想 100 个点子更快</div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>📡 每日抓取</h3>
+        <span class="daily-date" id="indieDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn ghost small" onclick="loadIndie()">↻ 刷新</button>
+      </div>
+      <div class="indie-kpi" id="indieKpi"></div>
+      <div class="indie-split">
+        <div class="indie-box">
+          <div class="ib-title">🔥 近 30 天最拥挤（别硬冲）</div>
+          <div class="ib-body" id="indieHot"></div>
+        </div>
+        <div class="indie-box">
+          <div class="ib-title">🌱 冷门方向（可能是空白位）</div>
+          <div class="ib-body" id="indieGap"></div>
+        </div>
+      </div>
+      <div class="filter-bar" id="indieCatFilters" style="margin:14px 0 8px"></div>
+      <div class="filter-bar sub-bar" id="indiePayFilters" style="display:none;margin:0 0 10px"></div>
+      <div class="learn-grid" id="indieList"></div>
+      <div class="daily-foot"><span id="indieSource"></span></div>
+    </div>
   </div>
 </section>
 
@@ -974,6 +1027,7 @@ const state = {
   updates:null, inspireSeed:0,
   hustleNews:null, hustleNewsCat:null,
   learnFeed:null, learnTrack:null, learnStage:null,
+  indie:null, indieCat:null, indiePay:null,
   pbCat:null, pbOpen:null, pitCat:null,
 };
 const $ = s=>document.querySelector(s);
@@ -1297,7 +1351,7 @@ function renderPrinciples(){
 
 function renderAll(){
   renderFilters();renderHustles();renderBoards();renderLearn();renderFavs();renderInspire();renderStats();renderDaily();renderMatch();
-  renderHustleNews();renderLearnFeed();
+  renderHustleNews();renderLearnFeed();renderIndie();
   renderPlaybooks();renderPlan();renderPits();renderShare();renderEarn();
 }
 
@@ -1313,6 +1367,7 @@ function switchView(v){
   if(v==="match")renderMatch();
   if(v==="play"){renderPlaybooks();renderPlan();renderPits();}
   if(v==="earn")renderEarn();
+  if(v==="indie")renderIndie();
 }
 window.switchView=switchView;
 function setHustleCat(c){state.hustleCat=c;renderFilters();renderHustles()}
@@ -1699,6 +1754,119 @@ function renderLearnFeed(){
 function setLearnTrack(k){state.learnTrack=k;if(k!=="k12")state.learnStage=null;renderLearnFeed();}
 function setLearnStage(s){state.learnStage=s;renderLearnFeed();}
 window.setLearnStage=setLearnStage;
+
+async function loadIndie(){
+  try{
+    const res=await fetch("data/indie.json?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error(res.status);
+    const data=await res.json();
+    if(!data.items)throw new Error("bad data");
+    state.indie=data;
+    toast("🇨🇳 独立开发动态已刷新");
+  }catch(e){state.indie=null}
+  renderIndie();
+}
+window.loadIndie=loadIndie;
+/* ---------- 独立开发在做什么（data/indie.json · scripts/fetch-indie.mjs 每日生成） ---------- */
+const INDIE_CATS = {other:{name:"其他",emoji:"🧩"}};
+const INDIE_PAY = {pay:"付费",free:"免费引流",ads:"广告",local:"本地隐私"};
+const INDIE_CAT_ORDER = ["ai","content","image","audio","biz","life","devtool","game","other"];
+
+// README 是第三方提交的，url 可能是 javascript: 伪协议 —— 直接塞进 href 就成了 XSS 入口。
+// 只放行 http/https，其余一律降级为空（渲染成纯文本，不可点）。
+function safeUrl(u){
+  const s=String(u||"").trim();
+  return /^https?:\/\//i.test(s)?s:"";
+}
+
+function indieBars(cats, stats, keys){
+  const max=Math.max(1,...keys.map(k=>(stats.byCat||{})[k]||0));
+  return keys.map(k=>{
+    const c=cats[k]||INDIE_CATS.other, n=(stats.byCat||{})[k]||0;
+    return `<div class="ib-row"><span>${c.emoji||"🧩"} <span class="nm">${esc(c.name||k)}</span></span><span class="ib-bar" style="width:${Math.max(4,Math.round(n/max*110))}px"></span><span class="n">${n}</span></div>`;
+  }).join("")||`<div style="font-size:.78rem;color:var(--muted)">暂无数据</div>`;
+}
+
+function renderIndie(){
+  const list=$("#indieList");if(!list)return;
+  const d=state.indie;
+  if(!d||!d.items||!d.items.length){
+    $("#indieCatFilters").innerHTML="";
+    $("#indiePayFilters").style.display="none";
+    $("#indieKpi").innerHTML="";$("#indieHot").innerHTML="";$("#indieGap").innerHTML="";
+    $("#indieDate").textContent="暂无数据";
+    list.innerHTML=`<div style="font-size:.85rem;color:var(--muted)">独立开发动态暂不可用（尚未生成 data/indie.json）。</div>`;
+    $("#indieSource").innerHTML=`运行 <code>node scripts/fetch-indie.mjs</code> 或等待 GitHub Actions 每日定时任务生成。`;
+    return;
+  }
+  const items=d.items, stats=d.stats||{}, cats=d.cats||INDIE_CATS, payLabels=d.payLabels||INDIE_PAY;
+
+  const live=(stats.byStatus||{}).live||0;
+  const catN=Object.keys(stats.byCat||{}).length;
+  const paid=items.filter(i=>(i.pay||[]).includes("pay")).length;
+  $("#indieKpi").innerHTML=[
+    ["📦",stats.total||0,"近 30 天新项目"],
+    ["👤",stats.devs||0,"独立开发者"],
+    ["✅",live,"已上线（可点开试）"],
+    ["💰",paid,"明说收费的"],
+    ["🧭",catN,"覆盖品类"],
+  ].map(([e,n,l])=>`<div class="ik"><div class="n">${esc(e)} ${esc(n)}</div><div class="l">${esc(l)}</div></div>`).join("");
+
+  const hotKeys=(stats.topCats||[]).slice(0,5);
+  const gapKeys=(stats.gapCats||[]).slice(0,5);
+  $("#indieHot").innerHTML=indieBars(cats,stats,hotKeys);
+  $("#indieGap").innerHTML=indieBars(cats,stats,gapKeys.length?gapKeys:hotKeys.slice(-2));
+
+  // 品类筛选：按条目数从多到少，热的排前面（那才是「大家在做什么」）
+  const counts=stats.byCat||{};
+  const keys=Object.keys(counts).sort((a,b)=>(counts[b]||0)-(counts[a]||0)||INDIE_CAT_ORDER.indexOf(a)-INDIE_CAT_ORDER.indexOf(b));
+  $("#indieCatFilters").innerHTML=`<button class="chip ${!state.indieCat?"on":""}" onclick="setIndieCat(null)">全部 ${items.length}</button>`+
+    keys.map(k=>{const c=cats[k]||INDIE_CATS.other;
+      return `<button class="chip ${state.indieCat===k?"on":""}" onclick="setIndieCat('${k}')">${c.emoji||"🧩"} ${esc(c.name||k)} <span style="opacity:.6">${counts[k]||0}</span></button>`}).join("");
+
+  // 变现信号二级筛选：只做副业的人真正在意的是「这玩意怎么收钱」
+  const payCounts={};
+  items.forEach(i=>(i.pay||[]).forEach(p=>payCounts[p]=(payCounts[p]||0)+1));
+  const payKeys=Object.keys(payLabels).filter(k=>payCounts[k]);
+  const showPay=!!state.indiePay||(!!state.indieCat&&payKeys.length>0);
+  const payBar=$("#indiePayFilters");
+  if(showPay){
+    payBar.style.display="";
+    payBar.innerHTML=`<span class="sub-filter-label">变现方式：</span>`+
+      `<button class="chip sm ${!state.indiePay?"on":""}" onclick="setIndiePay(null)">不限</button>`+
+      payKeys.map(k=>`<button class="chip sm ${state.indiePay===k?"on":""}" onclick="setIndiePay('${k}')">${esc(payLabels[k]||k)} <span style="opacity:.6">${payCounts[k]}</span></button>`).join("");
+  } else { payBar.style.display="none"; payBar.innerHTML=""; }
+
+  let view=state.indieCat?items.filter(i=>i.cat===state.indieCat):items;
+  if(state.indiePay)view=view.filter(i=>(i.pay||[]).includes(state.indiePay));
+  const shown=view.slice(0,36);
+  list.classList.add("indie-list");
+  list.innerHTML=shown.length?shown.map(i=>{
+    const c=cats[i.cat]||INDIE_CATS.other;
+    const pays=(i.pay||[]).map(p=>`<span class="pay">${esc(payLabels[p]||p)}</span>`).join("");
+    const href=safeUrl(i.url), au=safeUrl(i.authorUrl);
+    const title=href
+      ? `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(i.statusEmoji||"✅")} ${esc(i.title)}</a>`
+      : `${esc(i.statusEmoji||"✅")} ${esc(i.title)}<span style="color:var(--warn)"> · 链接已失效</span>`;
+    const body=`<div class="ft">${title}</div>
+      <div class="fd">${esc(i.desc||"")}</div>
+      <div class="fm">
+        <span class="src">${c.emoji||"🧩"} ${esc(c.name||i.cat)}</span>
+        ${pays}
+        <span>👤 ${au?`<a href="${esc(au)}" target="_blank" rel="noopener">${esc(i.author)}</a>`:esc(i.author)}</span>
+        <span>📅 ${esc(i.date||"")}</span>
+      </div>`;
+    // 卡片不能整块做成 <a>：作者主页也是个 <a>，嵌套 <a> 会被 HTML 解析器拆成两段，DOM 直接坏掉
+    return `<div class="feed-card">${body}</div>`;
+  }).join(""):`<div style="font-size:.85rem;color:var(--muted)">该筛选下暂无项目，换个品类试试。</div>`;
+
+  $("#indieDate").textContent=`${d.date||""} ${stamp(d.generatedAt)}`;
+  const errs=(d.errors||[]).length;
+  $("#indieSource").innerHTML=`来源：<a href="${esc(d.repo||"https://github.com/1c7/chinese-independent-developer")}" target="_blank" rel="noopener">1c7/chinese-independent-developer</a> · 共 ${stats.total||0} 条${errs?`<span style="color:var(--warn)">（抓取异常：${errs}）</span>`:"✅"} · 当前显示 ${shown.length} 条${view.length>shown.length?`（还有 ${view.length-shown.length} 条）`:""} · 清单由开发者自行提交，<b>不代表推荐</b>，点开自己判断`;
+}
+window.setIndieCat=function(k){state.indieCat=k;renderIndie()};
+window.setIndiePay=function(k){state.indiePay=k;renderIndie()};
+
 async function loadLearn(){
   try{
     const res=await fetch("data/daily-learn.json?t="+Date.now(),{cache:"no-store"});
@@ -2211,6 +2379,7 @@ loadUpdates();
 loadScout();
 loadHustles();
 loadLearn();
+loadIndie();
 </script>
 </body>
 </html>
