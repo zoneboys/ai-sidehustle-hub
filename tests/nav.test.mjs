@@ -85,16 +85,18 @@ test("宽屏放得下就收成单行——两行里第一行只剩 logo 和按�
 });
 
 test("吸顶元素要给 header 让位，否则整条钻进 header 底下看不见", () => {
+  // 详细的「全站吸顶审计」在 tests/layout.test.mjs；这里只钉住与导航直接相关的两处：
+  // 7 天清单要按头部高度让位、锚点滚动要避开它。
   assert.match(style, /:root\{[\s\S]*?--header-h:102px/, "根上要有 --header-h 基线，取两行形态的值");
   assert.match(
     style,
-    /html\{[^}]*scroll-padding-top:calc\(var\(--header-h\)/,
+    /html\{[^}]*scroll-padding-top:var\(--sticky-top\)/,
     "锚点滚动要避开吸顶的 header，否则跳过去的标题正好落在它下面",
   );
   const pb = style.match(/\.plan-bar\{[^}]*\}/);
   assert.ok(pb, "找不到 .plan-bar（7 天清单）");
   assert.ok(!/top:0[;}]/.test(pb[0]), "7 天清单写死 top:0，吸顶后会整条藏到 header 后面");
-  assert.match(pb[0], /top:calc\(var\(--header-h\)/, "7 天清单要按 --header-h 让位");
+  assert.match(pb[0], /top:var\(--sticky-top\)/, "7 天清单要按头部高度让位");
 });
 
 test("抽屉展开时锁住背景滚动", () => {

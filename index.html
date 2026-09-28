@@ -23,12 +23,18 @@
     --primary:#4f46e5; --primary2:#7c3aed; --accent:#0ea5e9; --ok:#10b981; --warn:#f59e0b; --hot:#ef4444;
     --border:#e5e7eb; --shadow:0 1px 3px rgba(16,24,40,.06),0 8px 24px -12px rgba(16,24,40,.12);
     --radius:14px;
-    /* 头部高度。凡是 sticky 到顶部的元素（7 天清单、锚点滚动）都得拿它让位，
-       否则会整条钻进 header 底下看不见。
-       基线取 102px（两行形态）而不是 64px：这样 1024~1373px 之间即使遇到亚像素
-       断点缝隙，落到基线也仍然是对的；宽屏再由 @media 显式改回 64px。
+    /* ===== 吸顶让位：全站唯一真相源 =====
+       1) --header-h：吸顶 header 的高度。断点改变头部形态时，只需要改这一个值。
+       2) --sticky-top：派生量 = 头部高度 + 间隙。任何要吸顶到顶部的元素
+          （7 天清单、未来的筛选条…）一律 top:var(--sticky-top)，不要自己再写一遍
+          calc(var(--header-h) + Npx)——复制两份的真正代价是：日后改间隙要改两处，
+          漏一处就会出现「一个吸顶、一个被盖」。
+       --header-h 基线取 102px（两行形态）而不是 64px：这样 1024~1373px 之间即使
+       遇到亚像素断点缝隙，落到基线也仍然是对的；宽屏再由 @media 显式改回 64px。
        不用 ResizeObserver 测量：行内 style 一旦写入就会永久盖掉媒体查询。 */
     --header-h:102px;
+    --sticky-gap:8px;
+    --sticky-top:calc(var(--header-h) + var(--sticky-gap));
   }
   [data-theme="dark"]{
     --bg:#0b1020; --bg2:#11172b; --card:#151c33; --text:#e7eaf3; --muted:#94a3b8;
@@ -36,8 +42,9 @@
     --border:#24304f; --shadow:0 1px 3px rgba(0,0,0,.4),0 10px 30px -12px rgba(0,0,0,.6);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  /* 头部是吸顶的，锚点滚动必须给它让位，否则跳过去的标题正好落在 header 底下 */
-  html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 8px)}
+  /* 头部是吸顶的，锚点滚动必须给它让位，否则跳过去的标题正好落在 header 底下。
+     复用 --sticky-top，和吸顶元素对齐到同一个间隙。 */
+  html{scroll-behavior:smooth;scroll-padding-top:var(--sticky-top)}
   body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
   a{color:inherit;text-decoration:none}
   img{max-width:100%}
@@ -301,9 +308,13 @@
   .pb-tool .u{color:var(--muted);font-weight:400}
   .pb-income{margin-top:10px;font-size:.82rem;background:color-mix(in srgb,var(--ok) 8%,var(--card));border-left:3px solid var(--ok);padding:8px 11px;border-radius:0 8px 8px 0;line-height:1.6}
 
+  /* 通用吸顶工具类：以后新增任何吸顶内容，直接 class="sticky-under" 即可，
+     自动躲开吸顶的 header；需要不同间隙时加内联 --sticky-gap:Npx 覆盖。
+     裸写 position:sticky 会被 tests/layout.test.mjs 拦下。 */
+  .sticky-under{position:sticky;top:var(--sticky-top);z-index:5}
+
   /* 7 天清单 */
-  /* top 必须是 var(--header-h)+8px：之前写死 top:0，吸顶后会整条藏到 header 后面去 */
-  .plan-bar{position:sticky;top:calc(var(--header-h) + 8px);z-index:5;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .plan-bar{position:sticky;top:var(--sticky-top);z-index:5;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .plan-track{flex:1;min-width:130px;height:9px;border-radius:20px;background:color-mix(in srgb,var(--muted) 18%,transparent);overflow:hidden}
   .plan-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--primary),var(--ok));transition:width .35s}
   .plan-day{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
