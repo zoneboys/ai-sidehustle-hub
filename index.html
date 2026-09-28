@@ -23,6 +23,12 @@
     --primary:#4f46e5; --primary2:#7c3aed; --accent:#0ea5e9; --ok:#10b981; --warn:#f59e0b; --hot:#ef4444;
     --border:#e5e7eb; --shadow:0 1px 3px rgba(16,24,40,.06),0 8px 24px -12px rgba(16,24,40,.12);
     --radius:14px;
+    /* 头部高度。凡是 sticky 到顶部的元素（7 天清单、锚点滚动）都得拿它让位，
+       否则会整条钻进 header 底下看不见。
+       基线取 102px（两行形态）而不是 64px：这样 1024~1373px 之间即使遇到亚像素
+       断点缝隙，落到基线也仍然是对的；宽屏再由 @media 显式改回 64px。
+       不用 ResizeObserver 测量：行内 style 一旦写入就会永久盖掉媒体查询。 */
+    --header-h:102px;
   }
   [data-theme="dark"]{
     --bg:#0b1020; --bg2:#11172b; --card:#151c33; --text:#e7eaf3; --muted:#94a3b8;
@@ -30,7 +36,8 @@
     --border:#24304f; --shadow:0 1px 3px rgba(0,0,0,.4),0 10px 30px -12px rgba(0,0,0,.6);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  /* 头部是吸顶的，锚点滚动必须给它让位，否则跳过去的标题正好落在 header 底下 */
+  html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 8px)}
   body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
   a{color:inherit;text-decoration:none}
   img{max-width:100%}
@@ -43,7 +50,8 @@
   /* 栏目变多后不再横向滚动（会静默截断）：桌面让标签自动换行到第二行，整行可见 */
   .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;white-space:nowrap}
   .logo .icon{font-size:1.5rem}
-  .logo b{background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}  nav.tabs{display:flex;flex-wrap:wrap;gap:4px;flex:1 0 100%;justify-content:flex-start;order:2;scroll-margin-top:0}
+  .logo b{background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:4px;flex:1 0 100%;justify-content:flex-start;order:2}
   .tab{padding:8px 11px;border-radius:10px;cursor:pointer;font-size:.92rem;color:var(--muted);border:none;background:transparent;white-space:nowrap;transition:.2s}
   .tab:hover{color:var(--text);background:color-mix(in srgb,var(--primary) 10%,transparent)}
   .tab.active{color:#fff;background:linear-gradient(120deg,var(--primary),var(--primary2));font-weight:600}
@@ -294,7 +302,8 @@
   .pb-income{margin-top:10px;font-size:.82rem;background:color-mix(in srgb,var(--ok) 8%,var(--card));border-left:3px solid var(--ok);padding:8px 11px;border-radius:0 8px 8px 0;line-height:1.6}
 
   /* 7 天清单 */
-  .plan-bar{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  /* top 必须是 var(--header-h)+8px：之前写死 top:0，吸顶后会整条藏到 header 后面去 */
+  .plan-bar{position:sticky;top:calc(var(--header-h) + 8px);z-index:5;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .plan-track{flex:1;min-width:130px;height:9px;border-radius:20px;background:color-mix(in srgb,var(--muted) 18%,transparent);overflow:hidden}
   .plan-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--primary),var(--ok));transition:width .35s}
   .plan-day{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
@@ -379,7 +388,23 @@
     .ef-row{grid-template-columns:1fr}
     .pb-step{grid-template-columns:1fr;gap:3px}
     .pb-when{padding-bottom:0}
-  }  /* ===== 窄屏：导航收进 ☰ 抽屉 =====
+  }
+
+  /* ===== 宽屏（≥1374px）：一行放得下就收成单行 =====
+
+     两行布局里第一行只剩 logo + 三个按钮，中间约 890px 全空，头部还比单行高 38px。
+     1374px 是实测临界：容器放宽到 1400px 后，一行需要 1267px（logo 160 + 标签 934 +
+     按钮 149 + 间隙 24），留约 67px 余量。这里只覆盖 flex-basis，不动 .nav 的
+     flex-wrap:wrap——万一用户放大字号，标签会自己折成第二行，而不是横向溢出。 */
+  @media(min-width:1374px){
+    :root{--header-h:64px}
+    .container{max-width:1400px}
+    .nav{gap:12px}
+    nav.tabs{flex:1 1 auto;order:0;justify-content:center;min-width:0;gap:3px}
+    .tab{padding:8px 9px}
+  }
+
+  /* ===== 窄屏：导航收进 ☰ 抽屉 =====
 
      10 个栏目标签在手机上无论如何都放不下，硬塞只会剩 97px 可用宽度。
 
@@ -388,6 +413,10 @@
      选中态因此永远不会和桌面行不同步。 */
 
   @media(max-width:1023px){
+
+    :root{--header-h:57px}
+
+    body.nav-open{overflow:hidden}   /* 抽屉开着时锁住背景，避免手指滑动误触到下面的内容 */
 
     .nav{flex-wrap:nowrap;min-height:56px;padding:8px 0}
 
@@ -1423,16 +1452,35 @@ function renderAll(){
 
   document.body.classList.remove("nav-open");
 
-  const b=$("#navBurger");if(b){b.textContent="☰";b.setAttribute("aria-expanded","false")}
+  /* 焦点交还给触发它的 ☰（ARIA menu button 约定）。
+     但只在焦点本来会随抽屉一起消失时才交还：如果用户点的是搜索框这类
+     可交互元素（点外面会收起抽屉），把焦点抢回 ☰ 会让他根本打不了字。
+     从桌面 tab 切视图时 closeNav 会提前 return false，不会碰到隐藏的 ☰。 */
+  const b=$("#navBurger");
+  if(b){
+    b.textContent="☰";b.setAttribute("aria-expanded","false");
+    const ae=document.activeElement;
+    const orphan=!ae||ae===document.body||(ae.closest&&ae.closest("#tabs"));
+    if(orphan&&b.focus)b.focus({preventScroll:true})
+  }
 
-  return true}
+  return true
+}
 
 function openNav(){
+
+  /* 桌面形态没有抽屉。若之前在窄屏开过、现在已拉宽（resize/change 事件不一定送达），
+     先把残留的 class 清掉，否则拉回窄屏时第一次点 ☰ 只会把「已关的」抽屉再关一次。 */
+  if(typeof wideScreen!=="undefined"&&wideScreen.matches){
+    document.body.classList.remove("nav-open");return false
+  }
 
   document.body.classList.add("nav-open");
 
   const b=$("#navBurger");if(b){b.textContent="✕";b.setAttribute("aria-expanded","true")}
 
+  /* 焦点进抽屉第一项，否则 Tab 键会继续往下跑到被遮挡的内容上 */
+  const first=document.querySelector("nav.tabs .tab");if(first&&first.focus)first.focus({preventScroll:true})
 }
 
 function toggleNav(){document.body.classList.contains("nav-open")?closeNav():openNav()}
@@ -1463,10 +1511,17 @@ $("#tabs").addEventListener("click",e=>{const t=e.target.closest(".tab");if(t)sw
 $("#navBurger").addEventListener("click",toggleNav);
 
 /* 点抽屉外/点搜索框都收起；窗口拉宽到桌面断点时也强制收起，避免状态残留 */
+const wideScreen=matchMedia("(min-width:1024px)");
 
 document.addEventListener("click",e=>{if(document.body.classList.contains("nav-open")&&!e.target.closest("#tabs")&&!e.target.closest("#navBurger"))closeNav()});
 
-window.addEventListener("resize",()=>{if(innerWidth>1023)closeNav()});
+/* 拉宽到桌面断点时强制收起抽屉。用 matchMedia 而不是 innerWidth>1023：
+   两者在亚像素宽度上判定不一致，会出现「CSS 已经变两行、抽屉还盖着」的残留。
+   同一个 matchMedia 还保证数字只写一遍，CSS 与 JS 不会各执一个阈值。
+   change 只在跨过断点时触发，resize 作为兼底（有些环境不派发 change）。 */
+const collapseOnWide=()=>{if(wideScreen.matches)closeNav()};
+wideScreen.addEventListener("change",collapseOnWide);
+window.addEventListener("resize",collapseOnWide);
 $("#search").addEventListener("input",e=>{state.query=e.target.value;renderAll()});
 document.addEventListener("keydown",e=>{
   if(e.key==="/"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();$("#search").focus()}
