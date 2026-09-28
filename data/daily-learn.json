@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-27T23:45:52.059Z",
-  "date": "2026-09-27",
+  "generatedAt": "2026-09-28T04:24:33.849Z",
+  "date": "2026-09-28",
   "tracks": {
     "code": {
       "name": "编程",
@@ -27,10 +27,10 @@
     "code": 12,
     "ai": 12,
     "k12": 12,
-    "lang": 16,
+    "lang": 24,
     "cn": 12
   },
-  "total": 64,
+  "total": 72,
   "items": [
     {
       "title": "How to Use Jev: A practical guide to TypeSafe's System One model",
@@ -45,7 +45,7 @@
     {
       "title": "黑马程序员 python零基础 全套教程，8天 python 从 入门 到精通，学 python 看这套就够了",
       "url": "https://www.bilibili.com/video/BV1qW4y1a7fU",
-      "desc": "黑马程序员 · 25628949 播放 · 时长 1900:20",
+      "desc": "黑马程序员 · 25631491 播放 · 时长 1900:20",
       "source": "哔哩哔哩",
       "author": "黑马程序员",
       "track": "code",
@@ -55,7 +55,7 @@
     {
       "title": "【全748集】目前B站最全最细的 Python零基础 全套教程，2026最新版，包含所有干货！七天就能从小白到大神！少走99%的弯路！存下吧！很难找全的！",
       "url": "https://www.bilibili.com/video/BV1rpWjevEip",
-      "desc": "Python官方课程 · 20289115 播放 · 时长 2398:14",
+      "desc": "Python官方课程 · 20295822 播放 · 时长 2398:14",
       "source": "哔哩哔哩",
       "author": "Python官方课程",
       "track": "code",
@@ -65,7 +65,7 @@
     {
       "title": "黑马程序员pink老师 前端 入门 教程 ，零基础必看的h5(html5)+css3+移动端 前端 视频 教程",
       "url": "https://www.bilibili.com/video/BV14J4114768",
-      "desc": "黑马pink讲前端 · 20053776 播放 · 时长 3464:30",
+      "desc": "黑马pink讲前端 · 20053940 播放 · 时长 3464:30",
       "source": "哔哩哔哩",
       "author": "黑马pink讲前端",
       "track": "code",
@@ -123,7 +123,7 @@
     {
       "title": "3小时超快速 入门Python | 动画教学【2026新版】【自学 Python 教程】【 零基础Python 】【计算机二级 Python 】【 Python 期末速成】",
       "url": "https://www.bilibili.com/video/BV1Jgf6YvE8e",
-      "desc": "林粒粒呀 · 8112818 播放 · 时长 197:23",
+      "desc": "林粒粒呀 · 8116199 播放 · 时长 197:23",
       "source": "哔哩哔哩",
       "author": "林粒粒呀",
       "track": "code",
@@ -133,7 +133,7 @@
     {
       "title": "【股票 入门 课程】新手小白炒股 入门基础 知识讲解",
       "url": "https://www.bilibili.com/video/BV1EuxTe3EB6",
-      "desc": "海螺复盘 · 8701047 播放 · 时长 73:18",
+      "desc": "海螺复盘 · 8702384 播放 · 时长 73:18",
       "source": "哔哩哔哩",
       "author": "海螺复盘",
       "track": "code",
@@ -150,39 +150,30 @@
       "score": 6
     },
     {
-      "title": "RAPID: Robot Agentic Programming from Demonstrations",
-      "url": "https://arxiv.org/abs/2609.30249v1",
-      "desc": "Coding agents have demonstrated enormous success in solving complex programming problems. To leverage their potential for robot systems, this work int…",
+      "title": "Learning to Stop without Learning to Stop: Self-Supervised Confidence Training Improves Reasoning Efficiency",
+      "url": "https://arxiv.org/abs/2609.31619v1",
+      "desc": "Reasoning models often generate very long reasoning traces, making inference computationally expensive. Existing approaches typically improve efficien…",
       "source": "arXiv cs.AI",
       "track": "ai",
-      "date": "2026-09-24",
+      "date": "2026-09-25",
       "score": 9.2
     },
     {
-      "title": "Coding Agents for Generalized Task and Motion Planning Problems",
-      "url": "https://arxiv.org/abs/2609.30233v1",
-      "desc": "Task and motion planning (TAMP) problems remain difficult even with full observability and object-centric states because discrete decisions are tightl…",
+      "title": "DeepEdu-v1: Efficient and Scalable Agentic LLMs for Vietnamese Education",
+      "url": "https://arxiv.org/abs/2609.31568v1",
+      "desc": "AI tutoring could markedly improve learning outcomes for students in developing regions such as Vietnam, yet the two obvious paths both fall short. Cl…",
       "source": "arXiv cs.AI",
       "track": "ai",
-      "date": "2026-09-24",
+      "date": "2026-09-25",
       "score": 9.2
     },
     {
-      "title": "Agentic Detection of Online Conspiracies",
-      "url": "https://arxiv.org/abs/2609.30250v1",
-      "desc": "Conspiratorial discourse on social media is not always expressed through explicit claims or stable lexical markers. The same surface content may expre…",
+      "title": "New LoRA Skills Should Read but Never Write",
+      "url": "https://arxiv.org/abs/2609.31600v1",
+      "desc": "Low-rank adapters (LoRA) make it cheap to fine-tune a large language model once per task, but combining several independently trained adapters into on…",
       "source": "arXiv cs.LG",
       "track": "ai",
-      "date": "2026-09-24",
-      "score": 9.2
-    },
-    {
-      "title": "SemMSA: Latent Semantic-Aided Robust Multimodal Sentiment Analysis with Incomplete Data",
-      "url": "https://arxiv.org/abs/2609.30238v1",
-      "desc": "Recent research on Multimodal Sentiment Analysis (MSA) has focused on learning from language, visual, and acoustic modalities with incomplete data to …",
-      "source": "arXiv cs.CL",
-      "track": "ai",
-      "date": "2026-09-24",
+      "date": "2026-09-25",
       "score": 9.2
     },
     {
@@ -226,45 +217,57 @@
       "score": 8.5
     },
     {
-      "title": "LLM Agents Can Easily Tamper With Their Own Traces",
-      "url": "https://arxiv.org/abs/2609.30266v1",
-      "desc": "Asynchronous monitoring, incident investigations, and compliance audits primarily rely on agent traces to reconstruct what happened. These analyses as…",
+      "title": "Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer",
+      "url": "https://arxiv.org/abs/2609.31587v1",
+      "desc": "We investigate whether natural-language documentation helps coding agents resolve software issues, and we build the tools to construct and evaluate it…",
       "source": "arXiv cs.AI",
       "track": "ai",
-      "date": "2026-09-24",
+      "date": "2026-09-25",
       "score": 8.2
     },
     {
-      "title": "AD-WM: Action-Discriminative World Models for Counterfactual Model Predictive Control",
-      "url": "https://arxiv.org/abs/2609.30264v1",
-      "desc": "Latent world models are typically trained to predict factual transitions, whereas model predictive control (MPC) must compare alternative actions from…",
-      "source": "arXiv cs.AI",
+      "title": "Strategically Diverse Sampling for Self-Training",
+      "url": "https://arxiv.org/abs/2609.31571v1",
+      "desc": "Many LLM training and inference methods, including RL and test-time scaling, depend on repeated sampling, but benefit only when the responses meaningf…",
+      "source": "arXiv cs.CL",
       "track": "ai",
-      "date": "2026-09-24",
+      "date": "2026-09-25",
       "score": 8.2
     },
     {
-      "title": "To Trust or Not to Trust: Retrieval-Augmented Fact Checking in Speech",
-      "url": "https://arxiv.org/abs/2609.30227v1",
-      "desc": "Online misinformation increasingly appears in spoken formats such as news clips, podcasts, interviews, political speeches, and social media videos, cr…",
-      "source": "arXiv cs.AI",
+      "title": "Serving Gemma 4 on an AMD MI300X: What $1.99 an Hour Buys",
+      "url": "https://dev.to/gde/serving-gemma-4-on-an-amd-mi300x-what-199-an-hour-buys-52h9",
+      "desc": "A step by step deployment of Gemma 4 E2B to a single AMD Instinct MI300X on AMD Developer Cloud, driven by Python MCP tools, and t…",
+      "source": "dev.to",
+      "author": "xbill",
       "track": "ai",
-      "date": "2026-09-24",
-      "score": 8.2
+      "date": "2026-09-17",
+      "score": 7.5
     },
     {
-      "title": "PoEM: Predicting RL Outcomes from Existing Policies",
-      "url": "https://arxiv.org/abs/2609.30226v1",
-      "desc": "Foundation models are post-trained with reinforcement learning (RL) to maximize specific rewards, such as human alignment, correctness, or instruction…",
-      "source": "arXiv cs.LG",
+      "title": "From AI Solutions to Shared Knowledge: Building an MCP for the Community",
+      "url": "https://dev.to/pascal_cescato_692b7a8a20/from-ai-solutions-to-shared-knowledge-building-an-mcp-for-the-community-6bk",
+      "desc": "This is a submission for the Weekend Challenge: Generosity Edition Don't Just Ask AI. Give the...",
+      "source": "dev.to",
+      "author": "Pascal CESCATO",
       "track": "ai",
-      "date": "2026-09-24",
-      "score": 8.2
+      "date": "2026-09-07",
+      "score": 7.5
+    },
+    {
+      "title": "Forensic Receipts: From Trusted to Proven",
+      "url": "https://dev.to/kenwalger/forensic-receipts-from-trusted-to-proven-5cj0",
+      "desc": "Part 6 of the Building the AI Memory Stack series At the end of the last article, I left one...",
+      "source": "dev.to",
+      "author": "Ken W Alger",
+      "track": "ai",
+      "date": "2026-09-03",
+      "score": 7.5
     },
     {
       "title": "英语 语法 精讲合集 (全面, 通俗, 有趣 | 从零打造 系统语法 体系)",
       "url": "https://www.bilibili.com/video/BV1XY411J7aG",
-      "desc": "英语兔 · 45868353 播放 · 时长 531:49",
+      "desc": "英语兔 · 45871306 播放 · 时长 531:49",
       "source": "哔哩哔哩",
       "author": "英语兔",
       "track": "k12",
@@ -274,7 +277,7 @@
     {
       "title": "八年级 （上）物理（人教版）看这个合集就够了 初中物理 八年级 物理 八上物理 初二物理 单位换算 参照物 速度计算 光学 凸透镜 密度 质量",
       "url": "https://www.bilibili.com/video/BV1qu411b7EY",
-      "desc": "于总CEO · 27315530 播放 · 时长 4090:42",
+      "desc": "于总CEO · 27317001 播放 · 时长 4090:42",
       "source": "哔哩哔哩",
       "author": "于总CEO",
       "track": "k12",
@@ -284,7 +287,7 @@
     {
       "title": "八年级 （下）物理（人教版）看这个合集就够了 初中物理 八年级 物理 八下物理 力学 受力分析 摩擦力 浮力 压强 杠杆 滑轮 功 功率",
       "url": "https://www.bilibili.com/video/BV1u5411q7c3",
-      "desc": "于总CEO · 19579975 播放 · 时长 5261:43",
+      "desc": "于总CEO · 19580338 播放 · 时长 5261:43",
       "source": "哔哩哔哩",
       "author": "于总CEO",
       "track": "k12",
@@ -294,7 +297,7 @@
     {
       "title": "一个视频说清整个英语 语法 体系(重塑你的 语法 认知框架)",
       "url": "https://www.bilibili.com/video/BV1r54y1m7gd",
-      "desc": "英语兔 · 14577569 播放 · 时长 27:7",
+      "desc": "英语兔 · 14578377 播放 · 时长 27:7",
       "source": "哔哩哔哩",
       "author": "英语兔",
       "track": "k12",
@@ -304,7 +307,7 @@
     {
       "title": "初中数学 【 二次函数 】从零基础到中考压轴难度合集！|通俗易懂|奥赛保送生主讲",
       "url": "https://www.bilibili.com/video/BV1t54y1173m",
-      "desc": "一数 · 9489586 播放 · 时长 299:19",
+      "desc": "一数 · 9489852 播放 · 时长 299:19",
       "source": "哔哩哔哩",
       "author": "一数",
       "track": "k12",
@@ -314,7 +317,7 @@
     {
       "title": "【初中英语】 语法 精讲｜一本书搞定初中三年 语法",
       "url": "https://www.bilibili.com/video/BV1UEFNz1EfS",
-      "desc": "英语老师晓艳 · 2747395 播放 · 时长 231:22",
+      "desc": "英语老师晓艳 · 2748204 播放 · 时长 231:22",
       "source": "哔哩哔哩",
       "author": "英语老师晓艳",
       "track": "k12",
@@ -324,7 +327,7 @@
     {
       "title": "【 高中英语 】【刘晓艳】 高中英语语法 精讲（2026年新版）",
       "url": "https://www.bilibili.com/video/BV1Q6TQ6HEFk",
-      "desc": "晓艳英语四级 · 1912598 播放 · 时长 1539:53",
+      "desc": "晓艳英语四级 · 1914359 播放 · 时长 1539:53",
       "source": "哔哩哔哩",
       "author": "晓艳英语四级",
       "track": "k12",
@@ -334,7 +337,7 @@
     {
       "title": "【中考上分计划】爆肝制作！110分钟 初中数学二次函数 所有考点 精讲 ，查缺补漏，绝杀中考！",
       "url": "https://www.bilibili.com/video/BV1suLZz4Exq",
-      "desc": "亮亮巧解初中数学 · 1664939 播放 · 时长 112:42",
+      "desc": "亮亮巧解初中数学 · 1665212 播放 · 时长 112:42",
       "source": "哔哩哔哩",
       "author": "亮亮巧解初中数学",
       "track": "k12",
@@ -344,7 +347,7 @@
     {
       "title": "二次函数 【零基础】速通",
       "url": "https://www.bilibili.com/video/BV1iNH9eREGN",
-      "desc": "一个不刘神- · 855009 播放 · 时长 25:53",
+      "desc": "一个不刘神- · 855118 播放 · 时长 25:53",
       "source": "哔哩哔哩",
       "author": "一个不刘神-",
       "track": "k12",
@@ -354,7 +357,7 @@
     {
       "title": "10节课搞定 小学 作文，得 语文 者得天下",
       "url": "https://www.bilibili.com/video/BV15t4y1a7LQ",
-      "desc": "二宝的知识能量库 · 742333 播放 · 时长 306:18",
+      "desc": "二宝的知识能量库 · 742352 播放 · 时长 306:18",
       "source": "哔哩哔哩",
       "author": "二宝的知识能量库",
       "track": "k12",
@@ -363,8 +366,8 @@
     },
     {
       "title": "【限时5折】英语全能 语法系统 课",
-      "url": "https://www.bilibili.com/cheese/play/ss1447?query_from=0&search_id=17469051026465345590&search_query=%E9%AB%98%E4%B8%AD%E8%8B%B1%E8%AF%AD+%E8%AF%AD%E6%B3%95+%E7%B3%BB%E7%BB%9F",
-      "desc": "韩健老师教英语 · 481574 播放 · 时长 -",
+      "url": "https://www.bilibili.com/cheese/play/ss1447?query_from=0&search_id=18296194560208971923&search_query=%E9%AB%98%E4%B8%AD%E8%8B%B1%E8%AF%AD+%E8%AF%AD%E6%B3%95+%E7%B3%BB%E7%BB%9F",
+      "desc": "韩健老师教英语 · 481590 播放 · 时长 -",
       "source": "哔哩哔哩",
       "author": "韩健老师教英语",
       "track": "k12",
@@ -374,7 +377,7 @@
     {
       "title": "暑假预习【初二物理·上册】预习必备 B站最好的 八年级 上册物理 同步 全集 2026新版人教A版 涵盖 八年级 物理所有知识点 附送配套讲义！！",
       "url": "https://www.bilibili.com/video/BV16BKh6uEVT",
-      "desc": "智慧学神不智慧 · 402681 播放 · 时长 286:0",
+      "desc": "智慧学神不智慧 · 402816 播放 · 时长 286:0",
       "source": "哔哩哔哩",
       "author": "智慧学神不智慧",
       "track": "k12",
@@ -462,6 +465,96 @@
       "meta": "共 24 集 / 180 个场景"
     },
     {
+      "title": "课文练习 · 静夜思",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": "李白 · 24 字 · 难度 intermediate · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · The morning",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": " · 294 字 · 难度 beginner · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · 清晨",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": " · 56 字 · 难度 beginner · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · Leonardo da Vinci",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": "Leonardo da Vinci · 42 字 · 难度 beginner · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · Go: bounded concurrency",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": " · 371 字 · 难度 advanced · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · Go: gin handler",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": " · 286 字 · 难度 intermediate · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · Steve Jobs",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": "Steve Jobs · 53 字 · 难度 beginner · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · 习惯",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": " · 74 字 · 难度 beginner · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · Small habits",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": " · 288 字 · 难度 beginner · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
+      "title": "课文练习 · 登鹳雀楼",
+      "url": "https://taptapgo.yldm.ai/app/",
+      "desc": "王之涣 · 24 字 · 难度 intermediate · 边打字边背课文",
+      "source": "TapTapGo 课文库",
+      "track": "lang",
+      "date": "",
+      "score": 7.2
+    },
+    {
       "title": "基准键位（7 单元）",
       "url": "https://taptapgo.yldm.ai/app/",
       "desc": "八个手指静止时所在的键。之后所有的动作都以这里为原点，所以这门课值得比它看起来更多的重复。",
@@ -516,22 +609,13 @@
       "score": 7
     },
     {
-      "title": "手指专项（8 单元）",
-      "url": "https://taptapgo.yldm.ai/app/",
-      "desc": "按手指的专项练习，由物理手指映射生成而不是凭手感挑选。当弱键报告指出的是某根手指而不是某个字母时（多数情况如此），就练这一门。",
-      "source": "TapTapGo 指尖冒险",
-      "track": "lang",
-      "date": "",
-      "score": 7
-    },
-    {
-      "title": "速度提升（6 单元）",
-      "url": "https://taptapgo.yldm.ai/app/",
-      "desc": "没有新键。这一门讲的是把正确的动作变成快的动作——那和记住键位是两种能力，必须分开练。",
-      "source": "TapTapGo 指尖冒险",
-      "track": "lang",
-      "date": "",
-      "score": 7
+      "title": "8点1氪丨苹果确认iPhone 18 Pro存在严重系统漏洞；甲骨文爆雷，市值蒸发近1500亿；特斯拉中国又宣布降价",
+      "url": "https://36kr.com/p/4002308115517316?f=rss",
+      "desc": "今日热点导览 接连发生失控事件，OpenAI再次暂停其最先进模型训练 中国移动、中国电信、中国联通，集中叫停“0元购机” 罗永浩回应“劣质溜溜凳”事件：东方甄选平台也卖了将近1000万 扎克伯格成全球第四富豪 特斯拉Semi电动卡车开启量产交付 TOP3大新闻…",
+      "source": "36氪",
+      "track": "cn",
+      "date": "2026-09-28",
+      "score": 10
     },
     {
       "title": "从模型上手机到让智能体落地，高通的AI时代新故事｜焦点分析",
@@ -540,7 +624,7 @@
       "source": "36氪",
       "track": "cn",
       "date": "2026-09-26",
-      "score": 10
+      "score": 9.2
     },
     {
       "title": "模型之外，游戏+AI的下一道门槛在哪里？",
@@ -561,22 +645,13 @@
       "score": 9.2
     },
     {
-      "title": "AI新材料公司获数千万天使轮融资，已合作固态电池与化工龙头丨36氪首发",
-      "url": "https://36kr.com/p/3996737880559493?f=rss",
-      "desc": "图源/企业 本文约 3700 字，建议阅读 8 分钟 作者丨欧雪 编辑丨袁斯来 硬氪获悉，AI for Materials公司——索格智算（上海）科技有限公司【以下简称“索格智算”】近期已完成数千万元天使轮融资。本轮由复星创富领投，南通产控思源人工智能先导基金…",
+      "title": "九合、险峰投了家消费级外骨骼，《流浪地球》用过，营收破亿｜产品观察",
+      "url": "https://36kr.com/p/4001317788995717?f=rss",
+      "desc": "作者｜黄楠 编辑｜袁斯来 冰雪覆盖的末日地表，救援队队员身披布满管线的机械外骨骼，在冰天雪地之中徒步运送火石，借结构助力扛起重型武器、拖拽坠落同伴，最后合力推动行星发动机的撞针完成救援任务。 这是电影《流浪地球》中，留给大众关于外骨骼最深刻的想象。 而对于傲鲨…",
       "source": "36氪",
       "track": "cn",
-      "date": "2026-09-24",
-      "score": 9.2
-    },
-    {
-      "title": "8点1氪丨苹果出手限制“摇一摇”广告；王慧文称想组局买下西贝：喜欢这个品牌；Meta测试真人代Muse拨打电话，引发内部隐私争议",
-      "url": "https://36kr.com/p/3996646362747015?f=rss",
-      "desc": "今日热点导览 微软、亚马逊、Adobe等集体降价挽留企业客户 消息称豆包开始收缩对话团队 闲鱼：“涉未成年人淫秽”系不实消息 未来四年“双一流”高校本科招生数还将扩容7.6万人 王兴兴再登《财富》40岁以下商界精英榜，张雪、姚顺雨等首次入选 TOP3大新闻 苹…",
-      "source": "36氪",
-      "track": "cn",
-      "date": "2026-09-24",
-      "score": 9.2
+      "date": "2026-09-28",
+      "score": 9
     },
     {
       "title": "宜家 Matter 智能家居终于要来了？在中国市场它将如何破局",
@@ -588,13 +663,22 @@
       "score": 9
     },
     {
-      "title": "古董电脑室十周年记：为什么我不再是收藏家（上）",
-      "url": "https://sspai.com/post/114395",
-      "desc": "站在十年的时间节点回望，2016 年知乎专栏「古董电脑室」的起点，其实并非一个怀旧的「博物馆」，而是一个试图在商业上寻找切口的「最小可行产品」（MVP）。然而，这场始于「市场验证」的创业实验，在随后的十年里，撞上了中国独特的社群生态与商业现实，最终将我推向了一…",
+      "title": "摸鱼+3 | 还剩三天班，一天一个解谜游戏",
+      "url": "https://sspai.com/post/114967",
+      "desc": "节后再说！<a href=&#34;https://sspai.com/post/114967&#34; target=&#34;_blank&#34;>查看全文</a>",
       "source": "少数派",
       "track": "cn",
-      "date": "2026-09-24",
-      "score": 8.2
+      "date": "2026-09-28",
+      "score": 7.5
+    },
+    {
+      "title": "派早报：OpenAI 称与苹果合作效果不佳",
+      "url": "https://sspai.com/post/115079",
+      "desc": "<p>OpenAI 称与苹果合作效果不佳</p><p>iPhone 4「天线门」媒体问答录像时隔十六年现身</p><p>F-Droid 2.0 发布</p><p>三星冰箱固件升级后罢工，影响韩国用户过中秋</p><p>Excel 单元格将支持数组</p><p>…",
+      "source": "少数派",
+      "track": "cn",
+      "date": "2026-09-27",
+      "score": 7.5
     },
     {
       "title": "本月玩什么｜鬼武者 剑之道、火焰纹章 万缕千丝、轨道双子星等",
@@ -627,15 +711,6 @@
       "title": "家庭饮品 DIY 指南（五）：特调咖啡及其他饮品",
       "url": "https://sspai.com/prime/story/home-made-beverages-5",
       "desc": "往期文章：（一）工欲善其事，必先利其器（二）常用液体物料推荐（三）常用固体物料推荐（四）奶昔、柠檬和茶系列配方这一篇的配方主要是特调咖啡和其他类饮品，特调咖啡中的咖啡液按照固定比例萃取Espresso ...<a href=&#34;https://sspai…",
-      "source": "少数派",
-      "track": "cn",
-      "date": "2026-09-24",
-      "score": 6.7
-    },
-    {
-      "title": "微软在游戏行业的早期试水：一段与梦工厂的「梦幻联动」",
-      "url": "https://sspai.com/post/113823",
-      "desc": "Matrix首页推荐Matrix是少数派的写作社区，我们主张分享真实的产品体验，有实用价值的经验与思考。我们会不定期挑选Matrix最优质的文章，展示来自用户的最真实的体验和观点。文章代表作者个人观点 ...<a href=&#34;https://sspai…",
       "source": "少数派",
       "track": "cn",
       "date": "2026-09-24",

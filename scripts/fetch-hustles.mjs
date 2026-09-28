@@ -21,6 +21,11 @@ const PREV = join(__dirname, "..", "data", "daily-hustles.json");
 const TIMEOUT_MS = 18000;
 const PER_SOURCE = 10;
 
+// 站点面向中文用户，产物里的「日期」按北京时间（UTC+8）计算。
+// 之前直接用 toISOString() 取 UTC 日期，导致北京时间 00:00-08:00 之间抓到的数据
+// 会被标成前一天，页面上看着像「数据没更新」。
+const beijingDate = (d = new Date()) => new Date(d.getTime() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+
 const errors = [];
 const UA_BROWSER =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36";
@@ -93,7 +98,7 @@ function fallback() {
   }
   return {
     generatedAt: new Date().toISOString(),
-    date: new Date().toISOString().slice(0, 10),
+    date: beijingDate(),
     items: [],
     errors: ["首次抓取失败"],
     note: "本次抓取失败，已生成空快照以保底",
@@ -249,7 +254,7 @@ async function main() {
   const now = new Date();
   const payload = {
     generatedAt: now.toISOString(),
-    date: now.toISOString().slice(0, 10),
+    date: beijingDate(now),
     total: top.length,
     items: top,
     errors,

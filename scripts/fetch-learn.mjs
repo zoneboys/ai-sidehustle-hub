@@ -14,12 +14,18 @@
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, "..", "data", "daily-learn.json");
 const PREV = join(__dirname, "..", "data", "daily-learn.json");
 const TIMEOUT_MS = 18000;
 const PER_TRACK = 12;
+
+// 站点面向中文用户，产物里的「日期」按北京时间（UTC+8）计算。
+// 之前直接用 toISOString() 取 UTC 日期，导致北京时间 00:00-08:00 之间抓到的数据
+// 会被标成前一天，页面上看着像「数据没更新」。
+const beijingDate = (d = new Date()) => new Date(d.getTime() + 8 * 3600 * 1000).toISOString().slice(0, 10);
 
 const errors = [];
 const UA_BROWSER =
@@ -70,7 +76,7 @@ function fallback() {
   if (prev && prev.items && prev.items.length) {
     return { ...prev, stale: true, note: prev.note + "（本次抓取全部失败，展示上一次成功抓取的内容）" };
   }
-  return { generatedAt: new Date().toISOString(), date: new Date().toISOString().slice(0, 10), items: [], errors: ["首次抓取失败"], note: "本次抓取失败，已生成空快照以保底" };
+  return { generatedAt: new Date().toISOString(), date: beijingDate(), items: [], errors: ["首次抓取失败"], note: "本次抓取失败，已生成空快照以保底" };
 }
 
 /* ---------- 通用小工具 ---------- */
@@ -237,15 +243,67 @@ const BILI_QUERIES = [
   { k: "大模型 应用开发 教程", track: "ai" },
 ];
 
+/* ---------- B 站 WBI 签名 ----------
+ * /x/web-interface/wbi/search/type 现在必须带 w_rid + wts，否则只会返回
+ * {"code":0,"data":{"v_voucher":"..."}} —— 既不报错也没有 result，静默变成 0 条。
+ * 算法：nav 拿 img_url + sub_url → 按固定表重排得到 mixinKey → 参数排序后拼 key 做 md5。
+ */
+const MIXIN_KEY_ENC_TAB = [
+  46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+  33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40, 61,
+  26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11, 36,
+  20, 34, 44, 52,
+];
+
+let wbiMixinKey = "";
+let biliCookie = "";
+async function ensureWbiKey() {
+  if (wbiMixinKey) return wbiMixinKey;
+  // 搜索接口除了 WBI 签名，还必须有真实 buvid3（匿名请求会被风控成 v_voucher 挑战）
+  if (!biliCookie) {
+    const spi = JSON.parse(await fetchText("https://api.bilibili.com/x/frontend/finger/spi", {
+      Referer: "https://www.bilibili.com/",
+    }));
+    if (!spi?.data?.b_3) throw new Error("spi 未返回 buvid3");
+    biliCookie = `buvid3=${spi.data.b_3}; buvid4=${spi.data.b_4 || ""}`;
+  }
+  const nav = JSON.parse(await fetchText("https://api.bilibili.com/x/web-interface/nav", {
+    Referer: "https://www.bilibili.com/",
+    Cookie: biliCookie,
+  }));
+  const imgUrl = nav?.data?.wbi_img?.img_url;
+  const subUrl = nav?.data?.wbi_img?.sub_url;
+  if (!imgUrl || !subUrl) throw new Error("nav 未返回 wbi_img");
+  const orig = imgUrl.slice(imgUrl.lastIndexOf("/") + 1, imgUrl.lastIndexOf("."))
+    + subUrl.slice(subUrl.lastIndexOf("/") + 1, subUrl.lastIndexOf("."));
+  wbiMixinKey = MIXIN_KEY_ENC_TAB.map((n) => orig[n]).join("").slice(0, 32);
+  return wbiMixinKey;
+}
+
+function wbiSign(params, mixinKey) {
+  const wts = Math.floor(Date.now() / 1000);
+  const signed = { ...params, wts };
+  const query = Object.keys(signed)
+    .sort()
+    .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(String(signed[k]).replace(/[!'()*]/g, ""))}`)
+    .join("&");
+  const w_rid = createHash("md5").update(query + mixinKey).digest("hex");
+  return `${query}&w_rid=${w_rid}`;
+}
+
 async function fromBilibili() {
   const out = [];
   for (const q of BILI_QUERIES) {
     try {
-      const url =
-        "https://api.bilibili.com/x/web-interface/wbi/search/type" +
-        `?search_type=video&keyword=${encodeURIComponent(q.k)}&page=1`;
-      const json = JSON.parse(await fetchText(url, { Referer: "https://www.bilibili.com/" }));
+      const mixinKey = await ensureWbiKey();
+      const qs = wbiSign({ search_type: "video", keyword: q.k, page: 1 }, mixinKey);
+      const json = JSON.parse(await fetchText("https://api.bilibili.com/x/web-interface/wbi/search/type?" + qs, {
+        Referer: "https://www.bilibili.com/",
+        Cookie: biliCookie,
+      }));
       const res = (json.data && json.data.result) || [];
+      // 返回 200 但没有 result = 被风控/签名失效，必须记成错误，否则赛道会静默变 0 条
+      if (!res.length) throw new Error(json?.data?.v_voucher ? "被风控（v_voucher 挑战）" : `无结果 code=${json?.code}`);
       for (const v of res.slice(0, 6)) {
         const title = strip(v.title);
         if (!title) continue;
@@ -425,7 +483,7 @@ async function main() {
   const now = new Date();
   const payload = {
     generatedAt: now.toISOString(),
-    date: now.toISOString().slice(0, 10),
+    date: beijingDate(now),
     tracks: TRACKS,
     counts: Object.fromEntries(Object.entries(byTrack).map(([k, v]) => [k, v.length])),
     total: flat.length,

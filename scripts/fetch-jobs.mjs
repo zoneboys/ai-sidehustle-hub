@@ -19,6 +19,11 @@ const OUT = join(__dirname, "..", "data", "daily-updates.json");
 const TIMEOUT_MS = 15000;
 const MAX_PER_SOURCE = 12;
 
+// 站点面向中文用户，产物里的「日期」按北京时间（UTC+8）计算。
+// 之前直接用 toISOString() 取 UTC 日期，导致北京时间 00:00-08:00 之间抓到的数据
+// 会被标成前一天，页面上看着像「数据没更新」。
+const beijingDate = (d = new Date()) => new Date(d.getTime() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+
 const errors = [];
 
 const UA_BROWSER =
@@ -182,12 +187,12 @@ async function fetchHNHiring() {
       };
     });
   if (items.length) items.unshift({
-    title: `🧵 HN「Who is hiring?」${new Date().toISOString().slice(0, 7)} 月度招聘楼已更新`,
+    title: `🧵 HN「Who is hiring?」${beijingDate().slice(0, 7)} 月度招聘楼已更新`,
     company: "news.ycombinator.com",
     location: "共 " + kids + " 条新职位",
     category: "月更",
     url: `https://news.ycombinator.com/item?id=${latest.objectID}`,
-    date: new Date().toISOString().slice(0, 10),
+    date: beijingDate(),
     source: "Hacker News",
   });
   return items;
@@ -311,7 +316,7 @@ async function main() {
   const now = new Date();
   const payload = {
     generatedAt: now.toISOString(),
-    date: now.toISOString().slice(0, 10),
+    date: beijingDate(now),
     total: jobs.length,
     jobs,
     errors,
@@ -336,7 +341,7 @@ main().catch((e) => {
       OUT,
       JSON.stringify({
         generatedAt: new Date().toISOString(),
-        date: new Date().toISOString().slice(0, 10),
+        date: beijingDate(),
         total: 0,
         jobs: [],
         errors: [String(e && e.message || e)],
