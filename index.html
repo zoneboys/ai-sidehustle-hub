@@ -166,6 +166,26 @@
 
   /* ===== 学习区 ===== */
   .learn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:16px}
+  /* ---- 版本变更流 ---- */
+  .ver-list{display:flex;flex-direction:column;gap:8px}
+  .ver-item{background:var(--card);border:1px solid var(--border);border-left-width:4px;border-radius:10px;padding:10px 13px;display:block;transition:.2s}
+  .ver-item:hover{border-color:var(--primary);transform:translateX(2px)}
+  .ver-item.lv-break{border-left-color:#e5484d}
+  .ver-item.lv-deprecate{border-left-color:#f76b15}
+  .ver-item.lv-security{border-left-color:#f5d90a}
+  .ver-item.lv-feature{border-left-color:#30a46c}
+  .ver-item.lv-perf{border-left-color:#0090ff}
+  .ver-item.lv-notice,.ver-item.lv-fix{border-left-color:var(--border)}
+  .ver-top{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:.7rem;margin-bottom:5px}
+  .ver-top .lv{font-weight:700;padding:1px 7px;border-radius:99px;background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary)}
+  .ver-top .imp{color:var(--muted)}
+  .ver-top .imp.act{color:var(--warn);font-weight:600}
+  .ver-top .ver{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--muted)}
+  .ver-top .new{background:var(--ok);color:#fff;font-weight:700;padding:1px 6px;border-radius:99px}
+  .ver-t{font-weight:700;font-size:.86rem;line-height:1.45;color:inherit;text-decoration:none;display:block}
+  .ver-item:hover .ver-t{color:var(--primary)}
+  .ver-s{font-size:.77rem;color:var(--muted);line-height:1.55;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ver-empty{font-size:.85rem;color:var(--muted);padding:8px 0}
   .learn-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:.2s;display:flex;gap:12px;align-items:flex-start}
   .learn-card:hover{transform:translateY(-3px);border-color:var(--primary)}
   .learn-card .ic{font-size:1.4rem}
@@ -662,6 +682,19 @@
         <div class="sub">远程工作文章、书籍、播客、Newsletter 与面试工具，帮你更快拿到 Offer、更稳地做副业</div>
       </div>
     </div>
+    <div class="daily" id="verBox">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>🔄 模型/工具版本变更 · 每日自动更新</h3>
+        <span class="daily-date" id="verDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn ghost small" onclick="loadVersions()">↻ 刷新</button>
+      </div>
+      <div class="sub" style="font-size:.82rem;margin:-2px 0 10px">别再看资讯了——这里只列<strong>会改变你现有做法</strong>的变更，并标出「你今天要不要动手」。</div>
+      <div class="filter-bar" id="verLevelFilters" style="margin:0 0 8px"></div>
+      <div class="ver-list" id="verList"></div>
+      <div class="daily-foot"><span id="verSource"></span></div>
+    </div>
     <div class="daily">
       <div class="daily-head">
         <span class="live-dot"></span>
@@ -1127,6 +1160,7 @@ const state = {
   updates:null, inspireSeed:0,
   hustleNews:null, hustleNewsCat:null,
   learnFeed:null, learnTrack:null, learnStage:null,
+  versions:null, verLevel:null,
   indie:null, indieCat:null, indiePay:null,
   pbCat:null, pbOpen:null, pitCat:null,
 };
@@ -1451,7 +1485,7 @@ function renderPrinciples(){
 
 function renderAll(){
   renderFilters();renderHustles();renderBoards();renderLearn();renderFavs();renderInspire();renderStats();renderDaily();renderMatch();
-  renderHustleNews();renderLearnFeed();renderIndie();
+  renderHustleNews();renderLearnFeed();renderIndie();renderVersions();
   renderPlaybooks();renderPlan();renderPits();renderShare();renderEarn();
 }
 
@@ -2023,6 +2057,68 @@ function renderIndie(){
 window.setIndieCat=function(k){state.indieCat=k;renderIndie()};
 window.setIndiePay=function(k){state.indiePay=k;renderIndie()};
 
+/* ---------- 模型/工具版本变更流（data/versions.json · scripts/fetch-versions.mjs 每日生成） ----------
+ * 定位：不是又一条 RSS。每条都判了「你今天要不要动手」，
+ * 「⚡️ 需要你动手」= 除 info 外的全部影响标签（info 的定义就是「扫一眼就行」）。 */
+const VER_ACT = ["code","security","cost","compat","capability"];
+
+function renderVersions(){
+  const box=$("#verList");if(!box)return;
+  const d=state.versions;
+  const bar=$("#verLevelFilters");
+  if(!d||!Array.isArray(d.items)){
+    box.innerHTML=`<div class="ver-empty">版本变更流暂不可用（尚未生成 data/versions.json）。</div>`;
+    bar.innerHTML="";$("#verDate").textContent="暂无数据";
+    $("#verSource").innerHTML=`运行 <code>node scripts/fetch-versions.mjs</code> 或等待 GitHub Actions 每日定时任务生成。`;
+    return;
+  }
+  const items=d.items, levels=d.levels||{}, impacts=d.impacts||{};
+  const order=Object.keys(levels).sort((a,b)=>(levels[b].rank||0)-(levels[a].rank||0));
+  const cnt=k=>items.filter(i=>i.level===k).length;
+  bar.innerHTML=`<button class="chip ${!state.verLevel?"on":""}" onclick="setVerLevel(null)">全部 ${items.length}</button>`+
+    `<button class="chip ${state.verLevel==="act"?"on":""}" onclick="setVerLevel('act')">⚡️ 需要你动手 ${items.filter(i=>VER_ACT.includes(i.impact)).length}</button>`+
+    order.map(k=>{const L=levels[k]||{};return `<button class="chip sm ${state.verLevel===k?"on":""}" onclick="setVerLevel('${k}')" ${cnt(k)?"":"disabled"}>${L.emoji||""} ${esc(L.name||k)} <span style="opacity:.6">${cnt(k)}</span></button>`}).join("");
+
+  let list=state.verLevel==="act"?items.filter(i=>VER_ACT.includes(i.impact)):state.verLevel?items.filter(i=>i.level===state.verLevel):items;
+  const shown=list.slice(0,40);
+  box.innerHTML=shown.length?shown.map(i=>{
+    const L=levels[i.level]||{};
+    const act=VER_ACT.includes(i.impact);
+    return `<a class="ver-item lv-${esc(i.level||"fix")}" href="${esc(i.url)}" target="_blank" rel="noopener">
+      <div class="ver-top">
+        ${i.isNew?`<span class="new">NEW</span>`:""}
+        <span class="lv">${L.emoji||""} ${esc(L.name||i.level||"")}</span>
+        ${i.version?`<span class="ver">v${esc(i.version)}</span>`:""}
+        <span class="imp ${act?"act":""}">${esc(impacts[i.impact]||"")}</span>
+        <span class="imp">${esc(i.source||"")} · ${esc(i.group||"")}${i.date?" · "+esc(i.date):""}</span>
+      </div>
+      <span class="ver-t">${esc(i.title)}</span>
+      ${i.summary?`<div class="ver-s">${esc(i.summary)}</div>`:""}
+    </a>`}).join(""):`<div class="ver-empty">该筛选下暂无变更。</div>`;
+  $("#verDate").textContent=`${d.date||""} ${stamp(d.generatedAt)}`;
+  const errs=(d.errors||[]).length;
+  const srcs=d.sources||[], okN=srcs.filter(s=>s.ok).length;
+  const failed=srcs.filter(s=>!s.ok).map(s=>s.name);
+  // 每源健康度要真的摆在页面上：源挂了却只写「14 个来源」，用户会以为今天没变更
+  $("#verSource").innerHTML=`来源：${srcs.length} 个官方 changelog（GitHub Releases / 官方 RSS，本次成功 ${okN} 个）· 共 ${items.length} 条（近 30 天）· 今日新增 ${d.newCount||0} 条 `+
+    (failed.length?`<span style="color:var(--warn)">· 本轮未取到：${esc(failed.join("、"))}，已沿用上次结果</span>`:`<span style="color:var(--ok,#3fb950)">· 全源正常</span>`);
+}
+function setVerLevel(k){state.verLevel=k;renderVersions();}
+window.setVerLevel=setVerLevel;window.renderVersions=renderVersions;
+
+async function loadVersions(){
+  try{
+    const res=await fetch("data/versions.json?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error(res.status);
+    const data=await res.json();
+    if(!Array.isArray(data.items))throw new Error("bad data");
+    state.versions=data;
+    toast("🔄 版本变更已刷新");
+  }catch(e){state.versions=null}
+  renderVersions();
+}
+window.loadVersions=loadVersions;
+
 async function loadLearn(){
   try{
     const res=await fetch("data/daily-learn.json?t="+Date.now(),{cache:"no-store"});
@@ -2536,6 +2632,7 @@ loadScout();
 loadHustles();
 loadLearn();
 loadIndie();
+loadVersions();
 </script>
 </body>
 </html>

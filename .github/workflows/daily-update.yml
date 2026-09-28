@@ -42,6 +42,10 @@ jobs:
       - name: Fetch daily online learning feed
         run: node scripts/fetch-learn.mjs
 
+      # AI 工具/模型的版本变更流（各家官方 changelog 的 Atom 源，只读公开 RSS）
+      - name: Fetch AI version changelog stream
+        run: node scripts/fetch-versions.mjs
+
       # 抓完先验一遍再提交：测试会直接跑 index.html 里真实的看板/数据逻辑，
       # 上次就是它拓出了「里程碑还差多少」显示错值的 bug。
       # 放在所有抓取之后——测试要读的就是即将提交的那份数据。
@@ -60,7 +64,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # data/daily-scout.json 是可选产物：未配置 key / 额度用尽 / 被拒绝时不会生成，
           # 因此只 add 实际存在的文件，避免 `git add` 因 pathspec 不匹配直接失败。
-          for f in data/daily-updates.json data/daily-scout.json data/daily-hustles.json data/daily-learn.json data/hustle-history.json data/indie.json; do
+          for f in data/daily-updates.json data/daily-scout.json data/daily-hustles.json data/daily-learn.json data/hustle-history.json data/indie.json data/versions.json; do
             if [ -f "$f" ]; then
               git add "$f"
             else

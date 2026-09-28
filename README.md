@@ -4,12 +4,13 @@
 
 - 💰 **AI 副业思路库** —— 精选自 [XiaomingX/ai-money-maker-handbook](https://github.com/XiaomingX/ai-money-maker-handbook)：36 个经过验证的 AI 副业方案，每个都带**分步操作**（目标 / 做法 / 完成标志）、成本、周期、收入区间、工具链接、定价、风险与第一周计划，并附**对标账号**（去哪里找、搜什么关键词、盯什么细节），支持分类、搜索、排序与收藏。
 - 💼 **远程工作渠道板** —— 精选自 [lukasz-madon/awesome-remote-job](https://github.com/lukasz-madon/awesome-remote-job)：48+ 个正规远程求职网站、聚合器与自由职业平台。
-- 📡 **每日自动更新（四条链路）** —— GitHub Actions 每天北京时间 09:30 自动抓取：
+- 📡 **每日自动更新（五条链路）** —— GitHub Actions 每天北京时间 09:30 自动抓取：
   - **工作板** `scripts/fetch-jobs.mjs` → `data/daily-updates.json`：Remotive / Remote OK / We Work Remotely / HN「Who is hiring?」远程职位；
   - **副业新机会** `scripts/fetch-hustles.mjs` → `data/daily-hustles.json`：GitHub 新仓库 + HN Show HN + Product Hunt，自动归类到 7 个副业分类；**用「星数增速」而不是「在榜天数」判定真风口** —— 记录每天的星数快照（`data/hustle-history.json`，保留 30 天），算出日环比增速：日增超过阈值的打 **🔥 风口加速中（+x%）**，增速放缓但仍在榜的打 **🔥 持续热度 N 天**，首天上榜的打 🆕；列表默认按增速排序，一次性噪声会被直接压到后面；
   - **在线学习流** `scripts/fetch-learn.mjs` → `data/daily-learn.json`：5 个赛道（编程 / AI 学习 / K12 学习 / 语言考证 / 中文效率），接入 dev.to、freeCodeCamp、arXiv、哔哩哔哩、[wordfeel.cc](https://wordfeel.cc/) 场景剧场、[TapTapGo](https://taptapgo.yldm.ai/app/)、少数派、36氪。K12 赛道额外拆了**学段二级筛选**（小学 / 初中 / 高中 / 跨学段），家长不用在一堆卡片里翻“三年级数学”；
 
-  - **中国独立开发动态** `scripts/fetch-indie.mjs` → `data/indie.json`：抓取公开仓库 [1c7/chinese-independent-developer](https://github.com/1c7/chinese-independent-developer)（中文独立开发者项目清单），按关键词自动归成 8 个品类，并识别简介里的**变现信号**（收费 / 免费引流 / 广告 / 本地交付）。看板的核心不是罗列项目，而是给出两个判断：**拥挤榜**（AI 类 49 个、内容类 16 个扎堆 = 别硬冲）与**冷门方向**（游戏类只有 2 个 = 还能做什么），用来回答“我现在做这个会不会太晚”。
+  - **中国独立开发动态** `scripts/fetch-indie.mjs` → `data/indie.json`：抓取公开仓库 [1c7/chinese-independent-developer](https://github.com/1c7/chinese-independent-developer)（中文独立开发者项目清单），按关键词自动归成 8 个品类，并识别简介里的**变现信号**（收费 / 免费引流 / 广告 / 本地交付）。看板的核心不是罗列项目，而是给出两个判断：**拥挤榜**（AI 类 49 个、内容类 16 个扎堆 = 别硬冲）与**冷门方向**（游戏类只有 2 个 = 还能做什么），用来回答“我现在做这个会不会太晚”；
+  - **AI 版本变更流** `scripts/fetch-versions.mjs` → `data/versions.json`：14 个官方 changelog 源（OpenAI / Cloudflare / VS Code / LangChain / vLLM / llama.cpp / Ollama / FastAPI / Dify / React / Transformers / Unsloth / Open WebUI / OpenAI Python SDK）的 GitHub Releases 与官方 Atom 源。**它不是又一条 RSS**：每条变更都判了 **level**（破坏性 / 弃用 / 安全 / 新能力 / 性能 / 修复 / 官方发布）和 **impact**（影响代码 / 安全 / 影响成本 / 需要适配 / 新能力 / 动态），影响标签的文案直接写成“对你意味着什么”，页面上可以用 **⚡️ 需要你动手** 一键只看与自己相关的。抓取层做了三层降噪：monorepo 的包版本刷屏按周折叠成一条、跨源重发去重、裸版本号/构建号剔除（实测一天 38 条降到 23 条）。每源健康度写在页脚，源挂了会点名，而不是默默变少。
   
   数据提交后网站即自动更新，无需服务器。
 - 🔭 **深度情报（可选）** —— 配置 [sieve](https://scrape.usesieve.com) 后，每天用 scrape API 对热门 AI 副业做一次情报侦察（平台规则变化、本周公开机会、可执行行动），写入 `data/daily-scout.json`；所有机会带原文链接可核验真伪。未配置时该板块自动隐藏，站点与其他数据源完全不受影响。
@@ -46,6 +47,7 @@ node scripts/fetch-hustles.mjs   # → data/daily-hustles.json（副业新机会
 node scripts/fetch-learn.mjs      # → data/daily-learn.json（在线学习流）
 
 node scripts/fetch-indie.mjs     # → data/indie.json（中国独立开发动态）
+node scripts/fetch-versions.mjs  # → data/versions.json（AI 版本变更流）
 ```
 
 三个脚本同样零依赖，单个数据源失败只会在产物 `errors` 字段里记录，不影响其他源；页面上的「部分来源失败：N」角标就是这个计数。
@@ -99,8 +101,10 @@ node --test "tests/*.test.mjs"
    - `scripts/fetch-learn.mjs` → `data/daily-learn.json`（在线学习流）
 
    - `scripts/fetch-indie.mjs` → `data/indie.json`（中国独立开发动态），解析 README 条目、统计品类分布与变现信号，输出拥挤榜 / 冷门方向
-3. **GitHub Actions**：`.github/workflows/daily-update.yml` 每天 09:30（北京时间）依次运行上述四个脚本，**并先执行一次 `node --test "tests/*.test.mjs"` 做数据与看板逻辑校验（校验不通过则不提交，避免把坏数据推上生产）**，再把实际生成的 JSON 提交回仓库（产物缺失时自动跳过，不让 `git add` 失败）；也支持在 Actions 页面手动触发（workflow_dispatch）。部署在 GitHub Pages 时，数据提交后网站即自动更新。
-4. **前端降级**：四个每日区块在数据文件缺失时不会白屏，而是显示运行提示；`data/daily-scout.json`（sieve）缺失时整块隐藏，与未配置时的行为一致。
+   - `scripts/fetch-versions.mjs` → `data/versions.json`（AI 版本变更流），给每条变更判 level / impact，供页面筛出“需要你动手”的部分
+   - 所有抓取脚本都有**入口守卫**（`if (isMain) main()`）：测试文件 import 它们的纯函数时不会连带真的联网抓取并改写 `data/*.json`。入口守卫上线前，全量测试要跑 113 秒且每跑一次工作区就多出改动，一直查不出是谁改的。
+3. **GitHub Actions**：`.github/workflows/daily-update.yml` 每天 09:30（北京时间）依次运行上述五个脚本，**并先执行一次 `node --test "tests/*.test.mjs"` 做数据与看板逻辑校验（校验不通过则不提交，避免把坏数据推上生产）**，再把实际生成的 JSON 提交回仓库（产物缺失时自动跳过，不让 `git add` 失败）；也支持在 Actions 页面手动触发（workflow_dispatch）。部署在 GitHub Pages 时，数据提交后网站即自动更新。
+4. **前端降级**：五个每日区块在数据文件缺失时不会白屏，而是显示运行提示；`data/daily-scout.json`（sieve）缺失时整块隐藏，与未配置时的行为一致。
 
 ## 部署
 

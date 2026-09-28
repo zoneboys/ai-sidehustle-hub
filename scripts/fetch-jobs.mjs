@@ -13,6 +13,7 @@
 import { writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, "..", "data", "daily-updates.json");
@@ -332,7 +333,11 @@ async function main() {
   }
 }
 
-main().catch((e) => {
+/* 入口守卫：只在被直接执行时跑 main()。
+ * 否则测试文件 import 本模块的纯函数时，会连带真的联网抓取并改写 data/*.json——
+ * 单元测试因此变慢几十秒，还会让工作区凭空多出改动。 */
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (isMain) main().catch((e) => {
   console.error("抓取失败：", e);
   // CI 中即使全部失败也生成空快照，保证页面可降级显示
   try {
