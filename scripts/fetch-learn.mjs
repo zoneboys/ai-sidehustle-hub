@@ -39,6 +39,27 @@ export const TRACKS = {
   cn: { name: "中文效率", emoji: "📰" },
 };
 
+/* K12 学段二级分类：家长找「三年级数学」时不该在 12 条合成课里翻。
+ * 按标题关键词判定；判不出的归「其他」，前端据此出二级筛选行。 */
+export const K12_STAGES = {
+  primary: { name: "小学", emoji: "🧒" },
+  junior: { name: "初中", emoji: "👦" },
+  senior: { name: "高中", emoji: "🎓" },
+  other: { name: "其他/跨学段", emoji: "🧩" },
+};
+
+const STAGE_RULES = [
+  ["primary", /小学|一年级|二年级|三年级|四年级|五年级|六年级|1-6\s*年级|少儿|幼小|口算|看图写话|作文启蒙/],
+  ["junior", /初中|初一|初二|初三|七年级|八年级|九年级|7-9\s*年级|中考|物理|化学/],
+  ["senior", /高中|高一|高二|高三|10-12\s*年级|高考|函数|导数|立体几何/],
+];
+
+export function classifyK12(text) {
+  const t = String(text || "");
+  for (const [stage, re] of STAGE_RULES) if (re.test(t)) return stage;
+  return "other";
+}
+
 async function fetchOnce(url, headers) {
   const ctrl = new AbortController();
   const tm = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
@@ -93,6 +114,14 @@ const strip = (s = "") =>
 const cut = (s = "", n = 118) => (strip(s).length > n ? strip(s).slice(0, n) + "…" : strip(s));
 
 /** 去重键用「链接 + 标题」：同一站点（如 wordfeel / TapTapGo）下多条内容共享首页 URL，只看 url 会误杀 */
+// 标题归一化：B 站常把同一课拆成上/下两集并加不同标签，标题去掉装饰字符后
+// 仍会撞车；这里额外把标题单独做一把 key，避免「同课不同链接」重复占位。
+const normTitle = (t) =>
+  String(t || "")
+    .toLowerCase()
+    .replace(/[\s【】\[\]()（）|·・\-—_,，。.!！?？:：;；"'"']/g, "")
+    .slice(0, 28);
+
 const uniqKey = (it) => `${it.url || ""}|${it.title || ""}`.toLowerCase().trim();
 
 /** 相关度评分：关键词命中 + 时效（越新分越高），0-10 */
@@ -233,11 +262,15 @@ async function fromArxiv() {
 
 /* ================= 数据源 4：哔哩哔哩公开搜索（K12 同步课 / 编程 / AI 教学） ================= */
 const BILI_QUERIES = [
-  { k: "小学数学 思维 同步", track: "k12" },
-  { k: "初中数学 二次函数 精讲", track: "k12" },
-  { k: "初中物理 八年级 同步", track: "k12" },
-  { k: "高中英语 语法 系统", track: "k12" },
-  { k: "小学语文 阅读 写作", track: "k12" },
+  { k: "小学数学 思维 同步", track: "k12", stage: "primary" },
+  { k: "小学语文 阅读 写作", track: "k12", stage: "primary" },
+  { k: "小学英语 自然拼读 启蒙", track: "k12", stage: "primary" },
+  { k: "初中数学 二次函数 精讲", track: "k12", stage: "junior" },
+  { k: "初中物理 八年级 同步", track: "k12", stage: "junior" },
+  { k: "初中英语 中考 词汇 语法", track: "k12", stage: "junior" },
+  { k: "高中英语 语法 系统", track: "k12", stage: "senior" },
+  { k: "高中数学 导数 高考 专题", track: "k12", stage: "senior" },
+  { k: "高中物理 电磁学 专题", track: "k12", stage: "senior" },
   { k: "python 入门 零基础", track: "code" },
   { k: "前端 开发 实战 教程", track: "code" },
   { k: "大模型 应用开发 教程", track: "ai" },
@@ -314,6 +347,9 @@ async function fromBilibili() {
           source: "哔哩哔哩",
           author: v.author,
           track: q.track,
+          // 查询词已显式标注学段时直接采信（搜「小学英语」出来的就是小学内容），
+          // 否则回退到关键词判定。
+          stage: q.track === "k12" ? (q.stage || classifyK12(`${title} ${q.k}`)) : undefined,
           date: v.pubdate ? new Date(v.pubdate * 1000).toISOString().slice(0, 10) : "",
           score: Math.min(10, Math.round((Math.log10(Math.max(1, v.play || 0)) - 3) * 1.6 * 10) / 10),
         });
@@ -460,17 +496,44 @@ async function main() {
     for (const it of items) {
       const k = uniqKey(it);
       if (!k || seen.has(k)) continue;
+      // 同赛道内标题高度重合的（系列课分P）只留分最高的那条
+      const tk = `${it.track || ""}|${normTitle(it.title)}`;
+      if (seen.has(tk)) continue;
       seen.add(k);
+      seen.add(tk);
       if (!byTrack[it.track]) continue;
       byTrack[it.track].push(it);
     }
   }
   for (const t of Object.keys(byTrack)) {
     byTrack[t].sort((a, b) => b.score - a.score || String(b.date).localeCompare(String(a.date)));
-    byTrack[t] = byTrack[t].slice(0, t === "lang" ? 24 : PER_TRACK);
+    // K12 不在这里截断：按 score 砍会让播放量天然偏低的「小学语文」全被挤掉，
+    // 留给下面的学段轮转配额处理。
+    if (t !== "k12") byTrack[t] = byTrack[t].slice(0, t === "lang" ? 24 : PER_TRACK);
   }
 
+  // K12 按学段轮转配额：每个学段轮着取，保证小学/初中/高中都有货，
+  // 而家长恰恰是按学段找内容的。
+  const k12Quota = 18;
+  const k12Pool = byTrack.k12.slice();
+  const buckets = {};
+  for (const s of Object.keys(K12_STAGES)) buckets[s] = [];
+  for (const it of k12Pool) (buckets[it.stage] || buckets.other).push(it);
+  const picked = [];
+  for (let round = 0; picked.length < Math.min(k12Quota, k12Pool.length); round++) {
+    for (const s of Object.keys(K12_STAGES)) {
+      if (round < buckets[s].length) picked.push(buckets[s][round]);
+    }
+  }
+  byTrack.k12 = picked;
+
   const flat = Object.values(byTrack).flat();
+
+  // 非 B 站来源（如未来的 K12 RSS）也统一打上学段标签
+  for (const it of flat) {
+    if (it.track === "k12" && !it.stage) it.stage = classifyK12(`${it.title} ${it.desc || ""}`);
+  }
+
   if (flat.length < 5) {
     console.warn("⚠️ 抓取条目过少，使用上一次成功快照兜底");
     const fb = fallback();
@@ -485,7 +548,11 @@ async function main() {
     generatedAt: now.toISOString(),
     date: beijingDate(now),
     tracks: TRACKS,
+    k12Stages: K12_STAGES,
     counts: Object.fromEntries(Object.entries(byTrack).map(([k, v]) => [k, v.length])),
+    k12StageCounts: Object.fromEntries(
+      Object.keys(K12_STAGES).map((s) => [s, byTrack.k12.filter((i) => i.stage === s).length])
+    ),
     total: flat.length,
     items: flat,
     errors,

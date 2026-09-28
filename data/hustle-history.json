@@ -1,0 +1,763 @@
+{
+  "updatedAt": "2026-09-28T11:19:13.634Z",
+  "date": "2026-09-28",
+  "total": 77,
+  "entries": {
+    "https://github.com/openclaw/openclaw|openclaw/openclaw": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "openclaw/openclaw",
+      "url": "https://github.com/openclaw/openclaw",
+      "cat": "biz",
+      "pop": 390696,
+      "baseDay": "2026-09-20"
+    },
+    "https://github.com/n8n-io/n8n|n8n-io/n8n": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "n8n-io/n8n",
+      "url": "https://github.com/n8n-io/n8n",
+      "cat": "tech",
+      "pop": 206179,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/posthog/posthog|posthog/posthog": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "PostHog/posthog",
+      "url": "https://github.com/PostHog/posthog",
+      "cat": "tech",
+      "pop": 39977
+    },
+    "https://github.com/activepieces/activepieces|activepieces/activepieces": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "activepieces/activepieces",
+      "url": "https://github.com/activepieces/activepieces",
+      "cat": "tech",
+      "pop": 24761,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/vercel/workflow|vercel/workflow": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "streak": 1,
+      "title": "vercel/workflow",
+      "url": "https://github.com/vercel/workflow",
+      "cat": "tech"
+    },
+    "https://github.com/n8n-io/n8n-docs|n8n-io/n8n-docs": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "n8n-io/n8n-docs",
+      "url": "https://github.com/n8n-io/n8n-docs",
+      "cat": "tech",
+      "pop": 1799,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/alfredxw/denova|alfredxw/denova": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "alfredxw/denova",
+      "url": "https://github.com/alfredxw/denova",
+      "cat": "tech",
+      "pop": 832,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/meigen-ai/opsd-v|meigen-ai/opsd-v": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "MeiGen-AI/OPSD-V",
+      "url": "https://github.com/MeiGen-AI/OPSD-V",
+      "cat": "content",
+      "pop": 686,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/jasoncheng7115/jt-live-whisper|jasoncheng7115/jt-live-whisper": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "streak": 1,
+      "title": "jasoncheng7115/jt-live-whisper",
+      "url": "https://github.com/jasoncheng7115/jt-live-whisper",
+      "cat": "live"
+    },
+    "https://github.com/wanshuiyin/aris-in-ai-offer|wanshuiyin/aris-in-ai-offer": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "wanshuiyin/ARIS-in-AI-Offer",
+      "url": "https://github.com/wanshuiyin/ARIS-in-AI-Offer",
+      "cat": "tech",
+      "pop": 552,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/serveurpersocom/acestep.cpp|serveurpersocom/acestep.cpp": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "ServeurpersoCom/acestep.cpp",
+      "url": "https://github.com/ServeurpersoCom/acestep.cpp",
+      "cat": "audio",
+      "pop": 426,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/lcy362/agnes-video-generator|lcy362/agnes-video-generator": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "lcy362/agnes-video-generator",
+      "url": "https://github.com/lcy362/agnes-video-generator",
+      "cat": "content",
+      "pop": 434,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/sigpanic/goink|sigpanic/goink": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "sigpanic/goink",
+      "url": "https://github.com/sigpanic/goink",
+      "cat": "writing",
+      "pop": 384,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/timoncool/ace-step-studio|timoncool/ace-step-studio": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "timoncool/ACE-Step-Studio",
+      "url": "https://github.com/timoncool/ACE-Step-Studio",
+      "cat": "content",
+      "pop": 361,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/pneumaticapp/pneumaticworkflow|pneumaticapp/pneumaticworkflow": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "pneumaticapp/pneumaticworkflow",
+      "url": "https://github.com/pneumaticapp/pneumaticworkflow",
+      "cat": "tech",
+      "pop": 319,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/openfn/lightning|openfn/lightning": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "OpenFn/lightning",
+      "url": "https://github.com/OpenFn/lightning",
+      "cat": "tech",
+      "pop": 299
+    },
+    "https://scissor.studio/|show hn: free alternative to graphics design giants": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "Show HN: Free alternative to graphics design giants",
+      "url": "https://scissor.studio/",
+      "cat": "image",
+      "pop": 4,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/timoncool/yue2-studio|timoncool/yue2-studio": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "timoncool/YuE2-Studio",
+      "url": "https://github.com/timoncool/YuE2-Studio",
+      "cat": "audio",
+      "pop": 261,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/team-telnyx/ai|team-telnyx/ai": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "team-telnyx/ai",
+      "url": "https://github.com/team-telnyx/ai",
+      "cat": "audio"
+    },
+    "https://github.com/taucetiproject/tauceti|taucetiproject/tauceti": {
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-28",
+      "streak": 2,
+      "title": "TauCetiProject/TauCeti",
+      "url": "https://github.com/TauCetiProject/TauCeti",
+      "cat": "live",
+      "pop": 204,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/twentyhq/twenty|twentyhq/twenty": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "twentyhq/twenty",
+      "url": "https://github.com/twentyhq/twenty",
+      "cat": "image",
+      "pop": 57627
+    },
+    "https://github.com/spring-projects/spring-ai|spring-projects/spring-ai": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "spring-projects/spring-ai",
+      "url": "https://github.com/spring-projects/spring-ai",
+      "cat": "image"
+    },
+    "https://github.com/callstack/agent-device|callstack/agent-device": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "callstack/agent-device",
+      "url": "https://github.com/callstack/agent-device",
+      "cat": "tech"
+    },
+    "https://github.com/caozhiyuan/copilot-api|caozhiyuan/copilot-api": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "caozhiyuan/copilot-api",
+      "url": "https://github.com/caozhiyuan/copilot-api",
+      "cat": "image"
+    },
+    "https://github.com/deepset-ai/haystack-core-integrations|deepset-ai/haystack-core-integrations": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "deepset-ai/haystack-core-integrations",
+      "url": "https://github.com/deepset-ai/haystack-core-integrations",
+      "cat": "tech"
+    },
+    "https://github.com/seamusc/papermono-shopping-list|show hn: papermono, e-ink fridge magnet shopping list with mobile web page": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: PaperMono, e-ink fridge magnet shopping list with mobile web page",
+      "url": "https://github.com/seamusc/papermono-shopping-list",
+      "cat": "tech",
+      "pop": 2,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://dy.github.io/gpu-font/|show hn: gpu-font – match fonts with webgpu": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: GPU-font – match fonts with WebGPU",
+      "url": "https://dy.github.io/gpu-font/",
+      "cat": "tech",
+      "pop": 2,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://millenniums.ai/docs|show hn: redthread – autonomous llm pentesting with proof-of-concept exploits": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: Redthread – autonomous LLM pentesting with proof-of-concept exploits",
+      "url": "https://millenniums.ai/docs",
+      "cat": "tech"
+    },
+    "https://github.com/aryafarkhondeh/cp_hand_demo|show hn: impressive hand detection ai algorithm": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: Impressive hand detection AI algorithm",
+      "url": "https://github.com/aryafarkhondeh/cp_hand_demo",
+      "cat": "tech"
+    },
+    "https://github.com/gunawan1996/world-forge-ai|gunawan1996/world-forge-ai": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "gunawan1996/world-forge-ai",
+      "url": "https://github.com/gunawan1996/world-forge-ai",
+      "cat": "tech",
+      "pop": 124,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/bilalpeera86/claude-session-flow|bilalpeera86/claude-session-flow": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "bilalpeera86/claude-session-flow",
+      "url": "https://github.com/bilalpeera86/claude-session-flow",
+      "cat": "tech"
+    },
+    "https://github.com/hr688/deep-cut-video-editor|hr688/deep-cut-video-editor": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "hr688/Deep-Cut-Video-Editor",
+      "url": "https://github.com/hr688/Deep-Cut-Video-Editor",
+      "cat": "content"
+    },
+    "https://github.com/69cell/photoshop-enhancement-community|69cell/photoshop-enhancement-community": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "69cell/Photoshop-Enhancement-Community",
+      "url": "https://github.com/69cell/Photoshop-Enhancement-Community",
+      "cat": "image",
+      "pop": 115,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://codify.centreai.global/|show hn: codify, ai for transforming and reforming law": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: Codify, AI for transforming and reforming law",
+      "url": "https://codify.centreai.global/",
+      "cat": "tech",
+      "pop": 1,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://news.ycombinator.com/item?id=49875738|show hn: i build omarchy like experience in browser for remote machine": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: I build omarchy like experience in browser for remote machine",
+      "url": "https://news.ycombinator.com/item?id=49875738",
+      "cat": "image",
+      "pop": 1,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://safemap.ai/?launch=1|show hn: an interactive 3d companion for the starship launch": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: An interactive 3D companion for the Starship launch",
+      "url": "https://safemap.ai/?launch=1",
+      "cat": "tech",
+      "pop": 1,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://www.workcontext.me/|show hn: workcontext – open-source ai context layer for dev teams": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: WorkContext – Open-Source AI Context Layer for Dev Teams",
+      "url": "https://www.workcontext.me/",
+      "cat": "tech",
+      "pop": 1,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://www.reportcard.lol/|show hn: reportcard lol - a fun jev experiment": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: Reportcard lol - a fun jev experiment",
+      "url": "https://www.reportcard.lol/",
+      "cat": "tech",
+      "pop": 2,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/daintreehq/daintree|daintreehq/daintree": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "daintreehq/daintree",
+      "url": "https://github.com/daintreehq/daintree",
+      "cat": "tech",
+      "pop": 75,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/untrivial-ai/agent-orchestrator|untrivial-ai/agent-orchestrator": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Untrivial-ai/agent-orchestrator",
+      "url": "https://github.com/Untrivial-ai/agent-orchestrator",
+      "cat": "tech"
+    },
+    "https://github.com/kornia/kornia|kornia/kornia": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "kornia/kornia",
+      "url": "https://github.com/kornia/kornia",
+      "cat": "image"
+    },
+    "https://github.com/apache/hertzbeat|apache/hertzbeat": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "apache/hertzbeat",
+      "url": "https://github.com/apache/hertzbeat",
+      "cat": "tech"
+    },
+    "https://github.com/makecindy/cindy|makecindy/cindy": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "makecindy/cindy",
+      "url": "https://github.com/makecindy/cindy",
+      "cat": "tech"
+    },
+    "https://github.com/kosasih/pi-nexus-autonomous-banking-network|kosasih/pi-nexus-autonomous-banking-network": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "KOSASIH/pi-nexus-autonomous-banking-network",
+      "url": "https://github.com/KOSASIH/pi-nexus-autonomous-banking-network",
+      "cat": "tech"
+    },
+    "https://github.com/achiya-automation/safari-mcp|achiya-automation/safari-mcp": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "achiya-automation/safari-mcp",
+      "url": "https://github.com/achiya-automation/safari-mcp",
+      "cat": "tech"
+    },
+    "https://github.com/esengine/deepseek-reasonix|esengine/deepseek-reasonix": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "esengine/DeepSeek-Reasonix",
+      "url": "https://github.com/esengine/DeepSeek-Reasonix",
+      "cat": "tech"
+    },
+    "https://github.com/melgarafael/deskcommcrm|melgarafael/deskcommcrm": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "melgarafael/DeskcommCRM",
+      "url": "https://github.com/melgarafael/DeskcommCRM",
+      "cat": "tech"
+    },
+    "https://github.com/automazeio/vibeproxy|automazeio/vibeproxy": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "automazeio/vibeproxy",
+      "url": "https://github.com/automazeio/vibeproxy",
+      "cat": "tech"
+    },
+    "https://github.com/dyoshikawa/rulesync|dyoshikawa/rulesync": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "dyoshikawa/rulesync",
+      "url": "https://github.com/dyoshikawa/rulesync",
+      "cat": "tech"
+    },
+    "https://github.com/onyxaxisowo/obsidianarc|onyxaxisowo/obsidianarc": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "OnyxAxisOwO/ObsidianArc",
+      "url": "https://github.com/OnyxAxisOwO/ObsidianArc",
+      "cat": "tech"
+    },
+    "https://github.com/mastra-ai/mastra|mastra-ai/mastra": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "mastra-ai/mastra",
+      "url": "https://github.com/mastra-ai/mastra",
+      "cat": "tech",
+      "pop": 28384,
+      "baseDay": null
+    },
+    "https://github.com/autonomous-ai/openharness|autonomous-ai/openharness": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "autonomous-ai/openharness",
+      "url": "https://github.com/autonomous-ai/openharness",
+      "cat": "tech",
+      "pop": 998,
+      "baseDay": null
+    },
+    "https://github.com/binarcode/laravel-restify|binarcode/laravel-restify": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "BinarCode/laravel-restify",
+      "url": "https://github.com/BinarCode/laravel-restify",
+      "cat": "tech",
+      "pop": 682,
+      "baseDay": null
+    },
+    "https://github.com/engasnm111/lnwjud|engasnm111/lnwjud": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "engasnm111/lnwjud",
+      "url": "https://github.com/engasnm111/lnwjud",
+      "cat": "tech",
+      "pop": 195,
+      "baseDay": null
+    },
+    "https://github.com/murray17/rovai-ai|murray17/rovai-ai": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "murray17/rovai-ai",
+      "url": "https://github.com/murray17/rovai-ai",
+      "cat": "tech",
+      "pop": 112,
+      "baseDay": null
+    },
+    "https://syntec-research.github.io/cafca/cafca_dataset.html|show hn: cafca – a synthetic face dataset with 1.75m images": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: Cafca – a synthetic face dataset with 1.75M images",
+      "url": "https://syntec-research.github.io/Cafca/cafca_dataset.html",
+      "cat": "image",
+      "pop": 1,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://yaystack.ch/|show hn: yaystack.ch, check whether ai answer engines can see your website": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Show HN: Yaystack.ch, check whether AI answer engines can see your website",
+      "url": "https://yaystack.ch/",
+      "cat": "tech",
+      "pop": 1,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/lobehub/lobehub|lobehub/lobehub": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "lobehub/lobehub",
+      "url": "https://github.com/lobehub/lobehub",
+      "cat": "tech",
+      "pop": 82874,
+      "baseDay": null
+    },
+    "https://github.com/assistant-ui/assistant-ui|assistant-ui/assistant-ui": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "assistant-ui/assistant-ui",
+      "url": "https://github.com/assistant-ui/assistant-ui",
+      "cat": "tech",
+      "pop": 12336,
+      "baseDay": null
+    },
+    "https://github.com/opsmill/infrahub|opsmill/infrahub": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "opsmill/infrahub",
+      "url": "https://github.com/opsmill/infrahub",
+      "cat": "tech",
+      "pop": 526,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/flagos-ai/flagtree|flagos-ai/flagtree": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "flagos-ai/FlagTree",
+      "url": "https://github.com/flagos-ai/FlagTree",
+      "cat": "tech",
+      "pop": 356,
+      "baseDay": null
+    },
+    "https://github.com/nightly-labs/openbot|nightly-labs/openbot": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "nightly-labs/openbot",
+      "url": "https://github.com/nightly-labs/openbot",
+      "cat": "tech",
+      "pop": 246,
+      "baseDay": null
+    },
+    "https://github.com/jentic/jentic-public-apis|jentic/jentic-public-apis": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "jentic/jentic-public-apis",
+      "url": "https://github.com/jentic/jentic-public-apis",
+      "cat": "tech",
+      "pop": 259,
+      "baseDay": null
+    },
+    "https://github.com/shirochi-stack/glossarion|shirochi-stack/glossarion": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Shirochi-stack/Glossarion",
+      "url": "https://github.com/Shirochi-stack/Glossarion",
+      "cat": "tech",
+      "pop": 116,
+      "baseDay": null
+    },
+    "https://github.com/keros68/metrik|keros68/metrik": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "keros68/metrik",
+      "url": "https://github.com/keros68/metrik",
+      "cat": "tech",
+      "pop": 95,
+      "baseDay": null
+    },
+    "https://github.com/project-n-e-k-o/n.e.k.o|project-n-e-k-o/n.e.k.o": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Project-N-E-K-O/N.E.K.O",
+      "url": "https://github.com/Project-N-E-K-O/N.E.K.O",
+      "cat": "live",
+      "pop": 2985,
+      "baseDay": null
+    },
+    "https://github.com/xalgorix/xalgorix|xalgorix/xalgorix": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "xalgorix/xalgorix",
+      "url": "https://github.com/xalgorix/xalgorix",
+      "cat": "tech",
+      "pop": 1140,
+      "baseDay": null
+    },
+    "https://github.com/onllm-dev/onwatch|onllm-dev/onwatch": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "onllm-dev/onWatch",
+      "url": "https://github.com/onllm-dev/onWatch",
+      "cat": "tech",
+      "pop": 745,
+      "baseDay": null
+    },
+    "https://github.com/kentcdodds/kody|kentcdodds/kody": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "kentcdodds/kody",
+      "url": "https://github.com/kentcdodds/kody",
+      "cat": "tech",
+      "pop": 684,
+      "baseDay": null
+    },
+    "https://github.com/steveclarke/real-world-rails|steveclarke/real-world-rails": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "steveclarke/real-world-rails",
+      "url": "https://github.com/steveclarke/real-world-rails",
+      "cat": "tech",
+      "pop": 542,
+      "baseDay": null
+    },
+    "https://github.com/lobu-ai/lobu|lobu-ai/lobu": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "lobu-ai/lobu",
+      "url": "https://github.com/lobu-ai/lobu",
+      "cat": "tech",
+      "pop": 223,
+      "baseDay": null
+    },
+    "https://github.com/iterate/iterate|iterate/iterate": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "iterate/iterate",
+      "url": "https://github.com/iterate/iterate",
+      "cat": "tech",
+      "pop": 204,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/langgenius/dify|langgenius/dify": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "langgenius/dify",
+      "url": "https://github.com/langgenius/dify",
+      "cat": "tech",
+      "pop": 157395,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/brycewang-stanford/auto-empirical-research-skills|brycewang-stanford/auto-empirical-research-skills": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "brycewang-stanford/Auto-Empirical-Research-Skills",
+      "url": "https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills",
+      "cat": "tech",
+      "pop": 4415,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/lapis0x0/obsidian-yolo|lapis0x0/obsidian-yolo": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "Lapis0x0/obsidian-yolo",
+      "url": "https://github.com/Lapis0x0/obsidian-yolo",
+      "cat": "tech",
+      "pop": 1352,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/gmickel/flow-next|gmickel/flow-next": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "gmickel/flow-next",
+      "url": "https://github.com/gmickel/flow-next",
+      "cat": "tech",
+      "pop": 703,
+      "basePop": null,
+      "baseDay": null
+    },
+    "https://github.com/smart-mcp-proxy/mcpproxy-go|smart-mcp-proxy/mcpproxy-go": {
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-28",
+      "streak": 1,
+      "title": "smart-mcp-proxy/mcpproxy-go",
+      "url": "https://github.com/smart-mcp-proxy/mcpproxy-go",
+      "cat": "tech",
+      "pop": 380,
+      "basePop": null,
+      "baseDay": null
+    }
+  }
+}

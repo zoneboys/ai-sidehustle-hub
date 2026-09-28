@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-28T07:13:16.196Z",
+  "generatedAt": "2026-09-28T11:15:37.568Z",
   "date": "2026-09-28",
-  "total": 51,
+  "total": 43,
   "jobs": [
     {
       "title": "Senior AI Engineer",
@@ -31,38 +31,6 @@
       "scoreReasons": [
         "一周内新职位",
         "全球可申请（Anywhere/Worldwide）",
-        "AI/LLM 相关岗位"
-      ]
-    },
-    {
-      "title": "Staff Software Engineer, AI & Recommendations Platform",
-      "company": "hims &#038; hers",
-      "location": "USA",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/154114-staff-software-engineer-ai-recommendations-platform",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 8.5,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "限定区域（欧美为主）",
-        "AI/LLM 相关岗位"
-      ]
-    },
-    {
-      "title": "Salesforce Developer - Service Cloud, Experience Cloud & AI (100% Remote within Poland)",
-      "company": "Docplanner",
-      "location": "Poland",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/154110-salesforce-developer-service-cloud-experience-cloud-ai-100-remote-within-poland",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 8.5,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "地区要求见原帖",
         "AI/LLM 相关岗位"
       ]
     },
@@ -176,77 +144,81 @@
       ]
     },
     {
-      "title": "Data Scientist II, ML Infrastructure",
-      "company": "Pinterest",
-      "location": "Anywhere in the World",
-      "category": "编程",
-      "url": "https://weworkremotely.com/remote-jobs/pinterest-data-scientist-ii-ml-infrastructure",
-      "date": "13 Sep 2026",
-      "source": "We Work Remotely",
+      "title": "Customer Success - Team Manager",
+      "company": "Canonical",
+      "location": "APAC,  LATAM,  Canada,  USA",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/151890-customer-success-team-manager",
+      "date": "2026-09-28",
+      "source": "Jobicy",
       "score": 7.5,
       "scoreReasons": [
-        "We Work Remotely（高可信来源）",
-        "全球可申请（Anywhere/Worldwide）",
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "亚洲时区友好"
+      ]
+    },
+    {
+      "title": "Staff Design Engineer - UK",
+      "company": "Ashby",
+      "location": "UK",
+      "category": "Director",
+      "url": "https://jobicy.com/jobs/151929-staff-design-engineer-uk",
+      "date": "2026-09-28",
+      "source": "Jobicy",
+      "score": 7.5,
+      "scoreReasons": [
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "限定区域（欧美为主）",
         "泛技术岗位"
       ]
     },
     {
-      "title": "Data Scientist II, Infrastructure",
-      "company": "Pinterest",
-      "location": "Anywhere in the World",
-      "category": "编程",
-      "url": "https://weworkremotely.com/remote-jobs/pinterest-data-scientist-ii-infrastructure",
-      "date": "13 Sep 2026",
-      "source": "We Work Remotely",
+      "title": "Staff Design Engineer - EU",
+      "company": "Ashby",
+      "location": "Croatia,  Estonia,  Germany,  Ireland,  Italy,  Portugal,  Romania,  Spain,  Sweden,  Switzerland",
+      "category": "Director",
+      "url": "https://jobicy.com/jobs/151927-staff-design-engineer-eu",
+      "date": "2026-09-28",
+      "source": "Jobicy",
       "score": 7.5,
       "scoreReasons": [
-        "We Work Remotely（高可信来源）",
-        "全球可申请（Anywhere/Worldwide）",
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "地区要求见原帖",
         "泛技术岗位"
       ]
     },
     {
-      "title": "Software engineer",
-      "company": "Sticker Mule",
-      "location": "Anywhere in the World",
-      "category": "编程",
-      "url": "https://weworkremotely.com/remote-jobs/sticker-mule-software-engineer-3",
-      "date": "14 May 2026",
-      "source": "We Work Remotely",
+      "title": "Principal Engineer (Payments)",
+      "company": "Masabi",
+      "location": "UK",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/151924-principal-engineer-payments",
+      "date": "2026-09-28",
+      "source": "Jobicy",
       "score": 7.5,
       "scoreReasons": [
-        "We Work Remotely（高可信来源）",
-        "全球可申请（Anywhere/Worldwide）",
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "限定区域（欧美为主）",
         "泛技术岗位"
       ]
     },
     {
-      "title": "Senior Systems Engineer (Identity and Access)",
-      "company": "Flexport",
-      "location": "Anywhere in the World",
-      "category": "编程",
-      "url": "https://weworkremotely.com/remote-jobs/flexport-senior-systems-engineer-identity-and-access",
-      "date": "10 Sep 2026",
-      "source": "We Work Remotely",
+      "title": "Senior Security Engineer, Security Incident Response Team (SIRT) - EMEA",
+      "company": "GitLab",
+      "location": "EMEA",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/149309-senior-security-engineer-security-incident-response-team-sirt-emea",
+      "date": "2026-09-28",
+      "source": "Jobicy",
       "score": 7.5,
       "scoreReasons": [
-        "We Work Remotely（高可信来源）",
-        "全球可申请（Anywhere/Worldwide）",
-        "泛技术岗位"
-      ]
-    },
-    {
-      "title": "Senior .NET Full-stack Developer",
-      "company": "Lemon.io",
-      "location": "Anywhere in the World",
-      "category": "编程",
-      "url": "https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-1",
-      "date": "08 Sep 2026",
-      "source": "We Work Remotely",
-      "score": 7.5,
-      "scoreReasons": [
-        "We Work Remotely（高可信来源）",
-        "全球可申请（Anywhere/Worldwide）",
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "限定区域（欧美为主）",
         "泛技术岗位"
       ]
     },
@@ -326,38 +298,6 @@
       ]
     },
     {
-      "title": "Algorithms Engineer",
-      "company": "QuinStreet",
-      "location": "USA",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/154107-algorithms-engineer",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7.5,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "限定区域（欧美为主）",
-        "泛技术岗位"
-      ]
-    },
-    {
-      "title": "Python Developer - MyDr (100% Remote within Poland)",
-      "company": "Docplanner",
-      "location": "Poland",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/154113-python-developer-mydr-100-remote-within-poland",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7.5,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "地区要求见原帖",
-        "泛技术岗位"
-      ]
-    },
-    {
       "title": "Frontend Web Application Developer",
       "company": "KoboToolbox",
       "location": "USA, Canada, Argentina, Mexico, Peru",
@@ -404,31 +344,108 @@
       ]
     },
     {
-      "title": "Solutions Architect -Spanish Speaking",
-      "company": "Fin",
-      "location": "Anywhere in the World",
-      "category": "编程",
-      "url": "https://weworkremotely.com/remote-jobs/fin-solutions-architect-spanish-speaking",
-      "date": "11 Sep 2026",
-      "source": "We Work Remotely",
+      "title": "Customer Success Manager",
+      "company": "Smartling",
+      "location": "Ireland",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/151930-customer-success-manager-26",
+      "date": "2026-09-28",
+      "source": "Jobicy",
       "score": 7,
       "scoreReasons": [
-        "We Work Remotely（高可信来源）",
-        "全球可申请（Anywhere/Worldwide）"
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "地区要求见原帖"
       ]
     },
     {
-      "title": "Commercial Account Manager",
-      "company": "Salesloft",
-      "location": "Anywhere in the World",
-      "category": "编程",
-      "url": "https://weworkremotely.com/remote-jobs/salesloft-commercial-account-manager",
-      "date": "09 Sep 2026",
-      "source": "We Work Remotely",
+      "title": "Large Enterprise Sales Director, Spain",
+      "company": "Semperis",
+      "location": "Spain",
+      "category": "Director",
+      "url": "https://jobicy.com/jobs/151926-large-enterprise-sales-director-spain",
+      "date": "2026-09-28",
+      "source": "Jobicy",
       "score": 7,
       "scoreReasons": [
-        "We Work Remotely（高可信来源）",
-        "全球可申请（Anywhere/Worldwide）"
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "地区要求见原帖"
+      ]
+    },
+    {
+      "title": "Senior Business Consultant w/ Spanish, French or Italian",
+      "company": "Bloomreach",
+      "location": "Czechia,  Slovakia",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/151925-senior-business-consultant-w-spanish-french-or-italian",
+      "date": "2026-09-28",
+      "source": "Jobicy",
+      "score": 7,
+      "scoreReasons": [
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "地区要求见原帖"
+      ]
+    },
+    {
+      "title": "Growth Manager - Campaigns",
+      "company": "OKX",
+      "location": "Germany,  Netherlands,  Portugal",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/151922-growth-manager-campaigns",
+      "date": "2026-09-28",
+      "source": "Jobicy",
+      "score": 7,
+      "scoreReasons": [
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "地区要求见原帖"
+      ]
+    },
+    {
+      "title": "Account Manager",
+      "company": "Cloudbeds",
+      "location": "Europe",
+      "category": "Any",
+      "url": "https://jobicy.com/jobs/151920-account-manager-3",
+      "date": "2026-09-28",
+      "source": "Jobicy",
+      "score": 7,
+      "scoreReasons": [
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "限定区域（欧美为主）"
+      ]
+    },
+    {
+      "title": "Affiliate Business Development Manager, Poland",
+      "company": "OKX",
+      "location": "Poland",
+      "category": "Senior",
+      "url": "https://jobicy.com/jobs/151919-affiliate-business-development-manager-poland",
+      "date": "2026-09-28",
+      "source": "Jobicy",
+      "score": 7,
+      "scoreReasons": [
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "地区要求见原帖"
+      ]
+    },
+    {
+      "title": "Affiliate Business Development Manager, CIS",
+      "company": "OKX",
+      "location": "Ukraine",
+      "category": "Any",
+      "url": "https://jobicy.com/jobs/151916-affiliate-business-development-manager-cis",
+      "date": "2026-09-28",
+      "source": "Jobicy",
+      "score": 7,
+      "scoreReasons": [
+        "Jobicy（高可信来源）",
+        "3 天内新职位",
+        "限定区域（欧美为主）"
       ]
     },
     {
@@ -535,126 +552,6 @@
       ]
     },
     {
-      "title": "Account Manager, Ada Accelerate",
-      "company": "Ada",
-      "location": "Canada",
-      "category": "Director",
-      "url": "https://jobicy.com/jobs/154115-account-manager-ada-accelerate",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "限定区域（欧美为主）"
-      ]
-    },
-    {
-      "title": "Staff Product Designer, Core Treatments",
-      "company": "hims &#038; hers",
-      "location": "USA",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/154119-staff-product-designer-core-treatments",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "限定区域（欧美为主）"
-      ]
-    },
-    {
-      "title": "Director, Strategic Partnerships and New Ventures",
-      "company": "Serve Robotics",
-      "location": "Canada,  USA",
-      "category": "Director",
-      "url": "https://jobicy.com/jobs/154118-director-strategic-partnerships-and-new-ventures",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "限定区域（欧美为主）"
-      ]
-    },
-    {
-      "title": "Permitting & Plan Review Expert",
-      "company": "Brain Co.",
-      "location": "USA",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/154117-permitting-plan-review-expert",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "限定区域（欧美为主）"
-      ]
-    },
-    {
-      "title": "Business Consultant (6 months contract with possible extension)",
-      "company": "Bloomreach",
-      "location": "Czechia,  Slovakia",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/154104-business-consultant-6-months-contract-with-possible-extension",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "地区要求见原帖"
-      ]
-    },
-    {
-      "title": "Senior Business Consultant w/ Spanish, or Italian",
-      "company": "Bloomreach",
-      "location": "Czechia,  Slovakia",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/154112-senior-business-consultant-w-spanish-or-italian",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "地区要求见原帖"
-      ]
-    },
-    {
-      "title": "Senior Product Designer - Feegow (100% remote friendly in Brazil)",
-      "company": "Docplanner",
-      "location": "Brazil",
-      "category": "Senior",
-      "url": "https://jobicy.com/jobs/154105-senior-product-designer-feegow-100-remote-friendly-in-brazil",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "地区要求见原帖"
-      ]
-    },
-    {
-      "title": "1 on 1 High School Math Tutor (Remote in US)",
-      "company": "Think Academy US",
-      "location": "USA",
-      "category": "Any",
-      "url": "https://jobicy.com/jobs/154111-1-on-1-high-school-math-tutor-remote-in-us",
-      "date": "2026-09-27",
-      "source": "Jobicy",
-      "score": 7,
-      "scoreReasons": [
-        "Jobicy（高可信来源）",
-        "3 天内新职位",
-        "限定区域（欧美为主）"
-      ]
-    },
-    {
       "title": "Mecánico Automotriz Diagnóstico y Presupuestos",
       "company": "Workana",
       "location": "Anywhere",
@@ -742,20 +639,6 @@
       ]
     },
     {
-      "title": "Power Platform Solutions Architect",
-      "company": "Toptal",
-      "location": "North America Only",
-      "category": "编程",
-      "url": "https://weworkremotely.com/remote-jobs/toptal-power-platform-solutions-architect",
-      "date": "10 Sep 2026",
-      "source": "We Work Remotely",
-      "score": 6,
-      "scoreReasons": [
-        "We Work Remotely（高可信来源）",
-        "地区要求见原帖"
-      ]
-    },
-    {
       "title": "Open Education Applications / Neon | Senior/Lead Platform & DevOps Engineer, Senior Frontend Engineer, Senior ",
       "company": "Open Education Applications ",
       "location": "See post",
@@ -771,6 +654,8 @@
       ]
     }
   ],
-  "errors": [],
+  "errors": [
+    "WWR(编程): blocked (403)"
+  ],
   "note": "由 scripts/fetch-jobs.mjs 每日自动抓取（GitHub Actions），来源：Remotive / Remote OK / We Work Remotely / HN Who is hiring / Jobicy；score 为自动评分（0-10：来源可信度+新鲜度+地区友好度+AI 相关度+信息完整度）"
 }

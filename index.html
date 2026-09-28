@@ -12,16 +12,21 @@
 <script src="data/ratings.js"></script>
 <script src="data/guide-extras.js"></script>
 <script src="data/benchmarks.js"></script>
+<script src="data/playbooks-core.js"></script>
+<script src="data/playbooks-2.js"></script>
+<script src="data/playbooks-3.js"></script>
+<script src="data/plan.js"></script>
+<script src="data/earn.js"></script>
 <style>
   :root{
     --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --text:#1a2033; --muted:#6b7280;
-    --primary:#4f46e5; --primary2:#7c3aed; --accent:#0ea5e9; --ok:#10b981; --warn:#f59e0b;
+    --primary:#4f46e5; --primary2:#7c3aed; --accent:#0ea5e9; --ok:#10b981; --warn:#f59e0b; --hot:#ef4444;
     --border:#e5e7eb; --shadow:0 1px 3px rgba(16,24,40,.06),0 8px 24px -12px rgba(16,24,40,.12);
     --radius:14px;
   }
   [data-theme="dark"]{
     --bg:#0b1020; --bg2:#11172b; --card:#151c33; --text:#e7eaf3; --muted:#94a3b8;
-    --primary:#818cf8; --primary2:#a78bfa; --accent:#38bdf8; --ok:#34d399; --warn:#fbbf24;
+    --primary:#818cf8; --primary2:#a78bfa; --accent:#38bdf8; --ok:#34d399; --warn:#fbbf24; --hot:#f87171;
     --border:#24304f; --shadow:0 1px 3px rgba(0,0,0,.4),0 10px 30px -12px rgba(0,0,0,.6);
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -212,6 +217,7 @@
   .bm-k{font-size:.85rem;font-weight:600;word-break:break-word}
   .bm-why{font-size:.78rem;color:var(--muted);margin-top:2px}
   .bm-note{margin-top:8px;font-size:.78rem;color:var(--warn);background:color-mix(in srgb,var(--warn) 8%,var(--card));border-left:3px solid var(--warn);padding:6px 9px;border-radius:0 8px 8px 0}
+  .bm-p.case{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok);border-color:color-mix(in srgb,var(--ok) 35%,transparent)}
   .copy-btn{margin-left:auto;font-size:.72rem;padding:3px 9px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;flex:none;align-self:center}
   .copy-btn:hover{border-color:var(--primary);color:var(--primary)}
   /* ===== 在线学习流 / 今日新机会 卡片 ===== */
@@ -221,6 +227,13 @@
   .feed-card .fd{font-size:.79rem;color:var(--muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .feed-card .fm{display:flex;gap:8px;flex-wrap:wrap;font-size:.72rem;color:var(--muted);margin-top:7px}
   .feed-card .fm .src{color:var(--primary);font-weight:600}
+  /* 跳天去重：持续热度 vs 今日新上榜 */
+  .badge-hot{display:inline-block;vertical-align:2px;margin-right:5px;padding:1px 7px;border-radius:20px;font-size:.7rem;font-weight:700;background:color-mix(in srgb,var(--hot) 15%,transparent);color:var(--hot);white-space:nowrap}
+  .badge-new{display:inline-block;vertical-align:2px;margin-right:5px;padding:1px 7px;border-radius:20px;font-size:.7rem;font-weight:600;background:color-mix(in srgb,var(--muted) 14%,transparent);color:var(--muted);white-space:nowrap}
+  .badge-stage{display:inline-block;vertical-align:2px;margin-right:5px;padding:1px 7px;border-radius:20px;font-size:.7rem;font-weight:600;background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent);white-space:nowrap}
+  .sub-filter-label{font-size:.76rem;color:var(--muted);align-self:center;margin-right:2px}
+  .chip.sm{padding:4px 9px;font-size:.72rem}
+  .chip[disabled]{opacity:.38;cursor:not-allowed}
   .latest-jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
   .job-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:block;transition:.2s}
   .job-card:hover{border-color:var(--primary);transform:translateY(-2px)}
@@ -233,6 +246,116 @@
   details.scam summary{cursor:pointer;font-weight:700;font-size:.9rem;color:var(--warn)}
   details.scam .scam-body{margin-top:10px;font-size:.84rem;color:var(--text)}
   details.scam li{margin-bottom:6px}
+
+  /* ===== 落地手册页 ===== */
+  .pb-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:12px;transition:.2s}
+  .pb-card:hover{border-color:var(--primary)}
+  .pb-head{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
+  .pb-head h3{margin:0;font-size:1.02rem;flex:1;min-width:0}
+  .pb-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:.73rem;color:var(--muted);margin:6px 0 0}
+  .pb-meta span{background:color-mix(in srgb,var(--muted) 12%,transparent);padding:2px 8px;border-radius:20px}
+  .pb-who{margin:10px 0 0;font-size:.83rem;color:var(--text);background:color-mix(in srgb,var(--accent) 8%,var(--card));border-left:3px solid var(--accent);padding:7px 10px;border-radius:0 8px 8px 0}
+  .pb-body{margin-top:12px;display:none}
+  .pb-card.open .pb-body{display:block}
+  .pb-step{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:10px 0;border-bottom:1px dashed var(--border)}
+  .pb-step:last-child{border-bottom:none}
+  .pb-when{font-size:.72rem;font-weight:700;color:var(--primary);white-space:nowrap;padding-top:2px;min-width:60px}
+  .pb-do{font-size:.85rem;line-height:1.6}
+  .pb-done{margin-top:5px;font-size:.79rem;color:var(--ok);background:color-mix(in srgb,var(--ok) 9%,var(--card));border-radius:8px;padding:5px 9px}
+  .pb-tools{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+  .pb-tool{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:.82rem}
+  .pb-tool a{font-weight:700;color:var(--primary);text-decoration:none}
+  .pb-tool a:hover{text-decoration:underline}
+  .pb-tool .u{color:var(--muted);font-weight:400}
+  .pb-income{margin-top:10px;font-size:.82rem;background:color-mix(in srgb,var(--ok) 8%,var(--card));border-left:3px solid var(--ok);padding:8px 11px;border-radius:0 8px 8px 0;line-height:1.6}
+
+  /* 7 天清单 */
+  .plan-bar{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .plan-track{flex:1;min-width:130px;height:9px;border-radius:20px;background:color-mix(in srgb,var(--muted) 18%,transparent);overflow:hidden}
+  .plan-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--primary),var(--ok));transition:width .35s}
+  .plan-day{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  .plan-day>summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:.88rem;list-style:none;display:flex;align-items:center;gap:9px}
+  .plan-day>summary::-webkit-details-marker{display:none}
+  .plan-day>summary::before{content:"▸";color:var(--muted);transition:.2s}
+  .plan-day[open]>summary::before{transform:rotate(90deg)}
+  .plan-items{padding:0 14px 12px}
+  .plan-item{display:flex;gap:9px;align-items:flex-start;padding:7px 0;cursor:pointer;border-bottom:1px dashed var(--border)}
+  .plan-item:last-child{border-bottom:none}
+  .plan-item input{margin-top:3px;flex:none;width:15px;height:15px;accent-color:var(--primary);cursor:pointer}
+  .plan-item .pt{font-size:.85rem;line-height:1.5}
+  .plan-item .pd{font-size:.75rem;color:var(--ok);margin-top:2px}
+  .plan-item.done .pt{text-decoration:line-through;color:var(--muted)}
+
+  /* 踩坑墙 */
+  .pit-form{display:grid;grid-template-columns:130px 1fr 150px;gap:8px;margin-bottom:12px}
+  .pit-form input,.pit-form select,.pit-form textarea{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--bg2);color:var(--text);font-size:.83rem;font-family:inherit}
+  .pit-form textarea{grid-column:1/-1;min-height:56px;resize:vertical}
+  .pit-item{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--hot);border-radius:0 10px 10px 0;padding:10px 12px;margin-bottom:8px;position:relative}
+  .pit-item .ph{font-size:.86rem;font-weight:700;line-height:1.5;padding-right:24px}
+  .pit-item .pf{font-size:.8rem;color:var(--ok);margin-top:4px;line-height:1.55}
+  .pit-item .px{position:absolute;top:8px;right:9px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;line-height:1;padding:2px}
+  .pit-item .px:hover{color:var(--hot)}
+  .pit-tag{font-size:.7rem;color:var(--muted);background:color-mix(in srgb,var(--muted) 13%,transparent);padding:1px 7px;border-radius:20px;margin-right:6px}
+
+  .cta-box{border:1px dashed var(--primary);border-radius:14px;padding:16px 18px;background:color-mix(in srgb,var(--primary) 6%,var(--card))}
+  .cta-box h3{margin:0 0 6px;font-size:.98rem}
+  .cta-box p{margin:0 0 10px;font-size:.83rem;color:var(--muted);line-height:1.6}
+
+  /* ---------- 变现看板 ---------- */
+  .earn-privacy{font-size:.8rem;color:var(--muted);background:color-mix(in srgb,var(--ok) 9%,var(--card));border:1px solid color-mix(in srgb,var(--ok) 26%,transparent);border-radius:10px;padding:9px 13px;margin-bottom:16px}
+  .earn-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+  .earn-kpi{border:1px solid var(--border);border-radius:12px;padding:13px 14px;background:var(--card)}
+  .earn-kpi .k-l{font-size:.74rem;color:var(--muted);margin-bottom:5px}
+  .earn-kpi .k-v{font-size:1.32rem;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  .earn-kpi .k-s{font-size:.72rem;color:var(--muted);margin-top:3px}
+  .earn-kpi.good .k-v{color:var(--ok)}
+  .earn-kpi.mid .k-v{color:var(--warn)}
+  .earn-kpi.bad .k-v{color:var(--hot)}
+  .card{border:1px solid var(--border);border-radius:14px;background:var(--card);padding:15px 17px}
+  .earn-goal-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .earn-form{border:1px dashed var(--primary);border-radius:14px;padding:14px 16px;background:color-mix(in srgb,var(--primary) 5%,var(--card));margin-bottom:14px}
+  .ef-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:10px}
+  /* grid 子项默认 min-width:auto，不加这句在窄屏会被内容撑破 */
+  .ef-row label{min-width:0}
+  .ef-row label{display:flex;flex-direction:column;gap:4px;font-size:.76rem;color:var(--muted);font-weight:600}
+  .ef-row input,.ef-row select{width:100%}
+  .earn-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;border:1px solid var(--border);border-radius:11px;padding:10px 12px;background:var(--card);margin-bottom:8px}
+  .earn-item .px{border:0;background:none;color:var(--muted);cursor:pointer;font-size:.95rem;padding:0 2px;line-height:1}
+  .earn-item .px:hover{color:var(--hot)}
+  .earn-date{font-size:.73rem;color:var(--muted);white-space:nowrap}
+  .earn-note{font-size:.85rem;margin-top:3px;line-height:1.5}
+  .earn-amt{font-weight:800;font-size:1rem;white-space:nowrap}
+  .earn-amt.zero{color:var(--muted);font-weight:600;font-size:.85rem}
+  .earn-empty{font-size:.85rem;color:var(--muted);border:1px dashed var(--border);border-radius:12px;padding:18px;text-align:center;line-height:1.7}
+  .cmp-row{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--card);margin-bottom:9px}
+  .cmp-top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+  .cmp-top b{font-size:.9rem}
+  .cmp-track{position:relative;height:9px;border-radius:20px;background:color-mix(in srgb,var(--muted) 16%,transparent);margin:20px 0 6px}
+  .cmp-zone{position:absolute;top:0;height:100%;border-radius:20px;background:color-mix(in srgb,var(--ok) 26%,transparent)}
+  .cmp-you{position:absolute;top:-5px;width:4px;height:19px;border-radius:4px;background:var(--primary);box-shadow:0 0 0 2px var(--card)}
+  .cmp-mark{position:absolute;top:-16px;font-size:.68rem;color:var(--muted);transform:translateX(-50%);white-space:nowrap}
+  .cmp-verdict{font-size:.81rem;line-height:1.6;margin-top:8px}
+  .earn-stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:9px}
+  .stage{border:1px solid var(--border);border-radius:12px;padding:11px 13px;background:var(--card);opacity:.62}
+  .stage.on{opacity:1;border-color:color-mix(in srgb,var(--ok) 45%,transparent);background:color-mix(in srgb,var(--ok) 7%,var(--card))}
+  .stage .s-i{font-size:1.2rem}
+  .stage .s-n{font-size:.86rem;font-weight:700;margin:3px 0 2px}
+  .stage .s-d{font-size:.72rem;color:var(--muted);line-height:1.5}
+  .stage .s-p{font-size:.72rem;margin-top:5px;font-weight:600}
+  .earn-link{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+  .el-card{border:1px solid var(--border);border-radius:12px;padding:13px 14px;background:var(--card);text-align:left;cursor:pointer;width:100%}
+  .el-card:hover{border-color:var(--primary)}
+  .el-card .l-v{font-size:1.2rem;font-weight:800}
+  .el-card .l-l{font-size:.75rem;color:var(--muted);margin-bottom:5px}
+
+  @media(max-width:640px){
+    .pit-form{grid-template-columns:1fr}
+    .earn-item{grid-template-columns:auto 1fr;gap:8px}
+    .earn-amt{grid-column:2;text-align:left}
+    .ef-row{grid-template-columns:1fr}
+    .pb-step{grid-template-columns:1fr;gap:3px}
+    .pb-when{padding-bottom:0}
+  }
 
   @media(max-width:640px){
     .hero{padding:48px 0 34px}
@@ -251,7 +374,9 @@
     <nav class="tabs" id="tabs">
       <button class="tab active" data-view="home">🏠 首页</button>
       <button class="tab" data-view="match">🚀 新手开始</button>
+      <button class="tab" data-view="play">🛠️ 落地手册</button>
       <button class="tab" data-view="hustles">💰 副业库</button>
+      <button class="tab" data-view="earn">📈 变现看板</button>
       <button class="tab" data-view="jobs">💼 工作板</button>
       <button class="tab" data-view="learn">📚 学习成长</button>
       <button class="tab" data-view="favs">⭐ 我的收藏</button>
@@ -428,7 +553,8 @@
         <span style="flex:1"></span>
         <button class="btn ghost small" onclick="loadLearn()">↻ 刷新</button>
       </div>
-      <div class="filter-bar" id="learnTrackFilters" style="margin:0 0 10px"></div>
+      <div class="filter-bar" id="learnTrackFilters" style="margin:0 0 8px"></div>
+      <div class="filter-bar sub-bar" id="learnStageFilters" style="display:none;margin:0 0 10px"></div>
       <div class="learn-grid" id="learnFeed"></div>
       <div class="daily-foot"><span id="learnSource"></span></div>
     </div>
@@ -454,6 +580,181 @@
       <button class="btn ghost small" id="clearFavs">🗑 清空收藏</button>
     </div>
     <div class="grid" id="favGrid"></div>
+  </div>
+</section>
+
+<!-- ================= 落地手册 ================= -->
+<section class="view" id="view-play">
+  <div class="container">
+
+    <div class="sec-head">
+      <div>
+        <h2>🛠️ 落地手册 · 别看介绍，看怎么做</h2>
+        <div class="sub">副业库里告诉你「这个能赚多少」，这里告诉你「第一天打开什么软件、每步做到什么程度算完成、卡住了怎么办、第一个钱从哪来」</div>
+      </div>
+    </div>
+
+    <!-- 交流入口 -->
+    <div class="cta-box" style="margin-bottom:18px">
+      <h3>💬 卡住了？进来问 · 也把你的经验贴出来</h3>
+      <p>遇到卡点、想吐槽踩了什么坑、或者你跑通了想分享，直接开一个 Issue。<b>不需要写代码，一句话也行</b>。别人搜到同样的坑时会少走一遍弯路。</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="shareActions"></div>
+    </div>
+
+    <!-- 7 天启动清单 -->
+    <div class="sec-head" style="margin-top:6px">
+      <div>
+        <h2 style="font-size:1.15rem">📅 7 天启动清单</h2>
+        <div class="sub">勾选进度存在你本机（localStorage），关掉网页再回来还在。不注册、不上传、不收集你任何数据。</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn ghost small" onclick="expandAllPlan(true)">全部展开</button>
+        <button class="btn ghost small" onclick="expandAllPlan(false)">全部收起</button>
+        <button class="btn ghost small" onclick="resetPlan()">↺ 重置</button>
+      </div>
+    </div>
+    <div class="plan-bar">
+      <b id="planCount" style="font-size:.9rem;white-space:nowrap">0 / 0</b>
+      <div class="plan-track"><div class="plan-fill" id="planFill" style="width:0%"></div></div>
+      <span id="planPct" style="font-size:.82rem;color:var(--muted);white-space:nowrap">0%</span>
+      <button class="btn primary small" onclick="copyPlan()">📋 复制清单</button>
+    </div>
+    <div id="planList"></div>
+
+    <!-- 教程 -->
+    <div class="sec-head" style="margin-top:26px">
+      <div>
+        <h2 style="font-size:1.15rem">📖 端到端实操教程</h2>
+        <div class="sub">每条都带完成标志（不是「做什么」，而是「做到什么程度算过」）、真实工具成本、常见卡点与一个诚实的收入预期</div>
+      </div>
+      <div class="filter-bar" id="pbFilters" style="margin:0"></div>
+    </div>
+    <div id="pbList"></div>
+
+    <!-- 踩坑墙 -->
+    <div class="sec-head" style="margin-top:26px">
+      <div>
+        <h2 style="font-size:1.15rem">🧱 踩坑墙</h2>
+        <div class="sub">下面 11 条是大多数人会踩的；上面可以记你自己踩的（存在本机，可导出分享）</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn ghost small" onclick="exportPits()">📤 导出我的坑</button>
+        <button class="btn ghost small" onclick="clearPits()">🗑 清空我的</button>
+      </div>
+    </div>
+    <div class="pit-form">
+      <select id="pitHustle">
+        <option value="">选副业（可不选）</option>
+      </select>
+      <input id="pitTitle" type="text" placeholder="我踩了什么坑（一句话）" maxlength="60">
+      <input id="pitFix" type="text" placeholder="我是怎么绕过去的" maxlength="120">
+      <textarea id="pitNote" placeholder="可选：当时的场景 / 花了多久 / 损失了多少（写下来下次才想得起来）"></textarea>
+    </div>
+    <div style="margin-bottom:8px"><button class="btn primary small" onclick="addPit()">+ 记一笔</button></div>
+    <div id="pitMine"></div>
+    <div class="filter-bar" id="pitStockFilters" style="margin:14px 0 8px"></div>
+    <div id="pitStock"></div>
+
+  </div>
+</section>
+
+<!-- ================= 变现看板 ================= -->
+<section class="view" id="view-earn">
+  <div class="container">
+
+    <div class="sec-head">
+      <div>
+        <h2>📈 变现看板 · 你的第一笔收入在这里记</h2>
+        <div class="sub">副业库告诉你「能赚多少」，落地手册告诉你「怎么做」，这个页面回答唯一一个真正的问题：<b>我到底赚了多少、时薪合不合理、离下一个目标还差多少</b></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn ghost small" onclick="exportEarn()">📤 导出成就页</button>
+        <button class="btn ghost small" onclick="clearEarn()">🗑 清空记录</button>
+      </div>
+    </div>
+
+    <div class="earn-privacy">🔒 所有数字只存在你本机浏览器（localStorage），不上传、不注册、没有服务器。关掉网页再回来还在。</div>
+
+    <!-- KPI -->
+    <div class="earn-kpis" id="earnKpis"></div>
+
+    <!-- 月目标 -->
+    <div class="card earn-goal">
+      <div class="earn-goal-head">
+        <span style="font-size:.88rem;font-weight:700">🎯 本月目标</span>
+        <span id="earnGoalPct" style="font-size:.82rem;color:var(--muted)"></span>
+      </div>
+      <div class="plan-track" style="margin:8px 0 10px"><div class="plan-fill" id="earnGoalFill" style="width:0%"></div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <input id="earnGoalInput" type="number" min="0" step="100" placeholder="设一个月收入目标，如 3000" style="flex:1;min-width:180px">
+        <button class="btn primary small" onclick="saveGoal()">保存目标</button>
+        <span id="earnGoalNow" style="font-size:.8rem;color:var(--muted)"></span>
+      </div>
+    </div>
+
+    <!-- 记一笔 -->
+    <div class="sec-head" style="margin-top:22px">
+      <div>
+        <h2 style="font-size:1.12rem">✍️ 记一笔投入与回报</h2>
+        <div class="sub"><b>金额可以填 0</b>——记录「花了 3 小时、收入 0」同样重要，那才是真实成本。不美化数字，才能看出哪条路值得继续。</div>
+      </div>
+    </div>
+    <div class="earn-form">
+      <div class="ef-row">
+        <label>赛道
+          <select id="enCat"><option value="">未分类</option></select>
+        </label>
+        <label>投入（小时）
+          <input id="enHours" type="number" min="0" step="0.5" placeholder="3.5">
+        </label>
+        <label>收入（元）
+          <input id="enAmount" type="number" min="0" step="0.01" placeholder="0">
+        </label>
+      </div>
+      <div class="ef-row">
+        <label>日期
+          <input id="enDate" type="date">
+        </label>
+        <label>备注（做了什么 / 为什么没收入）
+          <input id="enNote" type="text" maxlength="80" placeholder="例：发了第 3 条视频，播放量 120">
+        </label>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <button class="btn primary" onclick="addEarn()">+ 记一笔</button>
+        <button class="btn ghost small" onclick="fillDemo()">💡 填入示例数据看看效果</button>
+        <span style="font-size:.76rem;color:var(--muted)">只影响本机，随时可清空</span>
+      </div>
+    </div>
+
+    <div id="earnList"></div>
+
+    <!-- 时薪对比 -->
+    <div class="sec-head" style="margin-top:24px">
+      <div>
+        <h2 style="font-size:1.12rem">⚖️ 我的时薪 vs 赛道区间</h2>
+        <div class="sub" id="earnRefNote"></div>
+      </div>
+    </div>
+    <div id="earnCompare"></div>
+
+    <!-- 里程碑 -->
+    <div class="sec-head" style="margin-top:24px">
+      <div>
+        <h2 style="font-size:1.12rem">🏁 里程碑</h2>
+        <div class="sub">不用一次做到 3000 元。先跨过「第一笔」——性质完全变了。</div>
+      </div>
+    </div>
+    <div class="earn-stages" id="earnStages"></div>
+
+    <!-- 串联其它模块 -->
+    <div class="sec-head" style="margin-top:24px">
+      <div>
+        <h2 style="font-size:1.12rem">🧭 一起看的三个数</h2>
+        <div class="sub">收入不是孤立发生的，它和你的执行状态、踩的坑是一体的</div>
+      </div>
+    </div>
+    <div class="earn-link" id="earnLink"></div>
+
   </div>
 </section>
 
@@ -672,7 +973,8 @@ const state = {
   favs:new Set(JSON.parse(localStorage.getItem("shh_favs")||"[]")),
   updates:null, inspireSeed:0,
   hustleNews:null, hustleNewsCat:null,
-  learnFeed:null, learnTrack:null,
+  learnFeed:null, learnTrack:null, learnStage:null,
+  pbCat:null, pbOpen:null, pitCat:null,
 };
 const $ = s=>document.querySelector(s);
 const $$ = s=>document.querySelectorAll(s);
@@ -996,6 +1298,7 @@ function renderPrinciples(){
 function renderAll(){
   renderFilters();renderHustles();renderBoards();renderLearn();renderFavs();renderInspire();renderStats();renderDaily();renderMatch();
   renderHustleNews();renderLearnFeed();
+  renderPlaybooks();renderPlan();renderPits();renderShare();renderEarn();
 }
 
 /* =====================================================
@@ -1008,6 +1311,8 @@ function switchView(v){
   window.scrollTo({top:0,behavior:"smooth"});
   if(v==="favs")renderFavs();
   if(v==="match")renderMatch();
+  if(v==="play"){renderPlaybooks();renderPlan();renderPits();}
+  if(v==="earn")renderEarn();
 }
 window.switchView=switchView;
 function setHustleCat(c){state.hustleCat=c;renderFilters();renderHustles()}
@@ -1104,6 +1409,16 @@ function openHustle(id){
     <div class="block tipbox"><b style="color:var(--warn)">⚠️ 避坑指南</b><ul class="week1">${g.risks.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>
     ${GUIDE_EXTRAS&&GUIDE_EXTRAS[id]&&GUIDE_EXTRAS[id].faq?`<div class="block"><b>🆘 卡住了怎么办 · 高频 FAQ</b>${GUIDE_EXTRAS[id].faq.map(f=>`<div class="faq-item"><b class="q">Q：${esc(f.q)}</b><p>A：${esc(f.a)}</p></div>`).join("")}</div>`:""}
     <div class="block"><b>📅 第一周行动清单</b><ol class="week1">${g.week1.map(w=>`<li>${esc(w)}</li>`).join("")}</ol></div>`}
+    ${bm&&bm.cases&&bm.cases.length?`<div class="block"><b>✅ 已验证案例 · 打开就能看到真有人在这条赛道上收钱</b>
+      <p style="font-size:.78rem;color:var(--muted);margin:4px 0 8px">不是搜索入口，是真实在跑的官方页面。点开看一眼真实成交价/真实数据，<b>先估算出自己能到什么量级，再决定要不要投入</b>。</p>
+      ${bm.cases.map(c=>`<a class="bm-item" href="${esc(c.u)}" target="_blank" rel="noopener">
+        <span class="bm-p case">${esc(c.n)} ↗</span>
+        <div style="flex:1;min-width:0">
+          <div class="bm-why">🔎 到这里看：${esc(c.chk)}</div>
+          <div class="bm-k" style="color:var(--muted);word-break:break-all">${esc(c.u)}</div>
+        </div>
+      </a>`).join("")}
+    </div>`:""}
     ${bm?`<div class="block"><b>🔍 对标账号 · 去哪里找、搜什么、盯什么</b>
       <p style="font-size:.78rem;color:var(--muted);margin:4px 0 8px">点平台标签直接跳搜索页，搜不到就换词；重点看「why」那一列，<b>抄结构不抄内容</b>。</p>
       ${bm.refs.map((r,i)=>`<div class="bm-item">
@@ -1158,7 +1473,8 @@ const SITE_SEARCH={
 // 只编码关键词，否则整个 URL 会被 encode 成相对路径而失效
 const siteSearch=(p,k)=>(SITE_SEARCH[p]||"https://www.bing.com/search?q=")+encodeURIComponent(k||"");
 function copyText(t,btn){
-  const done=()=>{const o=btn.textContent;btn.textContent="已复制 ✓";setTimeout(()=>btn.textContent=o,1400)};
+  // btn 可选：不传时只弹提示（长文本用，比如复制整条教程 / 清单）
+  const done=()=>{if(!btn)return toast("📋 已复制到剪贴板");const o=btn.textContent;btn.textContent="已复制 ✓";setTimeout(()=>btn.textContent=o,1400)};
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done).catch(()=>fallbackCopy(t,done))}
   else fallbackCopy(t,done);
 }
@@ -1262,6 +1578,8 @@ function stamp(ts){
   return `更新于 ${isNaN(d)?"":d.toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"})}`;
 }
 function renderHustleNews(){
+  // 「风口」阈值：日均热度增速 ≥ 5% 才算真风口。低于它说明是维持热度而不是爆发。
+  const HOT_DAILY=5;
   const box=$("#hustleNews");if(!box)return;
   const d=state.hustleNews;
   if(!d){
@@ -1276,22 +1594,43 @@ function renderHustleNews(){
   $("#hustleNewsFilters").innerHTML=`<button class="chip ${!state.hustleNewsCat?"on":""}" onclick="setHustleNewsCat(null)">全部</button>`+
     cats.map(c=>`<button class="chip ${state.hustleNewsCat===c?"on":""}" onclick="setHustleNewsCat('${c}')">${CATEGORIES[c].emoji} ${CATEGORIES[c].name}</button>`).join("");
   const list=state.hustleNewsCat?items.filter(i=>i.cat===state.hustleNewsCat):items;
-  const shown=list.slice(0,24);
-  box.innerHTML=shown.length?shown.map(i=>`
-    <a class="feed-card" href="${esc(i.url)}" target="_blank" rel="noopener">
-      <div class="ft">${esc(i.title)}</div>
+  // 排序分层：先看「真实日增速」，没得比的再看「平均日增」量级，最后看连续上榜天数。
+  // 关键：perDay 只能做同层内的次级键，不能跟 daily 抢主键——
+  // 否则一个刚上榜、平均日增 50 的新仓库会把真正在加速的项目全挤下去。
+  const gain=i=>(i.growth&&i.growth.daily!=null)?i.growth.daily:-999;
+  const scale=i=>(i.growth&&i.growth.perDay!=null)?i.growth.perDay:0;
+  const sorted=[...list].sort((a,b)=>gain(b)-gain(a)||scale(b)-scale(a)||(b.streak||1)-(a.streak||1));
+  // 「真风口」= 增速还在涨（不是硬凑一个在榜天数）
+  const hot=items.filter(i=>i.growth&&i.growth.daily!=null&&i.growth.daily>=HOT_DAILY).length;
+  const fresh=items.filter(i=>(i.streak||1)<2&&!(i.growth&&i.growth.daily!=null&&i.growth.daily>=HOT_DAILY)).length;
+  const shown=sorted.slice(0,24);
+  box.innerHTML=shown.length?shown.map(i=>{
+    const s=i.streak||1,g=i.growth,daily=g&&g.daily!=null?g.daily:null;
+    // 三种状态，徽章只说我们真有的信号：
+    //   1. 日均增速达标 -> 风口加速中（报百分比）
+    //   2. 增速不达标 / 拿不到增速 -> 持续热度 N 天（说清楚原因，不猜）
+    //   3. 首次上榜 -> 新上榜
+    const badge=daily!=null&&daily>=HOT_DAILY
+      ? `<span class="badge-hot" title="日均 ${daily>=0?"+":""}${daily}%（${g.base} → ${g.count}），是真的有人在抢">🔥 风口加速中 日增 ${daily}%</span>`
+      : s>=2
+      ? `<span class="badge-hot" title="${daily!=null?"日均仅 +"+daily+"%，热度放缓但仍在榜":"连续 "+s+" 天在榜，日增速要明天的快照才能算出来"}">🔥 持续热度 ${s} 天</span>`
+      : `<span class="badge-new" title="今日首次上榜，可能是试水噪声">🆕 今日新上榜</span>`;
+    return `<a class="feed-card" href="${esc(i.url)}" target="_blank" rel="noopener">
+      <div class="ft">${badge} ${esc(i.title)}</div>
       <div class="fd">${esc(i.desc||"")}</div>
       <div class="fm">
         <span class="src">🔗 ${esc(i.source||"见原帖")}</span>
         ${i.cat&&CATEGORIES[i.cat]?`<span>${CATEGORIES[i.cat].emoji} ${CATEGORIES[i.cat].name}</span>`:""}
         ${i.author?`<span>👤 ${esc(i.author)}</span>`:""}
         ${i.metrics?`<span>${esc(i.metrics)}</span>`:""}
+        ${i.growth&&i.growth.daily!=null?`<span title="上次观测 ${i.growth.base} → 今天 ${i.growth.count}">📈 日增 ${i.growth.daily}%</span>`:""}
+        ${i.growth&&i.growth.daily==null&&i.growth.perDay!=null?`<span title="创建至今 ${i.growth.ageDays} 天累计 ${i.growth.count}（需两天快照才能算出增速）">⚡ 平均 ${i.growth.perDay}/天</span>`:""}
         ${i.date?`<span>📅 ${esc(i.date)}</span>`:""}
       </div>
-    </a>`).join(""):`<div style="font-size:.85rem;color:var(--muted)">该分类今日暂无新机会，换个分类或明天再看。</div>`;
+    </a>`}).join(""):`<div style="font-size:.85rem;color:var(--muted)">该分类今日暂无新机会，换个分类或明天再看。</div>`;
   $("#hustlesDate").textContent=`${d.date||""} ${stamp(d.generatedAt)}`;
   const errs=(d.errors||[]).length;
-  $("#hustlesSource").innerHTML=`来源：GitHub 新仓库 · HN Show HN · Product Hunt · 共 ${items.length} 条${errs?`<span style="color:var(--warn)">（部分来源失败：${errs}）</span>`:"✅"} · 当前显示 ${shown.length} 条${list.length>shown.length?"（其余请用上方分类筛选）":""} · 点击卡片直达原帖核验真伪`;
+  $("#hustlesSource").innerHTML=`来源：GitHub 新仓库 · HN Show HN · Product Hunt · 共 ${items.length} 条${errs?`<span style="color:var(--warn)">（部分来源失败：${errs}）</span>`:"✅"} · <b style="color:var(--hot)">🔥 风口加速中 ${hot} 条</b>（日增 ≥ ${HOT_DAILY}%，真风口，优先看）· 🆕 今日首次上榜 ${fresh} 条（可能是试水噪声）· 当前显示 ${shown.length} 条${list.length>shown.length?"（其余请用上方分类筛选）":""}`;
 }
 function setHustleNewsCat(c){state.hustleNewsCat=c;renderHustleNews();}
 async function loadHustles(){
@@ -1322,12 +1661,28 @@ function renderLearnFeed(){
   $("#learnTrackFilters").innerHTML=`<button class="chip ${!state.learnTrack?"on":""}" onclick="setLearnTrack(null)">全部 ${items.length}</button>`+
     keys.map(k=>{const t=tracks[k]||{};const n=counts[k]||0;
       return `<button class="chip ${state.learnTrack===k?"on":""}" onclick="setLearnTrack('${k}')">${t.emoji||""} ${esc(t.name||k)} <span style="opacity:.6">${n}</span></button>`}).join("");
-  const list=state.learnTrack?items.filter(i=>i.track===state.learnTrack):items;
+  // K12 学段二级筛选：家长找「三年级数学」时不必在混合卡片里翻
+  const stages=d.k12Stages||{};
+  const stageCounts=d.k12StageCounts||{};
+  const showStage=state.learnTrack==="k12"&&Object.keys(stages).length>0;
+  const stageBar=$("#learnStageFilters");
+  if(stageBar){
+    if(showStage){
+      stageBar.style.display="";
+      stageBar.innerHTML=`<span class="sub-filter-label">按学段：</span>`+
+        `<button class="chip sm ${!state.learnStage?"on":""}" onclick="setLearnStage(null)">全部 ${items.filter(i=>i.track==="k12").length}</button>`+
+        Object.keys(stages).map(s=>{const st=stages[s]||{};const n=stageCounts[s]||0;
+          return `<button class="chip sm ${state.learnStage===s?"on":""}" onclick="setLearnStage('${s}')" ${n?"":"disabled"}>${st.emoji||""} ${esc(st.name||s)} <span style="opacity:.6">${n}</span></button>`}).join("");
+    } else { stageBar.style.display="none"; stageBar.innerHTML=""; }
+  }
+  let list=state.learnTrack?items.filter(i=>i.track===state.learnTrack):items;
+  if(state.learnStage)list=list.filter(i=>i.stage===state.learnStage);
   const shown=list.slice(0,36);
   box.innerHTML=shown.length?shown.map(i=>{
     const t=tracks[i.track]||{};
+    const st=(i.stage&&stages[i.stage])||null;
     return `<a class="feed-card" href="${esc(i.url)}" target="_blank" rel="noopener">
-      <div class="ft">${esc(i.title)}</div>
+      <div class="ft">${st?`<span class="badge-stage">${st.emoji||""} ${esc(st.name||i.stage)}</span> `:""}${esc(i.title)}</div>
       <div class="fd">${esc(i.desc||"")}</div>
       <div class="fm">
         <span class="src">🔗 ${esc(i.source||"见原站")}</span>
@@ -1341,7 +1696,9 @@ function renderLearnFeed(){
   const errs=(d.errors||[]).length;
   $("#learnSource").innerHTML=`来源：dev.to · freeCodeCamp · arXiv · 哔哩哔哩 · WordFeel 场景剧场 · TapTapGo · 少数派 · 36氪 · 共 ${items.length} 条${errs?`<span style="color:var(--warn)">（部分来源失败：${errs}）</span>`:"✅"} · 当前显示 ${shown.length} 条${list.length>shown.length?"（其余请用上方赛道筛选）":""} · 免费可直接学`;
 }
-function setLearnTrack(k){state.learnTrack=k;renderLearnFeed();}
+function setLearnTrack(k){state.learnTrack=k;if(k!=="k12")state.learnStage=null;renderLearnFeed();}
+function setLearnStage(s){state.learnStage=s;renderLearnFeed();}
+window.setLearnStage=setLearnStage;
 async function loadLearn(){
   try{
     const res=await fetch("data/daily-learn.json?t="+Date.now(),{cache:"no-store"});
@@ -1352,6 +1709,499 @@ async function loadLearn(){
     toast("📚 学习流已刷新");
   }catch(e){state.learnFeed=null}
   renderLearnFeed();
+}
+
+/* =====================================================
+   落地手册页：教程 + 7 天清单（可勾选）+ 踩坑墙 + 交流入口
+   全部本地存储，不注册、不上传任何数据。
+   ===================================================== */
+const ALL_PLAYBOOKS = [].concat(window.PLAYBOOKS||[], window.PLAYBOOKS_MORE||[], window.PLAYBOOKS_MORE2||[]);
+const PB_CATS = {
+  content:{name:"内容号",emoji:"🎬"}, tech:{name:"独立开发",emoji:"🛠️"},
+  biz:{name:"变现接单",emoji:"💼"}, writing:{name:"知识付费",emoji:"✍️"}, learn:{name:"求职学习",emoji:"📚"},
+};
+const ISSUE_URL = "https://github.com/zoneboys/ai-sidehustle-hub/issues/new";
+
+/* ---------- 教程 ---------- */
+function renderPlaybooks(){
+  const box=$("#pbList");if(!box)return;
+  const cats=[...new Set(ALL_PLAYBOOKS.map(p=>p.cat))];
+  $("#pbFilters").innerHTML=`<button class="chip ${!state.pbCat?"on":""}" onclick="setPbCat(null)">全部 ${ALL_PLAYBOOKS.length}</button>`+
+    cats.map(c=>{const n=ALL_PLAYBOOKS.filter(p=>p.cat===c).length;
+      return `<button class="chip ${state.pbCat===c?"on":""}" onclick="setPbCat('${c}')">${PB_CATS[c].emoji} ${PB_CATS[c].name} <span style="opacity:.6">${n}</span></button>`}).join("");
+  const list=state.pbCat?ALL_PLAYBOOKS.filter(p=>p.cat===state.pbCat):ALL_PLAYBOOKS;
+  box.innerHTML=list.map(p=>{
+    const open=state.pbOpen===p.id;
+    return `<div class="pb-card ${open?"open":""}" id="pb-${p.id}">
+      <div class="pb-head" onclick="togglePb('${p.id}')" style="cursor:pointer">
+        <span style="font-size:1.25rem">${p.emoji}</span>
+        <h3>${esc(p.title)}</h3>
+        <button class="btn ghost small">${open?"收起 ▲":"展开 ▼"}</button>
+      </div>
+      <div class="pb-meta">
+        <span>${PB_CATS[p.cat].emoji} ${PB_CATS[p.cat].name}</span>
+        <span>⏱ ${esc(p.time)}</span><span>💴 ${esc(p.cost)}</span><span>📋 ${p.phases.length} 步</span>
+      </div>
+      <div class="pb-who"><b>适合谁：</b>${esc(p.who)}</div>
+      <div class="pb-body">
+        <div class="block" style="margin-top:12px"><b>🔧 要准备什么</b>
+          <p style="font-size:.8rem;color:var(--muted);margin:3px 0 6px"><b>前提：</b>${esc(p.prereq)}</p>
+          <div class="pb-tools">${p.tools.map(t=>`<div class="pb-tool">
+            <a href="${esc(t.u)}" target="_blank" rel="noopener">${esc(t.n)} ↗</a>
+            <span class="u">${esc(t.u)}</span><span style="color:var(--muted)">— ${esc(t.use)}</span>
+          </div>`).join("")}</div>
+        </div>
+        <div class="block" style="margin-top:12px"><b>📋 一步步做（展开看每步的完成标志）</b>
+          ${p.phases.map(s=>`<div class="pb-step">
+            <div class="pb-when">${esc(s.d)}</div>
+            <div><div class="pb-do">${esc(s.do)}</div><div class="pb-done">✅ 完成标志：${esc(s.done)}</div></div>
+          </div>`).join("")}
+        </div>
+        <div class="block tipbox" style="margin-top:12px"><b style="color:var(--warn)">⚠️ 这一步最容易卡住的地方</b>
+          <ul class="week1">${p.traps.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+        </div>
+        <div class="pb-income"><b>💰 第一个收入点与诚实预期</b><br>${esc(p.income)}</div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn primary small" onclick="copyPlaybook('${p.id}')">📋 复制这条教程</button>
+          ${p.h&&HUSTLES.some(x=>x.id===p.h)?`<button class="btn ghost small" onclick="jumpHustle('${p.h}')">📌 对应副业卡片</button>`:""}
+          <button class="btn ghost small" onclick="askIssue('${p.id}')">❓ 卡住了，去问</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+function togglePb(id){
+  state.pbOpen=state.pbOpen===id?null:id;
+  renderPlaybooks();
+  if(state.pbOpen){const el=$("#pb-"+id);if(el)el.scrollIntoView({block:"nearest",behavior:"smooth"})}
+}
+function setPbCat(c){state.pbCat=c;state.pbOpen=null;renderPlaybooks()}
+function playbookText(p){
+  return [
+    `【${p.title}】（${p.time} · ${p.cost}）`,
+    `适合谁：${p.who}`,
+    `前提：${p.prereq}`,
+    "",
+    "要准备什么：",
+    ...p.tools.map(t=>`  - ${t.n} ${t.u} — ${t.use}`),
+    "",
+    "一步步做：",
+    ...p.phases.map(s=>`  ${s.d}\n    做什么：${s.do}\n    ✅ 完成标志：${s.done}`),
+    "",
+    "最容易卡住的地方：",
+    ...p.traps.map(t=>`  - ${t}`),
+    "",
+    `收入：${p.income}`,
+  ].join("\n");
+}
+function copyPlaybook(id){
+  const p=ALL_PLAYBOOKS.find(x=>x.id===id);
+  if(p)copyText(playbookText(p));
+}
+function askIssue(id){
+  const p=ALL_PLAYBOOKS.find(x=>x.id===id);
+  const title=p?`【落地手册】跟着「${p.title}」卡住了`:"【落地手册】卡住了，求助";
+  const body=p?`我跟着「${p.title}」做，卡在：\n\n我的情况：\n\n我已经试过：\n\n想请教：`:"我的情况：\n\n我已经试过：\n\n想请教：";
+  window.open(`${ISSUE_URL}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`,"_blank","noopener");
+}
+/* 教程 → 对应副业卡片：带着副业标题做全文搜，直接滚到那张卡 */
+function jumpHustle(hid){
+  const h=HUSTLES.find(x=>x.id===hid);if(!h)return;
+  closeModal&&closeModal();
+  state.query=h.title;state.hustleCat=null;state.hustleSort="default";
+  const box=$("#search");if(box)box.value=h.title;
+  switchView("hustles");renderAll();
+  toast(`已定位到「${h.title}」，回车即可打开详情`);
+}
+window.togglePb=togglePb;window.setPbCat=setPbCat;window.copyPlaybook=copyPlaybook;window.askIssue=askIssue;window.jumpHustle=jumpHustle;
+
+/* ---------- 7 天启动清单（可勾选，进度存本机） ---------- */
+const PLAN_KEY="shh_plan7";
+const PLAN_TOTAL=START7.reduce((a,d)=>a+d.items.length,0);
+const loadPlan=()=>{try{return new Set(JSON.parse(localStorage.getItem(PLAN_KEY)||"[]"))}catch(e){return new Set()}};
+function renderPlan(){
+  const box=$("#planList");if(!box)return;
+  const done=loadPlan();
+  box.innerHTML=START7.map((day,di)=>{
+    const dn=day.items.filter((_,i)=>done.has(`${di}_${i}`)).length;
+    return `<details class="plan-day" ${di===0||dn===day.items.length?"open":""}>
+      <summary>${esc(day.d)}<span style="margin-left:auto;font-size:.76rem;font-weight:600;color:${dn===day.items.length?"var(--ok)":"var(--muted)"}">${dn}/${day.items.length}</span></summary>
+      <div class="plan-items">${day.items.map((it,i)=>{
+        const k=`${di}_${i}`,on=done.has(k);
+        return `<label class="plan-item ${on?"done":""}">
+          <input type="checkbox" ${on?"checked":""} onchange="togglePlan('${k}')">
+          <span><span class="pt">${esc(it.t)}</span><br><span class="pd">✅ ${esc(it.done)}</span></span>
+        </label>`}).join("")}</div>
+    </details>`;
+  }).join("");
+  const n=done.size,pct=PLAN_TOTAL?Math.round(n/PLAN_TOTAL*100):0;
+  $("#planCount").textContent=`${n} / ${PLAN_TOTAL}`;
+  $("#planFill").style.width=pct+"%";
+  $("#planPct").textContent=pct+"%"+(n===PLAN_TOTAL&&n>0?" 🎉 清单走完了，去副业库开单":"");
+}
+function togglePlan(k){
+  const s=loadPlan();
+  s.has(k)?s.delete(k):s.add(k);
+  localStorage.setItem(PLAN_KEY,JSON.stringify([...s]));
+  renderPlan();
+}
+function resetPlan(){
+  if(!confirm("清空 7 天清单的勾选进度？（只影响本机）"))return;
+  localStorage.removeItem(PLAN_KEY);renderPlan();toast("↺ 已重置清单进度");
+}
+function expandAllPlan(open){document.querySelectorAll(".plan-day").forEach(d=>d.open=open)}
+function copyPlan(){
+  const done=loadPlan();
+  const txt=START7.map((day,di)=>[day.d,...day.items.map((it,i)=>
+    `  [${done.has(`${di}_${i}`)?"x":" "}] ${it.t}\n      ✅ ${it.done}`)].join("\n")).join("\n\n");
+  copyText(`📅 7 天启动清单\n\n${txt}\n\n—— 来自「AI 副业指南针 · 落地手册」`);
+}
+window.togglePlan=togglePlan;window.resetPlan=resetPlan;window.expandAllPlan=expandAllPlan;window.copyPlan=copyPlan;
+
+/* ---------- 踩坑墙（内置常见坑 + 我自己记的，可导出分享） ---------- */
+const PIT_KEY="shh_pits";
+const loadPits=()=>{try{return JSON.parse(localStorage.getItem(PIT_KEY)||"[]")}catch(e){return []}};
+const savePits=p=>{localStorage.setItem(PIT_KEY,JSON.stringify(p));renderPits()};
+function renderPits(){
+  // 填副业下拉（保留用户已选项）
+  const sel=$("#pitHustle");
+  if(sel){
+    const keep=sel.value;
+    const cats=[...new Set(HUSTLES.map(h=>h.cat))].filter(c=>CATEGORIES[c]);
+    sel.innerHTML=`<option value="">选副业（可不选）</option>`+
+      cats.map(c=>`<option value="${esc(CATEGORIES[c].name)}">${CATEGORIES[c].emoji} ${esc(CATEGORIES[c].name)}</option>`).join("");
+    sel.value=keep;
+  }
+  const mine=loadPits();
+  const mb=$("#pitMine");
+  if(mb)mb.innerHTML=mine.length?mine.map((p,i)=>`<div class="pit-item">
+      <button class="px" onclick="delPit(${i})" title="删除">✕</button>
+      <div class="ph"><span class="pit-tag">${esc(p.hustle||"未分类")}</span>${esc(p.title)}</div>
+      <div class="pf">🔧 ${esc(p.fix)}</div>
+      ${p.note?`<div style="font-size:.76rem;color:var(--muted);margin-top:4px">${esc(p.note)}</div>`:""}
+      <div style="font-size:.7rem;color:var(--muted);margin-top:4px">记于 ${esc(p.at)}</div>
+    </div>`).join(""):`<div style="font-size:.83rem;color:var(--muted)">你还没记过坑。写一条试试——<b>写出来才不会踩第二次</b>。存在本机，可导出分享给别人。</div>`;
+
+  const cats=[...new Set(SCAM_STOCK.map(s=>s.hustle))];
+  $("#pitStockFilters").innerHTML=`<button class="chip ${!state.pitCat?"on":""}" onclick="setPitCat(null)">全部 ${SCAM_STOCK.length}</button>`+
+    cats.map(c=>`<button class="chip ${state.pitCat===c?"on":""}" onclick="setPitCat('${esc(c)}')">${esc(c)} <span style="opacity:.6">${SCAM_STOCK.filter(s=>s.hustle===c).length}</span></button>`).join("");
+  const list=state.pitCat?SCAM_STOCK.filter(s=>s.hustle===state.pitCat):SCAM_STOCK;
+  $("#pitStock").innerHTML=list.map(s=>`<details class="scam">
+    <summary>${esc(s.symptom)}<span class="pit-tag" style="margin-left:6px">${esc(s.hustle)}</span></summary>
+    <div class="scam-body">
+      <p style="margin:0 0 6px"><b>为什么会这样：</b>${esc(s.cause)}</p>
+      <p style="margin:0"><b>✅ 绕过去：</b>${esc(s.fix)}</p>
+      <button class="btn ghost small" style="margin-top:10px" onclick="copyPit(${i2s(s.symptom+'\\n为什么会这样：'+s.cause+'\\n✅ 绕过去：'+s.fix)})">📋 抄走这条</button>
+    </div>
+  </details>`).join("");
+}
+// 把文本安全地传进 onclick 参数（防引号/尖括号断属性）
+function i2s(s){return JSON.stringify(String(s).replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/'/g,"&#39;"))}
+function addPit(){
+  const t=$("#pitTitle").value.trim(), f=$("#pitFix").value.trim();
+  if(!t||!f)return toast("⚠️ 坑和绕法都要填");
+  const p=loadPits();
+  p.unshift({hustle:$("#pitHustle").value,title:t,fix:f,note:$("#pitNote").value.trim(),at:new Date().toLocaleDateString("zh-CN")});
+  savePits(p);
+  $("#pitTitle").value="";$("#pitFix").value="";$("#pitNote").value="";
+  toast("🧱 记下了。下次撞上同一个坑你会记得。");
+}
+function delPit(i){const p=loadPits();p.splice(i,1);savePits(p)}
+function clearPits(){
+  if(!confirm("清空你记录的所有踩坑？（只影响本机，不可恢复）"))return;
+  localStorage.removeItem(PIT_KEY);renderPits();
+}
+function exportPits(){
+  const p=loadPits();
+  if(!p.length)return toast("还没有你自己的坑可导出");
+  copyText("🧱 我踩过的坑（来自「AI 副业指南针 · 落地手册」）\n\n"+
+    p.map(x=>`【${x.hustle||"未分类"}】${x.title}\n  绕法：${x.fix}${x.note?`\n  补充：${x.note}`:""}\n  记于 ${x.at}`).join("\n\n"));
+}
+function copyPit(s){copyText(s)}
+function setPitCat(c){state.pitCat=c;renderPits()}
+window.addPit=addPit;window.delPit=delPit;window.clearPits=clearPits;window.exportPits=exportPits;window.copyPit=copyPit;window.setPitCat=setPitCat;
+
+/* ---------- 变现看板：收入流水 + 有效时薪 + 里程碑 ----------
+ * 一条记录 = 「花了多少小时，回报多少」。金额允许 0，因为学习期的
+ * 0 收入投入是真实成本——不记下来，算出来的时薪会虚高得离谱。
+ * 数据只存本机 localStorage（shh_earn / shh_goal），不上传。
+ */
+const EARN_KEY="shh_earn", GOAL_KEY="shh_goal";
+const loadEarn=()=>{try{
+  const v=JSON.parse(localStorage.getItem(EARN_KEY)||"[]");
+  // 容错：手改过 localStorage 或旧版本残留时不要整块崩掉
+  return Array.isArray(v)?v.filter(x=>x&&Number.isFinite(Number(x.amount))):[];
+}catch(e){return []}};
+const saveEarn=l=>localStorage.setItem(EARN_KEY,JSON.stringify(l));
+const loadGoal=()=>{const v=Number(localStorage.getItem(GOAL_KEY));return Number.isFinite(v)&&v>0?v:0};
+
+const monthKey=d=>String(d||"").slice(0,7); // 2026-09
+function todayISO(){
+  const d=new Date(),p=n=>String(n).padStart(2,"0");
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+}
+
+/* 汇总：总额、总时、有效时薪、本月收入 */
+function earnStats(list){
+  const amount=list.reduce((a,x)=>a+Number(x.amount||0),0);
+  const hours=list.reduce((a,x)=>a+Number(x.hours||0),0);
+  const mk=monthKey(todayISO());
+  const mAmount=list.filter(x=>monthKey(x.date)===mk).reduce((a,x)=>a+Number(x.amount||0),0);
+  // 有收入的笔数：单均收入比总额更能看出单价有没有在长
+  const paid=list.filter(x=>Number(x.amount)>0);
+  return {
+    amount:+amount.toFixed(2), hours:+hours.toFixed(1), month:mAmount,
+    rate:hours>0?+(amount/hours).toFixed(1):0,
+    paidCount:paid.length,
+    avg:paid.length?+(amount/paid.length).toFixed(2):0,
+  };
+}
+
+function addEarn(){
+  const amount=Number($("#enAmount").value||0), hours=Number($("#enHours").value||0);
+  if(!Number.isFinite(amount)||amount<0)return toast("⚠️ 收入填个非负数字（还没赚到就填 0）");
+  if(!Number.isFinite(hours)||hours<0)return toast("⚠️ 投入小时填个非负数字");
+  if(hours===0&&amount===0)return toast("⚠️ 至少填一个数：投入时长或收入");
+  const l=loadEarn();
+  l.push({
+    id:Date.now(),
+    cat:$("#enCat").value||"",
+    amount,hours,
+    date:$("#enDate").value||todayISO(),
+    note:$("#enNote").value.trim(),
+  });
+  l.sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.id-a.id);
+  saveEarn(l);
+  $("#enAmount").value="";$("#enHours").value="";$("#enNote").value="";
+  renderEarn();
+  toast("📈 记下了。这条会算进你的时薪。");
+}
+function delEarn(i){const l=loadEarn();l.splice(i,1);saveEarn(l);renderEarn()}
+function clearEarn(){
+  if(!loadEarn().length)return toast("还没有记录");
+  if(!confirm("清空所有投入/收入记录？（只影响本机，不可恢复）"))return;
+  localStorage.removeItem(EARN_KEY);renderEarn();toast("🗑 已清空");
+}
+/* 示例数据：让新用户先看到看板长什么样，再决定要不要用自己的数字 */
+function fillDemo(){
+  if(loadEarn().length&&!confirm("你已经有记录了，示例数据会追加进去（可随时清空）。继续？"))return;
+  const d=n=>{const x=new Date();x.setDate(x.getDate()-n);return x.toISOString().slice(0,10)};
+  const demo=[
+    {id:Date.now()-90,cat:"tech",   hours:6, amount:0,   date:d(12),note:"学 Python 基础，跑了 3 个小练习"},
+    {id:Date.now()-80,cat:"tech",   hours:8, amount:0,   date:d(10),note:"接了第一单爬虫需求，还在改"},
+    {id:Date.now()-70,cat:"tech",   hours:5, amount:800, date:d(7), note:"爬虫脚本交付，客户很满意"},
+    {id:Date.now()-60,cat:"content",hours:4, amount:0,   date:d(5), note:"发第 1 条视频，播放量 87"},
+    {id:Date.now()-50,cat:"content",hours:3, amount:120, date:d(3), note:"视频带来一个小推广"},
+    {id:Date.now()-40,cat:"content",hours:5, amount:450, date:d(1), note:"接到一个剪辑单"},
+  ];
+  const l=[...loadEarn(),...demo].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.id-a.id);
+  saveEarn(l);renderEarn();
+  toast("💡 已填入 6 条示例，够你看出时薪怎么算的");
+}
+function saveGoal(){
+  const v=Number($("#earnGoalInput").value||0);
+  if(!Number.isFinite(v)||v<=0)return toast("⚠️ 目标填个正数，比如 3000");
+  localStorage.setItem(GOAL_KEY,String(v));
+  renderEarn();toast("🎯 目标已保存");
+}
+
+/* ---------- 渲染 ---------- */
+function renderEarnKpis(s){
+  const paid=s.paidCount;
+  const k=(l,v,sub,cls="")=>`<div class="earn-kpi ${cls}"><div class="k-l">${l}</div><div class="k-v">${v}</div><div class="k-s">${sub}</div></div>`;
+  let rateCls="",rateSub="还没有足够的投入数据";
+  if(s.hours>0){
+    rateSub=`基于 ${s.hours} 小时真实投入`;
+    // 拿综合费率跟最低参考比：只要在任一赛道区间内就不算差
+    const lows=Object.values(EARN_REF.ref).map(r=>r.low);
+    const floor=Math.min(...lows);
+    rateCls=s.rate>=floor?"good":"bad";
+    if(s.rate>=floor)rateSub=`高于最低参考线 ¥${floor}/h · 投入 ${s.hours}h`;
+  }
+  $("#earnKpis").innerHTML=
+    k("累计收入","¥"+s.amount, paid?`${paid} 笔有收入`:"还没有收入记录", s.amount>0?"good":"")+
+    k("有效时薪", s.hours>0?`¥${s.rate}`:"—", rateSub, rateCls)+
+    k("本月收入","¥"+s.month, monthKey(todayISO()))+
+    k("单均收入", paid?`¥${s.avg}`:"—", paid?"只算有收入的笔":"先拿到第一笔")+
+    k("累计投入", s.hours+"h", "零收入投入也计入了");
+}
+
+function renderEarnList(list){
+  const box=$("#earnList");if(!box)return;
+  if(!list.length){
+    box.innerHTML=`<div class="earn-empty">还没有记录。<br>哪怕今天只花了 1 小时、收入 0，也记一笔——<b>这才是真实的成本</b>。<br>填了之后，下面的时薪和里程碑才会有意义。</div>`;
+    return;
+  }
+  box.innerHTML=list.map((x,i)=>{
+    const a=Number(x.amount||0),h=Number(x.hours||0);
+    const cat=x.cat&&CATEGORIES[x.cat]?`${CATEGORIES[x.cat].emoji} ${esc(CATEGORIES[x.cat].name)}`:"未分类";
+    // 单条时薪：0 收入的记录刻意不显示 ¥0/h，那会误导
+    const rate=h>0&&a>0?` · ¥${(a/h).toFixed(0)}/h`:"";
+    return `<div class="earn-item">
+      <button class="px" onclick="delEarn(${i})" title="删除">✕</button>
+      <div>
+        <div class="earn-note"><span class="pit-tag">${cat}</span>${x.note?esc(x.note):"（没写备注）"}</div>
+        <div class="earn-date">📅 ${esc(x.date)} · 投入 ${h}h${rate}</div>
+      </div>
+      <div class="earn-amt ${a>0?"":"zero"}">${a>0?"+¥"+a:"¥0 · 投入"}</div>
+    </div>`;
+  }).join("");
+}
+
+/* 时薪对比：把自己的费率画在赛道区间上，直观判断高了还是低了 */
+function renderEarnCompare(s){
+  const box=$("#earnCompare");if(!box)return;
+  $("#earnRefNote").textContent=EARN_REF.note;
+  const byCat={};
+  loadEarn().forEach(x=>{const c=x.cat||"";(byCat[c]=byCat[c]||[]).push(x)});
+  const rows=Object.entries(byCat);
+  if(!rows.length||s.hours<=0){
+    box.innerHTML=`<div class="earn-empty">记满投入时长后，这里会告诉你「你的时薪在赛道区间里是高还是低」。<br>没填赛道就选一个，对照才有意义。</div>`;
+    return;
+  }
+  // 全局标尺：以所有参考区间 + 你的费率的最大值取上界，保证标记落在轨道内
+  const all=Object.values(EARN_REF.ref);
+  const maxV=Math.max(s.rate,...all.map(r=>r.high))*1.1||1;
+  const pct=v=>Math.max(0,Math.min(100,v/maxV*100));
+  box.innerHTML=rows.map(([c,items])=>{
+    const hours=items.reduce((a,x)=>a+Number(x.hours||0),0);
+    const amt=items.reduce((a,x)=>a+Number(x.amount||0),0);
+    if(hours<=0)return "";
+    const rate=amt/hours;
+    const ref=c&&EARN_REF.ref[c];
+    const label=c&&CATEGORIES[c]?`${CATEGORIES[c].emoji} ${CATEGORIES[c].name}`:"未分类";
+    let verdict;
+    if(!ref){
+      verdict=`<div class="cmp-verdict" style="color:var(--muted)">没选赛道，没有可对照的区间。按「技术变现」的 ¥60–450/h 当粗略锚点看。</div>`;
+    }else if(rate<ref.low){
+      verdict=`<div class="cmp-verdict" style="color:var(--hot)">低于参考下限 ¥${ref.low}/h。${esc(ref.hint)}<br><b>先别急着放弃</b>——如果你记的投入里大部分还在「学」，这是正常的学习期成本；连续 3 笔都低于下限，才说明该换做法或换赛道。</div>`;
+    }else if(rate>ref.high){
+      verdict=`<div class="cmp-verdict" style="color:var(--ok)">高于参考上限 ¥${ref.high}/h。${esc(ref.hint)}<br><b>核验一下</b>：是不是把一次性收入（如结算尾款、刷单）算成了常态？高时薪要能重复，才算真的跑通了。</div>`;
+    }else{
+      verdict=`<div class="cmp-verdict" style="color:var(--ok)">在参考区间 ¥${ref.low}–${ref.high}/h 之内。${esc(ref.hint)}</div>`;
+    }
+    return `<div class="cmp-row">
+      <div class="cmp-top"><b>${label}</b><span style="font-size:.82rem;color:var(--muted)">投入 ${hours.toFixed(1)}h · 收入 ¥${amt.toFixed(0)} · 费率 ¥${rate.toFixed(0)}/h</span></div>
+      <div class="cmp-track">
+        ${ref?`<div class="cmp-zone" style="left:${pct(ref.low)}%;width:${pct(ref.high)-pct(ref.low)}%"></div>
+        <div class="cmp-mark" style="left:${pct(ref.low)}%">¥${ref.low}</div>
+        <div class="cmp-mark" style="left:${pct(ref.high)}%">¥${ref.high}</div>`:""}
+        <div class="cmp-you" style="left:${pct(rate)}%" title="你的费率 ¥${rate.toFixed(0)}/h"></div>
+      </div>
+      ${verdict}
+    </div>`;
+  }).join("")||`<div class="earn-empty">选个赛道再记一笔，才能对照。</div>`;
+}
+
+/* 里程碑：按累计金额/累计投入自动点亮，并写出「还差多少」 */
+function renderEarnStages(s){
+  const box=$("#earnStages");if(!box)return;
+  const val=st=>st.kind==="amount"?s.amount:s.hours;
+  box.innerHTML=EARN_REF.stages.map(st=>{
+    const v=val(st),on=v>=st.need;
+    const gap=st.need-v;
+    const unit=st.kind==="amount"?"元":"小时";
+    const prog=Math.min(100,v/st.need*100);
+    return `<div class="stage ${on?"on":""}">
+      <div class="s-i">${st.icon}</div>
+      <div class="s-n">${esc(st.name)}</div>
+      <div class="s-d">${esc(st.desc)}</div>
+      <div class="s-p" style="color:${on?"var(--ok)":"var(--muted)"}">
+        ${on?"✅ 已达成":`${prog.toFixed(0)}% · 还差 ${st.need%1?gap.toFixed(1):gap} ${unit}`}
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* 把看板和其它模块串起来：收入不是孤立的数字 */
+function renderEarnLink(){
+  const box=$("#earnLink");if(!box)return;
+  const planDone=loadPlan().size, planAll=PLAN_TOTAL;
+  const pits=loadPits().length;
+  const favs=state.favs.size;
+  const card=(v,l,view)=>`<button class="el-card" onclick="switchView('${view}')"><div class="l-l">${l}</div><div class="l-v">${v}</div></button>`;
+  box.innerHTML=
+    card(`${planDone}/${planAll}`,"7 天清单进度","play")+
+    card(pits,"踩过的坑（记下来才不重复）","play")+
+    card(favs,"收藏的副业","favs")+
+    card(loadEarn().length,"投入/收入记录","earn");
+}
+
+/* 导出成就页：一段可以直接发出去的纯文本 */
+function exportEarn(){
+  const list=loadEarn();
+  if(!list.length)return toast("还没有记录可导出——先记一笔");
+  const s=earnStats(list);
+  const stages=EARN_REF.stages.filter(st=>(st.kind==="amount"?s.amount:s.hours)>=st.need);
+  const cats=[...new Set(list.map(x=>x.cat).filter(Boolean))]
+    .map(c=>CATEGORIES[c]?`${CATEGORIES[c].emoji}${CATEGORIES[c].name}`:"未分类");
+  const lines=[
+    "📈 我的 AI 副业进度",
+    "",
+    `💰 累计收入：¥${s.amount}（${s.paidCount} 笔）`,
+    `⏱️ 累计投入：${s.hours} 小时`,
+    `⚖️ 有效时薪：${s.hours>0?`¥${s.rate}/h`:"—"}`,
+    `📅 本月收入：¥${s.month}`,
+    cats.length?`🗂️ 在做：${cats.join("、")}`:"",
+    `📋 7 天清单：${loadPlan().size}/${PLAN_TOTAL}`,
+    "",
+    stages.length?`🏁 已达成：${stages.map(x=>x.name).join("、")}`:"🏁 还没有里程碑达成——先拿下「第一笔收入」",
+    "",
+    "—— 来自「AI 副业指南针」",
+  ].filter(Boolean);
+  copyText(lines.join("\n"));
+}
+
+/* 总入口 */
+function renderEarn(){
+  if(!$("#earnKpis"))return;
+  // 赛道下拉用 CATEGORIES，与副业库同源
+  const sel=$("#enCat");
+  if(sel&&!sel.dataset.done){
+    sel.innerHTML=`<option value="">未分类</option>`+
+      Object.entries(CATEGORIES).map(([k,v])=>`<option value="${k}">${v.emoji} ${esc(v.name)}</option>`).join("");
+    sel.dataset.done="1";
+  }
+  const d=$("#enDate");if(d&&!d.value)d.value=todayISO();
+  const g=loadGoal();
+  if(g&&$("#earnGoalInput")&&!$("#earnGoalInput").value)$("#earnGoalInput").value=g;
+
+  const list=loadEarn();
+  const s=earnStats(list);
+  renderEarnKpis(s);
+  renderEarnList(list);
+
+  // 月目标进度
+  const gm=$("#earnGoalNow"), gp=$("#earnGoalPct");
+  if(g){
+    const pct=Math.min(100,s.month/g*100);
+    $("#earnGoalFill").style.width=pct+"%";
+    gp.textContent=`¥${s.month} / ¥${g}（${pct.toFixed(0)}%）`;
+    gm.textContent=s.month>=g?"🎉 本月目标已达成，稳住":"还差 ¥"+(g-s.month).toFixed(0);
+  }else{
+    $("#earnGoalFill").style.width="0%";
+    gp.textContent="还没设目标";gm.textContent="";
+  }
+
+  renderEarnCompare(s);
+  renderEarnStages(s);
+  renderEarnLink();
+}
+window.renderEarn=renderEarn;window.addEarn=addEarn;window.delEarn=delEarn;
+window.clearEarn=clearEarn;window.fillDemo=fillDemo;window.saveGoal=saveGoal;window.exportEarn=exportEarn;
+
+
+/* ---------- 交流入口：不用注册，预填好 Issue 直接开 ---------- */
+function renderShare(){
+  const box=$("#shareActions");if(!box)return;
+  const mk=(label,url,why)=>`<a class="btn primary small" href="${url}" target="_blank" rel="noopener" title="${esc(why)}">${label}</a>`;
+  const q=(t,b)=>`${ISSUE_URL}?title=${encodeURIComponent(t)}&body=${encodeURIComponent(b)}`;
+  box.innerHTML=
+    mk("❓ 提一个问题",q("【落地手册】卡住了，求助","我的情况：\n\n我已经试过：\n\n想请教："),"开一个 Issue 提问，后来人能搜到你的问题，少走一遍弯路")+
+    mk("💬 分享我的经验",q("【落地手册】我跑通了，经验帖","我做的赛道：\n\n7 天里每天做了什么：\n\n踩的坑：\n\n第一个收入："),"把你跑通的路径贴出来，比自己闷头试快得多")+
+    mk("🐛 报个 bug",q("【Bug】","页面：\n\n操作：\n\n期望：\n\n实际："),"数据抓取失效、链接打不开等")+
+    `<button class="btn ghost small" onclick="askIssue()">✍️ 自定义</button>`+
+    `<a class="btn ghost small" href="https://github.com/zoneboys/ai-sidehustle-hub/stargazers" target="_blank" rel="noopener" title="Star 会让更多人看到这些教程">⭐ Star 一下</a>`;
 }
 
 /* 启动 */

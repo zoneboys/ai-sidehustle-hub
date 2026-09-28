@@ -226,3 +226,242 @@ h36: { refs: [
 ], note: "小程序上线要过审，AI 生成内容需加内容安全过滤，别踩违规词。" },
 
 };
+/* ============================================================
+ * 已验证案例（由 scripts/gen-cases.mjs 生成，可重新运行覆盖）
+ *
+ * refs 回答「去哪搜同类账号」，cases 回答「打开这个链接，我能亲眼看到
+ * 有人真的在这条赛道上赚到钱」。全部是长期稳定的官方入口，不用 API Key。
+ *
+ * cases 字段：
+ *   n    平台/产品名
+ *   u    直接打开的 URL
+ *   chk  到这里要核验什么（看哪个数字/哪个入口）
+ * ============================================================ */
+/* ============================================================
+ * 已验证案例（由 scripts/gen-cases.mjs 生成，可重新运行覆盖）
+ *
+ * refs 回答「去哪搜同类账号」，cases 回答「打开这个链接，我能亲眼看到
+ * 有人真的在这条赛道上赚到钱」。全部是长期稳定的官方入口，不用 API Key。
+ *
+ * cases 字段：
+ *   n    平台/产品名
+ *   u    直接打开的 URL
+ *   chk  到这里要核验什么（看哪个数字/哪个入口）
+ * ============================================================ */
+/* ============================================================
+ * 已验证案例（由 scripts/gen-cases.mjs 生成，可重新运行覆盖）
+ *
+ * refs 回答「去哪搜同类账号」，cases 回答「打开这个链接，我能亲眼看到
+ * 有人真的在这条赛道上赚到钱」。全部是长期稳定的官方入口，不用 API Key。
+ *
+ * cases 字段：
+ *   n    平台/产品名
+ *   u    直接打开的 URL
+ *   chk  到这里要核验什么（看哪个数字/哪个入口）
+ * ============================================================ */
+/* ============================================================
+ * 已验证案例（由 scripts/gen-cases.mjs 生成，可重新运行覆盖）
+ *
+ * refs 回答「去哪搜同类账号」，cases 回答「打开这个链接，我能亲眼看到
+ * 有人真的在这条赛道上赚到钱」。全部是长期稳定的官方入口，不用 API Key。
+ *
+ * cases 字段：
+ *   n    平台/产品名
+ *   u    直接打开的 URL
+ *   chk  到这里要核验什么（看哪个数字/哪个入口）
+ * ============================================================ */
+/* ============================================================
+ * 已验证案例（由 scripts/gen-cases.mjs 生成，可重新运行覆盖）
+ *
+ * refs 回答「去哪搜同类账号」，cases 回答「打开这个链接，我能亲眼看到
+ * 有人真的在这条赛道上赚到钱」。全部是长期稳定的官方入口，不用 API Key。
+ *
+ * cases 字段：
+ *   n    平台/产品名
+ *   u    直接打开的 URL
+ *   chk  到这里要核验什么（看哪个数字/哪个入口）
+ * ============================================================ */
+/* ============================================================
+ * 已验证案例（由 scripts/gen-cases.mjs 生成，可重新运行覆盖）
+ *
+ * refs 回答「去哪搜同类账号」，cases 回答「打开这个链接，我能亲眼看到
+ * 有人真的在这条赛道上赚到钱」。全部是长期稳定的官方入口，不用 API Key。
+ *
+ * cases 字段：
+ *   n    平台/产品名
+ *   u    直接打开的 URL
+ *   chk  到这里要核验什么（看哪个数字/哪个入口）
+ * ============================================================ */
+/* ============================================================
+ * 已验证案例（由 scripts/gen-cases.mjs 生成，可重新运行覆盖）
+ *
+ * refs 回答「去哪搜同类账号」，cases 回答「打开这个链接，我能亲眼看到
+ * 有人真的在这条赛道上赚到钱」。全部是长期稳定的官方入口，不用 API Key。
+ *
+ * cases 字段：
+ *   n    平台/产品名
+ *   u    直接打开的 URL
+ *   chk  到这里要核验什么（看哪个数字/哪个入口）
+ * ============================================================ */
+/* ============================================================
+ * 已验证案例（由 scripts/gen-cases.mjs 生成，可重新运行覆盖）
+ *
+ * refs 回答「去哪搜同类账号」，cases 回答「打开这个链接，我能亲眼看到
+ * 有人真的在这条赛道上赚到钱」。全部是长期稳定的官方入口，不用 API Key。
+ *
+ * cases 字段：
+ *   n    平台/产品名
+ *   u    直接打开的 URL
+ *   chk  到这里要核验什么（看哪个数字/哪个入口）
+ * ============================================================ */
+window.CASES = {
+  h1: [
+    { n: "抖音创作者中心", u: "https://creator.douyin.com", chk: "看同类账号的「内容数据」里完播率与前 3 秒留存怎么分布" },
+    { n: "巨量创意", u: "https://cc.oceanengine.com", chk: "查「AI 漫剧」是不是有正在投的素材在跑" },
+  ],
+  h2: [
+    { n: "抖音创作者中心", u: "https://creator.douyin.com", chk: "数字人口播号的粉丝画像与付费转化率长什么样" },
+    { n: "小鹅通", u: "https://www.xiaoe-tech.com", chk: "数字人课程卖家的公开定价页" },
+  ],
+  h3: [
+    { n: "番茄小说作家中心", u: "https://fanqienovel.com/writer/zone", chk: "看真实签约作者的收益截图与更新节奏" },
+    { n: "抖音创作者中心", u: "https://creator.douyin.com", chk: "推文类账号的涨粉曲线" },
+  ],
+  h4: [
+    { n: "抖音创作者中心", u: "https://creator.douyin.com", chk: "解说号的完播率与评论引导话术" },
+    { n: "爱给网", u: "https://www.aigei.com", chk: "影视剪辑素材的真实授权与报价页" },
+  ],
+  h5: [
+    { n: "剪映模板市场", u: "https://www.capcut.cn", chk: "看特效模板有没有人付费下载" },
+    { n: "抖音创作者中心", u: "https://creator.douyin.com", chk: "特效向账号的爆款结构" },
+  ],
+  h6: [
+    { n: "YouTube 创作者中心", u: "https://studio.youtube.com", chk: "看本地化频道靠翻译内容吃广告的分成规模" },
+    { n: "网易翻译", u: "https://fanyi.163.com", chk: "验证多语种翻译质量是否够用" },
+  ],
+  h7: [
+    { n: "站酷", u: "https://www.zcool.com.cn", chk: "看商业约稿与头像设计报价" },
+    { n: "淘宝服务市场", u: "https://fuwu.taobao.com", chk: "搜「头像定制」看真实成交量与价格带" },
+  ],
+  h8: [
+    { n: "Etsy", u: "https://www.etsy.com", chk: "搜 digital download 看壁纸类目真实销量与定价" },
+    { n: "Gumroad", u: "https://gumroad.com", chk: "看独立设计师的壁纸包定价与退款率" },
+  ],
+  h9: [
+    { n: "淘宝模特市场", u: "https://fuwu.taobao.com", chk: "搜「模特换装」看服饰商家的真实出价" },
+    { n: "阿里妈妈", u: "https://www.alimama.com", chk: "查服装类目是否在投素材" },
+  ],
+  h10: [
+    { n: "稿定设计", u: "https://www.gaoding.com", chk: "看模板下载与定制报价" },
+    { n: "千库网", u: "https://www.58pic.com", chk: "查正版图片商用授权价" },
+  ],
+  h11: [
+    { n: "淘宝服务市场", u: "https://fuwu.taobao.com", chk: "搜「绘本定制」看真实接单量" },
+    { n: "小红书", u: "https://www.xiaohongshu.com", chk: "搜「AI 绘本」看家长付费意愿" },
+  ],
+  h12: [
+    { n: "微信表情开放平台", u: "https://sticker.weixin.qq.com", chk: "看表情包实际打赏与下载榜" },
+    { n: "包图网", u: "https://ibaotu.com", chk: "表情素材商用授权价" },
+  ],
+  h13: [
+    { n: "酷家乐", u: "https://www.kujiale.com", chk: "免费渲染出真实效果图" },
+    { n: "住小帮", u: "https://www.zhulong.com", chk: "看装修类真实咨询量" },
+  ],
+  h14: [
+    { n: "站酷", u: "https://www.zcool.com.cn", chk: "看 LOGO 设计师的报价梯度" },
+    { n: "一品威客", u: "https://www.epwk.com", chk: "搜「logo 设计」看真实中标价" },
+  ],
+  h15: [
+    { n: "微信小程序「照片修复」类目", u: "https://fuwu.taobao.com", chk: "搜「老照片上色」看单价与交付方式" },
+    { n: "知乎", u: "https://www.zhihu.com", chk: "搜「老照片修复」看真实需求帖的量" },
+  ],
+  h16: [
+    { n: "猪八戒网", u: "https://www.zbj.com", chk: "看公众号代写服务的真实中标价与交付周期" },
+    { n: "知乎创作中心", u: "https://www.zhihu.com/creator", chk: "看专栏文章的付费分成" },
+  ],
+  h17: [
+    { n: "淘宝服务市场", u: "https://fuwu.taobao.com", chk: "搜「论文润色」看合规边界与报价" },
+    { n: "淘宝规则", u: "https://rulechannel.taobao.com", chk: "先读平台对代写服务的红线" },
+  ],
+  h18: [
+    { n: "番茄小说作家中心", u: "https://fanqienovel.com/writer/zone", chk: "看真实签约作者的收入结构" },
+    { n: "阅文作家助手", u: "https://author.yuewen.com", chk: "看短剧/剧本征稿入口" },
+  ],
+  h19: [
+    { n: "简历服务市场", u: "https://fuwu.taobao.com", chk: "搜「简历优化」看真实成交价" },
+    { n: "LinkedIn", u: "https://www.linkedin.com", chk: "看英文简历顾问的公开定价与案例" },
+  ],
+  h20: [
+    { n: "Fiverr 配音类目", u: "https://www.fiverr.com/categories", chk: "搜 voice cloning 看真实接单数与定价" },
+    { n: "爱给网", u: "https://www.aigei.com", chk: "商用音效与配音素材授权" },
+  ],
+  h21: [
+    { n: "Suno", u: "https://suno.com", chk: "看 AI 音乐的商用授权条款" },
+    { n: "网易云音乐人", u: "https://music.163.com", chk: "看音乐人分成与投稿入口" },
+  ],
+  h22: [
+    { n: "抖音电商学习中心", u: "https://school.jinritemai.com", chk: "看无人直播的官方规则与违规红线" },
+    { n: "淘宝直播", u: "https://liveplatform.taobao.com", chk: "看官方对录播/无人直播的态度" },
+  ],
+  h23: [
+    { n: "抖音创作者中心", u: "https://creator.douyin.com", chk: "看虚拟人直播间的真实在线数据" },
+    { n: "小鹅通", u: "https://www.xiaoe-tech.com", chk: "虚拟人课程商家的公开售价" },
+  ],
+  h24: [
+    { n: "Vercel", u: "https://vercel.com", chk: "看一键部署的免费额度够不够起步" },
+    { n: "Cloudflare Workers", u: "https://workers.cloudflare.com", chk: "看边缘部署成本" },
+  ],
+  h25: [
+    { n: "OpenRouter", u: "https://openrouter.ai", chk: "看模型中转的真实价格结构" },
+    { n: "阿里云百炼", u: "https://bailian.console.aliyun.com", chk: "看国内合规通道的计费口径" },
+  ],
+  h26: [
+    { n: "知识星球", u: "https://www.zhishixingqiu.com", chk: "看自动发卡类知识付费的真实定价" },
+    { n: "爱发电", u: "https://afdian.com", chk: "看独立开发者的自动发卡与赞赏流水" },
+  ],
+  h27: [
+    { n: "Hacker News", u: "https://news.ycombinator.com", chk: "看 Show HN 里哪些垂直小工具真的有人付钱" },
+    { n: "Product Hunt", u: "https://www.producthunt.com", chk: "看同类工具的上线节奏与定价" },
+  ],
+  h28: [
+    { n: "n8n", u: "https://n8n.io", chk: "看自动化工作流的模板市场与付费档" },
+    { n: "飞书多维表格", u: "https://www.feishu.cn", chk: "看企业自动化怎么在飞书里落地" },
+  ],
+  h29: [
+    { n: "飞书应用商店", u: "https://www.feishu.cn/hc", chk: "看企业愿意为哪些插件付费" },
+    { n: "GitHub Trending", u: "https://github.com/trending", chk: "看模板类项目涨星速度" },
+  ],
+  h30: [
+    { n: "腾讯云", u: "https://cloud.tencent.com", chk: "看小微企业 SaaS 的基建成本下限" },
+    { n: "中国政府采购网", u: "https://www.ccgp.gov.cn", chk: "看垂直行业真实的付费方是谁" },
+  ],
+  h31: [
+    { n: "Replicate", u: "https://replicate.com", chk: "看微调模型按调用计费的实际单价" },
+    { n: "Hugging Face", u: "https://huggingface.co", chk: "看开源底模的许可与商用边界" },
+  ],
+  h32: [
+    { n: "Amazon KDP", u: "https://kdp.amazon.com", chk: "看真实上架书的销量与定价区间" },
+    { n: "出版行业自建站", u: "https://gumroad.com", chk: "看独立出版直接卖给读者的抽成结构" },
+  ],
+  h33: [
+    { n: "Google Trends", u: "https://trends.google.com", chk: "验证某个利基词是否真的有人在搜" },
+    { n: "淘宝生意参谋", u: "https://sycm.taobao.com", chk: "看选品数据是否有人付费买" },
+  ],
+  h34: [
+    { n: "知乎", u: "https://www.zhihu.com", chk: "搜对应行业关键词" },
+    { n: "LinkedIn", u: "https://www.linkedin.com", chk: "看 B2B 顾问的公开报价与案例写法" },
+  ],
+  h35: [
+    { n: "YouTube Partner Program", u: "https://support.google.com/youtube", chk: "看出海频道的变现门槛与分成" },
+    { n: "TikTok 创作者", u: "https://www.tiktok.com/creator-portal", chk: "看海外矩阵的官方变现路径" },
+  ],
+  h36: [
+    { n: "微信公众平台", u: "https://mp.weixin.qq.com", chk: "看小程序的注册与类目要求" },
+    { n: "DCloud", u: "https://uniapp.dcloud.net.cn", chk: "看跨端框架能省多少事" },
+  ],
+};
+
+/* 合并进 BENCHMARKS，前端只认一份数据源 */
+window.BENCHMARKS = Object.fromEntries(
+  Object.entries(window.BENCHMARKS).map(([k, v]) => [k, { ...v, cases: window.CASES[k] || [] }])
+);
