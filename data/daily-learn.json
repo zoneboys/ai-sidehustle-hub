@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T04:24:33.849Z",
+  "generatedAt": "2026-09-28T07:13:22.870Z",
   "date": "2026-09-28",
   "tracks": {
     "code": {
@@ -45,7 +45,7 @@
     {
       "title": "黑马程序员 python零基础 全套教程，8天 python 从 入门 到精通，学 python 看这套就够了",
       "url": "https://www.bilibili.com/video/BV1qW4y1a7fU",
-      "desc": "黑马程序员 · 25631491 播放 · 时长 1900:20",
+      "desc": "黑马程序员 · 25633303 播放 · 时长 1900:20",
       "source": "哔哩哔哩",
       "author": "黑马程序员",
       "track": "code",
@@ -55,7 +55,7 @@
     {
       "title": "【全748集】目前B站最全最细的 Python零基础 全套教程，2026最新版，包含所有干货！七天就能从小白到大神！少走99%的弯路！存下吧！很难找全的！",
       "url": "https://www.bilibili.com/video/BV1rpWjevEip",
-      "desc": "Python官方课程 · 20295822 播放 · 时长 2398:14",
+      "desc": "Python官方课程 · 20300584 播放 · 时长 2398:14",
       "source": "哔哩哔哩",
       "author": "Python官方课程",
       "track": "code",
@@ -65,7 +65,7 @@
     {
       "title": "黑马程序员pink老师 前端 入门 教程 ，零基础必看的h5(html5)+css3+移动端 前端 视频 教程",
       "url": "https://www.bilibili.com/video/BV14J4114768",
-      "desc": "黑马pink讲前端 · 20053940 播放 · 时长 3464:30",
+      "desc": "黑马pink讲前端 · 20054056 播放 · 时长 3464:30",
       "source": "哔哩哔哩",
       "author": "黑马pink讲前端",
       "track": "code",
@@ -123,21 +123,11 @@
     {
       "title": "3小时超快速 入门Python | 动画教学【2026新版】【自学 Python 教程】【 零基础Python 】【计算机二级 Python 】【 Python 期末速成】",
       "url": "https://www.bilibili.com/video/BV1Jgf6YvE8e",
-      "desc": "林粒粒呀 · 8116199 播放 · 时长 197:23",
+      "desc": "林粒粒呀 · 8118674 播放 · 时长 197:23",
       "source": "哔哩哔哩",
       "author": "林粒粒呀",
       "track": "code",
       "date": "2025-02-01",
-      "score": 6.3
-    },
-    {
-      "title": "【股票 入门 课程】新手小白炒股 入门基础 知识讲解",
-      "url": "https://www.bilibili.com/video/BV1EuxTe3EB6",
-      "desc": "海螺复盘 · 8702384 播放 · 时长 73:18",
-      "source": "哔哩哔哩",
-      "author": "海螺复盘",
-      "track": "code",
-      "date": "2024-09-28",
       "score": 6.3
     },
     {
@@ -147,6 +137,16 @@
       "source": "freeCodeCamp",
       "track": "code",
       "date": "2026-09-27",
+      "score": 6
+    },
+    {
+      "title": "Frozendict 🧊: State of the Art Immutable Hashmap for Python and Node JS.",
+      "url": "https://dev.to/wiseai/frozendict-state-of-the-art-immutable-hashmap-for-python-and-node-js-284o",
+      "desc": "Hello 👋! So there I was, staring at Python's frozenset, feeling that specific special rage that...",
+      "source": "dev.to",
+      "author": "Mahmoud 🦀",
+      "track": "code",
+      "date": "2026-09-19",
       "score": 6
     },
     {
@@ -267,7 +267,7 @@
     {
       "title": "英语 语法 精讲合集 (全面, 通俗, 有趣 | 从零打造 系统语法 体系)",
       "url": "https://www.bilibili.com/video/BV1XY411J7aG",
-      "desc": "英语兔 · 45871306 播放 · 时长 531:49",
+      "desc": "英语兔 · 45873489 播放 · 时长 531:49",
       "source": "哔哩哔哩",
       "author": "英语兔",
       "track": "k12",
@@ -277,7 +277,7 @@
     {
       "title": "八年级 （上）物理（人教版）看这个合集就够了 初中物理 八年级 物理 八上物理 初二物理 单位换算 参照物 速度计算 光学 凸透镜 密度 质量",
       "url": "https://www.bilibili.com/video/BV1qu411b7EY",
-      "desc": "于总CEO · 27317001 播放 · 时长 4090:42",
+      "desc": "于总CEO · 27318254 播放 · 时长 4090:42",
       "source": "哔哩哔哩",
       "author": "于总CEO",
       "track": "k12",
@@ -287,7 +287,7 @@
     {
       "title": "八年级 （下）物理（人教版）看这个合集就够了 初中物理 八年级 物理 八下物理 力学 受力分析 摩擦力 浮力 压强 杠杆 滑轮 功 功率",
       "url": "https://www.bilibili.com/video/BV1u5411q7c3",
-      "desc": "于总CEO · 19580338 播放 · 时长 5261:43",
+      "desc": "于总CEO · 19580643 播放 · 时长 5261:43",
       "source": "哔哩哔哩",
       "author": "于总CEO",
       "track": "k12",
@@ -297,7 +297,7 @@
     {
       "title": "一个视频说清整个英语 语法 体系(重塑你的 语法 认知框架)",
       "url": "https://www.bilibili.com/video/BV1r54y1m7gd",
-      "desc": "英语兔 · 14578377 播放 · 时长 27:7",
+      "desc": "英语兔 · 14579015 播放 · 时长 27:7",
       "source": "哔哩哔哩",
       "author": "英语兔",
       "track": "k12",
@@ -307,7 +307,7 @@
     {
       "title": "初中数学 【 二次函数 】从零基础到中考压轴难度合集！|通俗易懂|奥赛保送生主讲",
       "url": "https://www.bilibili.com/video/BV1t54y1173m",
-      "desc": "一数 · 9489852 播放 · 时长 299:19",
+      "desc": "一数 · 9490155 播放 · 时长 299:19",
       "source": "哔哩哔哩",
       "author": "一数",
       "track": "k12",
@@ -317,7 +317,7 @@
     {
       "title": "【初中英语】 语法 精讲｜一本书搞定初中三年 语法",
       "url": "https://www.bilibili.com/video/BV1UEFNz1EfS",
-      "desc": "英语老师晓艳 · 2748204 播放 · 时长 231:22",
+      "desc": "英语老师晓艳 · 2748852 播放 · 时长 231:22",
       "source": "哔哩哔哩",
       "author": "英语老师晓艳",
       "track": "k12",
@@ -327,7 +327,7 @@
     {
       "title": "【 高中英语 】【刘晓艳】 高中英语语法 精讲（2026年新版）",
       "url": "https://www.bilibili.com/video/BV1Q6TQ6HEFk",
-      "desc": "晓艳英语四级 · 1914359 播放 · 时长 1539:53",
+      "desc": "晓艳英语四级 · 1915917 播放 · 时长 1539:53",
       "source": "哔哩哔哩",
       "author": "晓艳英语四级",
       "track": "k12",
@@ -337,7 +337,7 @@
     {
       "title": "【中考上分计划】爆肝制作！110分钟 初中数学二次函数 所有考点 精讲 ，查缺补漏，绝杀中考！",
       "url": "https://www.bilibili.com/video/BV1suLZz4Exq",
-      "desc": "亮亮巧解初中数学 · 1665212 播放 · 时长 112:42",
+      "desc": "亮亮巧解初中数学 · 1665604 播放 · 时长 112:42",
       "source": "哔哩哔哩",
       "author": "亮亮巧解初中数学",
       "track": "k12",
@@ -345,9 +345,19 @@
       "score": 5.2
     },
     {
+      "title": "二次函数 零基础到拓展1-7节|8-10节压轴在另一合集",
+      "url": "https://www.bilibili.com/video/BV18qxczTEtR",
+      "desc": "一数-初中版 · 1107621 播放 · 时长 254:31",
+      "source": "哔哩哔哩",
+      "author": "一数-初中版",
+      "track": "k12",
+      "date": "2025-10-26",
+      "score": 4.9
+    },
+    {
       "title": "二次函数 【零基础】速通",
       "url": "https://www.bilibili.com/video/BV1iNH9eREGN",
-      "desc": "一个不刘神- · 855118 播放 · 时长 25:53",
+      "desc": "一个不刘神- · 855277 播放 · 时长 25:53",
       "source": "哔哩哔哩",
       "author": "一个不刘神-",
       "track": "k12",
@@ -355,34 +365,24 @@
       "score": 4.7
     },
     {
-      "title": "10节课搞定 小学 作文，得 语文 者得天下",
-      "url": "https://www.bilibili.com/video/BV15t4y1a7LQ",
-      "desc": "二宝的知识能量库 · 742352 播放 · 时长 306:18",
+      "title": "【全58集】2026年B站最新全网最好的 小学语文阅读 理解全套课程，1-6年级详细讲解，名师详细讲解！孩子提分必备！高分轻轻松松拿捏！",
+      "url": "https://www.bilibili.com/video/BV1giqzBQEJR",
+      "desc": "窦昕语文训练场 · 644459 播放 · 时长 1922:33",
       "source": "哔哩哔哩",
-      "author": "二宝的知识能量库",
+      "author": "窦昕语文训练场",
       "track": "k12",
-      "date": "2022-06-23",
-      "score": 4.6
+      "date": "2025-12-20",
+      "score": 4.5
     },
     {
-      "title": "【限时5折】英语全能 语法系统 课",
-      "url": "https://www.bilibili.com/cheese/play/ss1447?query_from=0&search_id=18296194560208971923&search_query=%E9%AB%98%E4%B8%AD%E8%8B%B1%E8%AF%AD+%E8%AF%AD%E6%B3%95+%E7%B3%BB%E7%BB%9F",
-      "desc": "韩健老师教英语 · 481590 播放 · 时长 -",
+      "title": "开学卷起来！10分钟打通 二次函数 任督二脉！ 初中数学二次函数 基础：从定义到顶点式一个视频讲透！",
+      "url": "https://www.bilibili.com/video/BV13HhqzQEXm",
+      "desc": "亮亮巧解初中数学 · 459144 播放 · 时长 10:37",
       "source": "哔哩哔哩",
-      "author": "韩健老师教英语",
+      "author": "亮亮巧解初中数学",
       "track": "k12",
-      "date": "",
+      "date": "2025-08-30",
       "score": 4.3
-    },
-    {
-      "title": "暑假预习【初二物理·上册】预习必备 B站最好的 八年级 上册物理 同步 全集 2026新版人教A版 涵盖 八年级 物理所有知识点 附送配套讲义！！",
-      "url": "https://www.bilibili.com/video/BV16BKh6uEVT",
-      "desc": "智慧学神不智慧 · 402816 播放 · 时长 286:0",
-      "source": "哔哩哔哩",
-      "author": "智慧学神不智慧",
-      "track": "k12",
-      "date": "2026-07-21",
-      "score": 4.2
     },
     {
       "title": "第 1 集 · 逃婚新娘闯进来",
@@ -627,24 +627,6 @@
       "score": 9.2
     },
     {
-      "title": "模型之外，游戏+AI的下一道门槛在哪里？",
-      "url": "https://36kr.com/p/3997468580958089?f=rss",
-      "desc": "在一局《永劫无间》的游戏对局里，你的队友可能不是“人”。 Qwen大模型是这些AI队友的底座。会协作的队友，是游戏行业变革中最容易被看见的一角，冰山以下是“游戏正在被AI重做一遍”已经成为一个共识判断。 2026云栖大会现场，专门为游戏行业安排了一个上午的AI…",
-      "source": "36氪",
-      "track": "cn",
-      "date": "2026-09-24",
-      "score": 9.2
-    },
-    {
-      "title": "AI公司杀进硬件，联想AI平板如何找到存在感？｜最前线",
-      "url": "https://36kr.com/p/3995480853204870?f=rss",
-      "desc": "图片来源：联想官方 文｜肖漫 编辑｜袁斯来 AI正在重塑每一个硬件产品，包括平板。 过去一年，越来越多厂商在给平板增加 AI 能力，会议记录、总结、语言翻译、图片生成、文档处理等功能不断进入产品，但大多数所谓 AI 平板，仍然是传统平板加上一层 AI 应用：用…",
-      "source": "36氪",
-      "track": "cn",
-      "date": "2026-09-24",
-      "score": 9.2
-    },
-    {
       "title": "九合、险峰投了家消费级外骨骼，《流浪地球》用过，营收破亿｜产品观察",
       "url": "https://36kr.com/p/4001317788995717?f=rss",
       "desc": "作者｜黄楠 编辑｜袁斯来 冰雪覆盖的末日地表，救援队队员身披布满管线的机械外骨骼，在冰天雪地之中徒步运送火石，借结构助力扛起重型武器、拖拽坠落同伴，最后合力推动行星发动机的撞针完成救援任务。 这是电影《流浪地球》中，留给大众关于外骨骼最深刻的想象。 而对于傲鲨…",
@@ -660,13 +642,31 @@
       "source": "少数派",
       "track": "cn",
       "date": "2026-09-26",
-      "score": 9
+      "score": 8.2
     },
     {
       "title": "摸鱼+3 | 还剩三天班，一天一个解谜游戏",
       "url": "https://sspai.com/post/114967",
       "desc": "节后再说！<a href=&#34;https://sspai.com/post/114967&#34; target=&#34;_blank&#34;>查看全文</a>",
       "source": "少数派",
+      "track": "cn",
+      "date": "2026-09-28",
+      "score": 7.5
+    },
+    {
+      "title": "对话祝骏：重回增长的沃尔玛中国，自有品牌、爆款和少SKU都不是答案",
+      "url": "https://36kr.com/p/3995817437679748?f=rss",
+      "desc": "作者｜任彩茹 编辑｜乔芊 2026年9月16日，沃尔玛在成都温江新光天地开出了“新一代门店”的第一家新店。这标志着沃尔玛门店转型从“老店改造”正式迈入“新店建设”阶段。 “新一代的门店，不是简单把大店做小，更重要的是在重新回答，今天的顾客真正需要什么样的超市。…",
+      "source": "36氪",
+      "track": "cn",
+      "date": "2026-09-28",
+      "score": 7.5
+    },
+    {
+      "title": "一个项目，为什么值得被36氪看见？",
+      "url": "https://36kr.com/p/4002681955864456?f=rss",
+      "desc": "做项目的人，可能都有过这样的时刻： 产品已经做出来了， 也有用户开始使用， 甚至已经有了第一批客户。 但项目走出自己的圈子之后，还是很难让更多人知道。 发朋友圈，看到的还是熟悉的人； 参加活动，认识的人也比较有限； 自己写一篇介绍，可能也很难真正触达到目标人群…",
+      "source": "36氪",
       "track": "cn",
       "date": "2026-09-28",
       "score": 7.5

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T04:22:52.593Z",
+  "generatedAt": "2026-09-28T07:13:17.777Z",
   "date": "2026-09-28",
   "total": 34,
   "items": [
@@ -10,7 +10,7 @@
       "source": "GitHub",
       "author": "n8n-io",
       "cat": "tech",
-      "metrics": "⭐ 206147 · fork 60905 · TypeScript",
+      "metrics": "⭐ 206156 · fork 60913 · TypeScript",
       "date": "2026-09-28",
       "score": 8.6
     },
@@ -21,42 +21,75 @@
       "source": "GitHub",
       "author": "HKUDS",
       "cat": "tech",
-      "metrics": "⭐ 48624 · fork 8596 · Python",
+      "metrics": "⭐ 48629 · fork 8596 · Python",
       "date": "2026-09-28",
       "score": 7.4
     },
     {
-      "title": "autonomous-ai/openharness",
-      "url": "https://github.com/autonomous-ai/openharness",
-      "desc": "The ultimate harness for coding agents and beyond. All your agents. All your machines. One command center. Start with code, then follow your…",
+      "title": "activepieces/activepieces",
+      "url": "https://github.com/activepieces/activepieces",
+      "desc": "AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents…",
       "source": "GitHub",
-      "author": "autonomous-ai",
+      "author": "activepieces",
       "cat": "tech",
-      "metrics": "⭐ 990 · fork 83 · C",
+      "metrics": "⭐ 24753 · fork 4258 · TypeScript",
       "date": "2026-09-28",
-      "score": 4
+      "score": 6.8
     },
     {
-      "title": "Show HN: Panda, the world's first personal AI computer",
-      "url": "https://pandax1.com",
-      "desc": "We&#x27;re building an AI computer for consumers, most of whom are quite hesitant with existing services due to privacy concerns and because…",
-      "source": "Hacker News",
-      "author": "moezee1",
-      "cat": "tech",
-      "metrics": "▲ 8 · 💬 36",
+      "title": "chatfire-AI/huobao-drama",
+      "url": "https://github.com/chatfire-AI/huobao-drama",
+      "desc": "🎬 火宝短剧 - 基于AI的一站式短剧生成平台 《一句话生成完整短剧，从剧本到成片全自动化》 Huobao Drama - An AI-Powered End-to-End Short Drama Generator \"One Sentence to Complete Dram…",
+      "source": "GitHub",
+      "author": "chatfire-AI",
+      "cat": "content",
+      "metrics": "⭐ 15556 · fork 2880 · Vue",
       "date": "2026-09-28",
-      "score": 3.8
+      "score": 6.4
     },
     {
-      "title": "zapplyjobs/awesome-ml-internships-2027",
-      "url": "https://github.com/zapplyjobs/awesome-ml-internships-2027",
-      "desc": "Live AI and machine learning internships for students, refreshed through the Zapply job pipeline.",
+      "title": "MIgHTy-alIeN/ai-trader-bot",
+      "url": "https://github.com/MIgHTy-alIeN/ai-trader-bot",
+      "desc": "An arbitrage bot is a smart contract connected to an external automation script that controls its operation.",
       "source": "GitHub",
-      "author": "zapplyjobs",
-      "cat": "live",
-      "metrics": "⭐ 454 · fork 40 · 多语言",
+      "author": "MIgHTy-alIeN",
+      "cat": "tech",
+      "metrics": "⭐ 2702 · fork 1892 · Solidity",
       "date": "2026-09-28",
-      "score": 3.3
+      "score": 4.9
+    },
+    {
+      "title": "LearnPrompt/awesome-seedance",
+      "url": "https://github.com/LearnPrompt/awesome-seedance",
+      "desc": "🎬 Evidence-led Seedance 2.5 / 2.0 prompt library: 463 cases traced to original posts, 264 cross-model retest runs with public verdicts, 25 …",
+      "source": "GitHub",
+      "author": "LearnPrompt",
+      "cat": "content",
+      "metrics": "⭐ 1479 · fork 267 · JavaScript",
+      "date": "2026-09-28",
+      "score": 4.3
+    },
+    {
+      "title": "juggler-ai/juggler",
+      "url": "https://github.com/juggler-ai/juggler",
+      "desc": "The Juggler Code Agent",
+      "source": "GitHub",
+      "author": "juggler-ai",
+      "cat": "tech",
+      "metrics": "⭐ 600 · fork 46 · JavaScript",
+      "date": "2026-09-28",
+      "score": 3.6
+    },
+    {
+      "title": "IvanWng97/pixtuoid",
+      "url": "https://github.com/IvanWng97/pixtuoid",
+      "desc": "Terminal pixel-art office for AI coding agents",
+      "source": "GitHub",
+      "author": "IvanWng97",
+      "cat": "image",
+      "metrics": "⭐ 485 · fork 31 · Rust",
+      "date": "2026-09-28",
+      "score": 3.4
     },
     {
       "title": "lcy362/agnes-video-generator",
@@ -65,7 +98,7 @@
       "source": "GitHub",
       "author": "lcy362",
       "cat": "content",
-      "metrics": "⭐ 432 · fork 138 · Python",
+      "metrics": "⭐ 433 · fork 138 · Python",
       "date": "2026-09-28",
       "score": 3.3
     },
@@ -81,6 +114,17 @@
       "score": 3.1
     },
     {
+      "title": "xorbitsai/xagent",
+      "url": "https://github.com/xorbitsai/xagent",
+      "desc": "Build personal agents and enterprise AI workforces that plan, delegate, use tools, and deliver real work — without brittle workflows.",
+      "source": "GitHub",
+      "author": "xorbitsai",
+      "cat": "tech",
+      "metrics": "⭐ 302 · fork 68 · Python",
+      "date": "2026-09-28",
+      "score": 3
+    },
+    {
       "title": "OpenFn/lightning",
       "url": "https://github.com/OpenFn/lightning",
       "desc": "Lightning ⚡️ is latest version of the OpenFn platform, a DPG and DPI building block that governments use to manage complex service/workflow …",
@@ -88,6 +132,17 @@
       "author": "OpenFn",
       "cat": "tech",
       "metrics": "⭐ 299 · fork 88 · Elixir",
+      "date": "2026-09-28",
+      "score": 3
+    },
+    {
+      "title": "Show HN: Northstar web browser 1.0.11 released",
+      "url": "https://news.ycombinator.com/item?id=49873832",
+      "desc": "<a href=\"https:&#x2F;&#x2F;github.com&#x2F;nordstjernen-web&#x2F;northstar-browser&#x2F;releases&#x2F;tag&#x2F;1.0.11\" rel=\"nofollow\">https:…",
+      "source": "Hacker News",
+      "author": "roschdal",
+      "cat": "tech",
+      "metrics": "▲ 3 · 💬 0",
       "date": "2026-09-28",
       "score": 3
     },
@@ -103,92 +158,59 @@
       "score": 3
     },
     {
+      "title": "xuiltul/animaworks",
+      "url": "https://github.com/xuiltul/animaworks",
+      "desc": "Organization-as-Code for autonomous AI agents. Brain-inspired memory that grows, consolidates, and forgets. Multi-model (Claude/Codex/Gemini…",
+      "source": "GitHub",
+      "author": "xuiltul",
+      "cat": "tech",
+      "metrics": "⭐ 263 · fork 45 · Python",
+      "date": "2026-09-28",
+      "score": 2.8
+    },
+    {
       "title": "timoncool/YuE2-Studio",
       "url": "https://github.com/timoncool/YuE2-Studio",
       "desc": "Local AI song generator with an editable score — YuE2 on your GPU: full songs with vocals, sheet music, covers, exact replay. Native Windows…",
       "source": "GitHub",
       "author": "timoncool",
       "cat": "audio",
-      "metrics": "⭐ 247 · fork 23 · TypeScript",
+      "metrics": "⭐ 252 · fork 23 · TypeScript",
       "date": "2026-09-28",
       "score": 2.8
     },
     {
-      "title": "Show HN: MCPersist – Minecraft worlds that keep running after the host logs off",
-      "url": "https://github.com/5TN1rcZRS79VAEFuUCRB/MCPersist",
-      "desc": "2 分 · 1 条讨论 · 作者 CMboSqdTACiEX27",
-      "source": "Hacker News",
-      "author": "CMboSqdTACiEX27",
+      "title": "withceleste/celeste-python",
+      "url": "https://github.com/withceleste/celeste-python",
+      "desc": "Open source, type-safe primitives for multi-modal AI. All modelities, all providers, one interface 🌟",
+      "source": "GitHub",
+      "author": "withceleste",
       "cat": "tech",
-      "metrics": "▲ 2 · 💬 1",
+      "metrics": "⭐ 221 · fork 23 · Python",
       "date": "2026-09-28",
-      "score": 2.6
+      "score": 2.7
     },
     {
-      "title": "Show HN: Stepgate – AI agents that can't skip steps, in one portable file",
-      "url": "https://github.com/Chaarangan/stepgate",
-      "desc": "2 分 · 0 条讨论 · 作者 charangan",
+      "title": "Show HN: Dodosend – a Fast keyboard first Gmail client",
+      "url": "https://dodosend.com",
+      "desc": "A while ago, I worked on an gmail clients and ended up learning a lot about email, so I kept building my own.<p>The things I cared about mos…",
       "source": "Hacker News",
-      "author": "charangan",
+      "author": "trafargarlaw",
       "cat": "tech",
       "metrics": "▲ 2 · 💬 0",
       "date": "2026-09-28",
       "score": 2.6
     },
     {
-      "title": "Show HN: ParkourNote – A research workspace, built solo in a month with Claude",
-      "url": "https://note.parkourlabs.io/",
-      "desc": "Hi HN, I&#x27;m sushi. I built ParkourNote, a personal knowledge management app that currently focuses on research: finding papers, reading …",
+      "title": "Show HN: A whimsigoth-themed webapp for making relationship date plans",
+      "url": "https://build-a-date.cals.cafe/",
+      "desc": "I built Build-a-Date to help organise relationship date night plans. You create a list of options to do on a date then you can send it to yo…",
       "source": "Hacker News",
-      "author": "sushiwang",
-      "cat": "tech",
-      "metrics": "▲ 2 · 💬 0",
+      "author": "callumgare",
+      "cat": "image",
+      "metrics": "▲ 2 · 💬 2",
       "date": "2026-09-28",
       "score": 2.6
-    },
-    {
-      "title": "bennyjo/phil",
-      "url": "https://github.com/bennyjo/phil",
-      "desc": "Phil is a self-improving trader: an AI agent that trades short-term prediction markets and rewrites his own strategy after every settled bet…",
-      "source": "GitHub",
-      "author": "bennyjo",
-      "cat": "tech",
-      "metrics": "⭐ 148 · fork 32 · Python",
-      "date": "2026-09-28",
-      "score": 2.3
-    },
-    {
-      "title": "jobright-ai/2026-Product-Management-Internship",
-      "url": "https://github.com/jobright-ai/2026-Product-Management-Internship",
-      "desc": "Collection of 2026 internships in Product Management!",
-      "source": "GitHub",
-      "author": "jobright-ai",
-      "cat": "biz",
-      "metrics": "⭐ 149 · fork 6 · 多语言",
-      "date": "2026-09-28",
-      "score": 2.3
-    },
-    {
-      "title": "jobright-ai/2026-Software-Engineer-Internship",
-      "url": "https://github.com/jobright-ai/2026-Software-Engineer-Internship",
-      "desc": "Collection of 2026 internships in Software Engineer!",
-      "source": "GitHub",
-      "author": "jobright-ai",
-      "cat": "tech",
-      "metrics": "⭐ 137 · fork 4 · 多语言",
-      "date": "2026-09-28",
-      "score": 2.3
-    },
-    {
-      "title": "dazuma/toys",
-      "url": "https://github.com/dazuma/toys",
-      "desc": "A configurable command line tool for builds and workflow automation",
-      "source": "GitHub",
-      "author": "dazuma",
-      "cat": "tech",
-      "metrics": "⭐ 128 · fork 8 · Ruby",
-      "date": "2026-09-28",
-      "score": 2.2
     },
     {
       "title": "oomol-lab/open-flow",
@@ -198,6 +220,17 @@
       "author": "oomol-lab",
       "cat": "tech",
       "metrics": "⭐ 132 · fork 17 · TypeScript",
+      "date": "2026-09-28",
+      "score": 2.2
+    },
+    {
+      "title": "NicholasCone/agnes-ai-video-suite",
+      "url": "https://github.com/NicholasCone/agnes-ai-video-suite",
+      "desc": "Best Open Source AI Video Generator 2026: Text to Multi-Scene Movies with Narration & Subtitles",
+      "source": "GitHub",
+      "author": "NicholasCone",
+      "cat": "content",
+      "metrics": "⭐ 128 · fork 5 · HTML",
       "date": "2026-09-28",
       "score": 2.2
     },
@@ -213,28 +246,6 @@
       "score": 2.2
     },
     {
-      "title": "NicholasCone/agnes-ai-video-suite",
-      "url": "https://github.com/NicholasCone/agnes-ai-video-suite",
-      "desc": "Best Open Source AI Video Generator 2026: Text to Multi-Scene Movies with Narration & Subtitles",
-      "source": "GitHub",
-      "author": "NicholasCone",
-      "cat": "content",
-      "metrics": "⭐ 128 · fork 5 · HTML",
-      "date": "2026-09-27",
-      "score": 2.2
-    },
-    {
-      "title": "69cell/Photoshop-Enhancement-Community",
-      "url": "https://github.com/69cell/Photoshop-Enhancement-Community",
-      "desc": "Next-Gen Photoshop Enhancement Suite 2026: Smart Workflows & Automation",
-      "source": "GitHub",
-      "author": "69cell",
-      "cat": "image",
-      "metrics": "⭐ 115 · fork 0 · HTML",
-      "date": "2026-09-28",
-      "score": 2.1
-    },
-    {
       "title": "abnormal-codex/Ai-Pixel-Design-Archive",
       "url": "https://github.com/abnormal-codex/Ai-Pixel-Design-Archive",
       "desc": "Best AI Image Generator for Professional Designs 2026",
@@ -244,6 +255,61 @@
       "metrics": "⭐ 117 · fork 0 · HTML",
       "date": "2026-09-28",
       "score": 2.1
+    },
+    {
+      "title": "Show HN: I made my childhood dream come true today, Opus did it",
+      "url": "https://twitter.com/riderashgame/status/2103862325455519907",
+      "desc": "I’m glad now we as a community can make it as big as a Fortnite for combat racing",
+      "source": "Hacker News",
+      "author": "testingsaket",
+      "cat": "tech",
+      "metrics": "▲ 1 · 💬 0",
+      "date": "2026-09-28",
+      "score": 2
+    },
+    {
+      "title": "Show HN: FAB – A benchmark for AI agents doing financial due diligence",
+      "url": "https://github.com/SecondState-ai/finance-agents-benchmark",
+      "desc": "The world economy around us depends on complex financial work. How well can AI do it?<p>We(a team of ex-EY employees) built FAB - Finance Ag…",
+      "source": "Hacker News",
+      "author": "ELAmrani",
+      "cat": "biz",
+      "metrics": "▲ 1 · 💬 0",
+      "date": "2026-09-28",
+      "score": 2
+    },
+    {
+      "title": "Show HN: I Made Agent Office",
+      "url": "https://github.com/alminisl/agent-office",
+      "desc": "A pixel-art office where your Claude Code sessions come to life as coworkers.<p>Found myself staring at nothing while working and prompting …",
+      "source": "Hacker News",
+      "author": "Ilikeruby",
+      "cat": "image",
+      "metrics": "▲ 1 · 💬 1",
+      "date": "2026-09-28",
+      "score": 2
+    },
+    {
+      "title": "Show HN: Bounded Loops and Graphs",
+      "url": "https://github.com/qualixar/bounded-loops",
+      "desc": "1 分 · 0 条讨论 · 作者 vpbhardwaj",
+      "source": "Hacker News",
+      "author": "vpbhardwaj",
+      "cat": "tech",
+      "metrics": "▲ 1 · 💬 0",
+      "date": "2026-09-28",
+      "score": 2
+    },
+    {
+      "title": "Show HN: Worduel, a 1v1 Wordle where your guesses also help your opponent",
+      "url": "https://worduel.gg/",
+      "desc": "1 分 · 0 条讨论 · 作者 erumaru",
+      "source": "Hacker News",
+      "author": "erumaru",
+      "cat": "tech",
+      "metrics": "▲ 1 · 💬 0",
+      "date": "2026-09-28",
+      "score": 2
     },
     {
       "title": "Show HN: I made a tool that turns Jetpack Compose Previews to embeddable scripts",
@@ -257,61 +323,6 @@
       "score": 2
     },
     {
-      "title": "Show HN: Ghostfox – Self-hosted stealth browser for AI agents",
-      "url": "https://github.com/autokeren/ghostfox",
-      "desc": "1 分 · 0 条讨论 · 作者 ajat82",
-      "source": "Hacker News",
-      "author": "ajat82",
-      "cat": "tech",
-      "metrics": "▲ 1 · 💬 0",
-      "date": "2026-09-28",
-      "score": 2
-    },
-    {
-      "title": "Show HN: Help us fire our UI/UX designers",
-      "url": "https://vosu.ai",
-      "desc": "Get $10,000 &amp; 3 months of Claude Max on me<p>Redesign <a href=\"http:&#x2F;&#x2F;vosu.ai\" rel=\"nofollow\">http:&#x2F;&#x2F;vosu.ai</a> wit…",
-      "source": "Hacker News",
-      "author": "nafisfaysal",
-      "cat": "image",
-      "metrics": "▲ 1 · 💬 1",
-      "date": "2026-09-28",
-      "score": 2
-    },
-    {
-      "title": "Show HN: Novrl, clickable product demos from screenshots, no account needed",
-      "url": "https://novrl.com/",
-      "desc": "1 分 · 0 条讨论 · 作者 dylan_builds",
-      "source": "Hacker News",
-      "author": "dylan_builds",
-      "cat": "biz",
-      "metrics": "▲ 1 · 💬 0",
-      "date": "2026-09-28",
-      "score": 2
-    },
-    {
-      "title": "Show HN: DeepFace is now running on PyTorch alongside TensorFlow",
-      "url": "https://github.com/serengil/deepface",
-      "desc": "In early 2020, tensorflow was the dominant deep learning framework. So, deepface was built to run on top of tensorflow. Thereafter, pytorch …",
-      "source": "Hacker News",
-      "author": "serengil",
-      "cat": "tech",
-      "metrics": "▲ 1 · 💬 0",
-      "date": "2026-09-27",
-      "score": 2
-    },
-    {
-      "title": "jobright-ai/2026-Engineer-Internship",
-      "url": "https://github.com/jobright-ai/2026-Engineer-Internship",
-      "desc": "Collection of 2026 internships in Engineering and Development!",
-      "source": "GitHub",
-      "author": "jobright-ai",
-      "cat": "tech",
-      "metrics": "⭐ 90 · fork 5 · 多语言",
-      "date": "2026-09-28",
-      "score": 1.9
-    },
-    {
       "title": "wild-canyonhoxo3344/AI-Trading-Bot-Codepen",
       "url": "https://github.com/wild-canyonhoxo3344/AI-Trading-Bot-Codepen",
       "desc": "I’ve just created my own bot and I’m excited to share my work with you!",
@@ -321,17 +332,6 @@
       "metrics": "⭐ 85 · fork 66 · HTML",
       "date": "2026-09-28",
       "score": 1.9
-    },
-    {
-      "title": "zapplyjobs/New-Grad-Data-Science-Jobs-2027",
-      "url": "https://github.com/zapplyjobs/New-Grad-Data-Science-Jobs-2027",
-      "desc": "2027 entry-level data science & ML jobs — analytics, AI, quant & machine learning US roles",
-      "source": "GitHub",
-      "author": "zapplyjobs",
-      "cat": "tech",
-      "metrics": "⭐ 84 · fork 2 · HTML",
-      "date": "2026-09-28",
-      "score": 1.8
     },
     {
       "title": "daintreehq/daintree",
@@ -345,15 +345,26 @@
       "score": 1.8
     },
     {
-      "title": "terrylica/cc-skills",
-      "url": "https://github.com/terrylica/cc-skills",
-      "desc": "Claude Code Skills Marketplace: plugins, skills for ADR-driven development, DevOps automation, ClickHouse management, semantic versioning, a…",
+      "title": "kongbaiz/nte-dps-toolkit",
+      "url": "https://github.com/kongbaiz/nte-dps-toolkit",
+      "desc": "NTE DPS Toolkit - Open-source utility for DPS analysis, testing, automation and performance workflows. NTE DPS Toolkit —— 用于 DPS 分析、测试、自动化及性…",
       "source": "GitHub",
-      "author": "terrylica",
+      "author": "kongbaiz",
       "cat": "tech",
-      "metrics": "⭐ 75 · fork 12 · Shell",
+      "metrics": "⭐ 70 · fork 3 · Rust",
       "date": "2026-09-28",
-      "score": 1.8
+      "score": 1.7
+    },
+    {
+      "title": "seaworld008/Commonly-used-high-value-skills",
+      "url": "https://github.com/seaworld008/Commonly-used-high-value-skills",
+      "desc": "High-value AI skills repository for Codex, Claude Code, OpenClaw, agents, prompts, and automation workflows. 高价值的 AI 技能库，涵盖 Codex、Claude Cod…",
+      "source": "GitHub",
+      "author": "seaworld008",
+      "cat": "tech",
+      "metrics": "⭐ 70 · fork 11 · Python",
+      "date": "2026-09-28",
+      "score": 1.7
     },
     {
       "title": "s88cj-stack/Lithicsoft-Trainer-Forge",
@@ -363,17 +374,6 @@
       "author": "s88cj-stack",
       "cat": "tech",
       "metrics": "⭐ 55 · fork 0 · HTML",
-      "date": "2026-09-28",
-      "score": 1.5
-    },
-    {
-      "title": "GAlbanese09/spritebrew",
-      "url": "https://github.com/GAlbanese09/spritebrew",
-      "desc": "AI-powered pixel art sprite sheet generator. Upload or generate characters → animate → export game-ready sheets for Unity, Godot, GameMaker,…",
-      "source": "GitHub",
-      "author": "GAlbanese09",
-      "cat": "image",
-      "metrics": "⭐ 56 · fork 6 · TypeScript",
       "date": "2026-09-28",
       "score": 1.5
     }
