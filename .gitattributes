@@ -1,0 +1,9 @@
+# 统一按文本处理：index.html 会被 git 的二进制启发式误判（内容里没有 NUL），
+# 结果是每次改动都变成「整文件重写」的大 diff，真正改了什么根本看不出来。
+# 这里对源码显式声明 text（不用 auto，auto 仍会走启发式）。
+* text=auto
+*.html text
+*.md text
+*.mjs text
+*.json text
+*.yml text

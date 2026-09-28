@@ -38,16 +38,22 @@
 
   /* ===== 顶部导航 ===== */
   header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg2) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-  .nav{display:flex;align-items:center;gap:16px;height:64px}
+  .nav{display:flex;align-items:center;gap:16px;min-height:64px;flex-wrap:wrap;row-gap:6px;padding:10px 0}
+
+  /* 栏目变多后不再横向滚动（会静默截断）：桌面让标签自动换行到第二行，整行可见 */
   .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;white-space:nowrap}
   .logo .icon{font-size:1.5rem}
-  .logo b{background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-  nav.tabs{display:flex;gap:4px;flex:1;overflow-x:auto;scrollbar-width:none}
-  nav.tabs::-webkit-scrollbar{display:none}
-  .tab{padding:8px 14px;border-radius:10px;cursor:pointer;font-size:.92rem;color:var(--muted);border:none;background:transparent;white-space:nowrap;transition:.2s}
+  .logo b{background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}  nav.tabs{display:flex;flex-wrap:wrap;gap:4px;flex:1 0 100%;justify-content:flex-start;order:2;scroll-margin-top:0}
+  .tab{padding:8px 11px;border-radius:10px;cursor:pointer;font-size:.92rem;color:var(--muted);border:none;background:transparent;white-space:nowrap;transition:.2s}
   .tab:hover{color:var(--text);background:color-mix(in srgb,var(--primary) 10%,transparent)}
   .tab.active{color:#fff;background:linear-gradient(120deg,var(--primary),var(--primary2));font-weight:600}
-  .nav-actions{display:flex;gap:8px;align-items:center}
+  .nav-actions{display:flex;gap:8px;align-items:center;margin-left:auto;order:1}
+
+  /* 移动端菜单按钮：桌面隐藏 */
+
+  .nav-burger{display:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:1.1rem;align-items:center;justify-content:center}
+
+  .nav-burger:active{transform:scale(.94)}
   .icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;transition:.2s}
   .icon-btn:hover{border-color:var(--primary);transform:translateY(-1px)}
   .gh-btn{height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;transition:.2s}
@@ -111,7 +117,7 @@
   .count-hint{font-size:.8rem;color:var(--muted);margin-left:auto}
 
   /* ===== 卡片 ===== */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:16px}
   .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;position:relative;transition:.25s;display:flex;flex-direction:column;gap:10px}
   .card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--primary) 45%,var(--border));box-shadow:0 14px 34px -14px color-mix(in srgb,var(--primary) 30%,transparent)}
   .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
@@ -144,7 +150,7 @@
   .modal .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
 
   /* ===== 学习区 ===== */
-  .learn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .learn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:16px}
   .learn-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:.2s;display:flex;gap:12px;align-items:flex-start}
   .learn-card:hover{transform:translateY(-3px);border-color:var(--primary)}
   .learn-card .ic{font-size:1.4rem}
@@ -250,7 +256,9 @@
   .sub-filter-label{font-size:.76rem;color:var(--muted);align-self:center;margin-right:2px}
   .chip.sm{padding:4px 9px;font-size:.72rem}
   .chip[disabled]{opacity:.38;cursor:not-allowed}
-  .latest-jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  /* min(300px,100%)：容器比 300px 窄时（如 320px 手机）轨道跟着缩，不再把整页撑出横向滚动条 */
+
+  .latest-jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:12px}
   .job-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:block;transition:.2s}
   .job-card:hover{border-color:var(--primary);transform:translateY(-2px)}
   .job-card .row1{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:6px}
@@ -371,11 +379,61 @@
     .ef-row{grid-template-columns:1fr}
     .pb-step{grid-template-columns:1fr;gap:3px}
     .pb-when{padding-bottom:0}
+  }  /* ===== 窄屏：导航收进 ☰ 抽屉 =====
+
+     10 个栏目标签在手机上无论如何都放不下，硬塞只会剩 97px 可用宽度。
+
+     这里让 nav.tabs 变成 header 下方的下拉面板——复用同一批按钮，不复制第二份，
+
+     选中态因此永远不会和桌面行不同步。 */
+
+  @media(max-width:1023px){
+
+    .nav{flex-wrap:nowrap;min-height:56px;padding:8px 0}
+
+    .nav-actions{margin-left:auto;order:1}
+
+    .nav-burger{display:flex}
+
+    nav.tabs{display:none}
+
+    body.nav-open nav.tabs{
+
+      display:flex;flex-direction:column;gap:2px;flex-wrap:nowrap;
+
+      position:absolute;left:0;right:0;top:100%;z-index:101;
+
+      background:var(--bg2);border-bottom:1px solid var(--border);
+
+      box-shadow:0 14px 30px rgba(0,0,0,.18);
+
+      padding:8px 20px 14px;max-height:calc(100vh - 60px);overflow-y:auto;
+
+    }
+
+    body.nav-open nav.tabs .tab{width:100%;text-align:left;padding:11px 12px;font-size:.95rem}
+
+  }
+
+  /* 极窄屏（≤400px）：logo + 三个操作按钮放不下了，
+
+     收起 logo 字号并隐藏 GitHub 按钮（页脚还有同名入口，不丢信息） */
+
+  @media(max-width:400px){
+
+    .logo{font-size:1rem;gap:7px}
+
+    .logo .icon{font-size:1.2rem}
+
+    .gh-btn{display:none}
+
+    .nav{gap:10px}
+
   }
 
   @media(max-width:640px){
+
     .hero{padding:48px 0 34px}
-    .nav{height:56px}
     .gh-btn span{display:none}
     .search-wrap kbd{display:none}
     .modal{padding:22px 18px}
@@ -398,8 +456,10 @@
       <button class="tab" data-view="learn">📚 学习成长</button>
       <button class="tab" data-view="favs">⭐ 我的收藏</button>
       <button class="tab" data-view="about">ℹ️ 关于</button>
-    </nav>
-    <div class="nav-actions">
+    </nav>    <div class="nav-actions">
+
+      <button class="nav-burger" id="navBurger" aria-label="打开栏目菜单" aria-expanded="false" aria-controls="tabs">☰</button>
+
       <button class="icon-btn" id="themeBtn" title="切换深浅主题">🌙</button>
       <a class="gh-btn" href="https://github.com/zoneboys/ai-sidehustle-hub" target="_blank" rel="noopener" title="zoneboys/ai-sidehustle-hub（本项目源码）">⭐ <span>GitHub</span></a>
     </div>
@@ -1357,9 +1417,31 @@ function renderAll(){
 
 /* =====================================================
    交互
-   ===================================================== */
+   ===================================================== */function closeNav(){
+
+  if(!document.body.classList.contains("nav-open"))return false;
+
+  document.body.classList.remove("nav-open");
+
+  const b=$("#navBurger");if(b){b.textContent="☰";b.setAttribute("aria-expanded","false")}
+
+  return true}
+
+function openNav(){
+
+  document.body.classList.add("nav-open");
+
+  const b=$("#navBurger");if(b){b.textContent="✕";b.setAttribute("aria-expanded","true")}
+
+}
+
+function toggleNav(){document.body.classList.contains("nav-open")?closeNav():openNav()}
+
+window.openNav=openNav;window.closeNav=closeNav;window.toggleNav=toggleNav;
+
 function switchView(v){
-  state.view=v;
+
+  state.view=v;closeNav();
   $$(".tab").forEach(t=>t.classList.toggle("active",t.dataset.view===v));
   $$("section.view").forEach(s=>s.classList.toggle("active",s.id==="view-"+v));
   window.scrollTo({top:0,behavior:"smooth"});
@@ -1377,10 +1459,18 @@ function quickSearch(t){$("#search").value=t;state.query=t;switchView(t.includes
 window.setHustleCat=setHustleCat;window.setJobType=setJobType;window.setLearnCat=setLearnCat;window.quickSearch=quickSearch;
 
 $("#tabs").addEventListener("click",e=>{const t=e.target.closest(".tab");if(t)switchView(t.dataset.view)});
+
+$("#navBurger").addEventListener("click",toggleNav);
+
+/* 点抽屉外/点搜索框都收起；窗口拉宽到桌面断点时也强制收起，避免状态残留 */
+
+document.addEventListener("click",e=>{if(document.body.classList.contains("nav-open")&&!e.target.closest("#tabs")&&!e.target.closest("#navBurger"))closeNav()});
+
+window.addEventListener("resize",()=>{if(innerWidth>1023)closeNav()});
 $("#search").addEventListener("input",e=>{state.query=e.target.value;renderAll()});
 document.addEventListener("keydown",e=>{
   if(e.key==="/"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();$("#search").focus()}
-  if(e.key==="Escape")closeModal();
+  if(e.key==="Escape"){closeModal();closeNav();}
 });
 $("#hustleSort").addEventListener("change",e=>{state.hustleSort=e.target.value;renderHustles()});
 $("#spinBtn").addEventListener("click",()=>{state.inspireSeed++;renderInspire();toast("🎲 新一批灵感来了")});
