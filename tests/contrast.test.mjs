@@ -21,14 +21,56 @@ const css = html
   .split("</style>")[0]
   .replace(/\/\*[\s\S]*?\*\//g, "");
 
+/* 抽掉 @media / @supports 整块（带括号配平）。
+   为什么必须抽而不是「截到第一个 @media」：本文件里第一个 @media 是
+   `.quiz-cta` 的组件断点，位置在 229 行；而 .feed-card / .btn-sm 这些
+   组件样式写在 327 行之后。截断会把后半张样式表全部排除出审计，
+   于是新写的规则既查不到自己的底色、也拿不到祖先底色，审出一堆 1.07:1
+   的伪失败——真正该拦的 bug 反而被放过了。 */
+function stripAtRules(src) {
+  let out = "";
+  let i = 0;
+  while (i < src.length) {
+    const at = src.indexOf("@media", i);
+    const at2 = src.indexOf("@supports", i);
+    const starts = [at, at2].filter((p) => p >= 0);
+    if (!starts.length) return out + src.slice(i);
+    const start = Math.min(...starts);
+    let depth = 0, j = src.indexOf("{", start);
+    if (j < 0) return out + src.slice(i);
+    for (; j < src.length; j++) {
+      if (src[j] === "{") depth++;
+      else if (src[j] === "}" && --depth === 0) { j++; break; }
+    }
+    out += src.slice(i, start);
+    i = j;
+  }
+  return out;
+}
+
 const decl = (body) => {
   const out = {};
   // 必须能收数字：--primary2 / --header-h 这类变量名
   for (const m of body.matchAll(/(--?[a-z0-9-]+|[a-z-]+)\s*:\s*([^;}]+)/gi)) out[m[1].toLowerCase()] = m[2].trim();
   return out;
 };
-const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+// 带透明度的颜色统一编码为 "#rrggbb@a"（a ∈ (0,1]）；不透明的就是普通 hex。
+// 为什么要这个：color-mix(<色> 14%, transparent) 的结果**不是**实心色，而是
+// rgba(<色>, .14) —— 直接当成不透明混色算，深色主题下会把浅灰底估得过亮，
+// 于是 2.29:1 的 .badge-new 硬被判成合格（实测：白底估 4.55、暗底估 2.29，
+// 只验浅色主题就永远不会发现）。所以解析层保留 alpha，对比度层再合成。
+const isAlpha = (c) => typeof c === "string" && c.includes("@");
+const alphaOf = (c) => (isAlpha(c) ? Number(c.split("@")[1]) : 1);
+const baseOf = (c) => (isAlpha(c) ? c.split("@")[0] : c);
+const hex = (h) => [1, 3, 5].map((i) => parseInt(baseOf(h).slice(i, i + 2), 16));
 const toHex = (rgb) => "#" + rgb.map((v) => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
+// 把带 alpha 的前景合成到不透明底上。CSS 的 alpha compositing：out = fg*a + bg*(1-a)
+const over = (fg, bg) => {
+  const a = alphaOf(fg);
+  if (a >= 1) return baseOf(fg);
+  const F = hex(fg), B = hex(bg);
+  return toHex(F.map((v, i) => v * a + B[i] * (1 - a)));
+};
 const lum = (h) => {
   const c = hex(h).map((v) => v / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
   return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
@@ -56,9 +98,11 @@ const fnArgs = (s) => topSplit(s.slice(s.indexOf("(") + 1, s.lastIndexOf(")")));
 function resolve(val, tv, depth = 0) {
   if (!val || depth > 6) return null;
   const p = val.trim();
-  // transparent / none 都视作卡片底：徽章、标签、关闭按钮都是浮在卡片上的，
-  // 按「背后是 --card」计算，而不是直接跳过——否则这些控件就没人管了。
+  // background:none / 单独的 transparent：元素自己不画底，按「背后是 --card」算，
+  // 否则 .chip / .q-explain 这类「本身透明、活在卡片里」的规则就没人管了。
   if (p === "none" || p === "transparent") return [tv["--card"]];
+  // 但作为 color-mix 的**成分**出现时，transparent 是真的 alpha 0，不能当卡片色。
+  // （见上方 isAlpha 注释：这是 .badge-new / .pit-tag 在深色主题下漏审的根因。）
   // color-mix 两种写法都要认：
   //   color-mix(in srgb, <颜色> <百分比>, <底色>)   ← 站内实际用的
   //   color-mix(in srgb, <颜色>, <百分比> <底色>)
@@ -76,10 +120,26 @@ function resolve(val, tv, depth = 0) {
     const g1 = strip(cm[1]), g2 = strip(cm[2]);
     const pct = g1.pct !== null ? g1.pct : g2.pct;
     if (pct === null) return null;
+    // 成分里出现 transparent 时结果是带 alpha 的（见上方 isAlpha 注释），
+    // 不能把它当不透明色去混 —— 那样会把深色主题的淡底估得过亮。
+    const TRANSPARENT = (s) => /^transparent$/i.test(s.trim());
+    if (TRANSPARENT(g1.color) || TRANSPARENT(g2.color)) {
+      const col = TRANSPARENT(g1.color) ? g2 : g1;
+      const src = resolve(col.color, tv, depth + 1);
+      if (!src) return null;
+      const a = TRANSPARENT(g1.color) ? 1 - pct : pct;
+      return [a >= 1 ? baseOf(src[0]) : baseOf(src[0]) + "@" + a];
+    }
     const a = resolve(g1.color, tv, depth + 1);
     const b = resolve(g2.color, tv, depth + 1);
     if (!a || !b) return null;
-    return [toHex(a.map((x, i) => x * pct + b[i] * (1 - pct)))];
+    // a / b 是 hex **字符串**，必须先转成数值再混。
+    // 之前直接写 a[i]*pct + b[i]*(1-pct) 会算出 NaN，toHex 再把 NaN 变成 "#NaN"，
+    // 而 `NaN < 4.5` 是 false —— 于是全站所有 color-mix 的对比度都被静默豁免，
+    // 审计看着全绿、实际一条没算。混色是这个站的主力写法（每条 *.ink 都是），
+    // 这里错了等于整个审计失效，所以下面用不变量单独锁住。
+    const A = hex(a[0]), B = hex(b[0]);
+    return [toHex(A.map((x, i) => x * pct + B[i] * (1 - pct)))];
   }
   const vm = p.match(/^var\((--[a-z0-9-]+)\)$/i);
   // 变量的值本身可能还是表达式（--primary-ink 就是 color-mix(...)），
@@ -114,7 +174,9 @@ if (themes.light && themes.dark) themes.dark = { ...themes.light, ...themes.dark
 
 function rules() {
   const out = [];
-  for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+  // 用抽掉断点后的 baseCss：审计的“文字压底色”必须和祖先查找读同一张表，
+  // 否则同一份样式会出现「被当成规则、却查不到底色」的不一致。
+  for (const m of baseCss.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     const sel = m[1].trim().replace(/\s+/g, " ");
     if (sel.startsWith("@") || /^(from|to|\d+%)$/.test(sel)) continue;
     out.push({ sel, d: decl(m[2]) });
@@ -131,9 +193,8 @@ const isGradientText = (d) =>
    之前的版本对这类规则直接 continue，于是 78 条 color-only 规则全部逃过审计——
    包含 .q-explain b，它在浅色主题下只有 3.34:1 却一直是绿的。
    这里补一层「祖先查找」：把选择器从右往左逐段剥掉，找到最近的、自己带背景的祖先。
-   刻意只在**首个 @media 之前的基础样式**里查找：断点里的背景覆盖会因机型而异，
-   静态解析判定不了，硬要算只会产出没法修的误报。 */
-const baseCss = css.slice(0, css.search(/@media/) === -1 ? css.length : css.search(/@media/));
+   断点块里的背景覆盖会因机型而异，静态解析判定不了，所以整块抽掉（见 stripAtRules）。 */
+const baseCss = stripAtRules(css);
 const baseBg = new Map();
 for (const m of baseCss.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
   const sel = m[1].trim().replace(/\s+/g, " ");
@@ -145,6 +206,10 @@ for (const m of baseCss.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
 }
 // 末尾复合选择器逐级降级：.fav.on -> .fav；.imp.act -> .imp
 function qualifiers(sel) {
+  // 先剥掉伪类：:hover / :active / :focus 不会给元素换背景，
+  // 它仍然继承基础规则声明的背景。不剥的话 `.btn-sm.primary:hover` 永远
+  // 找不到底色，就会退到 body 去算，报出 1.07:1 这种不可能的数字。
+  sel = sel.replace(/::?[\w-]+(\([^)]*\))?/g, "");
   const out = [sel];
   const m = /^([^\s]+?)((?:[.#][\w-]+)+)$/.exec(sel);
   if (m) {
@@ -168,9 +233,15 @@ function inheritedBgs(sel) {
     return out;
   };
   const toks = sel.split(/\s+/).filter(Boolean);
+  // 只有**祖先**化合物的变体才是祖先。`:hover` / `.on` 这类是元素**自己**的状态，
+  // 把它们的底色拿来算会把 .chip:hover 判成「白字压实心块」而误报：
+  // .chip.on 靠「同特异性 + 写在后面」赢下 color，不是靠继承。
+  // 判据：命中的那段如果不是最后一个 token，它才是祖先。
+  const selfIsLast = (i) => i === toks.length;
   for (let i = toks.length; i > 0; i--) {
     for (const cand of qualifiers(toks.slice(0, i).join(" "))) {
-      if (cand !== sel && baseBg.has(cand)) return [baseBg.get(cand), ...variants(cand)];
+      if (cand === sel || !baseBg.has(cand)) continue;
+      return selfIsLast(i) ? [baseBg.get(cand)] : [baseBg.get(cand), ...variants(cand)];
     }
   }
   const body = baseBg.get("body");
@@ -182,13 +253,28 @@ const skipped = [];
 for (const { sel, d } of rules()) {
   if (!d.color || isGradientText(d)) continue;
   const own = d["background-color"] || d.background;
-  const bgVals = own ? [own] : inheritedBgs(sel);
+  // 半透明底是「盖在背后那层之上」，所以两层都得取：
+  // 只拿 --card 猜会高估 —— .pit-tag 活在 --bg 上而不是 --card 上，
+  // 浏览器实测 4.42（< AA），按 --card 算却是 4.58，看着合格。
+  const behind = inheritedBgs(sel);
+  const bgVals = own ? [own] : behind;
   if (!bgVals.length) { skipped.push(`${sel} { color:${d.color} }`); continue; }
   for (const theme of ["light", "dark"]) {
     const fg = resolve(d.color, themes[theme]);
-    const bgs = bgVals.flatMap((v) => resolve(v, themes[theme]) || []);
-    if (!bgs.length || !fg) { skipped.push(`${sel} { color:${d.color} }`); continue; }
-    for (const b of bgs) for (const f of fg) pairs.push({ sel, theme, cr: contrast(f, b), f, b });
+    const tops = bgVals.flatMap((v) => resolve(v, themes[theme]) || []);
+    const backs = behind.flatMap((v) => resolve(v, themes[theme]) || []);
+    if (!tops.length || !fg) { skipped.push(`${sel} { color:${d.color} }`); continue; }
+    const card = themes[theme]["--card"];
+    for (const t of tops) {
+      const bases = alphaOf(t) < 1 && backs.length ? backs : [t];
+      for (const b0 of bases) {
+        const b = alphaOf(t) < 1 ? over(t, alphaOf(b0) < 1 ? over(b0, card) : b0) : t;
+        for (const f0 of fg) {
+          const f = alphaOf(f0) < 1 ? over(f0, b) : f0;
+          pairs.push({ sel, theme, cr: contrast(f, b), f, b });
+        }
+      }
+    }
   }
 }
 
@@ -208,6 +294,26 @@ test("变量块之外不允许字面 hex —— 否则审计可能静默空转",
   }
   // 颜色必须来自主题变量或 color-mix，否则一个主题合格不代表另一个也合格
   assert.deepEqual(found, [], "这些颜色写死了，换主题就会失效：\n" + found.join("\n"));
+});
+
+test("color-mix 真的能解析出具体颜色（不是 #NaN）", () => {
+  // 混色解析一旦坏掉，contrast() 返回 NaN，而 NaN 会被 `< 4.5` 静默放过，
+  // 所以这里对解析器本身下断言，而不是指望对比度那条红。
+  const cases = [
+    ["var(--ok-ink)", "light"],
+    ["var(--ok-ink)", "dark"],
+    ["color-mix(in srgb,var(--ok) 10%,var(--card))", "light"],
+    ["color-mix(in srgb,var(--hot) 12%,var(--bg))", "dark"],
+    ["color-mix(in srgb, 12% var(--hot), var(--bg))", "light"],
+  ];
+  const bad = [];
+  for (const [expr, theme] of cases) {
+    const r = resolve(expr, themes[theme]);
+    if (!r || r.length !== 1 || !/^#[0-9a-f]{6}$/.test(r[0]) || r[0].includes("a") && Number.isNaN(hex(r[0])[0]))
+      bad.push(`  ${expr} @ ${theme} → ${JSON.stringify(r)}`);
+    if (r) for (const c of r) if (hex(c).some(Number.isNaN)) bad.push(`  ${expr} @ ${theme} → ${c} 不是颜色`);
+  }
+  assert.deepEqual([...new Set(bad)], [], `color-mix 解析失败：\n${bad.join("\n")}`);
 });
 
 test("两个主题都被解析出来，且审计不是空转", () => {
@@ -231,6 +337,14 @@ test("两个主题都被解析出来，且审计不是空转", () => {
 
 test("全站每条「文字压底色」在两个主题下都过 4.5:1", () => {
   const bad = pairs.filter((p) => p.cr < 4.5);
+  // 显式拒绝 NaN/Infinity：比较运算对 NaN 恒为 false，会把「算不出来」当成「合格」。
+  // 这正是 color-mix 混色算错时全站审计集体失效而不报错的原因。
+  const notANumber = pairs.filter((p) => !Number.isFinite(p.cr));
+  assert.deepEqual(
+    [...new Set(notANumber.map((p) => `${p.theme}  ${p.sel}  ${p.f} on ${p.b}`))],
+    [],
+    "有对比度算不出来（NaN/Infinity），这些条目等于没被审计",
+  );
   const lines = bad.map((b) => `  ${b.cr}  ${b.theme}  ${b.sel}  ${b.f} on ${b.b}`);
   assert.deepEqual(
     [...new Set(lines.map((l) => l.replace(/^[\d.]+/, "")))],
