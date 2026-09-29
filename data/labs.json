@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-09-29T11:20:35.513Z",
+  "date": "2026-09-29",
+  "repos": [
+    {
+      "id": "k12",
+      "repo": "ObservingTheSea/ObservingTheSea.github.io",
+      "branch": "main",
+      "stars": 14,
+      "license": "MIT",
+      "pushedAt": "2026-09-23T11:41:20Z",
+      "fileCount": 723,
+      "truncated": false,
+      "used": [],
+      "missing": []
+    },
+    {
+      "id": "eduagent",
+      "repo": "EduAgent/EduAgent",
+      "branch": "main",
+      "stars": 46,
+      "license": "NOASSERTION",
+      "pushedAt": "2026-02-14T23:21:48Z",
+      "fileCount": 21,
+      "truncated": false,
+      "used": [
+        {
+          "lesson": "p1",
+          "src": "dataset/student_answer_item_revised.csv",
+          "ok": true
+        },
+        {
+          "lesson": "p2",
+          "src": "dataset/aoi_material_ext_slide.csv",
+          "ok": true
+        },
+        {
+          "lesson": "p3",
+          "src": "dataset/during_behavior_slide.csv",
+          "ok": true
+        },
+        {
+          "lesson": "p4",
+          "src": "README.md",
+          "ok": true
+        },
+        {
+          "lesson": "p5",
+          "src": "dataset/student_demo_generated.csv",
+          "ok": true
+        }
+      ],
+      "missing": []
+    },
+    {
+      "id": "eduagentx",
+      "repo": "EduAgentX-Remake/EduAgentX-BackEnd",
+      "branch": "main",
+      "stars": 29,
+      "license": "",
+      "pushedAt": "2025-11-16T08:12:39Z",
+      "fileCount": 722,
+      "truncated": false,
+      "used": [
+        {
+          "lesson": "e1",
+          "src": "EduAgentX-MicroService/",
+          "ok": true
+        },
+        {
+          "lesson": "e2",
+          "src": "EduAgentX-MicroService/EduAgentX-RagService/",
+          "ok": true
+        },
+        {
+          "lesson": "e3",
+          "src": "EduAgentX-MicroService/EduAgentX-AI-Workflow/",
+          "ok": true
+        }
+      ],
+      "missing": []
+    }
+  ],
+  "errors": [],
+  "note": "三个来源的真实文件树，用于校验课程里写的源码路径是否还存在。"
+}
