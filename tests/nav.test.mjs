@@ -23,8 +23,8 @@ const bare = html.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
 /* ---------- 结构层 ---------- */
 
 test("导航栏目与视图一一对应：不多、不少、不重复", () => {
-  assert.equal(tabViews.length, 10, "应有 10 个栏目 tab");
-  assert.equal(new Set(tabViews).size, 10, "data-view 不能重复，否则点第二个会切到同一个视图");
+  assert.equal(tabViews.length, 11, "应有 11 个栏目 tab（含新增的人生指南）");
+  assert.equal(new Set(tabViews).size, 11, "data-view 不能重复，否则点第二个会切到同一个视图");
   for (const v of tabViews) {
     assert.ok(html.includes(`id="view-${v}"`), `tab 指向了不存在的视图 #view-${v}`);
   }

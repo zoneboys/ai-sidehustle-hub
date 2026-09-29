@@ -22,6 +22,8 @@
 <script src="data/labs-core.js"></script>
 <script src="data/labs-curriculum.js"></script>
 <script src="data/rules-core.js"></script>
+<script src="data/fresh-core.js"></script>
+<script src="data/life-core.js"></script>
 <style>
   :root{
     --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --text:#1a2033;
@@ -741,14 +743,92 @@
 
     .nav{gap:10px}
 
-  }
+  }  /* ---------- 数据新鲜度面板 ----------
+     三种状态必须一眼可分：实时候选 / 已是最新 / 离线快照。
+     「陈旧」和「离线」故意用不同颜色——前者是上游 workflow 的问题，
+     后者是你网络的问题，提示要分开，否则用户会去怪错的对象。 */
+  .fresh-btn{font-size:.85rem;white-space:nowrap}
+  .fresh-btn.hot{color:var(--ok-ink);border-color:var(--ok)}
+  .fresh-btn.warn{color:var(--warn-ink);border-color:var(--warn)}
+  .fresh-list{display:flex;flex-direction:column;gap:2px;margin-top:12px}
+  .fresh-row{display:grid;grid-template-columns:10px 5.2em 1fr;gap:8px;align-items:baseline;
+    padding:7px 10px;border-radius:8px;background:var(--card);font-size:.86rem;line-height:1.5}
+  .fresh-row b{font-weight:600;white-space:nowrap}
+  .fresh-why{grid-column:3;color:var(--muted);font-size:.78rem;line-height:1.5}
+  .fresh-txt{color:var(--text)}
+  .fresh-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);align-self:center}
+  .fresh-dot.ok{background:var(--ok)}
+  .fresh-dot.warn{background:var(--warn)}
+  .fresh-dot.hot{background:var(--hot)}
+  .fresh-dot.muted{background:var(--muted)}
+
+  /* 人生指南：颜色只用已有 token，这样对比度审计能覆盖到。
+     口径分列是这个板块的骨架，所以口径标题必须一眼可分——用
+     主色短杠 + 独立小标题，而不是靠徽章颜色暗示“更好”。 */
+  .lf-input{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border);
+    background:var(--bg);color:var(--text);font-size:.9rem;font-family:inherit}
+  .lf-input:focus{outline:2px solid var(--primary);outline-offset:1px}
+  .lf-urgent{border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+  .lf-urgent-body{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}
+  .lf-urgent-body .lf-input{flex:1 1 320px;min-width:0}
+  .lf-hint{font-size:.8rem;line-height:1.65;color:var(--muted);margin-top:9px;
+    background:color-mix(in srgb,var(--primary) 6%,var(--card));
+    border:1px solid color-mix(in srgb,var(--primary) 18%,transparent);
+    border-radius:10px;padding:8px 11px}
+  .lf-hit{background:color-mix(in srgb,var(--hot) 9%,var(--card));
+    border:1px solid color-mix(in srgb,var(--hot) 45%,transparent);
+    border-radius:10px;padding:11px 13px;margin-top:10px}
+  .lf-hit h4{margin:0 0 5px;font-size:.95rem}
+  .lf-hit p{margin:0 0 5px;font-size:.88rem;line-height:1.7}
+  .lf-hit .lf-do{font-size:.92rem;font-weight:600;line-height:1.7}
+  .lf-search{display:flex;flex-direction:column;gap:9px;margin:10px 0 6px}
+  .lf-dims,.lf-lens{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+  .lf-dims .lf-lab,.lf-lens .lf-lab{font-size:.8rem;color:var(--muted);margin-right:2px}
+  .lf-chip{padding:4px 11px;border-radius:999px;border:1px solid var(--border);
+    background:var(--bg);color:var(--muted);font-size:.8rem;cursor:pointer;font-family:inherit}
+  .lf-chip[aria-pressed="true"]{background:color-mix(in srgb,var(--primary) 14%,var(--card));
+    color:var(--primary-ink);border-color:color-mix(in srgb,var(--primary) 45%,transparent);font-weight:600}
+  .lf-count{font-size:.8rem;color:var(--muted);margin:8px 0 2px}
+  .lf-lensgroup{margin-top:16px;border-left:3px solid var(--primary);padding-left:12px}
+  .lf-lensgroup>h4{font-size:.92rem;margin:0 0 2px}
+  .lf-lensnote{font-size:.78rem;color:var(--muted);margin:0 0 8px;line-height:1.6}
+  .lf-entry{background:var(--card);border:1px solid var(--border);border-radius:11px;
+    padding:11px 13px;margin-bottom:8px}
+  .lf-entry h5{margin:0 0 6px;font-size:.93rem;line-height:1.5;display:flex;gap:7px;align-items:baseline;flex-wrap:wrap}
+  .lf-entry h5 .lf-no{color:var(--muted);font-weight:400;font-size:.78rem;flex:none}
+  .lf-txt{font-size:.86rem;line-height:1.72;margin:0 0 6px}
+  .lf-txt.lf-muted{color:var(--muted);font-size:.82rem}
+  .lf-meta{display:flex;gap:6px;flex-wrap:wrap;margin:7px 0 0}
+  .lf-tag{font-size:.72rem;padding:2px 8px;border-radius:999px;
+    background:color-mix(in srgb,var(--muted) 12%,var(--card));
+    border:1px solid color-mix(in srgb,var(--muted) 30%,transparent);color:var(--muted)}
+  .lf-tag.lf-r{background:color-mix(in srgb,var(--ok) 9%,var(--card));
+    border-color:color-mix(in srgb,var(--ok) 38%,transparent);color:var(--ok-ink)}
+  .lf-tag.lf-g{background:color-mix(in srgb,var(--primary) 9%,var(--card));
+    border-color:color-mix(in srgb,var(--primary) 38%,transparent);color:var(--primary-ink)}
+  .lf-tag.lf-w{background:color-mix(in srgb,var(--warn) 10%,var(--card));
+    border-color:color-mix(in srgb,var(--warn) 40%,transparent);color:var(--warn-ink)}
+  .lf-srcs{margin:8px 0 0;font-size:.78rem;line-height:1.7;word-break:break-all}
+  .lf-srcs a{color:var(--primary-ink)}
+  .lf-toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:10px}
+  .lf-sec{display:block;width:100%;text-align:left;padding:9px 11px;border-radius:10px;
+    border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
+  .lf-sec[aria-pressed="true"]{border-color:var(--primary);
+    background:color-mix(in srgb,var(--primary) 8%,var(--card))}
+  .lf-sec b{font-size:.85rem;display:block;line-height:1.5}
+  .lf-sec span{font-size:.74rem;color:var(--muted)}
+  .lf-steps{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  .lf-step{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  .lf-step b{font-size:.88rem}
+  .lf-step p{margin:4px 0 0;font-size:.82rem;line-height:1.65;color:var(--muted)}
 
   @media(max-width:640px){
-
     .hero{padding:48px 0 34px}
     .gh-btn span{display:none}
     .search-wrap kbd{display:none}
     .modal{padding:22px 18px}
+    .fresh-row{grid-template-columns:10px 1fr}
+    .fresh-txt,.fresh-why{grid-column:2}
   }
 </style>
 </head>
@@ -766,12 +846,14 @@
       <button class="tab" data-view="earn">📈 变现看板</button>
       <button class="tab" data-view="jobs">💼 工作板</button>
       <button class="tab" data-view="learn">📚 学习成长</button>
+      <button class="tab" data-view="life">🧭 人生指南</button>
       <button class="tab" data-view="favs">⭐ 我的收藏</button>
       <button class="tab" data-view="about">ℹ️ 关于</button>
     </nav>    <div class="nav-actions">
 
       <button class="nav-burger" id="navBurger" aria-label="打开栏目菜单" aria-expanded="false" aria-controls="tabs">☰</button>
 
+      <button class="icon-btn" id="freshBtn" title="每次打开都会与线上仓库校验一次数据">🔄 校验中…</button>
       <button class="icon-btn" id="themeBtn" title="切换深浅主题">🌙</button>
       <a class="gh-btn" href="https://github.com/zoneboys/ai-sidehustle-hub" target="_blank" rel="noopener" title="zoneboys/ai-sidehustle-hub（本项目源码）">⭐ <span>GitHub</span></a>
     </div>
@@ -1108,6 +1190,61 @@
   </div>
 </section>
 
+<!-- ================= 人生指南 ================= -->
+<section class="view" id="view-life">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2>🧭 人生指南</h2>
+        <div class="sub">来自开源项目 <a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a> 的《高性价比人生指南》——34 节 · <span id="lfCount">—</span> 条 · CC-BY-4.0。这里不重写书，只做一件书不方便替用户做的事：<strong>先告诉你该按哪种账算，再把同一种账里的条目排出来</strong>。</div>
+      </div>
+    </div>
+
+    <!-- 第 0 步：先判断要不要停下来算账 -->
+    <div class="daily lf-urgent" id="lfUrgent">
+      <div class="daily-head"><h3>🆘 先说清楚：什么情况不要先算账</h3></div>
+      <div class="lf-urgent-body">
+        <input id="lfQ" class="lf-input" type="text" placeholder="用一句话说说你现在的情况，比如「最近老是胸闷」「家里老人摔了一跤」" autocomplete="off">
+        <button class="btn primary" onclick="runLifeCheck()">检查一下</button>
+      </div>
+      <div id="lfUrgentOut"></div>
+      <div class="lf-hint">正在发生的急症、提到轻生念头、已经在走法律程序——这三种情况下，上游 skill 文档的第 0 步写得很明确：<strong>先说打什么电话、先做什么动作</strong>，不要先讲性价比。所以这一步排在所有排序之前。</div>
+    </div>
+
+    <!-- 检索 -->
+    <div class="daily">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>🔎 找一条</h3>
+        <span class="daily-date" id="lfDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn ghost small" onclick="loadLife()">↻ 刷新</button>
+      </div>
+      <div class="lf-search">
+        <input id="lfSearch" class="lf-input" type="search" placeholder="搜标题、说人话、来源…（多个词是「同时含有」）" autocomplete="off">
+        <div class="lf-dims" id="lfDims"></div>
+        <div class="lf-lens" id="lfLens"></div>
+      </div>
+      <div id="lfUnknown"></div>
+      <div class="lf-count" id="lfHits"></div>
+      <div id="lfResults"></div>
+    </div>
+
+    <!-- 目录 -->
+    <div class="daily">
+      <div class="daily-head"><h3>📚 目录 · 34 节</h3></div>
+      <div class="lf-toc" id="lfToc"></div>
+    </div>
+
+    <div class="daily">
+      <div class="daily-head"><h3>🧭 判断步骤（书里给的，不是我发明的）</h3></div>
+      <div class="lf-steps" id="lfSteps"></div>
+      <div class="lf-hint">书里反复强调的一句话：<strong>「一般」不等于「不该做」</strong>，书里没写的不要拿常识冒充。所以本站把「性价比」（作者的判断）和「证据等级」（文献强度）<strong>分开显示</strong>，不拿证据 C 级去暗示某件事不值得做。</div>
+      <div class="daily-foot"><span id="lfFoot"></span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= 收藏 ================= -->
 <section class="view" id="view-favs">
   <div class="container">
@@ -1309,8 +1446,16 @@
         1️⃣ <b>静态精选库</b> —— 来自两大开源仓库的人工精选数据，内置于页面中；<br>
         2️⃣ <b>每日抓取脚本</b> —— <code>scripts/fetch-jobs.mjs</code> 定时调用 Remotive、We Work Remotely、Hacker News「Who is hiring?」等公开 API / RSS，抓取最新远程职位，写入 <code>data/daily-updates.json</code>；<br>
         3️⃣ <b>GitHub Actions 定时任务</b> —— 每天北京时间上午自动运行抓取脚本并提交数据，网站每日打开即可读到最新内容。<br>
+        4️⃣ <b>打开即校验</b> —— 每次打开本页，浏览器都会拿记住的 ETag 向线上仓库发一次条件请求：没变就回 304（几乎 0 字节），变了就把线上那份换进来。所以只要定时任务提交过，你今天第一次看到的就是提交后的版本——哪怕标签页是昨晚开着的。<br>
+        纯静态站做不到「秒级实时」（没有一个在动的服务端能在请求发生的瞬间去问上游），所以不假装实时，而是如实标出每份数据有多新。下方列表是本次打开的真实校验结果。<br>
         部署到 GitHub Pages / Vercel / Cloudflare Pages 后，无需服务器即可享受每日更新。
       </p>
+      <div class="daily-head" style="margin-top:16px"><h3>🕒 本次打开的校验结果</h3></div>
+      <div class="fresh-list" id="freshList"><div class="fresh-row"><span class="fresh-dot muted"></span><b>校验中…</b><span class="fresh-txt">正在向线上仓库逐份确认</span></div></div>
+      <div class="daily-foot">
+        <button class="btn primary small" id="freshRecheck">🔄 立即重新校验</button>
+        <a class="btn primary small" href="https://github.com/zoneboys/ai-sidehustle-hub/actions" target="_blank" rel="noopener">⚙️ 查看定时任务</a>
+      </div>
       <div class="daily-foot">
         <a class="btn primary small" href="https://github.com/XiaomingX/ai-money-maker-handbook" target="_blank" rel="noopener">💰 AI 副业赚钱大集合</a>
         <a class="btn primary small" href="https://github.com/lukasz-madon/awesome-remote-job" target="_blank" rel="noopener">🌍 Awesome Remote Job</a>
@@ -1516,6 +1661,8 @@ const state = {
   versions:null, verLevel:null,
   indie:null, indieCat:null, indiePay:null,
   pbCat:null, pbOpen:null, pitCat:null,
+  life:null, lifeSec:null, lifeEntries:null, lifeLoading:false,
+  lifeQ:"", lifeDims:{}, lifeLens:"", lifeMore:0,
 };
 const $ = s=>document.querySelector(s);
 const $$ = s=>document.querySelectorAll(s);
@@ -1896,6 +2043,7 @@ function switchView(v){
   if(v==="play"){renderPlaybooks();renderPlan();renderPits();}
   if(v==="earn")renderEarn();
   if(v==="learn")renderQuizPanel();
+  if(v==="life"){renderLifeHead();renderLifeControls();renderLifeToc();renderLifeResults();}
   if(v==="indie")renderIndie();
 }
 window.switchView=switchView;
@@ -2114,18 +2262,404 @@ window.openBoard=openBoard;
 /* =====================================================
    每日更新数据加载
    ===================================================== */
-async function loadUpdates(){
-  try{
-    const res=await fetch("data/daily-updates.json?t="+Date.now(),{cache:"no-store"});
-    if(!res.ok)throw new Error(res.status);
-    const data=await res.json();
-    if(!data.jobs)throw new Error("bad data");
-    state.updates=data;
-    toast("📡 已更新到最新数据");
-  }catch(e){
-    state.updates=FALLBACK_UPDATES;
+/* =====================================================
+   数据新鲜度：每次打开都真的去线上校验一次
+
+   之前每个加载器都写 `?t=Date.now()` + `cache:"no-store"`，
+   看着像在拉新的，实际只是绕开缓存把**同一份字节**又下一遍——
+   内容还是上次 workflow 提交的那一版。所以「每次打开都重新下」
+   做到了，「每次打开都是最新」并没有。
+
+   静态站能做到的上限：每次打开都拿 sessionStorage 里记住的 ETag
+   向线上仓库发一次条件请求。线上没变就回 304（几乎 0 字节），
+   变了就把线上那份换进来。所以只要每日 workflow 提交过，
+   你今天第一次打开看到的就是提交后的版本，哪怕标签页是昨天开的。
+
+   做不到的是「秒级实时」：纯静态 + 无后端，没有一个在动的服务端
+   能在请求发生的瞬间去问上游。所以不假装实时，而是如实标注每份
+   数据的新鲜度——三种状态必须一眼可分。
+
+   一条硬规则：**校验失败绝不降级成空数据**。之前踩过同形状的坑
+   （#NaN 让全站对比度豁免、!important 让整块审计失效），
+   「取不到就当没有」的分支会让功能悄悄消失而不报任何错。
+   所以解析失败一律保留旧快照 + 亮黄标，绝不覆盖。
+   ===================================================== */
+const FRESH_REPO="zoneboys/ai-sidehustle-hub";
+const FRESH_STATE={};      // key -> {src, decision, local, remote}
+const FRESH_ETAG="fresh-etag:";
+
+function freshSrc(key){return FRESH_CORE.SOURCES.find(s=>s.key===key)||null;}
+
+/* 向线上问一次「变了吗」。jsDelivr 主、raw 备：单源失效不该让整站显示离线。 */
+async function fetchLive(src){
+  const urls=FRESH_CORE.liveUrls(src,FRESH_REPO,"main");
+  let lastErr=null;
+  for(const u of urls){
+    try{
+      const h={};
+      const et=sessionStorage.getItem(FRESH_ETAG+src.key);
+      if(et)h["If-None-Match"]=et;
+      const res=await fetch(u,{headers:h,cache:"no-store"});
+      if(res.status===304)return{text:null,notModified:true};
+      if(!res.ok){lastErr="HTTP "+res.status;continue;}
+      const text=await res.text();
+      const etag=res.headers.get("etag");
+      if(etag)sessionStorage.setItem(FRESH_ETAG+src.key,etag);
+      return{text:text,notModified:false};
+    }catch(e){lastErr=String(e.message||e);}
   }
-  renderDaily();renderStats();
+  return{text:null,notModified:false,error:lastErr||"两个镜像源都不可用"};
+}
+
+/* 唯一的加载入口：先快照后校验 */
+async function loadFresh(key,spec){
+  // SOURCES 里有登记的（面板 8 个源）用登记项；没登记的（如 life-<n> 节文件）
+  // 必须 spec 自带 file——否则 src 为 null，fetch(null) 抛错，加载永远不结束。
+  const src=freshSrc(key)||{key:key,file:spec.file,label:spec.label||key,maxAgeDays:7};
+  let localText="";
+  // 1) 先用仓内快照渲染，别让用户等网络
+  try{
+    const res=await fetch(src.file,{cache:"no-store"});
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    localText=await res.text();
+    const data=JSON.parse(localText);
+    if(spec.check&&spec.check(data)!==true)throw new Error("bad data");
+    spec.apply(data);
+  }catch(e){ if(spec.fail)spec.fail(e); }
+  if(spec.render)spec.render();
+  // 2) 再与线上校验；线上更新了就换进来并重渲染
+  if(src){
+    const r=await fetchLive(src);
+    let d;
+    if(r.notModified)d={action:"keep",reason:"条件请求 304",detail:"服务端确认内容未变"};
+    else if(r.error)d={action:"offline",reason:"网络不可用",detail:r.error+"；用的是仓内快照"};
+    else d=FRESH_CORE.decide(localText,r.text,{label:src.label});
+    if(d.action==="replace"){
+      // 线上有内容但结构不对（workflow 正在提交 / 上游写坏了一行）→ 不替换
+      let ok=false;
+      try{
+        const data=JSON.parse(r.text);
+        ok=!spec.check||spec.check(data)===true;
+        if(ok)spec.apply(data);
+      }catch(e){ok=false;}
+      if(!ok)d={action:"offline",reason:"线上数据读不出来",detail:"结构不符，已保留旧快照"};
+    }
+    FRESH_STATE[key]={src:src,decision:d,local:localText,genAt:FRESH_CORE.generatedAt(safeParse(localText))};
+    if(d.action==="replace"&&spec.render)spec.render();
+  }
+  renderFreshPanel();
+}
+
+function safeParse(t){try{return JSON.parse(t);}catch(e){return null;}}
+
+/* ---------- 新鲜度面板 ---------- */
+function renderFreshPanel(){
+  const box=$("#freshList"); if(!box)return;
+  const now=Date.now();
+  const rows=FRESH_CORE.SOURCES.map(s=>{
+    const st=FRESH_STATE[s.key];
+    const b=FRESH_CORE.badge(st?st.decision:null,st?st.genAt:null,now);
+    const d=st?st.decision:null;
+    return `<div class="fresh-row"><span class="fresh-dot ${b.tone}"></span>`
+      +`<b>${esc(s.label)}</b>`
+      +`<span class="fresh-txt">${esc(b.text)}</span>`
+      +`<span class="fresh-why">${esc(d?(d.reason+(d.detail?" · "+d.detail:"")):"这次打开还没校验到")}</span></div>`;
+  });
+  box.innerHTML=rows.join("");
+  const done=Object.keys(FRESH_STATE).length;
+  const btn=$("#freshBtn");
+  if(btn){
+    const upd=FRESH_CORE.SOURCES.filter(s=>FRESH_STATE[s.key]&&FRESH_STATE[s.key].decision.action==="replace").length;
+    const off=FRESH_CORE.SOURCES.filter(s=>FRESH_STATE[s.key]&&FRESH_STATE[s.key].decision.action==="offline").length;
+    const label=!done?"🔄 校验中…":(upd?`🔄 已更新 ${upd} 份`:(off?`⚠️ ${off} 份离线`:`✓ 已是最新`));
+    btn.textContent=label;
+    btn.className="icon-btn fresh-btn"+(upd?" hot":(off?" warn":""));
+    btn.title=FRESH_CORE.SOURCES.map(s=>{
+      const st=FRESH_STATE[s.key];
+      return s.label+"："+(st?st.decision.reason:"未校验");
+    }).join("\n");
+  }
+}
+window.loadFresh=loadFresh;window.renderFreshPanel=renderFreshPanel;
+
+/* 立即重新校验：重跑一遍加载器就是重做一遍线上校验，
+   不用 location.reload()——那会把地址栏弄脏，而且
+   重新加载整页会把用户正在填的东西（诊断器输入、搜索词）冲掉。 */
+let FRESH_BUSY=false;
+async function recheckAll(){
+  if(FRESH_BUSY)return;
+  FRESH_BUSY=true;
+  const b=$("#freshBtn");if(b){b.textContent="🔄 校验中…";b.className="icon-btn fresh-btn";}
+  try{
+    await Promise.all([
+      loadVersions(),loadUpdates(),loadHustles(),loadLearn(),
+      loadIndie(),loadLabs(),loadQa(),loadLife(),
+    ]);
+  }finally{FRESH_BUSY=false;renderFreshPanel();}
+}
+window.recheckAll=recheckAll;
+document.addEventListener("DOMContentLoaded",()=>{
+  const r=$("#freshRecheck");if(r)r.addEventListener("click",recheckAll);
+  const h=$("#freshBtn");if(h)h.addEventListener("click",()=>{
+    const box=$("#freshList");
+    if(box)box.scrollIntoView({behavior:"smooth",block:"center"});
+  });
+});/* ================================================================
+ * 人生指南 · 接入 HowToLiveBetter（34 节 630 条）
+ *
+ * 三条硬规则，都直接来自上游书里的说法，页面不能违反：
+ *   1. 急症优先于算账        —— emergencyFirst 命中就不给排序
+ *   2. 不同口径之间不排序    —— byLens，永远没有跨口径的总榜
+ *   3. 性价比 ≠ 证据等级      —— 两个 tag 分开，绝不合并暗示
+ * ================================================================ */
+const LIFE_DIMS=[
+  {k:"money",lab:"钱",opts:[["0","不花钱"],["少","花一点"],["多","花钱多"]]},
+  {k:"time",lab:"时间",opts:[["少","几乎不占"],["中","要花点"],["多","很占"]]},
+  {k:"will",lab:"毅力",opts:[["否","不用坚持"],["些","要一阵子"],["是","很难坚持"]]},
+];
+const LIFE_PAGE=40;   // 一屏先给 40 条，剩下的按需展开
+
+async function loadLife(){
+  await loadFresh("life",{
+    check:d=>!!(d&&Array.isArray(d.sections)&&d.sections.length),
+    apply:d=>{state.life=d;},
+    fail:()=>{state.life=null;},
+    render:()=>{renderLifeHead();renderLifeToc();renderLifeResults();},
+  });
+  renderLifeSteps();
+}
+window.loadLife=loadLife;
+
+/* 单节正文按需拉取。
+   节文件走的是同一条「先快照后校验」的通路，key 用 life-<n>，
+   不进新鲜度面板——面板盯的是目录（决定有多少节、多少条），
+   34 行的明细全列出来没人看。 */
+async function loadLifeSec(n){
+  const sec=state.life&&state.life.sections.find(s=>s.n===n);
+  if(!sec)return;
+  state.lifeSec=n;
+  // 换节就把「展开更多」的进度归零：沿用上一节的 200 条会让新节一上来
+  // 就渲染一大屏，看起来像「这一节条目特别多」，其实是上一节的残留。
+  state.lifeMore=0;
+  if(state.lifeEntries&&state.lifeEntries.n===n){renderLifeResults();return;}
+  state.lifeLoading=true;renderLifeResults();
+  await loadFresh("life-"+n,{
+    // 节文件不在 FRESH_CORE.SOURCES 里（面板只盯目录那 8 个源），
+    // 所以这里自带 file，loadFresh 靠它拉本地快照和线上校验。
+    // 之前没带 file：freshSrc 返回 null，fetch(null) 直接抛错，
+    // 界面永远停在「加载中」，这就是浏览器实测抓到的那次卡死。
+    file:"data/life/"+String(n).padStart(2,"0")+".json",
+    label:"第 "+n+" 节",
+    check:d=>!!(d&&Array.isArray(d.entries)&&d.entries.length),
+    apply:d=>{state.lifeEntries=d;state.lifeLoading=false;},
+    fail:()=>{state.lifeEntries=null;state.lifeLoading=false;},
+    render:()=>{renderLifeResults();},
+  });
+}
+window.loadLifeSec=loadLifeSec;
+
+function renderLifeHead(){
+  const d=state.life;
+  const c=$("#lfCount");
+  if(c)c.textContent=d?String(d.entryCount||0):"—";
+  const dt=$("#lfDate");
+  if(dt&&d)dt.textContent="上游 "+FRESH_CORE.ago(FRESH_CORE.generatedAt(d),Date.now());
+}
+window.renderLifeHead=renderLifeHead;
+
+function renderLifeToc(){
+  const box=$("#lfToc");if(!box)return;
+  const d=state.life;
+  if(!d){box.innerHTML='<div class="lf-txt lf-muted">目录加载中…</div>';return;}
+  box.innerHTML=d.sections.map(s=>{
+    const parts=[];
+    for(const k of LIFE_CORE.LENS_ORDER) if(s.lens&&s.lens[k]) parts.push(LIFE_CORE.LENS_LABEL[k]+" "+s.lens[k]);
+    return `<button class="lf-sec" data-n="${s.n}" aria-pressed="${state.lifeSec===s.n}">`
+      +`<b>${s.n}. ${esc(s.title)}</b><span>${s.count} 条 · ${esc(parts.join(" · ")||"未标注口径")}</span></button>`;
+  }).join("");
+  box.querySelectorAll(".lf-sec").forEach(b=>b.addEventListener("click",()=>loadLifeSec(+b.dataset.n)));
+}
+window.renderLifeToc=renderLifeToc;
+
+function renderLifeSteps(){
+  const box=$("#lfSteps");if(!box)return;
+  box.innerHTML=[
+    ["① 先判断要不要停下来算账","正在发生的急症、提到轻生念头、已经在走法律程序——这三种情况下先说打什么电话、先做什么动作。"],
+    ["② 分清按哪种账算","寿命、金钱、时间精力、人身自由是四把不同的尺子，书里明确不让互相折算。"],
+    ["③ 再看成本","钱 / 时间 / 毅力三档。三样都标了才谈性价比——某一项没写就等于「不知道」，不是「等于零」。"],
+    ["④ 收益量级与证据等级分开看","「一般」不等于「不该做」。性价比是作者的判断，证据等级是文献强度，两回事。"],
+    ["⑤ 好处回到谁身上","自己 / 配偶直系亲属 / 朋友同事 / 陌生人四档。档次越低，回报期望越小、风险要写得越清。"],
+  ].map(([t,d])=>`<div class="lf-step"><b>${esc(t)}</b><p>${esc(d)}</p></div>`).join("")
+  +LIFE_CORE.BENEFICIARY.map(b=>`<div class="lf-step"><b>第 ${b.tier} 档 · ${esc(b.who)}</b><p>${esc(b.note)}</p></div>`).join("");
+}
+window.renderLifeSteps=renderLifeSteps;
+
+/* ---------- 筛选控件 ---------- */
+function renderLifeControls(){
+  const dims=$("#lfDims");
+  if(dims){
+    dims.innerHTML='<span class="lf-lab">成本（选中的档位是「不超过」）</span>'+LIFE_DIMS.map(d=>
+      '<span class="lf-lab">'+d.lab+'</span>'+d.opts.map(([v,t])=>
+        `<button class="lf-chip" data-dim="${d.k}" data-v="${esc(v)}" aria-pressed="${state.lifeDims[d.k]===v}">${esc(t)}</button>`
+      ).join("")+`<button class="lf-chip" data-dim="${d.k}" data-v="" aria-pressed="${!state.lifeDims[d.k]}">不限</button>`
+    ).join("");
+    dims.querySelectorAll(".lf-chip").forEach(b=>b.addEventListener("click",()=>{
+      const k=b.dataset.dim;
+      state.lifeDims[k]=state.lifeDims[k]===b.dataset.v?"":b.dataset.v;
+      renderLifeControls();renderLifeResults();
+    }));
+  }
+  const lens=$("#lfLens");
+  if(lens){
+    const items=[["","全部口径"]].concat(LIFE_CORE.LENS_ORDER.map(k=>[k,LIFE_CORE.LENS_LABEL[k]]));
+    lens.innerHTML='<span class="lf-lab">口径（不同口径不合并排名）</span>'+items.map(([v,t])=>
+      `<button class="lf-chip" data-lens="${esc(v)}" aria-pressed="${state.lifeLens===v}">${esc(t)}</button>`).join("");
+    lens.querySelectorAll(".lf-chip").forEach(b=>b.addEventListener("click",()=>{
+      state.lifeLens=b.dataset.lens;renderLifeControls();renderLifeResults();
+    }));
+  }
+}
+window.renderLifeControls=renderLifeControls;
+
+/* ---------- 条目卡 ---------- */
+function lifeTags(e){
+  const d=LIFE_CORE.describe(e);
+  return `<div class="lf-meta">`
+    +`<span class="lf-tag lf-g">${esc(d.lensLabel)}</span>`
+    +`<span class="lf-tag lf-r">性价比 ${esc(d.ratio)}</span>`
+    +`<span class="lf-tag lf-g">证据 ${esc(d.grade?d.grade+" 级 · "+d.gradeLabel:d.gradeLabel)}</span>`
+    +`<span class="lf-tag">钱 ${esc(d.money||"未标")}</span>`
+    +`<span class="lf-tag">时间 ${esc(d.time||"未标")}</span>`
+    +`<span class="lf-tag">毅力 ${esc(d.will||"未标")}</span>`
+    +`<span class="lf-tag">收益 ${esc(d.level||"未标")}</span>`
+    +`</div>`;
+}
+function lifeEntry(e){
+  const srcs=LIFE_CORE.linksOf(e.src||"").concat(LIFE_CORE.linksOf(e.note||""));
+  const uniq=[];for(const u of srcs)if(uniq.indexOf(u)===-1)uniq.push(u);
+  return `<div class="lf-entry">`
+    +`<h5><span class="lf-no">${e.sec}.${e.n}</span>${esc(e.title)}`
+    +`${e.dispute?'<span class="lf-tag lf-w">有争议</span>':""}`
+    +`${e.todo?'<span class="lf-tag lf-w">待办</span>':""}</h5>`
+    +`<p class="lf-txt">${esc(e.human||"")}</p>`
+    +`<p class="lf-txt lf-muted"><b>成本：</b>${esc(e.cost||"未写")}</p>`
+    +`<p class="lf-txt lf-muted"><b>收益：</b>${esc(e.gain||"未写")}</p>`
+    +`${e.note?`<p class="lf-txt lf-muted"><b>备注：</b>${esc(e.note)}</p>`:""}`
+    +lifeTags(e)
+    +(uniq.length?`<p class="lf-srcs"><b>原始出处：</b>`+uniq.map(u=>
+      `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.length>58?u.slice(0,58)+"…":u)}</a>`).join("　")+`</p>`:"")
+    +`</div>`;
+}
+window.lifeEntry=lifeEntry;
+
+/* ---------- 结果区 ---------- */
+function renderLifeResults(){
+  const box=$("#lfResults");if(!box)return;
+  const hitsBox=$("#lfHits"),unBox=$("#lfUnknown");
+  const d=state.life;
+
+  if(!d){box.innerHTML='<div class="lf-txt lf-muted">目录加载中…</div>';if(hitsBox)hitsBox.textContent="";return;}
+
+  if(!state.lifeSec){
+    box.innerHTML='<div class="lf-hint">先在上面选一节，或者直接搜。比如搜「睡觉」「体检」「律师」。</div>';
+    if(hitsBox)hitsBox.textContent="";
+    if(unBox)unBox.innerHTML="";
+    return;
+  }
+  if(state.lifeLoading){
+    box.innerHTML='<div class="lf-txt lf-muted">第 '+state.lifeSec+' 节正文加载中…</div>';
+    if(hitsBox)hitsBox.textContent="";
+    if(unBox)unBox.innerHTML="";
+    return;
+  }
+  if(!state.lifeEntries){
+    // loading 已结束但手里没数据＝真的失败了，不能再用「加载中」糊弄
+    box.innerHTML='<div class="lf-txt lf-muted">第 '+state.lifeSec+' 节没加载出来。点目录里其他节或 ↻ 刷新试试；若一直失败，可能是上游结构变了（工作流会自动标注）。</div>';
+    if(hitsBox)hitsBox.textContent="";
+    if(unBox)unBox.innerHTML="";
+    return;
+  }
+
+  let list=state.lifeEntries.entries.slice();
+  list=LIFE_CORE.search(list,state.lifeQ);
+  const q=state.lifeQ.trim();
+  // 选中「口径」时把其他口径整组藏掉，而不是混排
+  const groups=LIFE_CORE.byLens(list);
+  const shown=state.lifeLens
+    ?groups.filter(g=>g.lens===state.lifeLens)
+    :groups;
+
+  if(hitsBox)hitsBox.textContent=q
+    ?"「"+q+"」命中 "+list.length+" 条（在第 "+state.lifeSec+" 节的 "+state.lifeEntries.entries.length+" 条里）"
+    :"第 "+state.lifeSec+" 节 · "+list.length+" 条";
+
+  /* 未知档位单列。没标注不等于不占成本，也不等于不占——
+     把它默默混进结果、让筛选看起来「全合规」，是这里最容易犯的错。 */
+  const un=[];
+  for(const dim of LIFE_DIMS){
+    const w=state.lifeDims[dim.k];
+    if(!w)continue;
+    const n=LIFE_CORE.unknownOn(list,dim.k).length;
+    if(n)un.push(dim.lab+" 选「"+w+"」时，另有 "+n+" 条<strong>没标这一项</strong>，不计入筛选结果");
+  }
+  if(unBox)unBox.innerHTML=un.length
+    ?'<div class="lf-hint">没标注 ≠ 不占，只等于“不知道”。'+
+      un.join("；<br>")+'</div>'
+    :"";
+
+  if(!list.length){
+    box.innerHTML='<div class="lf-hint">这一节里没有匹配的。换一节，或把搜索词减少到一个。</div>';
+    return;
+  }
+  if(state.lifeLens&&!shown.length){
+    box.innerHTML='<div class="lf-hint">第 '+state.lifeSec+' 节里没有「'
+      +esc(LIFE_CORE.LENS_LABEL[state.lifeLens]||state.lifeLens)+'」口径的条目——这不代表该口径没用，只是这一节没写。</div>';
+    return;
+  }
+
+  const cap=state.lifeMore||LIFE_PAGE;
+  let html="";
+  for(const g of shown){
+    const vis=g.entries.slice(0,cap).map(lifeEntry).join("");
+    html+=`<div class="lf-lensgroup"><h4>${esc(g.label)} · ${g.entries.length} 条</h4>`
+      +`<p class="lf-lensnote">下面这 ${g.entries.length} 条<strong>只在「${esc(g.label)}」这一把尺子内部</strong>排过序。不同口径之间没有先后——「死亡率降 12%」和「每年省 500 元」直接排名次，那个名次是算不出来的。</p>`
+      +vis+`</div>`;
+  }
+  const total=shown.reduce((a,g)=>a+g.entries.length,0);
+  if(total>cap)html+=`<button class="btn ghost small" id="lfMore" style="margin-top:12px">还有 ${total-cap} 条 · 展开</button>`;
+  box.innerHTML=html;
+  const more=$("#lfMore");
+  if(more)more.addEventListener("click",()=>{state.lifeMore=(state.lifeMore||LIFE_PAGE)+LIFE_PAGE*4;renderLifeResults();});
+}
+window.renderLifeResults=renderLifeResults;
+
+/* 第 0 步：情况紧急就先给动作，不给攻略 */
+function runLifeCheck(){
+  const box=$("#lfUrgentOut");if(!box)return;
+  const q=($("#lfQ")&&$("#lfQ").value)||"";
+  const hits=LIFE_CORE.emergencyFirst(q);
+  if(!hits.length){
+    box.innerHTML=q.trim()
+      ? '<div class="lf-hint">没有命中上面三种紧急情况。<strong>这不代表你没事</strong>——它只说明这一页不打算在你描述的情形上给建议。身体不适请就医。</div>'
+      : "";
+  }else{
+    box.innerHTML=hits.map(h=>'<div class="lf-hit"><h4>⚠️ '+esc(h.label)+'</h4>'
+      +'<p class="lf-muted">'+esc(h.hint)+'</p>'
+      +'<p class="lf-do">该做的：'+esc(h.action)+'</p>'
+      +'<p class="lf-muted">先看 '+esc(h.book)+'；'
+      +'<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">看原文</a></p></div>').join("");
+  }
+  state.lifeQ=q;renderLifeResults();
+}
+window.runLifeCheck=runLifeCheck;
+
+async function loadUpdates() {
+  await loadFresh("daily-updates",{
+    check:d=>!!d.jobs,
+    apply:d=>{state.updates=d;},
+    fail:()=>{state.updates=FALLBACK_UPDATES;},
+    render:()=>{renderDaily();renderStats();},
+  });
 }
 $("#refreshBtn").addEventListener("click",loadUpdates);
 
@@ -2163,7 +2697,7 @@ function renderScout(s){
 }
 async function loadScout(){
   try{
-    const res=await fetch("data/daily-scout.json?t="+Date.now(),{cache:"no-store"});
+    const res=await fetch("data/daily-scout.json",{cache:"no-store"});
     if(!res.ok)throw new Error(res.status);
     const data=await res.json();
     if(!data.topics)throw new Error("bad data");
@@ -2233,15 +2767,12 @@ function renderHustleNews(){
 }
 function setHustleNewsCat(c){state.hustleNewsCat=c;renderHustleNews();}
 async function loadHustles(){
-  try{
-    const res=await fetch("data/daily-hustles.json?t="+Date.now(),{cache:"no-store"});
-    if(!res.ok)throw new Error(res.status);
-    const data=await res.json();
-    if(!data.items)throw new Error("bad data");
-    state.hustleNews=data;
-    toast("📡 今日新机会已刷新");
-  }catch(e){state.hustleNews=null}
-  renderHustleNews();
+  await loadFresh("daily-hustles",{
+    check:d=>!!d.items,
+    apply:d=>{state.hustleNews=d;},
+    fail:()=>{state.hustleNews=null;},
+    render:renderHustleNews,
+  });
 }
 
 /* ===== 在线学习流（data/daily-learn.json · scripts/fetch-learn.mjs 每日生成） ===== */
@@ -2594,12 +3125,12 @@ function askLab(btn){
     {title:l.title,track:"ai",url:srcUrl(LAB_TAB,l.src)},l.check),"_blank","noopener");
 }
 async function loadLabs(){
-  try{
-    const res=await fetch("data/labs.json?t="+Date.now(),{cache:"no-store"});
-    if(!res.ok)throw new Error(res.status);
-    LABS_META=await res.json();
-  }catch(e){LABS_META=null}
-  renderLabs();
+  await loadFresh("labs",{
+    check:()=>true,
+    apply:d=>{LABS_META=d;},
+    fail:()=>{LABS_META=null;},
+    render:renderLabs,
+  });
 }
 window.setLabTab=setLabTab;window.toggleLesson=toggleLesson;window.openK12=openK12;
 window.closeK12=closeK12;window.markLesson=markLesson;window.resetLesson=resetLesson;
@@ -2880,16 +3411,12 @@ function renderQa(){
 async function loadQa(){
   const body=$("#qaBody");
   if(body&&!body.innerHTML)body.innerHTML='<div class="qa-empty">加载中…</div>';
-  try{
-    const r=await fetch("data/peer-qa.json",{cache:"no-store"});
-    if(!r.ok)throw new Error("HTTP "+r.status);
-    QA_DATA=await r.json();
-  }catch(e){
-    QA_DATA={items:[],counts:{},errors:[String(e.message||e)]};
-    const d=$("#qaDate");
-    if(d)d.textContent="拉取失败（"+esc(e.message||e)+"）";
-  }
-  renderQa();
+  await loadFresh("peer-qa",{
+    check:()=>true,
+    apply:d=>{QA_DATA=d;},
+    fail:e=>{QA_DATA={items:[],counts:{},errors:[String(e.message||e)]};},
+    render:renderQa,
+  });
 }
 window.loadQa=loadQa;window.askPeer=askPeer;window.renderQa=renderQa;
 
@@ -3061,15 +3588,12 @@ window.setQuizCat=setQuizCat;window.startQuiz=startQuiz;window.answerQuiz=answer
 window.nextQuiz=nextQuiz;window.resetQuizProgress=resetQuizProgress;window.jumpToPlaybook=jumpToPlaybook;
 
 async function loadIndie(){
-  try{
-    const res=await fetch("data/indie.json?t="+Date.now(),{cache:"no-store"});
-    if(!res.ok)throw new Error(res.status);
-    const data=await res.json();
-    if(!data.items)throw new Error("bad data");
-    state.indie=data;
-    toast("🇨🇳 独立开发动态已刷新");
-  }catch(e){state.indie=null}
-  renderIndie();
+  await loadFresh("indie",{
+    check:d=>!!d.items,
+    apply:d=>{state.indie=d;},
+    fail:()=>{state.indie=null;},
+    render:renderIndie,
+  });
 }
 window.loadIndie=loadIndie;
 /* ---------- 独立开发在做什么（data/indie.json · scripts/fetch-indie.mjs 每日生成） ---------- */
@@ -3222,28 +3746,22 @@ function setVerLevel(k){state.verLevel=k;renderVersions();}
 window.setVerLevel=setVerLevel;window.renderVersions=renderVersions;
 
 async function loadVersions(){
-  try{
-    const res=await fetch("data/versions.json?t="+Date.now(),{cache:"no-store"});
-    if(!res.ok)throw new Error(res.status);
-    const data=await res.json();
-    if(!Array.isArray(data.items))throw new Error("bad data");
-    state.versions=data;
-    toast("🔄 版本变更已刷新");
-  }catch(e){state.versions=null}
-  renderVersions();
+  await loadFresh("versions",{
+    check:d=>Array.isArray(d.items),
+    apply:d=>{state.versions=d;},
+    fail:()=>{state.versions=null;},
+    render:renderVersions,
+  });
 }
 window.loadVersions=loadVersions;
 
 async function loadLearn(){
-  try{
-    const res=await fetch("data/daily-learn.json?t="+Date.now(),{cache:"no-store"});
-    if(!res.ok)throw new Error(res.status);
-    const data=await res.json();
-    if(!data.items)throw new Error("bad data");
-    state.learnFeed=data;
-    toast("📚 学习流已刷新");
-  }catch(e){state.learnFeed=null}
-  renderLearnFeed();
+  await loadFresh("daily-learn",{
+    check:d=>!!d.items,
+    apply:d=>{state.learnFeed=d;},
+    fail:()=>{state.learnFeed=null;},
+    render:renderLearnFeed,
+  });
 }
 
 /* =====================================================
@@ -3742,6 +4260,7 @@ function renderShare(){
 /* 启动 */
 renderPrinciples();
 renderAll();
+renderLifeControls();
 loadUpdates();
 loadScout();
 loadHustles();
@@ -3750,7 +4269,20 @@ loadIndie();
 loadVersions();
 loadLabs();
 loadQa();
+loadLife();
 initRules();
+
+/* 人生指南的搜索：按词多而短，只重画结果区，不碰输入框。
+   不做输入防抖是因为每节最多 100 多条、纯函数过滤，实测远快于打字速度；
+   加一个防抖反而会让人以为界面卡了。 */
+$("#lfSearch").addEventListener("input",e=>{
+  state.lifeQ=e.target.value;
+  state.lifeMore=0;
+  renderLifeResults();
+});
+$("#lfQ").addEventListener("keydown",e=>{
+  if(e.key==="Enter")runLifeCheck();
+});
 </script>
 </body>
 </html>
