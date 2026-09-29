@@ -46,6 +46,25 @@ jobs:
       - name: Fetch AI version changelog stream
         run: node scripts/fetch-versions.mjs
 
+      # 三轨实验室：拉三个上游仓库的真实文件树，校验课程里的源码路径是否仍存在。
+      # 上游改了目录时页面会标「上游已变更」，而不是给用户一个点开空白的死链。
+      - name: Fetch labs source tree verification
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-labs.mjs
+
+      # 同伴互助问答：从 GitHub issues 拉真实提问（无 issue 时产出合法空态，不报错）
+      - name: Fetch peer Q&A
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-qa.mjs
+
+      # 人生指南：上游 HowToLiveBetter 更新了就重新解析（tarball 一次取全，省 API 配额）
+      - name: Fetch life guide from upstream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-life.mjs
+
       # 抓完先验一遍再提交：测试会直接跑 index.html 里真实的看板/数据逻辑，
       # 上次就是它拓出了「里程碑还差多少」显示错值的 bug。
       # 放在所有抓取之后——测试要读的就是即将提交的那份数据。
@@ -64,7 +83,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # data/daily-scout.json 是可选产物：未配置 key / 额度用尽 / 被拒绝时不会生成，
           # 因此只 add 实际存在的文件，避免 `git add` 因 pathspec 不匹配直接失败。
-          for f in data/daily-updates.json data/daily-scout.json data/daily-hustles.json data/daily-learn.json data/hustle-history.json data/indie.json data/versions.json; do
+          for f in data/daily-updates.json data/daily-scout.json data/daily-hustles.json data/daily-learn.json data/hustle-history.json data/indie.json data/versions.json data/labs.json data/peer-qa.json data/life.json data/life; do
             if [ -f "$f" ]; then
               git add "$f"
             else
