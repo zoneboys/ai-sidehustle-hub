@@ -37,11 +37,15 @@ test("中文/口语数字能解析，否则用户会得到「你没病」的错�
   assert.equal(R.num("十"), 10);
 });
 
-test("比率 >1 按百分数解释，0..1 原样保留", () => {
+test("比率一律按百分数解释，包括 0..1 区间（字段标签就写着 %）", () => {
   assert.equal(R.ratio("12"), 0.12);
-  assert.equal(R.ratio("0.12"), 0.12);
   assert.equal(R.ratio("45%"), 0.45);
-  assert.ok(R.ratio(5) > 1 || R.ratio(5) === 0.05);
+  assert.equal(R.ratio("0.6"), 0.006);
+  // 旧实现对 0..1 原样保留，于是填 0.6% 被读成 60% → 判定「互动率健康」。
+  // 那是反向洗白，比漏报更坏。
+  assert.ok(R.norm({ eng: "0.6" }).eng < 0.01, "0.6 必须读成 0.6%，不是 60%");
+  assert.equal(R.ratio("-5"), null, "负数是脏输入，不是有效比率");
+  assert.equal(R.ratio("115"), null, "115% 不存在，多半是位数写错，不该当 1");
 });
 
 test("NaN 绝不能泄漏进 profile（NaN 参与比较恒为 false，会静默跳过诊断）", () => {
@@ -53,8 +57,13 @@ test("NaN 绝不能泄漏进 profile（NaN 参与比较恒为 false，会静默�
   }
 });
 
-test("没填赛道数时按 1 计——默认聚焦，而不是默认乱发", () => {
-  assert.equal(R.norm({}).niches, 1);
+test("没填赛道数时是 null（不知道），而不是猜一个值", () => {
+  // 曾经定的是「默认 1」，理由是避免垂直度闸误报。
+  // 但页面 select 同时默认选「4 个以上」——两个默认值互相打架，
+  // 用户什么都没填也会被报垂直度不合格。改成 null 后两边终于一致：
+  // 不知道 = 不参与判断，并由页面显式提示「这一项没填」。
+  assert.equal(R.norm({}).niches, null);
+  assert.equal(R.norm({ niches: "" }).niches, null);
   assert.equal(R.norm({ niches: 3 }).niches, 3);
 });
 
@@ -117,9 +126,26 @@ test("一条没发过 → 直接指向节奏闸，而不是建议优化内容", 
   assert.equal(d.top[0].m.id, "cadence");
 });
 
+test("不知道赛道数时不能指控用户「垂直度不够」（不编造用户没说过的事）", () => {
+  // 真实踩到的：页面 select 默认选中「4 个以上」，而 norm() 猜 1。
+  // 于是用户什么都没填，第一次诊断就说他卡在垂直度闸。
+  const p = R.norm({ posts: 20, best: 100 });
+  assert.equal(p.niches, null, "没填赛道数就该是 null（不知道），不是猜一个值");
+  const d = R.diagnose({ posts: 20, best: 100 });
+  assert.ok(
+    !d.top.some((x) => x.m.id === "niche"),
+    "不知道赛道数时，垂直度闸不该被报为可疑（凭空指控）",
+  );
+  // 但一旦真填了 4，该报就得报
+  assert.ok(R.diagnose({ posts: 20, best: 100, niches: 4 }).top.some((x) => x.m.id === "niche"));
+});
+
 test("数据健康时不硬凑诊断", () => {
+  // 比率字段传**百分数**，与页面输入框的契约一致（标签写着 %）。
+  // 这个用例之前传的是 0.5 / 0.6 / 0.06 这种小数，能通过纯粹是因为
+  // ratio() 的旧启发式会把 0..1 原样透传——那是巧合，不是约定。
   const d = R.diagnose({
-    posts: 40, recent7: 4, niches: 1, finish: 0.5, dwell: 0.6, eng: 0.06,
+    posts: 40, recent7: 4, niches: 1, finish: 50, dwell: 60, eng: 6,
     best: 4000, median: 2000, followers: 5000, followsPer: 20,
   });
   assert.equal(d.top.length, 0, "各项都健康时不该编出一个卡点");

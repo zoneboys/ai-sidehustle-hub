@@ -75,6 +75,7 @@ window.RULES_CORE = (function () {
       why: "平台靠内容打标签，再把内容推给同标签的人。一条内容里混多个话题，等于告诉系统「我不知道该推给谁」，于是谁都不推——这是冷启动最常见的死因。",
       fix: "选一个人群，把前 3 条都做成同一个话题。前 20 条不换赛道。",
       tell: function (p) {
+        if (p.niches === null) return 0; // 不知道 ≠ 有病，见 norm() 里的说明
         if (p.niches >= 3) return 3;
         if (p.niches === 2) return 2;
         if (p.posts >= 10 && p.best === 0) return 2;
@@ -340,13 +341,27 @@ window.RULES_CORE = (function () {
     return n * mult;
   }
 
-  /* 比率：0..1。>1 视为百分数。保留一位有效小数即可，诊断不需要精度。 */
+  /* 比率：把「百分数写法」转成 0..1 的小数。
+   *
+   * 这里曾经写的是「>1 才除以 100」的启发式，看着聪明，实际有害：
+   * 输入框的标签就写着「互动率 %」「完播率 %」，placeholder 也是 1.2 / 18 / 45，
+   * 所以**用户填的数字一律是百分数**。而启发式把 (0,1] 区间原样留下，
+   * 于是真有人填 0.6（本意 0.6%）时，引擎读成 60%，判定「互动率健康」——
+   *
+   * 这是最坏的一种错：不是漏报，是**反向洗白**。用户填了真实数据，
+   * 拿到的却是「你没病」，于是继续发同样的内容，流量继续不来。
+   * 而这正是本站要解决的那个问题。
+   *
+   * 曾经有人提过「用 0.45 表示 45% 也很常见」——但那要求标签不写 %。
+   * 标签写了 %，就按 % 解释；这不是猜测，是契约。
+   * 宁可漏报（照填 0.6% 报互动率低，用户自己会核对）也不能假阴性。
+   */
   function ratio(v) {
     var n = num(v);
     if (n === null) return null;
-    if (n > 1) n = n / 100;
     if (n < 0) return null;
-    return n > 1 ? 1 : n;
+    if (n > 100) return null; // 115% 完播率不存在，多半是位数写错
+    return n / 100;
   }
 
   /* 安全的正整数，至少 0。拿不到就是 0——计数类字段「不知道」没有意义，
@@ -378,10 +393,17 @@ window.RULES_CORE = (function () {
     return {
       platform: raw.platform || "",
       niche: raw.niche || "",
-      /* 赛道数没填就按 1：默认假设用户是聚焦的，
-         这跟大多数教程站的默认假设相反，但更符合「先别乱猜」的原则——
-         乱猜会让垂直度闸在用户没填的情况下误报 3 分。 */
-      niches: raw.niches === undefined || raw.niches === "" ? 1 : Math.max(1, count(raw.niches)),
+      /* 赛道数是一个**用户可能真的不知道**的字段：很多人说不清自己算几个赛道，
+         因为「这条算 AI 还是算职场」本身就是模糊的。
+         所以 null（「不知道」）在这里是一个正式状态，不是需要被猜掉的缺口。
+         之前两个默认值互相打架：这里猜 1（假设你聚焦），
+         页面 select 却选中「4 个以上」——于是用户什么都没填，
+         第一次诊断就指着他说「你最可能卡在垂直度闸」。
+         那是**凭空指控**，比漏报糟糕得多：他会以为自己已经确诊了。
+         判 0 分（无证据）是这里唯一安全的默认。 */
+      niches: raw.niches === undefined || raw.niches === "" || raw.niches === "0"
+        ? null
+        : Math.max(1, count(raw.niches)),
       posts: posts,
       recent7: count(raw.recent7),
       gapDays: raw.gapDays === undefined || raw.gapDays === "" ? 0 : count(raw.gapDays),
