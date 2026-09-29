@@ -51,7 +51,13 @@ function stripAtRules(src) {
 const decl = (body) => {
   const out = {};
   // 必须能收数字：--primary2 / --header-h 这类变量名
-  for (const m of body.matchAll(/(--?[a-z0-9-]+|[a-z-]+)\s*:\s*([^;}]+)/gi)) out[m[1].toLowerCase()] = m[2].trim();
+  for (const m of body.matchAll(/(--?[a-z0-9-]+|[a-z-]+)\s*:\s*([^;}]+)/gi)) {
+    // 去掉 !important：它不改变颜色值，但留在上面会让 resolve() 认不出
+    // var(--warn-ink)!important，整条规则被当成「解析不了」而静默跳过审计。
+    // 「优先级高」不等于「不可解析」——这和之前 #NaN 那次漏检是同一个形状：
+    // 一个解析器小疏漏，就让整块区域的对比度检查集体失效而不报任何错。
+    out[m[1].toLowerCase()] = m[2].replace(/!\s*important\s*$/i, "").trim();
+  }
   return out;
 };
 // 带透明度的颜色统一编码为 "#rrggbb@a"（a ∈ (0,1]）；不透明的就是普通 hex。

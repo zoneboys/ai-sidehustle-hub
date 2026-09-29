@@ -19,6 +19,8 @@
 <script src="data/earn.js"></script>
 <script src="data/quiz-core.js"></script>
 <script src="data/learn-core.js"></script>
+<script src="data/labs-core.js"></script>
+<script src="data/labs-curriculum.js"></script>
 <style>
   :root{
     --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --text:#1a2033;
@@ -378,6 +380,52 @@
   .unit-summary .us-bar{flex:1;min-width:130px;height:7px;border-radius:99px;background:color-mix(in srgb,var(--muted) 22%,transparent);overflow:hidden}
   .unit-summary .us-bar i{display:block;height:100%;background:var(--ok-ink);border-radius:99px}
   .unit-summary b{color:var(--text)}
+
+  /* ===== 三轨实验室 =====
+     颜色一律走 token + color-mix，不写死 hex。
+     这里之前栽过一次：硬编码 #ecfdf5 浅绿底 + var(--text) 近白字，
+     深色主题下完全不可读。现在 tests/contrast.test.mjs 会把这类组合全量拦下。 */
+  .lab-ports{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:10px;margin-top:10px}
+  .lab-port{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 13px;text-align:left;cursor:pointer;transition:.2s;display:flex;flex-direction:column;gap:5px}
+  .lab-port:hover{border-color:var(--primary-ink);transform:translateY(-1px)}
+  .lab-port .lp-role{font-size:.66rem;font-weight:700;padding:1px 7px;border-radius:99px;align-self:flex-start;background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--primary-ink)}
+  .lab-port .lp-title{font-weight:700;font-size:.85rem;color:var(--text)}
+  .lab-port .lp-desc{font-size:.74rem;color:var(--muted);line-height:1.5}
+  /* iframe 默认给一个和真实尺寸接近的占位高度，避免布局跳动 */
+  .k12-frame{width:100%;height:min(72vh,760px);border:1px solid var(--border);border-radius:14px;background:var(--bg);display:block;margin-top:12px}
+  .k12-shell{margin-top:12px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
+  .k12-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);font-size:.74rem;color:var(--muted);background:color-mix(in srgb,var(--primary) 5%,var(--card));flex-wrap:wrap}
+
+  .lesson{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:10px;position:relative}
+  .lesson:hover{border-color:var(--primary-ink)}
+  .lesson.done{border-color:color-mix(in srgb,var(--ok) 40%,var(--border))}
+  .lesson .l-top{display:flex;align-items:flex-start;gap:9px;cursor:pointer}
+  .lesson .l-top .ft{font-weight:700;font-size:.87rem;line-height:1.45;flex:1}
+  .lesson .l-toggle{flex:0 0 auto;font-size:.7rem;color:var(--muted);border:1px solid var(--border);border-radius:99px;padding:2px 9px;background:var(--bg);white-space:nowrap}
+  .lesson .l-src{display:inline-flex;align-items:center;gap:5px;margin-top:7px;font-size:.72rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--primary-ink);background:color-mix(in srgb,var(--primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--primary) 26%,transparent);border-radius:8px;padding:3px 8px;text-decoration:none;word-break:break-all}
+  .lesson .l-src:hover{background:color-mix(in srgb,var(--primary) 18%,transparent)}
+  .lesson .l-why{font-size:.79rem;color:var(--muted);line-height:1.65;margin-top:8px}
+  .lesson .l-dots{display:flex;gap:4px;margin-top:9px}
+  .lesson .l-dots i{flex:1;height:4px;border-radius:99px;background:color-mix(in srgb,var(--muted) 26%,transparent)}
+  .lesson .l-dots i.fin{background:var(--ok)}
+  .lesson-panel{margin-top:11px;padding-top:11px;border-top:1px dashed var(--border);display:none}
+  .lesson.open .lesson-panel{display:block}
+  .lesson-step{font-size:.79rem;line-height:1.68;margin-top:9px;display:flex;gap:8px}
+  .lesson-step b{flex:0 0 auto;color:var(--primary-ink)}
+  .lesson-check{background:color-mix(in srgb,var(--primary) 8%,var(--card));border:1px solid color-mix(in srgb,var(--primary) 24%,transparent);border-radius:10px;padding:9px 11px;margin-top:10px;font-size:.79rem;line-height:1.6}
+  .lesson-check b{color:var(--primary-ink)}
+  /* 上游路径失效时明确标注：宁可告诉用户「这条过期了」，也不要给一个点开空白的链接 */
+  .src-dead{background:color-mix(in srgb,var(--warn) 16%,transparent)!important;border-color:color-mix(in srgb,var(--warn) 46%,transparent)!important;color:var(--warn-ink)!important;text-decoration:line-through;cursor:not-allowed}
+
+  .qa-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:10px}
+  .qa-item.open-qa{border-color:var(--primary-ink)}
+  .qa-q{font-weight:700;font-size:.86rem;line-height:1.5}
+  .qa-meta{font-size:.72rem;color:var(--muted);margin-top:5px;display:flex;gap:9px;flex-wrap:wrap}
+  .qa-body{font-size:.8rem;line-height:1.65;margin-top:8px;color:var(--text)}
+  .qa-ans{border-left:3px solid var(--ok);background:color-mix(in srgb,var(--ok) 8%,transparent);border-radius:0 10px 10px 0;padding:9px 12px;margin-top:9px;font-size:.8rem;line-height:1.65}
+  .qa-ans .qa-who{font-weight:700;color:var(--ok-ink);font-size:.75rem}
+  .qa-empty{text-align:center;padding:22px 14px;background:color-mix(in srgb,var(--primary) 6%,var(--card));border:1px dashed var(--primary-ink);border-radius:12px;margin-top:10px}
+  .qa-empty ol{text-align:left;display:inline-block;margin:9px 0 0;padding-left:20px;font-size:.79rem;color:var(--muted);line-height:1.85}
   /* 跳天去重：持续热度 vs 今日新上榜 */
   .badge-hot{display:inline-block;vertical-align:2px;margin-right:5px;padding:1px 7px;border-radius:20px;font-size:.7rem;font-weight:700;background:color-mix(in srgb,var(--hot) 15%,transparent);color:var(--hot-ink);white-space:nowrap}
   .badge-new{display:inline-block;vertical-align:2px;margin-right:5px;padding:1px 7px;border-radius:20px;font-size:.7rem;font-weight:600;background:color-mix(in srgb,var(--muted) 14%,transparent);color:var(--muted);white-space:nowrap}
@@ -845,6 +893,37 @@
         </div>
       </div>
       <div class="daily-foot"><span id="quizFoot"></span></div>
+    </div>
+    <div class="daily" id="labBox" style="margin-top:16px">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>🔬 三轨实验室 · 读真实源码，不读二手总结</h3>
+        <span class="daily-date" id="labDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn ghost small" onclick="loadLabs()">↻ 刷新</button>
+      </div>
+      <div class="sub" style="font-size:.82rem;margin:-2px 0 10px">
+        下面三轨都来自真实开源仓库，<strong>每条课都写清了去哪个仓库读哪个文件</strong>。
+        源码路径每日自动校验，上游改了目录会当场标出来，不会给你一个点开空白的链接。
+      </div>
+      <div class="filter-bar" id="labTabs"></div>
+      <div id="labBody"></div>
+      <div class="daily-foot"><span id="labFoot"></span></div>
+    </div>
+    <div class="daily" id="qaBox" style="margin-top:16px">
+      <div class="daily-head">
+        <span class="live-dot"></span>
+        <h3>🤝 同伴互助区 · 真人问，真人答</h3>
+        <span class="daily-date" id="qaDate">加载中…</span>
+        <span style="flex:1"></span>
+        <button class="btn primary small" id="qaAskBtn">🆘 我要提问</button>
+      </div>
+      <div class="sub" style="font-size:.82rem;margin:-2px 0 10px">
+        不注册、不登录。点「提问」会带着你写的那句卡点跳转 GitHub，
+        别人回答后，每日定时任务自动把它抓回这里——<strong>回答来自真人，不是 AI 假装</strong>。
+      </div>
+      <div id="qaBody"></div>
+      <div class="daily-foot"><span id="qaFoot"></span></div>
     </div>
     <div class="sec-head" style="margin-top:32px">
       <div>
@@ -2192,6 +2271,205 @@ function setLearnStage(s){state.learnStage=s;renderLearnFeed();}
 window.setLearnStage=setLearnStage;
 
 /* =====================================================
+   三轨实验室：把三个真实开源仓库接进站内
+   核心逻辑在 data/labs-core.js（纯函数，可测）；
+   课程内容在 data/labs-curriculum.js；
+   路径有效性来自 data/labs.json（每日由 fetch-labs 校验）。
+   ===================================================== */
+const LAB_KEY="shh_labs";
+let LAB_TAB="k12", LESSON_OPEN=null, K12_PORT=null, LABS_META=null;
+
+function loadLabRecs(){
+  try{const r=JSON.parse(localStorage.getItem(LAB_KEY)||"{}");return (r&&typeof r==="object"&&!Array.isArray(r))?r:{}}catch(e){return{}}
+}
+function saveLabRecs(r){
+  try{localStorage.setItem(LAB_KEY,JSON.stringify(r||{}))}catch(e){}
+}
+/** 改一条课的进度并重绘。只存本机，不注册不上传。 */
+function patchLesson(id,patch){
+  const r=loadLabRecs();
+  r[id]=patch?Object.assign({},r[id]||{},patch,{at:Date.now()}):null;
+  saveLabRecs(r);
+  renderLabs();
+}
+function lessonIdOf(btn){
+  const el=btn&&btn.closest?btn.closest(".lesson"):null;
+  return el?el.dataset.lid:null;
+}
+
+/* 课程里写的 src → GitHub 上那一行。
+   逐段 encodeURI：路径里有中文和 · 等字符
+   （例如 义务教育教科书·语文三年级上册），不编码会被浏览器截断。 */
+function srcUrl(repoId,src){
+  const meta=LABS_META&&LABS_META.repos.find(r=>r.id===repoId);
+  if(!meta)return null;
+  return "https://github.com/"+meta.repo+"/blob/"+meta.branch+"/"+
+    String(src||"").split("/").map(encodeURIComponent).join("/");
+}
+/* 路径还有效吗：靠 labs.json 里每日抓到的真实文件树判断。
+   抓取失败或树被截断时一律当作有效——宁可少标，也不能误报「已失效」。 */
+function srcAlive(repoId,src){
+  const meta=LABS_META&&LABS_META.repos.find(r=>r.id===repoId);
+  if(!meta||meta.truncated)return true;
+  const hit=meta.used.find(u=>u.src===String(src||"").replace(/\/+$/,""));
+  return hit?hit.ok:true;
+}
+
+function renderLesson(l,repoId){
+  const C=window.LABS_CORE;
+  const rec=loadLabRecs()[l.id]||null;
+  const st=C.nextStep(rec);
+  const pr=C.stepProgress(rec);
+  const open=LESSON_OPEN===l.id;
+  const url=srcUrl(repoId,l.src);
+  const alive=srcAlive(repoId,l.src);
+  const dots=C.STEPS.map((s,k)=>`<i class="${k<pr.index?"fin":""}"></i>`).join("");
+  // 失效路径不给链接，只留明确标注：宁可说「上游改了」，也不给点开空白的链接
+  const srcCell=!url?"":(alive
+    ?`<a class="l-src" href="${esc(url)}" target="_blank" rel="noopener">📂 ${esc(l.src)}</a>`
+    :`<span class="l-src src-dead" title="上游仓库已变更这个路径">⚠️ ${esc(l.src)}（上游已变更）</span>`);
+  return `<div class="lesson${open?" open":""}${st==="done"?" done":""}" data-lid="${esc(l.id)}">
+    <div class="l-top" onclick="toggleLesson('${esc(l.id)}')" role="button" tabindex="0">
+      <div class="ft">${esc(l.title)}</div>
+      <span class="l-toggle">${esc(C.nudgeShort(st))}</span>
+    </div>
+    ${srcCell}
+    <div class="l-why">${esc(l.why)}</div>
+    <div class="l-dots">${dots}</div>
+    <div class="lesson-panel">
+      <div class="lesson-step"><b>① 读</b><span>${esc(l.read)}</span></div>
+      <div class="lesson-step"><b>② 动手</b><span>${esc(l.try)}</span></div>
+      <div class="lesson-step"><b>③ 交付物</b><span>${esc(l.deliver)}</span></div>
+      <div class="lesson-check"><b>自测：</b>${esc(l.check)}</div>
+      <div class="u-btns">
+        ${st==="read"?`<button class="btn-sm primary" onclick="markLesson(this,'readAt')">读完了</button>`:""}
+        ${st==="try"?`<button class="btn-sm primary" onclick="markLesson(this,'triedAt')">改完看结果了</button>`:""}
+        ${st==="deliver"?`<button class="btn-sm primary" onclick="markLesson(this,'delivered')">交付物做好了</button>`:""}
+        ${st==="check"?`<button class="btn-sm primary" onclick="markLesson(this,'passed')">自测能答出来了</button>`:""}
+        ${st!=="done"?`<button class="btn-sm ghost" onclick="resetLesson(this)">重置这条</button>`:""}
+        <button class="btn-sm ghost" onclick="askLab(this)">🆘 卡住了？问同伴</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---- 轨1：聪聪学堂（三个仓库里唯一能嵌进来的） ---- */
+function renderK12(){
+  const C=window.LABS_CORE, ports=window.LABS.K12_PORTS;
+  let frame="";
+  if(K12_PORT){
+    const p=ports.find(x=>x.id===K12_PORT);
+    const link=p?C.k12Route(p.key,"3"):null;
+    if(link){
+      // 懒加载：iframe 只在用户点了入口之后才插入。
+      // 它是完整应用（723 个文件的 monorepo），一进页面就加载会把本站首屏拖垮。
+      frame=`<div class="k12-shell">
+        <div class="k12-bar"><b>${esc(p.title)}</b>
+          <span>在下方直接做题，数据是它自己的</span>
+          <span style="flex:1"></span>
+          <a class="btn ghost small" href="${esc(link)}" target="_blank" rel="noopener">↗ 全屏打开</a>
+          <button class="btn ghost small" onclick="closeK12()">收起</button>
+        </div>
+        <iframe class="k12-frame" src="${esc(link)}" title="聪聪学堂" loading="lazy" referrerpolicy="no-referrer"></iframe>
+      </div>`;
+    }
+  }
+  return `<div class="lab-ports">${ports.map(p=>{
+    const link=C.k12Route(p.key,"3");
+    return `<button class="lab-port" onclick="openK12('${esc(p.id)}')">
+      <span class="lp-role">${esc(p.role)}</span>
+      <span class="lp-title">${esc(p.title)}</span>
+      <span class="lp-desc">${esc(p.desc)}</span>
+    </button>`}).join("")}</div>${frame}
+    <div class="lesson-check" style="margin-top:12px">
+      <b>它凭什么比我们做得好：</b>单元小测、知识点全解、课文逐句跟读、284 篇课外故事、
+      全站 TTS、<b>Leitner 3 盒错题本</b>（<code>packages/core/src/srs.ts</code> 里写明：答错降级、答对升级、毕业条件）、
+      连击、经验值、皮肤商店、联赛。我们不重造这些，只在<b>进入前加一道提取练习、进入后留下交付物</b>。
+    </div>`;
+}
+
+function renderLabs(){
+  const body=$("#labBody");
+  if(!body||!window.LABS_CORE||!window.LABS)return;
+  const C=window.LABS_CORE;
+  const TABS=[
+    {k:"k12",n:"🎒 聪聪学堂 · K12",list:[]},
+    {k:"eduagent",n:"🧠 智能体原理课",list:window.LABS.PRINCIPLES},
+    {k:"eduagentx",n:"🏗️ 工程实践课",list:window.LABS.ENGINEERING},
+  ];
+  const recs=loadLabRecs();
+  $("#labTabs").innerHTML=TABS.map(t=>{
+    const done=t.list.filter(l=>C.stepProgress(recs[l.id]).done).length;
+    const right=t.list.length?done+"/"+t.list.length:"可嵌入";
+    return `<button class="chip ${LAB_TAB===t.k?"on":""}" onclick="setLabTab('${t.k}')">${t.n} <span style="opacity:.6">${right}</span></button>`;
+  }).join("");
+
+  if(LAB_TAB==="k12"){
+    body.innerHTML=renderK12();
+  }else{
+    const t=TABS.filter(x=>x.k===LAB_TAB)[0];
+    const list=t.list, done=list.filter(l=>C.stepProgress(recs[l.id]).done).length;
+    const meta=LABS_META&&LABS_META.repos.find(r=>r.id===LAB_TAB);
+    const s=C.SRC[LAB_TAB];
+    // 没有 labs.json 时也照样渲染课程：路径有效性只是增强，不能成为「课看不了」的理由
+    const head=`<div class="lesson-check" style="margin-top:0">
+        <b>${esc(s.name)}</b> · ${esc(s.sub)} · ${esc(s.license)}
+        ${meta?`· ${meta.stars}★ · 最后提交 ${esc((meta.pushedAt||"").slice(0,10))} · ${meta.fileCount} 个文件已校验`:""}<br>
+        <span style="color:var(--muted)">${s.embeddable?"":"<b>为什么不能嵌进来：</b>"+esc(s.why_not)+"。"}</span>
+      </div>`;
+    body.innerHTML=head+`<div class="unit-summary"><span>已通关 <b>${done}/${list.length}</b></span>
+      <span class="us-bar"><i style="width:${Math.round(done/list.length*100)}%"></i></span>
+      <span>进度只存在你本机</span></div>`+
+      list.map(l=>renderLesson(l,LAB_TAB)).join("");
+  }
+  const d=LABS_META;
+  if($("#labDate")) $("#labDate").textContent=d?`${d.date||""} ${stamp(d.generatedAt)}`:"";
+  if($("#labFoot")){
+    const miss=d?d.repos.reduce((n,r)=>n+r.missing.length,0):0;
+    const errs=d?(d.errors||[]).length:0;
+    $("#labFoot").innerHTML=d
+      ?`来源：${d.repos.map(r=>`<a href="https://github.com/${esc(r.repo)}" target="_blank" rel="noopener">${esc(r.repo)}</a>`).join(" · ")}
+        · 共 ${d.repos.reduce((n,r)=>n+r.fileCount,0).toLocaleString()} 个文件已校验
+        ${miss?`· <span style="color:var(--warn-ink)">${miss} 个课程路径上游已变更（页面已标注）</span>`:"· 全部课程路径有效 ✅"}
+        ${errs?`· <span style="color:var(--warn-ink)">${errs} 个源抓取失败</span>`:""}`
+      :`实验室结构数据暂不可用：路径有效性无法校验。运行 <code>node scripts/fetch-labs.mjs</code> 或等每日定时任务。`;
+  }
+}
+
+function setLabTab(k){LAB_TAB=k;renderLabs();}
+function toggleLesson(id){LESSON_OPEN=LESSON_OPEN===id?null:id;renderLabs();}
+function openK12(pid){
+  K12_PORT=pid;renderLabs();
+  setTimeout(()=>{const f=document.querySelector(".k12-frame");if(f)f.scrollIntoView({behavior:"smooth",block:"nearest"})},40);
+}
+function closeK12(){K12_PORT=null;renderLabs();}
+function markLesson(btn,field){
+  const id=lessonIdOf(btn);
+  if(id)patchLesson(id,{[field]:Date.now()});
+}
+function resetLesson(btn){const id=lessonIdOf(btn);if(id)patchLesson(id,null);}
+/** 卡住了 → 一键转成 GitHub issue 提问（复用 learn-core 的预填逻辑） */
+function askLab(btn){
+  const id=lessonIdOf(btn);
+  const l=(window.LABS.PRINCIPLES||[]).concat(window.LABS.ENGINEERING||[])
+    .find(x=>x.id===id);
+  if(!l||!window.LEARN_CORE)return;
+  window.open(window.LEARN_CORE.askUrl(
+    {title:l.title,track:"ai",url:srcUrl(LAB_TAB,l.src)},l.check),"_blank","noopener");
+}
+async function loadLabs(){
+  try{
+    const res=await fetch("data/labs.json?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error(res.status);
+    LABS_META=await res.json();
+  }catch(e){LABS_META=null}
+  renderLabs();
+}
+window.setLabTab=setLabTab;window.toggleLesson=toggleLesson;window.openK12=openK12;
+window.closeK12=closeK12;window.markLesson=markLesson;window.resetLesson=resetLesson;
+window.askLab=askLab;window.loadLabs=loadLabs;
+
+/* =====================================================
    主动回忆训练：把《落地手册》原文反向生成判断题，
    答完用 SM-2 安排下次复习。全部本地存储，不注册不上传。
    核心逻辑在 data/quiz-core.js（纯函数，可测）。
@@ -3046,6 +3324,7 @@ loadHustles();
 loadLearn();
 loadIndie();
 loadVersions();
+loadLabs();
 </script>
 </body>
 </html>
