@@ -22,6 +22,7 @@
 <script src="data/labs-core.js"></script>
 <script src="data/labs-curriculum.js"></script>
 <script src="data/rules-core.js"></script>
+<script src="data/pipeline-core.js"></script>
 <script src="data/fresh-core.js"></script>
 <script src="data/life-core.js"></script>
 <style>
@@ -512,6 +513,31 @@
   /* 核验链接：门槛数字可能已过期，所以链接必须显眼到无法忽略 */
   .rz-verify{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.74rem;font-weight:600;color:var(--primary-ink);text-decoration:none;border:1px solid color-mix(in srgb,var(--primary) 28%,transparent);background:color-mix(in srgb,var(--primary) 9%,transparent);border-radius:8px;padding:3px 9px}
   .rz-verify:hover{background:color-mix(in srgb,var(--primary) 16%,transparent)}
+
+  /* ===== 行动管线（学→做→发→收） ===== */
+  .pc-empty{font-size:.8rem;line-height:1.75;color:var(--muted);border:1px dashed color-mix(in srgb,var(--muted) 40%,transparent);border-radius:10px;padding:11px 13px}
+  .pc-card{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:10px;background:var(--card)}
+  .pc-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .pc-gate{font-weight:700;font-size:.84rem}
+  .pc-stage{font-size:.72rem;color:var(--muted);margin-left:auto}
+  .pc-change{width:100%;background:color-mix(in srgb,var(--muted) 8%,var(--card));border:1px solid var(--border);border-radius:9px;color:var(--text);padding:8px 10px;font:inherit;font-size:.82rem;resize:vertical}
+  .pc-change:focus{outline:2px solid color-mix(in srgb,var(--primary) 45%,transparent);outline-offset:1px}
+  .pc-change-fixed{font-size:.82rem;line-height:1.65;border-left:3px solid color-mix(in srgb,var(--primary) 45%,transparent);padding:2px 0 2px 10px;margin-bottom:8px}
+  .pc-actions{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+  .pc-wait{font-size:.79rem;line-height:1.7;color:var(--warn-ink);background:color-mix(in srgb,var(--warn) 10%,var(--card));border:1px solid color-mix(in srgb,var(--warn) 26%,transparent);border-radius:9px;padding:8px 11px}
+  .pc-review{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .pc-review label{font-size:.8rem;color:var(--muted);display:flex;gap:7px;align-items:center;flex:1;min-width:220px}
+  .pc-after{flex:1;min-width:90px;background:color-mix(in srgb,var(--muted) 8%,var(--card));border:1px solid var(--border);border-radius:9px;color:var(--text);padding:7px 10px;font:inherit;font-size:.84rem}
+  .pc-after:focus{outline:2px solid color-mix(in srgb,var(--primary) 45%,transparent);outline-offset:1px}
+  .pc-verdict{font-size:.8rem;font-weight:700;border-radius:9px;padding:8px 11px;margin-bottom:8px}
+  .pc-verdict.ok{color:var(--ok-ink);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+  .pc-verdict.mid{color:var(--primary-ink);background:color-mix(in srgb,var(--primary) 12%,var(--card))}
+  .pc-verdict.flat{color:var(--muted);background:color-mix(in srgb,var(--muted) 10%,var(--card))}
+  .pc-verdict.bad{color:var(--hot-ink);background:color-mix(in srgb,var(--hot) 10%,var(--card))}
+  .pc-eff{border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);background:color-mix(in srgb,var(--ok) 8%,var(--card));border-radius:12px;padding:12px 14px;margin-top:12px}
+  .pc-eff b{font-size:.84rem;color:var(--ok-ink)}
+  .pc-eff ul{margin:8px 0 0 18px;font-size:.82rem;line-height:1.8}
+  .pc-eff-note{font-size:.74rem;color:var(--muted);margin-top:7px}
 
   .qa-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:10px}
   .qa-item.open-qa{border-color:var(--primary-ink)}
@@ -1185,6 +1211,26 @@
       </div>
       <div id="rzResult"></div>
       <div id="rzGates"></div>
+
+      <!-- 行动管线：诊断说「改什么」，这里管「改了之后呢」。
+           诊断结论变成一张行动卡：写改动 → 发出去 → 满 7 天回看数据动没动。
+           回看过的卡会沉淀进「有效改动清单」——你自己的、按平台验证过的手册。 -->
+      <div class="daily" id="pipelineBox" style="margin-top:16px">
+        <div class="daily-head">
+          <h3>🎯 行动管线 · 学→做→发→收</h3>
+          <span class="daily-date" id="pcStats"></span>
+          <span style="flex:1"></span>
+          <button class="btn ghost small" id="pcMakeBtn" onclick="pcMakeFromDiagnosis()" style="display:none">📋 从诊断结果建卡</button>
+        </div>
+        <div class="pc-empty" id="pcEmpty">
+          诊断出卡点后点「从诊断结果建卡」：<b>先写这次具体改了什么</b>，发出去，满 7 天回看数据动没动。
+          平台数据前 3 天还在滚动，提前看会用样本量不足的数下结论——所以观察期是强制的，不是仪式。
+        </div>
+        <div id="pcCards"></div>
+        <div id="pcEffectiveBox"></div>
+        <div class="daily-foot"><span id="pcFoot">数据只存在你本机浏览器里，不上传</span></div>
+      </div>
+
       <div class="daily-foot"><span id="rulesFoot"></span></div>
     </div>
   </div>
@@ -3262,6 +3308,7 @@ function renderRzResult(){
      上面的诊断变了、下面的进度条还是 0%——两个结论互相矛盾，
      用户会以为门槛不是看粉丝数的。 */
   renderRzGates();
+  pcSyncEntry();
 }
 function renderRzGates(){
   const C=window.RULES_CORE,box=$("#rzGates");
@@ -3289,9 +3336,152 @@ function initRules(){
   renderRzFields();
   onRulePlatform();
   renderRzGates();
+  pcSyncEntry();
 }
 window.runDiagnose=runDiagnose;window.resetRules=resetRules;window.onRzInput=onRzInput;
 window.onRulePlatform=onRulePlatform;window.initRules=initRules;
+
+/* =====================================================
+   行动管线 · 学→做→发→收
+
+   诊断器回答「卡在哪」，这里回答「改了之后呢」。
+   数据存 localStorage shh_pipeline，核心逻辑在 data/pipeline-core.js。
+   ===================================================== */
+const PC_KEY="shh_pipeline";
+let pcCards=[];
+function pcLoad(){
+  try{pcCards=window.PIPELINE_CORE.sanitize(JSON.parse(localStorage.getItem(PC_KEY)||"[]"));}
+  catch(e){pcCards=[];}
+}
+function pcSave(){localStorage.setItem(PC_KEY,JSON.stringify(pcCards));}
+
+/* 从诊断结果建卡：卡的基线就是此刻 rzStore() 的快照。
+   之后输入框再改，卡上的基线不跟——不然「改进了30%」无从谈起。 */
+function pcMakeFromDiagnosis(){
+  const C=window.RULES_CORE,P=window.PIPELINE_CORE;if(!C||!P)return;
+  const st=rzStore();
+  const raw=Object.assign({},st,{platform:rzPlatform(),niches:($("#rzNiche")||{}).value});
+  const filled=Object.keys(st).some(k=>String(st[k]).trim()!=="");
+  if(!filled){toast("先填几个数、跑一次诊断，再建卡");return;}
+  const d=C.diagnose(raw);
+  if(!d.top.length){toast("这次诊断没发现卡点，先去把一条内容推到 3 倍中位数，再回来建卡");return;}
+  const h=d.top[0].m;
+  const card=P.createCard({
+    platform:rzPlatform(),gateId:h.id,gateName:h.name,gateLayer:h.layer,
+    baseline:st,note:"",
+  });
+  /* 建卡时把诊断建议带进改动框当草稿：用户改写而不是从零想 */
+  card.changed="";
+  pcCards.unshift(card);pcSave();pcRender();
+  toast("已建卡："+h.name+"。先写这次具体改了什么，再标已发");
+  const box=$("#pipelineBox");if(box)box.scrollIntoView({behavior:"smooth",block:"start"});
+}
+window.pcMakeFromDiagnosis=pcMakeFromDiagnosis;
+
+/* 诊断跑完后显示「建卡」入口；空诊断时藏起来 */
+function pcSyncEntry(){
+  const b=$("#pcMakeBtn");if(!b)return;
+  const st=rzStore();
+  const filled=Object.keys(st).some(k=>String(st[k]).trim()!=="");
+  b.style.display=filled?"":"none";
+}
+
+function pcAdvance(id){
+  const P=window.PIPELINE_CORE;if(!P)return;
+  const c=pcCards.find(x=>x.id===id);if(!c)return;
+  if(c.stage==="do"){
+    const inp=$("#pcChange-"+id);
+    c.changed=inp?inp.value:"";
+  }
+  const r=P.advance(c);
+  if(!r.ok){toast(r.reason);return;}
+  pcSave();pcRender();
+}
+window.pcAdvance=pcAdvance;
+
+function pcReview(id){
+  const P=window.PIPELINE_CORE;if(!P)return;
+  const c=pcCards.find(x=>x.id===id);if(!c)return;
+  const inp=$("#pcAfter-"+id);
+  /* need 从 RULES_CORE.MECHANISM 取，不复制数字：
+     改门槛时两处自动同步——这是诊断器「两个默认值打架」的教训。 */
+  const m=window.RULES_CORE&&window.RULES_CORE.MECHANISM.find(x=>x.id===c.gateId);
+  const need=m&&isFinite(m.need)?m.need:null;
+  /* need 的单位换算：MECHANISM.need 是小数（0.25=25%），
+     回看框填的是百分数（26=26%）。percent 字段除以 100 再比。 */
+  const PERCENT={finish:1,eng:1,dwell:1};
+  const needAdj=need!=null&&PERCENT[c.metric]?need*100:need;
+  const r=P.review(c,inp?inp.value:null,needAdj);
+  if(!r.ok){toast(r.reason);return;}
+  pcSave();pcRender();
+  if(r.verdict==="pass")toast("✓ 过线了：这个改法有效，已进有效清单");
+  else if(r.verdict==="improved")toast("↑ 明显变好但还没过线：方向对，继续按这个改");
+  else if(r.verdict==="worse")toast("↓ 变差了：回诊断器重看，别再重复这个改法");
+  else toast("— 基本没动：这个改法对这道闸没用，换一个");
+}
+window.pcReview=pcReview;
+
+function pcDelete(id){
+  if(!confirm("删除这张行动卡？（不可恢复）"))return;
+  pcCards=pcCards.filter(x=>x.id!==id);pcSave();pcRender();
+}
+window.pcDelete=pcDelete;
+
+const PC_VERDICT={
+  pass:{t:"✓ 过线",tone:"ok"},
+  improved:{t:"↑ 明显变好（未过线）",tone:"mid"},
+  flat:{t:"— 没动",tone:"flat"},
+  worse:{t:"↓ 变差",tone:"bad"},
+};
+
+function pcRender(){
+  const P=window.PIPELINE_CORE;if(!P)return;
+  const box=$("#pcCards");if(!box)return;
+  const s=P.stats(pcCards);
+  const stBox=$("#pcStats");
+  if(stBox)stBox.textContent=s.total?(s.doing+" 待做 · "+s.watching+" 观察中 · "+s.done+" 已结"):"";
+  const empty=$("#pcEmpty");if(empty)empty.style.display=s.total?"none":"";
+  const now=Date.now();
+  box.innerHTML=pcCards.map(c=>{
+    const left=P.daysLeft(c,now);
+    let body="";
+    if(c.stage==="do"){
+      body=`<textarea class="pc-change" id="pcChange-${c.id}" rows="2" placeholder="这次具体改了什么？只改一个变量，比如「把结论放到第一句，其他不动」">${esc(c.changed)}</textarea>
+        <div class="pc-actions"><button class="btn primary small" onclick="pcAdvance('${c.id}')">已发出去，开始 7 天观察</button>
+        <button class="btn ghost small" onclick="pcDelete('${c.id}')">删</button></div>`;
+    }else if(c.stage==="published"){
+      body=`<div class="pc-change-fixed">${esc(c.changed)}</div>
+        ${left>0
+          ?`<div class="pc-wait">观察中 · 还剩 <b>${left}</b> 天。提前看会用样本量不足的数下结论——到点页面会让你填数。</div>`
+          :`<div class="pc-review">
+              <label>现在的${esc(c.metricLabel)}：<input class="pc-after" id="pcAfter-${c.id}" type="text" inputmode="decimal" placeholder="建卡时是 ${c.before==null?"没填":c.before}"></label>
+              <button class="btn primary small" onclick="pcReview('${c.id}')">回看</button>
+            </div>`}
+        <div class="pc-actions"><button class="btn ghost small" onclick="pcDelete('${c.id}')">删</button></div>`;
+    }else{
+      const v=PC_VERDICT[c.verdict]||{t:c.verdict||"—",tone:"flat"};
+      const dd=c.after!=null&&c.before!=null&&c.before>0?Math.round((c.after-c.before)/c.before*100)+"%":null;
+      body=`<div class="pc-change-fixed">${esc(c.changed)}</div>
+        <div class="pc-verdict ${v.tone}">${v.t}${dd!=null?"（"+dd+"）":""} · ${esc(c.metricLabel)}：${c.before==null?"?":c.before} → ${c.after==null?"?":c.after}</div>
+        <div class="pc-actions"><button class="btn ghost small" onclick="pcDelete('${c.id}')">删</button></div>`;
+    }
+    return `<div class="pc-card">
+      <div class="pc-head"><span class="pc-gate">第 ${(c.gateLayer==null?"?":c.gateLayer+1)} 道闸 · ${esc(c.gateName)}</span>
+        <span class="pc-stage">${c.stage==="do"?"✍ 待做":c.stage==="published"?"⏳ 观察中":"🏁 已结"}</span></div>
+      ${body}
+    </div>`;
+  }).join("");
+  /* 有效改动清单：只收 pass/improved 的改法，同文去重——用户自己的手册 */
+  const eBox=$("#pcEffectiveBox");
+  if(eBox)eBox.innerHTML=s.effective.length
+    ?`<div class="pc-eff"><b>✓ 你的有效改动清单（按平台实测）</b><ul>${s.effective.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      <div class="pc-eff-note">下次没流量时，先从这里挑，别从零猜。</div></div>`
+    :"";
+}
+window.pcRender=pcRender;
+
+pcLoad();
+pcRender();
 
 /* =====================================================
    同伴互助区 · 真人问真人答

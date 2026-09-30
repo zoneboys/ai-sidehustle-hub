@@ -156,6 +156,9 @@ function renderRzResultWith(raw) {
     rzStore: () => raw,
     rzPlatform: () => "douyin",
     renderRzGates: () => {},
+    /* renderRzResult 诊断完会同步行动管线入口按钮；
+       这里只测诊断渲染本身，stub 成空操作（管线渲染另有测试）。 */
+    pcSyncEntry: () => {},
     RZ_FIELDS: grabConst("RZ_FIELDS"),
     RULES_CORE,
   });
@@ -216,6 +219,7 @@ test("赛道数没选时，诊断不会把它列成「已填」，反而会点�
     rzStore: () => ({ posts: "20", best: "100" }),
     rzPlatform: () => "douyin",
     renderRzGates: () => {},
+    pcSyncEntry: () => {},
     RZ_FIELDS: grabConst("RZ_FIELDS"),
     RULES_CORE,
   });
